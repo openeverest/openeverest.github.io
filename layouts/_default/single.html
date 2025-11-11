@@ -1,9 +1,9 @@
 {{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
-<article class="container mx-auto px-4 py-16 max-w-4xl">
+<article class="container mx-auto px-4 py-16 max-w-5xl">
     <header class="mb-8">
-        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+        <h1 class="text-5xl font-bold mb-4 text-gray-900">{{ .Title }}</h1>
         <div class="text-gray-600 mb-4">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
             {{ if .Params.authors }}

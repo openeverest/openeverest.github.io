@@ -15,11 +15,84 @@
 
         <!-- About Section -->
         <section class="about mb-24 bg-white rounded-2xl shadow-xl p-12">
-            <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">About Everest</h2>
-            <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
-                Everest is an open source project dedicated to innovation and collaboration. 
-                Our mission is to create powerful, accessible tools that empower developers and communities worldwide.
+            <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">What is Percona Everest?</h2>
+            <p class="text-xl text-gray-700 text-center max-w-4xl mx-auto leading-relaxed mb-8">
+                Percona Everest is the <strong>first open-source platform</strong> for automated database provisioning and management. 
+                It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
             </p>
+            <div class="text-center">
+                <a href="/about" class="inline-block bg-[#7790DE] hover:bg-[#161641] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300">
+                    Learn More
+                </a>
+            </div>
+        </section>
+
+        <!-- Why Choose Everest Section -->
+        <section class="why-everest mb-24">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Why Percona Everest?</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300">
+                    <div class="text-[#7790DE] mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Eliminate Vendor Lock-In</h3>
+                    <p class="text-gray-600">Deploy an automated private DBaaS without being tied to a single cloud provider.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300">
+                    <div class="text-[#7790DE] mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Avoid Complex Development</h3>
+                    <p class="text-gray-600">Skip building your own platform. Get a production-ready solution out of the box.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300">
+                    <div class="text-[#7790DE] mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Open Source Advantage</h3>
+                    <p class="text-gray-600">Full transparency, no licensing fees, and community-driven development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features mb-24">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Key Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="/features/deployments" class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Multi-Cloud Deployments</h3>
+                    <p class="text-gray-600 mb-4">Deploy across multiple cloud providers with support for PostgreSQL, MySQL, MongoDB, and more coming soon.</p>
+                    <span class="text-[#7790DE] font-semibold">Learn more →</span>
+                </a>
+                <a href="/features/provisioning" class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Flexible Scaling</h3>
+                    <p class="text-gray-600 mb-4">Scale horizontally or vertically with advanced storage management and disaster recovery capabilities.</p>
+                    <span class="text-[#7790DE] font-semibold">Learn more →</span>
+                </a>
+                <a href="/features/management" class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Database Monitoring</h3>
+                    <p class="text-gray-600 mb-4">Monitor with PMM for performance metrics, query analysis, and comprehensive cluster insights.</p>
+                    <span class="text-[#7790DE] font-semibold">Learn more →</span>
+                </a>
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Private Deployments</h3>
+                    <p class="text-gray-600">Complete control over your database environment with DIY customization and enhanced security.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Advanced Configuration</h3>
+                    <p class="text-gray-600">Fine-grained control with external access management and database engine optimization.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-[#7790DE]">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Resource Flexibility</h3>
+                    <p class="text-gray-600">Adjust CPU, memory, and storage allocations on-the-fly to handle changing workloads.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Recent Posts Section -->

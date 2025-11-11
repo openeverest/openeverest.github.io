@@ -5,7 +5,9 @@
                 <a href="/" class="text-everest-dark hover:text-everest-blue transition-colors duration-300">Everest</a>
             </h1>
             <div class="flex gap-6 lg:gap-10 items-center">
-                <a href="/blog" class="text-base text-[#7790DE] hover:text-[#161641] transition-colors duration-300 font-medium">Blog</a>
+                <a href="/features" class="text-gray-700 hover:text-[#7790DE] px-4 py-2 rounded-md transition-colors {{ if eq .Section "features" }}bg-[#161641] text-white{{ end }}">Features</a>
+                <a href="/about" class="text-gray-700 hover:text-[#7790DE] px-4 py-2 rounded-md transition-colors {{ if eq .RelPermalink "/about/" }}bg-[#161641] text-white{{ end }}">About</a>
+                <a href="/blog" class="text-gray-700 hover:text-[#7790DE] px-4 py-2 rounded-md transition-colors {{ if eq .Section "blog" }}bg-[#161641] text-white{{ end }}">Blog</a>
                 <a href="/docs" class="text-base text-[#7790DE] hover:text-[#161641] transition-colors duration-300 font-medium">Documentation</a>
                 <a href="/support" class="text-base text-[#7790DE] hover:text-[#161641] transition-colors duration-300 font-medium">Support</a>
                 <a href="https://github.com/percona/everest" 
