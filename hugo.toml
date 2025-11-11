@@ -1,4 +1,4 @@
-baseURL = 'https://openeverest.github.io/everest.github.io/'
+baseURL = '/'
 languageCode = 'en-us'
 title = 'Everest Open Source'
 theme = ''
