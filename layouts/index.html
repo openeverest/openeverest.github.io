@@ -1,0 +1,40 @@
+{{ define "title" }}{{ .Site.Title }} - Home{{ end }}
+
+{{ define "main" }}
+<div class="container mx-auto px-4 py-16">
+    <section class="hero text-center mb-16">
+        <h1 class="text-5xl font-bold mb-4 text-gray-900">Welcome to Everest</h1>
+        <p class="text-xl text-gray-600 mb-8">An Open Source Project</p>
+        <p class="text-lg text-gray-700 mb-8">Building the future together, one commit at a time.</p>
+        <div class="flex justify-center gap-4">
+            <a href="https://github.com/openeverest" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition">View on GitHub</a>
+            <a href="/blog" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition">Read Blog</a>
+        </div>
+    </section>
+
+    <section class="about mb-16">
+        <h2 class="text-3xl font-bold mb-4 text-center">About Everest</h2>
+        <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto">
+            Everest is an open source project dedicated to innovation and collaboration. 
+            Our mission is to create powerful, accessible tools that empower developers and communities worldwide.
+        </p>
+    </section>
+
+    <section class="recent-posts">
+        <h2 class="text-3xl font-bold mb-8 text-center">Latest Blog Posts</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
+            <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold mb-2">
+                    <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
+                </h3>
+                <p class="text-gray-600 text-sm mb-2">{{ .Date.Format "January 2, 2006" }}</p>
+                {{ if .Params.summary }}
+                <p class="text-gray-700">{{ .Params.summary }}</p>
+                {{ end }}
+            </article>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{ end }}

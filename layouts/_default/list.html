@@ -1,0 +1,39 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="container mx-auto px-4 py-16">
+    <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+        {{ if .Params.description }}
+        <p class="text-xl text-gray-600">{{ .Params.description }}</p>
+        {{ end }}
+    </header>
+
+    <div class="space-y-8">
+        {{ range .Pages }}
+        <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+            <h2 class="text-2xl font-semibold mb-2">
+                <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
+            </h2>
+            <div class="text-gray-600 text-sm mb-4">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                {{ if .Params.authors }}
+                <span class="mx-2">•</span>
+                <span>{{ delimit .Params.authors ", " }}</span>
+                {{ end }}
+            </div>
+            {{ if .Params.summary }}
+            <p class="text-gray-700 mb-4">{{ .Params.summary }}</p>
+            {{ end }}
+            {{ if .Params.tags }}
+            <div class="flex flex-wrap gap-2">
+                {{ range .Params.tags }}
+                <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
