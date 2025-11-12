@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["hugo"]
+packages = ["hugo", "gh"]
 
 [workflows]
 runButton = "Project"
