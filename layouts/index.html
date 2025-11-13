@@ -103,7 +103,7 @@
                     {{ with .Params.tags }}
                     <div class="flex flex-wrap gap-2 mb-4">
                         {{ range . }}
-                        <span class="bg-[#7790DE] text-white text-xs font-semibold px-3 py-1 rounded-full">{{ . }}</span>
+                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-[#7790DE] text-white text-xs font-semibold px-3 py-1 rounded-full hover:bg-[#161641] transition">{{ . }}</a>
                         {{ end }}
                     </div>
                     {{ end }}

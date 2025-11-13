@@ -25,7 +25,7 @@
         {{ if .Params.tags }}
         <div class="flex flex-wrap gap-2 mb-4">
             {{ range .Params.tags }}
-            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">{{ . }}</span>
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-300 transition">{{ . }}</a>
             {{ end }}
         </div>
         {{ end }}

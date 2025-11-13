@@ -1,27 +1,15 @@
+
 {{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
 
 {{ define "main" }}
 <div class="container mx-auto px-4 py-16">
     <header class="mb-12">
-        <div class="flex justify-between items-start mb-4">
-            <h1 class="text-4xl font-bold">{{ .Title }}</h1>
-            {{ if eq .Section "blog" }}
-            <a href="https://github.com/openeverest/openeverest.github.io/tree/main/content/blog" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-300 whitespace-nowrap">
-                Write blog
-            </a>
-            {{ end }}
-        </div>
-        {{ if .Params.description }}
-        <p class="text-xl text-gray-600">{{ .Params.description }}</p>
-        {{ end }}
+        <h1 class="text-4xl font-bold mb-4">Tag: {{ .Title }}</h1>
+        <p class="text-xl text-gray-600">{{ .Data.Pages | len }} {{ if eq (.Data.Pages | len) 1 }}post{{ else }}posts{{ end }} with this tag</p>
     </header>
 
     <div class="space-y-8">
         {{ range .Pages }}
-        {{ if and .File (eq .File.LogicalName "index.md") }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
             <h2 class="text-2xl font-semibold mb-2">
                 <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
@@ -55,7 +43,6 @@
             </div>
             {{ end }}
         </article>
-        {{ end }}
         {{ end }}
     </div>
 </div>

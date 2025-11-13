@@ -17,3 +17,6 @@ title = 'Everest Open Source'
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[taxonomies]
+  tag = "tags"
