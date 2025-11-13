@@ -11,7 +11,7 @@
 
     <div class="space-y-8">
         {{ range .Pages }}
-        {{ if eq .File.LogicalName "index.md" }}
+        {{ if and .File (eq .File.LogicalName "index.md") }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
             <h2 class="text-2xl font-semibold mb-2">
                 <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
