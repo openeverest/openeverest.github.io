@@ -192,11 +192,12 @@
     "ids": [
       "advanced-configuration",
       "avoid-complex-development",
-      "blog-post-structure",
+      "before-you-write-a-blog",
       "commercial-support",
       "content-guidelines",
       "contributing-a-blog-post",
       "contributing-to-the-blog",
+      "creating-a-new-blog-post",
       "creating-your-post-folder",
       "disaster-recovery",
       "eliminate-vendor-lock-in",
