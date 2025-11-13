@@ -7,7 +7,7 @@ image:
     url: 
     attribution: 
 authors:
- - Everest Team
+ - spron-in
 tags:
  - announcement
 summary: Welcome to Everest - the open-source platform for automated database provisioning and management. Learn about our mission and how to contribute.
