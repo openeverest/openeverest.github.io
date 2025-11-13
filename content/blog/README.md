@@ -1,48 +1,118 @@
 
-# Blog Post Structure
+# Contributing a Blog Post
 
-Each blog post should be in its own folder (page bundle) to allow storing images and other assets alongside the post.
+Thank you for your interest in contributing to the Everest blog! We welcome posts from the community about database management, Kubernetes, DevOps, tutorials, and experiences using Everest.
 
-## Creating a New Blog Post
+## Submission Process
 
-To create a new blog post, use:
+To contribute a blog post:
 
-```bash
-hugo new content/blog/your-post-slug/index.md
-```
+1. **Fork the repository** at [github.com/openeverest/everest.github.io](https://github.com/openeverest/everest.github.io)
+2. **Create your blog post** following the structure below
+3. **Submit a pull request** with your changes
+4. **Wait for review** - our team will review and provide feedback
 
-This will create a folder structure like:
+## Blog Post Structure
+
+Each blog post **must** be in its own folder (page bundle) with an `index.md` file. This allows you to store images and other assets alongside your post.
+
+### Creating Your Post Folder
+
+Create a new folder under `content/blog/` with a descriptive slug:
 
 ```
 content/blog/your-post-slug/
-├── index.md          # The blog post content
-├── image1.jpg        # Any images used in the post
+├── index.md          # Your blog post (required)
+├── image1.jpg        # Images used in the post
 ├── diagram.png       # Other static files
 └── attachment.pdf    # Any downloadable files
 ```
 
+## Required Frontmatter
+
+Every blog post **must** include frontmatter at the top of the `index.md` file with the following fields:
+
+```yaml
+---
+title: "Your Blog Post Title"
+date: 2025-01-15T10:00:00
+draft: false
+image:
+    url: featured-image.jpg
+    attribution: https://source-url.com
+authors:
+ - Your Name
+tags:
+ - relevant-tag
+ - another-tag
+summary: A brief one-sentence summary of your post that will appear in the blog list
+---
+```
+
+### Frontmatter Field Descriptions
+
+- **title**: The title of your blog post (required)
+- **date**: Publication date in ISO format (required)
+- **draft**: Set to `false` for published posts (required)
+- **image.url**: Filename of the featured image in your post folder (optional)
+- **image.attribution**: Source URL if using third-party images (optional)
+- **authors**: List of author names (required)
+- **tags**: Relevant tags for categorization (required)
+- **summary**: Brief description shown in blog listings (required)
+
 ## Referencing Assets
 
-Since assets are in the same folder as your blog post, you can reference them with relative paths:
+Since your images and files are in the same folder as `index.md`, use relative paths:
 
 ```markdown
 ![Description](image1.jpg)
 [Download PDF](attachment.pdf)
 ```
 
+## Content Guidelines
+
+- Write in clear, accessible language
+- Include code examples when relevant
+- Use proper Markdown formatting
+- Credit sources and provide attributions for images
+- Focus on topics relevant to Everest, databases, or cloud infrastructure
+
 ## Example Structure
 
+Here's a complete example of a blog post folder:
+
 ```
-content/blog/
-├── _index.md
-├── welcome-to-everest/
-│   └── index.md
-├── getting-started/
-│   ├── index.md
-│   ├── screenshot.png
-│   └── config-example.yaml
-└── advanced-tutorial/
-    ├── index.md
-    ├── diagram.svg
-    └── sample-data.csv
+content/blog/getting-started-with-everest/
+├── index.md
+├── dashboard-screenshot.png
+└── architecture-diagram.svg
 ```
+
+With `index.md` containing:
+
+```yaml
+---
+title: "Getting Started with Everest"
+date: 2025-01-20T09:00:00
+draft: false
+image:
+    url: dashboard-screenshot.png
+    attribution: 
+authors:
+ - Jane Developer
+tags:
+ - tutorial
+ - getting-started
+summary: Learn how to deploy your first database cluster with Everest in under 10 minutes
+---
+
+Your blog content here...
+
+![Everest Dashboard](dashboard-screenshot.png)
+```
+
+## Questions?
+
+If you have questions about contributing, please open an issue in the repository or reach out to the Everest community.
+
+We look forward to your contribution!
