@@ -1,16 +1,16 @@
 
 ---
-title: "About Percona Everest"
+title: "About Everest"
 date: 2025-01-15T10:00:00
 draft: false
-summary: Learn about Percona Everest, the first open-source platform for automated database provisioning and management.
+summary: Learn about Everest, the first open-source platform for automated database provisioning and management.
 ---
 
-## What is Percona Everest?
+## What is Everest?
 
-Percona Everest is the **first open-source platform** for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
+Everest is the **first open-source platform** for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
 
-## Why Choose Percona Everest?
+## Why Choose Everest?
 
 ### Eliminate Vendor Lock-In
 
@@ -18,7 +18,7 @@ Deploy an automated private DBaaS without being tied to a single cloud provider.
 
 ### Avoid Complex Development
 
-Skip the complexity of building your own database platform. Percona Everest provides a production-ready solution out of the box.
+Skip the complexity of building your own database platform. Everest provides a production-ready solution out of the box.
 
 ### Open Source Advantage
 
@@ -29,7 +29,7 @@ Skip the complexity of building your own database platform. Percona Everest prov
 
 ## Multi-Database Support
 
-While Percona Everest currently supports:
+While Everest currently supports:
 
 - PostgreSQL
 - MySQL
@@ -39,4 +39,4 @@ More database engines are coming soon, and the plugin architecture will enable e
 
 ## Get Started Today
 
-Ready to test drive Percona Everest? Deploy your automated private DBaaS and take control of your database infrastructure.
+Ready to test drive Everest? Deploy your automated private DBaaS and take control of your database infrastructure.

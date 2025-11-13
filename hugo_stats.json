@@ -185,6 +185,7 @@
       "w-5",
       "w-6",
       "w-full",
+      "whitespace-nowrap",
       "why-everest",
       "z-50"
     ],
@@ -224,7 +225,9 @@
       "storage-management",
       "submission-process",
       "vertical-scaling",
+      "what-is-everest",
       "what-is-percona-everest",
+      "why-choose-everest",
       "why-choose-percona-everest"
     ]
   }
