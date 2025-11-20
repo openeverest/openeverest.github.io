@@ -3,14 +3,14 @@
 title: "About Everest"
 date: 2025-01-15T10:00:00
 draft: false
-summary: Learn about Everest, the first open-source platform for automated database provisioning and management.
+summary: Learn about OpenEverest, the first open-source platform for automated database provisioning and management.
 ---
 
-## What is Everest?
+## What is OpenEverest?
 
-Everest is the **first open-source platform** for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
+OpenEverest is the **first open-source platform** for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
 
-## Why Choose Everest?
+## Why Choose OpenEverest?
 
 ### Eliminate Vendor Lock-In
 
@@ -39,4 +39,4 @@ More database engines are coming soon, and the plugin architecture will enable e
 
 ## Get Started Today
 
-Ready to test drive Everest? Deploy your automated private DBaaS and take control of your database infrastructure.
+Ready to test drive OpenEverest? Deploy your automated private DBaaS and take control of your database infrastructure.
