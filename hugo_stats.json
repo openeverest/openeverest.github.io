@@ -187,7 +187,7 @@
       "shadow-lg",
       "shadow-md",
       "shadow-sm",
-      "sm:grid-cols-2",
+      "sm:grid-cols-3",
       "sm:h-10",
       "sm:px-6",
       "space-y-2",
