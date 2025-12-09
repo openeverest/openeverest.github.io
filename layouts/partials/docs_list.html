@@ -3,8 +3,7 @@
 {{ with $docs }}
 {{ range .Pages.Reverse }}
 <p>
-    <a href="{{ .Params.location }}"><span
-            class="text-[#7790DE] hover:text-[#161641] font-semibold">v{{.Params.release}}</span></a> <!-- released on <a
+    <a href="{{ .Params.location }}"><span class="text-[#7790DE] hover:text-[#161641]">v{{.Params.release}}</span></a> <!-- released on <a
         href="{{.Params.release_notes}}">{{.Params.release_date}}</a> -->
     <!--commented untill solving problem with getting dates of release notes-->
 </p>

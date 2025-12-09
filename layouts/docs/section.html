@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="container mx-auto px-4 py-16 max-w-5xl">
+<div class="container mx-auto px-4 py-16 max-w-5xl flex flex-col">
     <header class="mb-8">
         <h1 class="text-5xl font-bold mb-4 text-gray-900">{{.Title}}</h1>
         <div class="text-gray-600 mb-4">
@@ -7,6 +7,8 @@
         </div>
     </header>
     {{ .Content }}
-    {{ partial "docs_list.html" . }}
+    <div class="h-[30vh] overflow-y-scroll bg-blue-50 p-6">
+        {{ partial "docs_list.html" . }}
+    </div>
 </div>
 {{ end }}

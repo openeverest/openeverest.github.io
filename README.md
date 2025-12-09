@@ -77,6 +77,7 @@ Found a bug or have a suggestion? Please [open an issue](https://github.com/open
 .
 ├── archetypes/          # Content templates
 ├── assets/              # Source assets (CSS, images)
+│   ├── documentation/   # Release Notes builded Documentation
 ├── content/             # Website content (Markdown)
 │   ├── blog/            # Blog posts
 │   └── features/        # Feature pages
