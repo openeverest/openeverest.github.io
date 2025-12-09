@@ -14,13 +14,13 @@
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/everest/use/CreateBackup.html">
+        <link rel="canonical" href="https://docs.percona.com/everest/use/db_provision.html">
       
       
-        <link rel="prev" href="CreateStorage.html">
+        <link rel="prev" href="../install/uninstallEverest.html">
       
       
-        <link rel="next" href="RestoreBackup.html">
+        <link rel="next" href="AboutBackups.html">
       
       
       <link rel="icon" href="../images/percona-favicon.ico">
@@ -28,7 +28,7 @@
     
     
       
-        <title>Create backups - Percona Everest</title>
+        <title>Provision a database - Percona Everest</title>
       
     
     
@@ -87,7 +87,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona Everest - Create backups" />
+                 <meta property="og:title" content="Percona Everest - Provision a database" />
                  <meta property="og:image" content="https://docs.percona.com/everest/images/everest.png">
                  <meta property="og:url" content="https://docs.percona.com/everest/">
               
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-backups" class="md-skip">
+        <a href="#provision-a-database" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
           <div class="md-header__topic" data-md-component="header-topic">
             <span class="md-ellipsis">
               
-                Create backups
+                Provision a database
               
             </span>
           </div>
@@ -324,6 +324,29 @@
             Release Notes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/Percona%20Everest%200.6.0%20%282023-12-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.6.0 (2023-12-28)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -588,7 +611,7 @@
   
   
   <span class="md-ellipsis">
-    Quick install
+    Quick-Install
     
   </span>
   
@@ -809,10 +832,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="db_provision.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Provision a database
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="db_provision.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -823,6 +868,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video tutorial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -832,20 +924,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -861,7 +951,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             Back up and restore data
@@ -918,107 +1008,43 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Create backups
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="CreateBackup.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="createBackups/CreateOnDemand.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Create backups
+    Create on-demand and scheduled backups
     
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="createBackups/EnablePITR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enable Point-in-time recovery (PITR)
     
+  </span>
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-on-demand-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create an on-demand backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#schedule-a-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schedule a backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#edit-a-scheduled-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Edit a scheduled backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next step
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+
+      </a>
     </li>
   
 
@@ -1183,6 +1209,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../secure/user-auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Secure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../API.html" class="md-nav__link">
         
   
@@ -1213,10 +1261,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   
@@ -1229,8 +1277,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Reference
           </label>
@@ -1364,36 +1412,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-an-on-demand-backup" class="md-nav__link">
+  <a href="#procedure" class="md-nav__link">
     <span class="md-ellipsis">
-      Create an on-demand backup
+      Procedure
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#schedule-a-backup" class="md-nav__link">
+  <a href="#video-tutorial" class="md-nav__link">
     <span class="md-ellipsis">
-      Schedule a backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#edit-a-scheduled-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Edit a scheduled backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next step
+      Video tutorial
     </span>
   </a>
   
@@ -1424,7 +1454,7 @@
 
 
   
-    <a href="https://github.com/percona/everest-doc/edit/main/docs/use/CreateBackup.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/percona/everest-doc/edit/main/docs/use/db_provision.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1433,52 +1463,64 @@
     
       
     
-    <a href="https://github.com/percona/everest-doc/raw/main/docs/use/CreateBackup.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/everest-doc/raw/main/docs/use/db_provision.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="create-backups">Create backups<a class="headerlink" href="#create-backups" title="Permanent link">&para;</a></h1>
-<p>Initiate an immediate backup for hands-on control, or schedule one if you prefer the automated reliability of scheduled backups.</p>
-<h2 id="create-an-on-demand-backup">Create an on-demand backup<a class="headerlink" href="#create-an-on-demand-backup" title="Permanent link">&para;</a></h2>
-<p>On demand backups give you immediate control over when and what data to back up. One time backups can be particularly useful when you need to safeguard critical information before making significant changes to your database.</p>
-<p class="power-number">To create a backup now:</p>
+<h1 id="provision-a-database">Provision a database<a class="headerlink" href="#provision-a-database" title="Permanent link">&para;</a></h1>
+<p>Provisioning a database instance involves setting up and configuring a database instance on the Percona Everest platform.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">&para;</a></h2>
+<p class="power-number">To provision a new database:</p>
 <ol>
-<li>Go to <i class="uil uil-cog"></i>  <strong>Settings &gt; Backup Storages</strong> and check that you have an available AWS S3-compatible location for storing backups. Otherwise, <a href="CreateBackup.html">create a backup location</a> so Everest can store backup artifacts for the database. </li>
-<li>Go to the <i class="uil uil-database"></i> <strong>Databases</strong> view and select the database which you want to back up.</li>
-<li>Click <strong>Create backup &gt; Now</strong>.</li>
-<li>In the <strong>Create Backup</strong> pop-up, change the default backup name if required, select an available backup location, and then click <strong>Create</strong>.</li>
-</ol>
-<h2 id="schedule-a-backup">Schedule a backup<a class="headerlink" href="#schedule-a-backup" title="Permanent link">&para;</a></h2>
-<p>Schedule a backup when you want your backups to occur automatically at predetermined intervals. This automation reduces the risk of human error and ensures that your data is consistently backed up without requiring your constant intervention.</p>
-<p class="power-number">To configure a backup schedule:</p>
-<ol>
-<li>Go to <i class="uil uil-cog"></i>  <strong>Settings &gt; Backup Storages</strong> and check that you have an available AWS S3-compatible location for storing backups. Otherwise, <a href="CreateBackup.html">create a backup location</a> so Everest can store backup artifacts for the database. </li>
-<li>Go to the <i class="uil uil-database"></i> <strong>Databases</strong> view and select the database which you want to back up.</li>
-<li>Click <strong>Create backup &gt; Schedule</strong>.</li>
 <li>
-<p>Change the default backup name if required, and configure the frequency and start time for the backups.</p>
-<div class="admonition note alert alert-primary">
-<p class="admonition-title">Important</p>
-<p>Make sure that the schedule you specify here does not create overlapping jobs or overhead on the production environment. Also, check that your specified schedule does not overlap with production hours.</p>
-</div>
+<p>Log into the Percona Everest UI.</p>
 </li>
 <li>
-<p>Click <strong>Create</strong>. All scheduled backups for the current DB will be listed at the top so you can review the schedules that are currently generating backup artifacts.</p>
+<p>On the Percona Everest homepage, click <strong>Create Database</strong> to display the Basic information page:</p>
+<p><img alt="!image" src="../images/everest_db_provision.png" /></p>
+</li>
+<li>
+<p>Select the <strong>Database type</strong>: PostgreSQL, MySQL, or MongoDB.</p>
+</li>
+<li>
+<p>Choose a name for your database. The name is auto-populated, but you can modify it according to your needs.</p>
+</li>
+<li>
+<p>Select the <strong>Database version</strong> from the dropdown.</p>
+</li>
+<li>
+<p>In the <strong>Storage class</strong> field, select one of the classes created by your Kubernetes administrator. Storage classes define what storage configuration and features will be used for storing your database data. Different classes map to different quality-of-service levels, backup policies, persistent volumes, or to arbitrary policies determined by your cluster administrator. For more information, see <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/" target="_blank">Storage Classes</a> in the Kubernetes documentation. </p>
+</li>
+<li>
+<p>Click <strong>Continue</strong> to go to the <strong>Resources</strong> page.</p>
+</li>
+<li>
+<p>Select the <strong>Number of nodes</strong>. Also, set the resources per node by selecting one of the predefined presets or by specifying the CPU, Memory, and Disk. For more information on resources, see the <a href="scaling.html">Scale database deployment</a>.</p>
+</li>
+<li>
+<p>Click <strong>Continue</strong> to navigate to the <strong>Backups</strong> page where you can set up a schedule and specify a storage location if you wish to run backup jobs for your new database.</p>
+</li>
+<li>
+<p>On the <strong>Advanced Configurations</strong> page, you can enable external access and database engine parameters by turning the toggle button on.</p>
+</li>
+<li>
+<p>If you’ve enabled monitoring during CLI provisioning, the <strong>Monitoring</strong> option will show as active on the last page of the wizard, and you can disable it if required.</p>
+</li>
+<li>
+<p>Click <strong>Create Database</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Go to list of my databases</strong> to see the database that you provisioned.</p>
+<p><img alt="!image" src="../images/everest_provisioned_db.png" /></p>
 </li>
 </ol>
-<h2 id="edit-a-scheduled-backup">Edit a scheduled backup<a class="headerlink" href="#edit-a-scheduled-backup" title="Permanent link">&para;</a></h2>
-<p class="power-number">To edit a schedule that is currently generating backup artifacts:</p>
-<ol>
-<li>Go to the <i class="uil uil-database"></i> <strong>Databases</strong> view and select the DB for which  backups have been scheduled.  </li>
-<li>Select the <strong>Backups</strong> tab and expand the Schedule box.</li>
-<li>Select the schedule you want to update, click the ellipsis <i class="uil uil-ellipsis-h"></i> and select <strong>Edit</strong>. </li>
-<li>Update the schedule and click <strong>Save</strong>.</li>
-</ol>
-<h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
-<p><a class="md-button" href="RestoreBackup.html">Restore backups <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+<h2 id="video-tutorial">Video tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link">&para;</a></h2>
+<p>You can also learn about creating databases by checking the video tutorial below:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Oq1XKB8VXUk?si=JBLVJ9zBfpHGxL2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
