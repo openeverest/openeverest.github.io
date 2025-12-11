@@ -36,7 +36,7 @@ The OpenEverest API Server is the central component that exposes a RESTful API f
 
 The OpenEverest CLI is used to perform Kubernetes administrative tasks such as user account management, RBAC, and namespace management. It also provisions and upgrades OpenEverest.
 
-```
+```bash
 $ bin/everestctl
 CLI for managing Percona Everest
 
@@ -83,7 +83,8 @@ OpenEverest's components are designed to work together to provide a unified data
 3. **OpenEverest Operator:** The API Server delegates database lifecycle operations (such as provisioning, scaling, and backups) to the OpenEverest Operator.
 4. **Database Operators:** The OpenEverest Operator, in turn, manages specific database operators (e.g., for PostgreSQL, MongoDB, MySQL) using Kubernetes custom resources.
 5. **Helm charts:** Helm charts are used to deploy and upgrade OpenEverest components themselves, making installation and maintenance straightforward.
-   This integration allows users to manage complex database environments with simple, consistent workflows, abstracting away the underlying Kubernetes and operator complexity.
+
+This integration allows users to manage complex database environments with simple, consistent workflows, abstracting away the underlying Kubernetes and operator complexity.
 
 
 # Conclusion
