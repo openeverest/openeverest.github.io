@@ -65,7 +65,9 @@ Use "everestctl [command] --help" for more information about a command.
 
 ## OpenEverest Operator
 
-The [OpenEverest Operator](https://github.com/percona/everest-operator) is a Kubernetes operator that manages database deployments and operations. OpenEverest delegates to individual Kubernetes database operators [percona-xtradb-cluster-operator](https://github.com/percona/percona-xtradb-cluster-operator), [percona-server-mongodb-operator](https://github.com/percona/percona-server-mongodb-operator), and [percona-postgresql-operator](https://github.com/percona/percona-postgresql-operator) for managing their database operators. The operator pattern abstracts complexity by introducing specific custom resources. For example, for PostgreSQL there may be three custom resources: one for the PostgreSQL cluster (describing scaling and configuration), one for backups, and one for restores. The OpenEverest Operator allows users to use a single schema to deploy different databases. An example of the OpenEverest Operator for PostgreSQL is shown below.
+The [OpenEverest Operator](https://github.com/percona/everest-operator) is a Kubernetes operator that manages database deployments and operations. OpenEverest delegates to individual Kubernetes database operators [percona-xtradb-cluster-operator](https://github.com/percona/percona-xtradb-cluster-operator), [percona-server-mongodb-operator](https://github.com/percona/percona-server-mongodb-operator), and [percona-postgresql-operator](https://github.com/percona/percona-postgresql-operator) for managing their databases. The operator pattern abstracts complexity by introducing specific custom resources.
+
+For example, for PostgreSQL, there may be three custom resources: one for the PostgreSQL cluster (describing scaling and configuration), one for backups, and one for restores. The OpenEverest Operator allows users to use a single schema to deploy different databases. An example of the OpenEverest Operator flow for PostgreSQL is shown below.
 
 ![OpenEverest Operator](openeverest-operator.png)
 
