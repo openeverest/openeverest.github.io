@@ -1,7 +1,7 @@
 baseURL = 'https://openeverest.io/'
 languageCode = 'en-us'
 title = 'OpenEverest'
-staticDir = ['assets']
+staticDir = ['static', 'assets']
 
 [params]
   description = 'Website for OpenEverest project'
