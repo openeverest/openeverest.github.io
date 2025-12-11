@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: feature/documentation-exporting
         
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
@@ -28,4 +30,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add assets/documentation/${{ inputs.version }}
           git diff-index --quiet HEAD || git commit -m "docs: import documentation for version ${{ inputs.version }}"
-          git push origin $(git rev-parse --abbrev-ref HEAD)
+          # git push origin $(git rev-parse --abbrev-ref HEAD)
+          git push origin feature/documentation-exporting
