@@ -1,6 +1,6 @@
 ---
 title: "Percona Everest Transitions to OpenEverest: A New Chapter in Open Source Database Management"
-date: 2025-12-18T09:00:00
+date: 2025-12-16T09:00:00
 draft: false
 image:
     url: percona-to-open-min.png
@@ -13,8 +13,6 @@ tags:
  - open-source
 summary: Percona is transitioning Percona Everest into an independent open source project called OpenEverest, designed to operate with open governance and a growing, multi-vendor community.
 ---
-
-![Percona Everest to OpenEverest Transition](percona-to-open-min.png)
 
 We're excited to announce a significant milestone in the evolution of [Percona](https://percona.com) Everest: **the project is transitioning to become OpenEverest**, an independent open source project with open governance and a thriving, multi-vendor community.
 

@@ -4,6 +4,7 @@
       "a",
       "article",
       "body",
+      "br",
       "button",
       "code",
       "div",
@@ -285,16 +286,20 @@
       "example-structure",
       "flexible-scaling",
       "frontmatter-field-descriptions",
+      "get-involved",
       "get-started-today",
       "github-stars",
       "horizontal-scaling",
       "join-us",
       "key-benefits",
+      "key-highlights",
       "latest-version",
+      "looking-forward",
       "monitoring-with-pmm",
       "multi-cloud-freedom",
       "multi-database-support",
       "multiple-database-support",
+      "need-help",
       "on-the-fly-adjustments",
       "open-source-advantage",
       "our-mission",
@@ -312,7 +317,10 @@
       "what-are-the-alternatives",
       "what-is-ingress-and-ingress-nginx",
       "what-is-openeverest",
-      "why-choose-openeverest"
+      "what-this-means-for-you",
+      "whats-changing",
+      "why-choose-openeverest",
+      "why-this-matters"
     ]
   }
 }
