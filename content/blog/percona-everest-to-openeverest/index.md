@@ -49,7 +49,7 @@ If you're currently using Percona Everest:
 
 ✅ **Continuity**: No disruption to your existing deployments  
 ✅ **Stability**: Continued enterprise-grade reliability and security  
-✅ **Support**: Percona, Solanica and more organizations are ready to help
+✅ **Support**: Percona, Solanica and more organizations are ready to help  
 ✅ **Innovation**: Benefit from a more open ecosystem and faster evolution driven by a larger community
 
 ## Get Involved
