@@ -20,22 +20,15 @@ We're excited to announce a significant milestone in the evolution of [Percona](
 
 Percona Everest is becoming **OpenEverest** - an independent open source project designed to welcome broad participation from individuals, partners, and organizations across the industry. This transition reflects our commitment to open source principles and enables the project to grow beyond a single-vendor solution.
 
-### Key Highlights
+### What's Different
 
-- **Open Governance**: OpenEverest will operate with transparent, community-driven governance
-- **Multi-Vendor Community**: The project welcomes contributors, maintainers, and ecosystem partners from across the industry
-- **Community-Driven Roadmap**: Evolution guided by community needs, not commercial priorities
-- **CNCF Ecosystem Integration**: Deeper engagement with the Cloud Native Computing Foundation and the broader cloud-native ecosystem
+OpenEverest will operate with transparent, community-driven governance, moving away from single-vendor control. The project now welcomes contributors, maintainers, and ecosystem partners from across the industry, creating a truly multi-vendor community. Instead of following commercial priorities, the roadmap will evolve based on what the community actually needs. This also means deeper engagement with the Cloud Native Computing Foundation and the broader cloud-native ecosystem.
 
 ## Why This Matters
 
-We are evolving OpenEverest into a fully extensible platform. While our current focus is on specific database management, our roadmap is centered on creating a modular foundation that can support:
+We're building OpenEverest as a fully extensible platform. Right now, we're focused on database management, but the real vision is bigger than that. We're creating a modular foundation where you can seamlessly plug in additional data engines, connect with your entire operational stack, and tackle a broader range of data infrastructure challenges.
 
-- **New Databases**: Seamlessly plug in additional data engines.
-- **Custom Integrations**: Connect with your entire operational stack.
-- **Operational Scale**: Address a broader range of data infrastructure use cases.
-
-Our goal is to transform OpenEverest from a single-purpose tool into a community-driven ecosystem. You can read the full breakdown of this journey at [vision.openeverest.io](vision.openeverest.io).
+Think of it this way: we're moving from a single-purpose tool to a community-driven ecosystem. The full breakdown of where we're headed is at [vision.openeverest.io](vision.openeverest.io).
 
 ## Commercial Support
 
