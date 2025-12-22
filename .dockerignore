@@ -1,0 +1,10 @@
+.git
+.github
+node_modules
+public
+resources
+.replit
+replit.nix
+.gitignore
+*.md
+!README.md
