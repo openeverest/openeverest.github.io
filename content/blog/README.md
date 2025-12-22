@@ -1,12 +1,12 @@
 # Contributing a Blog Post
 
-Thank you for your interest in contributing to the Everest blog! We welcome posts from the community about database management, Kubernetes, DevOps, tutorials, and experiences using Everest.
+Thank you for your interest in contributing to the OpenEverest blog! We welcome posts from the community about database management, Kubernetes, DevOps, tutorials, and experiences using OpenEverest.
 
 ## Submission Process
 
 To contribute a blog post:
 
-1. **Fork the repository** at [github.com/openeverest/everest.github.io](https://github.com/openeverest/everest.github.io)
+1. **Fork the repository** at [github.com/openeverest/openeverest.github.io](https://github.com/openeverest/openeverest.github.io)
 2. **Create your blog post** following the structure below
 3. **Submit a pull request** with your changes
 4. **Wait for review** - our team will review and provide feedback
@@ -118,7 +118,7 @@ With `index.md` containing:
 
 ```yaml
 ---
-title: "Getting Started with Everest"
+title: "Getting Started with OpenEverest"
 date: 2025-01-20T09:00:00
 draft: false
 image:
@@ -129,16 +129,16 @@ authors:
 tags:
  - tutorial
  - getting-started
-summary: Learn how to deploy your first database cluster with Everest in under 10 minutes
+summary: Learn how to deploy your first database cluster with OpenEverest in under 10 minutes
 ---
 
 Your blog content here...
 
-![Everest Dashboard](dashboard-screenshot.png)
+![OpenEverest Dashboard](dashboard-screenshot.png)
 ```
 
 ## Questions?
 
-If you have questions about contributing, please open an issue in the repository or reach out to the Everest community.
+If you have questions about contributing, please open an issue in the repository or reach out to the OpenEverest community.
 
 We look forward to your contribution!
