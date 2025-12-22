@@ -33,6 +33,7 @@
       "section",
       "span",
       "strong",
+      "style",
       "svg",
       "time",
       "title",
@@ -40,6 +41,7 @@
     ],
     "classes": [
       "absolute",
+      "adopter-indicator",
       "bg-[#00162b]",
       "bg-[#161641]",
       "bg-[#7790DE]",
@@ -111,6 +113,7 @@
       "h-8",
       "h-full",
       "hero",
+      "hero-content",
       "hero-image",
       "hidden",
       "highlight",
@@ -176,6 +179,7 @@
       "mt-2",
       "mt-3",
       "mt-4",
+      "mt-6",
       "mt-8",
       "mx-2",
       "mx-4",
@@ -266,6 +270,8 @@
       "w-full",
       "whitespace-nowrap",
       "why-everest",
+      "word-cloud-bg",
+      "word-cloud-container",
       "z-50"
     ],
     "ids": [
@@ -300,6 +306,7 @@
       "get-started-today",
       "github-stars",
       "github-stars-mobile",
+      "hero-section",
       "horizontal-scaling",
       "how-to-switch-the-diy-route",
       "join-us",
@@ -337,7 +344,8 @@
       "what-are-the-alternatives",
       "what-is-ingress-and-ingress-nginx",
       "what-is-openeverest",
-      "why-choose-openeverest"
+      "why-choose-openeverest",
+      "word-cloud"
     ]
   }
 }
