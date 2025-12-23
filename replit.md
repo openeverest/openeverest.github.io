@@ -13,6 +13,7 @@ This is the official website for the OpenEverest project, built with Hugo static
 ├── assets/              # Source assets for processing
 │   └── css/
 │       └── main.css     # Tailwind CSS entry point
+│   └── documentation    # Release Notes builded Documentation 
 ├── content/             # Website content (Markdown files)
 │   └── blog/            # Blog posts directory
 │       ├── _index.md    # Blog section page

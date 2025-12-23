@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QWKGQSNZZ"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0QWKGQSNZZ');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-0QWKGQSNZZ');
     </script>
-    
+
     {{ partial "seo.html" . }}
     <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     {{ $styles := resources.Get "css/main.css" | postCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
 </head>
-<body>
+
+<body class="min-h-screen flex flex-col">
     {{ partial "header.html" . }}
-    <main>
+    <main class="flex-grow">
         {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
 </body>
+
 </html>

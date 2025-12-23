@@ -1,0 +1,3697 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation">
+      
+      
+        <meta name="author" content="Percona LLC">
+      
+      
+        <link rel="canonical" href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.4.0-%282025-01-07%29.html">
+      
+      
+        <link rel="prev" href="Percona-Everest-1.5.0-%282025-03-04%29.html">
+      
+      
+        <link rel="next" href="Percona-Everest-1.3.0-%282024-11-18%29.html">
+      
+      
+      <link rel="icon" href="../assets/everest-fav.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Percona-Everest 1.4.0 (2025-01-07) - Percona Everest</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="../css/percona.css">
+    
+      <link rel="stylesheet" href="../css/design.css">
+    
+      <link rel="stylesheet" href="../css/nocopy.css">
+    
+      <link rel="stylesheet" href="../css/osano.css">
+    
+      <link rel="stylesheet" href="../css/everest.css">
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-J4J70BNH0G"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-J4J70BNH0G",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-J4J70BNH0G",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+                 
+                 
+                 
+                 
+                 
+                 <meta property="og:type" content="website" />
+                 <meta property="og:title" content="Percona Everest - Percona-Everest 1.4.0 (2025-01-07)" />
+                 <meta property="og:image" content="https://docs.percona.com/everest/images/Percona-Everest-social-media-sharings-cover.jpg">
+                 <meta property="og:url" content="https://docs.percona.com/everest/">
+              
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#whats-new-in-percona-everest-140" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+
+  <!-- Super Nav -->
+  <div class="superNav">
+    <div class="md-header__inner md-grid">
+      <a href="https://docs.percona.com" title="Percona Documentation home page">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <mask id="a" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+            <path d="M0 0h24v24H0z"/>
+          </mask>
+          <g mask="url(#a)">
+            <path d="m7.825 13 5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825Z"/>
+          </g>
+        </svg>
+        <span>Percona Documentation</span>
+      </a>
+    </div>
+  </div>
+
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../index.html"
+      title="Percona Everest"
+      class="md-header__button md-logo"
+      aria-label="Percona Everest"
+      data-md-component="logo"
+    >
+      
+  <img src="../assets/everest-mark.svg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <a href="../index.html" class="md-header__topic">
+          <span class="md-ellipsis">
+            Percona Everest
+          </span>
+        </a>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Percona-Everest 1.4.0 (2025-01-07)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Color theme set to Automatic. Click to change"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Automatic. Click to change" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="percona-light" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Light Mode. Click to change"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Light Mode. Click to change" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="percona-dark" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Dark Mode. Click to change"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Dark Mode. Click to change" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/percona/everest-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    percona/everest-doc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+  
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+              
+                
+                <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Percona Everest" class="md-nav__button md-logo" aria-label="Percona Everest" data-md-component="logo">
+      
+  <img src="../assets/everest-mark.svg" alt="logo">
+
+    </a>
+    Percona Everest
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/percona/everest-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    percona/everest-doc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to Percona Everest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-help.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get help from Percona
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Release Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release_notes_index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release notes index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.8.1-%282025-08-11%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.8.1 (2025-08-11)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.8.0-%282025-07-16%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.8.0 (2025-07-16)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.7.0-%282025-05-29%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.7.0 (2025-05-29)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.6.0-%282025-04-16%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.6.0 (2025-04-16)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.5.0-%282025-03-04%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.5.0 (2025-04-03)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.4.0 (2025-01-07)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Percona-Everest-1.4.0-%282025-01-07%29.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.4.0 (2025-01-07)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplify-your-percona-everest-deployments-with-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplify your Percona Everest deployments with Helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-your-namespaces-with-new-everestctl-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manage your namespaces with new everestctl commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removal-of-the-edit-db-wizard-for-an-enhanced-user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removal of the Edit DB Wizard for an enhanced User Experience
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-for-psmdb-1180-and-pg-250" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support for PSMDB 1.18.0 and PG 2.5.0
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-container-registry-gcr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Container Registry (GCR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Container Registry (GCR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#impact-of-gcr-deprecation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact of GCR deprecation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action required
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bugs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known limitations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.3.0-%282024-11-18%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.3.0 (2024-11-18)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.2.0-%282024-10-01%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.2.0 (2024-10-01)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.1.1-%282024-08-22%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.1.1 (2024-08-22)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.1.0-%282024-08-12%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.1.0 (2024-08-12)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.0.1-%282024-07-08%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.0.1 (2024-07-08)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.0.0-%282024-06-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 1.0.0 (2024-06-28)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.10.1-%282024-05-23%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona-Everest 0.10.1 (2024-05-23)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.10.0-%282024-05-03%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.10.0 (2024-05-03)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.9.1-%282024-04-02%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.9.1 (2024-04-02)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.9.0-%282024-04-01%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.9.0 (2024-04-01)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.8.0-%282024-02-22%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.8.0 (2024-02-22)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.7.0-%282024-01-31%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.7.0 (2024-01-31)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.6.0-%282024-01-11%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.6.0 (2024-01-11)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.5.0-%282023-11-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.5.0 (2023-11-28)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.4.0-%282023-10-30%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona Everest 0.4.0 (2023-10-30)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-install.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Install
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Setup and prerequisites
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Setup and prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/prerequisites.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prerequisites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/supported_operators_k8s.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supported operators and K8s clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/eks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Kubernetes cluster on Amazon Elastic Kubernetes Service (EKS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/gke.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create Kubernetes cluster on Google Kubernetes Engine (GKE)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everestctl.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install everestctl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_helm_charts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Percona Everest using Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/installEverest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Percona Everest using everestctl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_and_expose_via_ingress.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Percona Everest and expose via Ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_openshift.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install Percona Everest on Openshift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Upgrade
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrade
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/upgrade_with_helm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade Percona Everest using Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/upgrade_with_cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade Percona Everest using everestctl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/upgrade_operators.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade Percona operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/mongodb_major_upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrade database versions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uninstall
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Uninstall
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall/uninstall_everest_helm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uninstall Percona Everest using Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall/uninstallEverest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uninstall Percona Everest everestctl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Administer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Administer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/manage_users.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Role-based access control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/Idp_groups_integration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RBAC integration with IdP groups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Pod scheduling policies
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            Pod scheduling policies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/affinity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Leverage pod scheduling policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/default_policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Default Pod scheduling policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/custom_policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Pod scheduling policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/apply_policies_cluster.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apply Pod scheduling policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/rbac_pod_scheduling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pod Scheduling Policies with RBAC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/use_cases.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Use cases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/manage_namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Namespaces management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/sso_idp_integration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Single Sign-On (SSO)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/session_management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/tls_setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transport Layer Security (TLS) support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Back up and restore data
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Back up and restore data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/AboutBackups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Backup storage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            Backup storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/backup_storage/CreateStorage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create backup storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/backup_storage/EditStorage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edit backup storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/CreateOnDemand.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create on-demand and scheduled backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/EnablePITR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enable Point-in-time recovery (PITR)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/create_new_database.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create database from backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_6" id="__nav_11_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Import external database backups
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_6">
+            <span class="md-nav__icon md-icon"></span>
+            Import external database backups
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_6_2" id="__nav_11_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DataImporters
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            DataImporters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/psmdb_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona MongoDB Operator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/pxc_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona MySQL Operator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/pg_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Percona PostgreSQL Operator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/backup_importers_rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RBAC permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/RestoreBackup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Restore backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Use
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Use
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/database_view.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database view
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/db_provision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provision a database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/cluster-management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manage clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/mongo_sharding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MongoDB sharding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/scaling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scale database deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/manual_storage_scaling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manual storage scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/db_engine_config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configure database engine
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/monitor_endpoints.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/multi-namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multiple namepaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/API_rate_limit.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API rate limiting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Breaking API changes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/known_limitations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Limitations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/postgresql12_migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migrate from PostgreSQL 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Telemetry on Percona Everest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/migration_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migrate to Percona Everest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/AI_disclaimer_for_docs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI usage disclaimer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/copyright.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Copyright and licensing information
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/trademark-policy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trademark and copyright policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribute
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                      <br>
+                      <label class="md-nav__title" for="__drawer">
+    </label> 
+                    </div>
+                  </div>
+                </div>
+              
+              
+                
+                <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                  <div class="md-sidebar__scrollwrap">
+                    <div class="md-sidebar__inner">
+                      
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplify-your-percona-everest-deployments-with-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplify your Percona Everest deployments with Helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manage-your-namespaces-with-new-everestctl-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manage your namespaces with new everestctl commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removal-of-the-edit-db-wizard-for-an-enhanced-user-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removal of the Edit DB Wizard for an enhanced User Experience
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-for-psmdb-1180-and-pg-250" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support for PSMDB 1.18.0 and PG 2.5.0
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-container-registry-gcr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Container Registry (GCR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Container Registry (GCR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#impact-of-gcr-deprecation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact of GCR deprecation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action required
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bugs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known limitations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                    </div>
+                    <div class="md-sidebar__inner">
+                      <div data-banner="data-banner">
+    <p><svg style="display:block;margin:-1em 0 0.75em" width="78" height="69" viewBox="0 0 78 69" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M56.7281 30.7666C62.6528 26.8938 64.5914 18.9942 61.0059 12.7854C59.2094 9.67113 56.3053 7.44082 52.8311 6.50951C49.6122 5.64535 46.2502 5.99872 43.2912 7.49366L39.251 0.5L30.8648 15.0245L11.4811 48.5937H67.021L56.7281 30.7666ZM51.881 10.0674C54.4064 10.7401 56.5079 12.3616 57.8168 14.6194C60.3895 19.0701 59.053 24.7153 54.8808 27.5665L45.1362 10.6905C47.2355 9.68104 49.6034 9.46087 51.881 10.0674ZM39.251 7.87125L60.6339 44.907H48.1228L32.9927 18.7102L39.2499 7.87235L39.251 7.87125ZM17.8682 44.907L30.8637 22.4035L43.8592 44.907H17.8682Z" fill="url(#paint0_linear_2899_1968)"></path><path style="fill:var(--md-typeset-color)" d="M4.981 64.943H3.157V68.207H.756V57.323H5.217C7.822 57.323 9.397 58.861 9.397 61.086V61.116C9.397 63.635 7.433 64.94 4.984 64.94L4.981 64.943V64.943ZM6.961 61.134C6.961 60.061 6.213 59.485 5.011 59.485H3.154V62.812H5.056C6.258 62.812 6.958 62.096 6.958 61.163V61.134H6.961ZM10.738 68.208V57.323H18.973V59.455H13.124V61.664H18.27V63.796H13.124V66.082H19.051V68.214H10.738V68.208 68.208ZM27.557 68.208 25.218 64.726H23.332V68.208H20.931V57.323H25.921C28.496 57.323 30.039 58.677 30.039 60.915V60.945C30.039 62.702 29.088 63.807 27.7 64.32L30.367 68.207H27.556L27.557 68.208ZM27.605 61.041C27.605 60.016 26.887 59.485 25.719 59.485H23.333V62.61H25.767C26.936 62.61 27.605 61.987 27.605 61.071V61.042 61.041ZM36.922 68.499C33.668 68.499 31.249 65.994 31.249 62.825V62.795C31.249 59.659 33.619 57.091 37.019 57.091 39.105 57.091 40.356 57.783 41.383 58.792L39.834 60.571C38.98 59.798 38.113 59.327 37.004 59.327 35.141 59.327 33.795 60.871 33.795 62.762V62.793C33.795 64.684 35.107 66.257 37.004 66.257 38.268 66.257 39.043 65.753 39.913 64.964L41.462 66.524C40.322 67.738 39.059 68.493 36.925 68.493L36.922 68.499ZM47.885 68.499C44.47 68.499 42.021 65.962 42.021 62.825V62.795C42.021 59.659 44.503 57.091 47.915 57.091 51.327 57.091 53.779 59.628 53.779 62.765V62.795C53.779 65.931 51.297 68.499 47.885 68.499ZM51.237 62.795C51.237 60.904 49.846 59.331 47.885 59.331 45.925 59.331 44.567 60.874 44.567 62.766V62.796C44.567 64.688 45.959 66.261 47.919 66.261 49.879 66.261 51.237 64.717 51.237 62.826V62.795 62.795ZM67.001 68.217 72.374 57.091 77.746 68.218H75.052L72.374 62.681 69.705 68.218H67.001V68.217ZM66.007 57.327V68.5L57.813 61.884V68.199H55.264V57.091L63.458 63.681V57.327H66.007Z"></path><defs><linearGradient id="paint0_linear_2899_1968" x1="18.1513" y1="44.7152" x2="61.4356" y2="20.9786" gradientUnits="userSpaceOnUse"><stop stop-color="#FC3519"></stop><stop offset="1" stop-color="#F0D136"></stop></linearGradient></defs></svg></p>
+    <p>For help, click the link below to get free database assistance or contact our experts for personalized support.</p>
+
+    <div class="actions">
+
+    <a href="https://docs.percona.com/everest/get-help.html" style="color: var(--md-typeset-a-color);">Get help from Percona</a>
+    </div>
+    </div>
+                    </div>
+                  </div>
+                </div>
+              
+              <script>
+                !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+                posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https://eu.posthog.com'})
+            </script>
+            
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/percona/everest-doc/edit/main/docs/release-notes/Percona-Everest-1.4.0-(2025-01-07).md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/percona/everest-doc/raw/main/docs/release-notes/Percona-Everest-1.4.0-(2025-01-07).md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="whats-new-in-percona-everest-140">What&rsquo;s new in Percona Everest 1.4.0<a class="headerlink" href="#whats-new-in-percona-everest-140" title="Permanent link">&para;</a></h1>
+<p>➡️ <strong>New to Percona Everest?</strong> Get started with our <a href="https://docs.percona.com/everest/quick-install.html">Quickstart Guide</a>.</p>
+<details class="info">
+<summary>🔑 Updates at a glance</summary>
+<table>
+<thead>
+<tr>
+<th><strong>Sr. No</strong></th>
+<th><strong>Release summary</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.4.0-%282025-01-07%29.html#__tabbed_1_1">Helm charts</a></td>
+<td>Simplify your Percona Everest deployments with Helm</td>
+</tr>
+<tr>
+<td><strong>2.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.4.0-%282025-01-07%29.html#__tabbed_1_2">Namespace management</a></td>
+<td>Manage your namespaces with new everestctl commands</td>
+</tr>
+<tr>
+<td><strong>3.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.4.0-%282025-01-07%29.html#__tabbed_1_3">Improved edit database flow</a></td>
+<td>Improved edit database flow for a more streamlined user experience</td>
+</tr>
+<tr>
+<td><strong>4.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.4.0-%282025-01-07%29.html#__tabbed_1_4">Operators support</a></td>
+<td>Support for <a href="https://docs.percona.com/percona-operator-for-mongodb/RN/Kubernetes-Operator-for-PSMONGODB-RN1.18.0.html" target="_blank">Percona Operator for MongoDB v1.18.0</a> (PSMDB) and <a href="https://docs.percona.com/percona-operator-for-postgresql/2.0/ReleaseNotes/Kubernetes-Operator-for-PostgreSQL-RN2.5.0.html" target="_blank">Percona Operator for PostgreSQL v2.5.0</a> (PG)</td>
+</tr>
+<tr>
+<td><strong>5.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.3.0-%282024-11-18%29.html#google-container-registry-gcr">Google Container Registry (GCR) deprecation</a></td>
+<td>Deprecation of GCR starting <strong>May 20, 2025</strong></td>
+</tr>
+<tr>
+<td><strong>6.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.3.0-%282024-11-18%29.html#new-features">New features</a></td>
+<td>Check out the new features introduced in Percona Everest 1.4.0</td>
+</tr>
+<tr>
+<td><strong>7.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.3.0-%282024-11-18%29.html#improvements">Improvements</a></td>
+<td>Discover all the enhancements featured in Percona Everest 1.4.0</td>
+</tr>
+<tr>
+<td><strong>8.</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.3.0-%282024-11-18%29.html#bugs">Bugs</a></td>
+<td>Find out about all the bugs fixed in Percona Everest 1.4.0</td>
+</tr>
+<tr>
+<td><strong>.9</strong></td>
+<td><a href="https://docs.percona.com/everest/release-notes/Percona-Everest-1.3.0-%282024-11-18%29.html#known-limitations">Known limitations</a></td>
+<td>Discover all the known limitations in Percona Everest 1.4.0</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Helm charts</label><label for="__tabbed_1_2">Namespaces management</label><label for="__tabbed_1_3">Improved edit database flow</label><label for="__tabbed_1_4">Operators support</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 id="simplify-your-percona-everest-deployments-with-helm">Simplify your Percona Everest deployments with Helm<a class="headerlink" href="#simplify-your-percona-everest-deployments-with-helm" title="Permanent link">&para;</a></h3>
+<p>We are excited to announce the launch of Helm charts in Percona Everest 1.4.0. <a href="https://helm.sh/">Helm charts</a> simplify the deployment process by packaging all necessary resources and configurations, making them ideal for automating and managing installations in Kubernetes environments.</p>
+<p>Percona Helm charts can be found in <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest" target="_blank">percona/percona-helm-charts</a> repository in Github.</p>
+<p>If you are looking to get started with Percona Everest using Helm, check out our comprehensive <a href="https://docs.percona.com/everest/install/install_everest_helm_charts.html">documentation</a>.</p>
+<p>Additionally, check our <a href="https://docs.percona.com/everest/upgrade/upgrade_with_helm.html">Upgrade</a> and <a href="https://docs.percona.com/everest/uninstall/uninstall_everest_helm.html">Uninstall</a> sections to find out how to upgrade or uninstall your Percona Everest instances using Helm.    </p>
+</div>
+<div class="tabbed-block">
+<h3 id="manage-your-namespaces-with-new-everestctl-commands">Manage your namespaces with new everestctl commands<a class="headerlink" href="#manage-your-namespaces-with-new-everestctl-commands" title="Permanent link">&para;</a></h3>
+<p>Namespace management is essential in Percona Everest for efficiently organizing, securing, and allocating resources, particularly in large and complex Kubernetes environments. By leveraging Kubernetes namespaces, Percona Everest achieves logical isolation, enhanced security, and better resource allocation for databases, backups, and monitoring setups.</p>
+<p>Starting with Percona Everest 1.4.0, we have introduced new <code>everestctl</code> commands to manage your namespaces. These commands enable you to:</p>
+<ul>
+<li><a href="https://docs.percona.com/everest/administer/manage_namespaces.html#add-new-namespaces">Add new namespaces</a></li>
+<li><a href="https://docs.percona.com/everest/administer/manage_namespaces.html#update-namespaces">Update existing namespaces</a></li>
+<li><a href="https://docs.percona.com/everest/administer/manage_namespaces.html#delete-namespaces">Delete any used namespaces</a></li>
+</ul>
+<p>For a deep dive into managing namespaces for provisioning DB namespaces in Percona Everest, refer to our <a href="https://docs.percona.com/everest/administer/manage_namespaces.html">documentation</a>.</p>
+</div>
+<div class="tabbed-block">
+<h3 id="removal-of-the-edit-db-wizard-for-an-enhanced-user-experience">Removal of the Edit DB Wizard for an enhanced User Experience<a class="headerlink" href="#removal-of-the-edit-db-wizard-for-an-enhanced-user-experience" title="Permanent link">&para;</a></h3>
+<p>Starting with Percona Everest 1.4.0, we have removed the <strong>Edit DB</strong> wizard to provide a more streamlined user experience. You can now edit specific fields directly from the <strong>DB Overview</strong> page using our new editable widgets, eliminating the need to navigate through the entire <strong>Edit DB</strong> wizard.</p>
+<p><img alt="!image" src="../images/remove_edit_db_wizard.png" /></p>
+<p>Let&rsquo;s assume you want to make changes to <strong>Point-in-time-Recovery (PITR)</strong>. First, navigate to the specific database. Then, go to <strong>Overview &gt; Point-in-time-Recovery (PITR)</strong> and click <strong>Edit</strong>. Make the necessary changes and click <strong>Save</strong>.</p>
+<p><img alt="!image" src="../images/remove_db_wizard_edit_resource_widget.png" /></p>
+</div>
+<div class="tabbed-block">
+<h3 id="support-for-psmdb-1180-and-pg-250">Support for PSMDB 1.18.0 and PG 2.5.0<a class="headerlink" href="#support-for-psmdb-1180-and-pg-250" title="Permanent link">&para;</a></h3>
+<p>Starting with Percona Everest 1.4.0, we are thrilled to announce that we have added support for PSMDB Operator v1.18.0 and PG operator v2.5.0.</p>
+</div>
+</div>
+</div>
+<h2 id="google-container-registry-gcr">Google Container Registry (GCR)<a class="headerlink" href="#google-container-registry-gcr" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">GCR deprecation</p>
+<p>All Percona Everest versions prior to 1.4.0 depend on images hosted on Google Container Registry (GCR). These images will become unavailable after the shutdown date: <strong>March 18, 2025</strong>.</p>
+<p>GCR is set to be <strong>deprecated</strong>, with its official shutdown scheduled for <strong>May 20, 2025</strong>.</p>
+<p>All Percona Everest versions prior to 1.4.0 depend on images hosted on Google Container Registry (GCR). These images will become unavailable after the shutdown date: <strong>May 20, 2025</strong>.</p>
+</div>
+<h3 id="impact-of-gcr-deprecation">Impact of GCR deprecation<a class="headerlink" href="#impact-of-gcr-deprecation" title="Permanent link">&para;</a></h3>
+<p>Percona Everest versions older than 1.4.0 will cease to function after this date.</p>
+<h3 id="action-required">Action required<a class="headerlink" href="#action-required" title="Permanent link">&para;</a></h3>
+<p>We strongly recommend upgrading to Percona Everest version 1.4.0 or later as soon as possible. If you do not upgrade, Percona Everest will no longer function.</p>
+<p>For more details, refer to the <a href="https://cloud.google.com/artifact-registry/docs/transition/prepare-gcr-shutdown" target="_blank">Container Registry Deprecation documentation</a>.</p>
+<h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1511">EVEREST-1511</a>: We have introduced Helm charts, which simplify the Percona Everest deployment process by packaging all necessary resources and configurations. These charts are ideal for automating and managing installations in Kubernetes environments.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1512">EVEREST-1512</a>: You can now seamlessly upgrade your Percona Everest installation using Helm, a package manager for Kubernetes. This streamlined process simplifies the upgrade experience.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1673">EVEREST-1673</a>: Starting with Percona Everest 1.4.0, we have introduced new <code>everestctl</code> commands to manage your namespaces.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-908">EVEREST-908</a>: Starting with Percona Everest 1.4.0, the <strong>Overview</strong> page now includes the <strong>Connection URL</strong> in the <strong>Connection Details</strong> widget, allowing you to copy it directly.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1599">EVEREST-1599</a>: We have added support for PostgreSQL operator v2.5.0.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1624">EVEREST-1624</a>: We have added support for PSMDB Operator v1.18.0.</p>
+</li>
+</ul>
+<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1065">EVEREST-1065</a>: Starting with Percona Everest 1.4.0, we have removed the <strong>Edit</strong> button from the database list actions. This change provides a more streamlined user experience, allowing you to edit the database directly from the database <strong>Overview</strong> page without having to go through the entire edit wizard.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1066">EVEREST-1066</a>: We have improved the <strong>Backups &amp; PITR</strong> widget on the database <strong>Overview</strong> page. With this enhancement, you can now directly enable or disable PITR by clicking <strong>Edit</strong> from this page.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1210">EVEREST-1210</a>: The <strong>Advanced Configuration</strong> panel on the <strong>DB Details</strong> widget is now more user-friendly than ever. You can  edit or enable parameters directly from the database <strong>Overview</strong> page. Just click <strong>Edit</strong>, and and make your changes with ease.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1304">EVEREST-1304</a>: We have simplified the create database wizard. When you click <strong>Create Database</strong>, a menu with the <strong>MySQL</strong>, <strong>PostgreSQL</strong>, and <strong>MongoDB</strong> options will appear under the button. After selecting a database type, you will be guided to the wizard with the chosen value pre-set.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1546">EVEREST-1546</a>: You can see the number of proxies, routers, and bouncers, along with their resources, directly on the <strong>Database Summary</strong> and <strong>Overview</strong> pages. This enhancement provides greater visibility into the resources within your clusters.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1683">EVEREST-1683</a>: The <strong>Backups</strong> on the <strong>Overview</strong> page are organized in descending order, making it easier to find your most recent backups by their start date and time.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1686">EVEREST-1686</a>: We&rsquo;ve adopted a 24-hour time format for our backups and restores to eliminate any potential confusion and ensure consistency across Percona Everest.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1687">EVEREST-1687</a>: The label for the upgrade CRD button has been shortened to improve readability.  </p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1701">EVEREST-1701</a>: Starting with Percona Everest 1.4.0, when configuring RBAC policies, the resource name for <code>database-cluster-backups</code> now corresponds to the database name instead of the backup name. This change allows for a more intuitive configuration of permissions for backups at the database level.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1702">EVEREST-1702</a>: Starting with Percona Everest 1.4.0, when configuring RBAC policies, the resource name for <code>database-cluster-restores</code> now corresponds to the database name instead of the restore name. This change allows for a more intuitive configuration of permissions for backups at the database level.</p>
+</li>
+</ul>
+<h2 id="bugs">Bugs<a class="headerlink" href="#bugs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1688">EVEREST-1688</a>: If a user changed the value for the number of shards and then scrolled down, the number of shards would unexpectedly increase. Conversely, if they scrolled up, the number of shards would decrease. The value did not remain constant, and similar behavior was observed in other fields as well. This issue has been resolved now, and the values for the fields remain constant.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1187">EVEREST-1187</a>: We’ve resolved the issue that prevented Point-In-Time Recovery (PITR) from being enabled for the PostgreSQL database after setting up backup schedules on the <strong>Backups</strong> page.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1235">EVEREST-1235</a>, <a href="https://perconadev.atlassian.net/browse/EVEREST-1254">EVEREST-1254</a>: <code>everestctl</code> now provides relevant error messages when using the <code>install</code> command, helping you identify any issues that occurred during the installation process. For instance, if the kubeconfig is unavailable, the cluster configuration is incorrect, or the cluster cannot be connected to, <code>everestctl</code> will display an appropriate error message.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1254">EVEREST-1254</a>: During the uninstallation of Percona Everest, an unusual error code appeared at the end of the process. The issue has been resolved now.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1320">EVEREST-1320</a>: The warning message for a gap in Point-in-Time Recovery (PITR) is now shown on both the <strong>Backups</strong> and <strong>Restores</strong> pages. Additionally, when the database is up and running, a triangle icon on the dashboard page now correctly directs you to the <strong>Backups</strong> page.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1352">EVEREST-1352</a>: To ensure data integrity, all database actions are now disabled while the database is in a <strong>Deleting</strong> state.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1399">EVEREST-1399</a>: The <strong>Resource per node</strong> now accurately displays the value set during database creation. Previously, there was a mismatch between the value chosen at setup and what was shown when editing the database. Instead, it defaulted to <strong>Custom</strong>, which was not the initial selection. </p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1407">EVEREST-1407</a>: We&rsquo;ve resolved an issue where a user lacking the necessary RBAC permissions could access specific information in Percona Everest.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1440">EVEREST-1440</a>: We&rsquo;ve resolved an issue that caused a delay while loading the <strong>Backups</strong> page. Furthermore, the <strong>Add Storage</strong> option was displayed on the <strong>Backups</strong> page even though the user did not have backup storage permissions.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1518">EVEREST-1518</a>, <a href="https://perconadev.atlassian.net/browse/EVEREST-1604">EVEREST-1604</a>: We&rsquo;ve resolved an issue that permitted users to view and edit DB clusters, as well as restore to the same DB cluster, even if they lacked the necessary permissions for the database engine(s).</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1534">EVEREST-1534</a> The <strong>Database clusters</strong> page was empty for users with access to only one database cluster. This issue has now been resolved.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1565">EVEREST-1565</a>: The MongoDB versions are now sorted in descending order, and all the versions are visible on the <strong>Basic information</strong> page when selecting the <strong>Database version</strong>.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1593">EVEREST-1593</a>: We’ve resolved an issue that was preventing the display name and database version from showing up during a new cluster creation.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1594">EVEREST-1594</a>: Scheduled backups failed after several successful runs when the number of shards in the MongoDB sharded cluster was modified. This issue has been resolved now.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1608">EVEREST-1608</a>: Percona Everest now displays an error message if the <strong>Proxies</strong> value in the <strong>Custom</strong> field for the MySQL database is not entered. Also, unless you enter this value, the <strong>Continue</strong> button is disabled, which aligns with the expected behavior.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1613">EVEREST-1613</a>: On the <strong>Edit Topology</strong> page, the <strong>Resource Size per Node</strong> field now displays the initially selected configuration. Previously, when reopening the <strong>Edit Topology</strong> page, the setting would revert to <strong>Custom</strong> instead of retaining the chosen option.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1615">EVEREST-1615</a>: We have fixed an issue where the uninstallation of Percona Everest failed if a MongoDB sharded cluster was in the <strong>Deleting</strong> state.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1642">EVEREST-1642</a>: When restoring to a new database, modifying its version is no longer possible. This behavior aligns with the expected functionality of Percona Everest.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1649">EVEREST-1649</a>: We&rsquo;ve addressed an issue that caused the <strong>Add storage</strong> button for backups to remain inactive, even after the page was refreshed. The button would only become active when users switched between different tabs, such as transitioning from the <strong>Overview</strong> tab to the <strong>Backups</strong> tab.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1650">EVEREST-1650</a>: We have resolved an issue on the <strong>Backups</strong> page where the button incorrectly displayed <strong>Add storage</strong> instead of <strong>Create backup</strong> after adding new storage. This prevented users from creating backups. The issue occurred when trying to add backup storage in a namespace other than the one where the database was originally created (the default namespace).</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1694">EVEREST-1694</a>: The <strong>Backup storages</strong> page was appearing empty for users with access to only one backup storage. This issue has now been resolved.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1695">EVEREST-1695</a>: The <strong>Monitoring endpoints</strong> page was empty for users with access to only one monitoring instance. This issue has now been resolved.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1703">EVEREST-1703</a>: While setting up a MongoDB sharded cluster in Percona Everest, an error occurred during the topology step. If only <strong>1</strong> config server was selected, an error message appeared, stating that the number of config servers must be greater than one. However, when the config server setting was changed to <strong>3</strong> or any other value, the “Next” button became grayed out, preventing progress to the next step. The issue has been resolved now.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/EVEREST-1712">EVEREST-1712</a>: We&rsquo;ve resolved an issue where the Percona Everest UI pages became unresponsive after some time. None of the page elements worked, and the only solution was to close the page and start a new browser session.</p>
+</li>
+</ul>
+<h2 id="known-limitations">Known limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>In Percona Operator for PostgreSQL version 2.5.0, backups start failing after a minor version upgrade from PostgreSQL 16.3 to 16.4 if <strong>monitoring is enabled</strong> on the database. </p>
+<p><strong>Workaround</strong> </p>
+<p>Once you upgrade your PostgreSQL version, it’s essential to also update the <code>pg_stat_monitor</code> extension by executing the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">pg_stat_monitor</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>The backup storage you choose for your initial backup schedule will be used for all subsequent schedules and point-in-time recovery (PITR).</p>
+</li>
+<li>
+<p>When creating a 1-node MongoDB cluster, the cluster temporarily enters an <strong>Error</strong> state instead of <strong>Initializing</strong> before transitioning to the <strong>Ready</strong> state.</p>
+</li>
+<li>
+<p>When restoring a MySQL database from a backup, the process may fail if the database name is too long. Use a shorter name for the restored database.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thank you for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thank you for your feedback! Help us improve by following this <a href="https://docs.google.com/forms/d/1bkWACehjqlwA0AKf-qTJcXvYbOSYgze8iTPXjntqmNo/edit" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+    <div class="md-copyright__highlight">
+ <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2025
+ <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
+</div>
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+<script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
+
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../js/promptremover.js"></script>
+      
+        <script src="../js/consent.js"></script>
+      
+    
+
+  </body>
+</html>

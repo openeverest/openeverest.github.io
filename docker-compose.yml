@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  hugo:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount the entire project for live reload
+      - .:/src
+      # Exclude node_modules to prevent conflicts
+      - /src/node_modules
+    environment:
+      - HUGO_ENV=development
+    command: hugo server -D --bind 0.0.0.0 --port 5000 --baseURL / --appendPort=false
