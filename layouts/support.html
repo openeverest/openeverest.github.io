@@ -1,0 +1,90 @@
+{{ define "main" }}
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+<div class="bg-gradient-to-b from-white to-gray-50 min-h-screen">
+  <div class="container mx-auto px-6 py-20 max-w-7xl">
+    
+    <!-- Page Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-gray-900 mb-6">{{ .Title }}</h1>
+      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        {{ .Params.subtitle }}
+      </p>
+    </div>
+
+    <!-- Supporters Grid -->
+    <div class="grid md:grid-cols-2 gap-12">
+      {{ range .Params.supporters }}
+  {{ $supporter := . }}
+  <div
+    class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transition-all duration-300 transform hover:shadow-xl hover:-translate-y-1"
+    onmouseover="document.getElementById('logo-{{ $supporter.name | lower }}').style.filter='grayscale(0)'"
+    onmouseout="document.getElementById('logo-{{ $supporter.name | lower }}').style.filter='grayscale(1)'"
+  >
+    <a href="{{ $supporter.url }}" target="_blank" rel="noopener" class="flex items-center group">
+      {{ with $supporter.logo }}
+        <img
+          id="logo-{{ $supporter.name | lower }}"
+          src="{{ . }}"
+          alt="{{ $supporter.name }}"
+          title="{{ $supporter.name }}"
+          class="h-12 object-contain transition duration-300"
+          style="filter: grayscale(1);"
+        />
+      {{ else }}
+        <div class="h-12 w-12 bg-gray-100 rounded flex items-center justify-center border">
+          <span class="text-gray-600 font-semibold text-sm">{{ substr $supporter.name 0 1 }}</span>
+        </div>
+      {{ end }}
+
+      <!-- Accessible hidden heading -->
+      <h2 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+        {{ $supporter.name }}
+      </h2>
+    </a>
+
+    <!-- Description -->
+    <p class="text-gray-600 leading-relaxed mb-6 mt-4">
+      {{ $supporter.description }}
+    </p>
+
+    <!-- Call to Action -->
+    <a
+      href="{{ $supporter.url }}"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center text-[#7790DE] hover:text-[#161641] font-semibold text-sm border-b border-transparent hover:border-[#7790DE] transition pb-0.5"
+    >
+      Visit {{ $supporter.name }} →
+    </a>
+  </div>
+{{ end }}
+
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16">
+      <p class="text-gray-500 mb-6">Does your company provide services or plugins for OpenEverest?</p>
+      <a
+        href="https://github.com/openeverest/openeverest.github.io/blob/main/content/support/_index.md"
+        target="_blank"
+        rel="noopener"
+        class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-sm hover:shadow"
+      >
+        Add Your Company
+      </a>
+    </div>
+  </div>
+</div>
+{{ end }}
