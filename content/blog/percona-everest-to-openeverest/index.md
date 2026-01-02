@@ -49,16 +49,10 @@ If you're currently using Percona Everest:
 
 OpenEverest is now live and ready for community participation!
 
-🔗 **New GitHub Repository**: [github.com/openeverest/openeverest](https://github.com/openeverest/openeverest)  
+🔗 **Read more about community**: [OpenEverest Community](https://openeverest.io/#community)
 🌐 **Project Website**: [openeverest.io](https://openeverest.io)  
 💬 **Community Chat**: Join us on [CNCF Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX)  
 📰 **Press Release**: [Read the full announcement](#) *(link TBD)*
-
-### Need Help?
-
-- **Report Issues**: Open issues and bug reports in our [GitHub repository](https://github.com/openeverest/openeverest)
-- **Get Support**: Visit our [support page](/support) for assistance options
-- **Chat with Us**: Connect with the community on [CNCF Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX)
 
 ## Looking Forward
 
