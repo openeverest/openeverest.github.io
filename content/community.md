@@ -42,5 +42,11 @@ sections:
     text: "Need help running OpenEverest?"
     links:
       - text: "Visit Support Page"
-        url: "https://openeverest.io/support"
+        url: "https://openeverest.io/support"  
+  - type: "community-meeting"
+    title: "📅 Community Meetings"
+    text: "Join us every two weeks for live updates, demos, and open Q&A with the OpenEverest team and contributors."
+    links:
+      - text: "View Meeting Schedule"
+        url: "https://github.com/openeverest#openeverest-community-meetings"
 ---
