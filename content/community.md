@@ -1,6 +1,7 @@
 ---
 title: "Join the Community"
 subtitle: "OpenEverest thrives because of its open, collaborative community. Whether you're a developer, operator, or enthusiast — there are many ways to get involved."
+dark_background: true
 sections:
   - type: "contribute"
     title: "Contribute"
