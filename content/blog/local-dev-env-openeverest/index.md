@@ -92,11 +92,20 @@ namespaces:
       - pg
 ```
 
-3.  **Crucial Step:** Set your repository paths so Tilt knows where to look.
+#### Set your repository paths so Tilt knows where to look
+
+In the same `dev` folder copy the `.env.example` to `.env`. In it set the correct paths to repositories' folders:
 
 ```bash
-export EVEREST_OPERATOR_DIR=<path to [github.com/percona/everest-operator](https://github.com/percona/everest-operator) repository directory>
-export EVEREST_CHART_DIR=<path to [github.com/percona/percona-helm-charts](https://github.com/percona/percona-helm-charts)>/charts/everest
+EVEREST_OPERATOR_DIR=<path to github.com/percona/everest-operator repository directory>
+EVEREST_CHART_DIR=<path to github.com/percona/percona-helm-charts repository directory>/charts/everest
+```
+
+You can also set paths by just exporting these environment variables in the console:
+
+```bash
+export EVEREST_OPERATOR_DIR=<path to github.com/percona/everest-operator repository directory>
+export EVEREST_CHART_DIR=<path to github.com/percona/percona-helm-charts repository directory>/charts/everest
 ```
 
 ## 4. Tilt All The Way
@@ -134,7 +143,7 @@ Once Tilt is green, your instance is live.
 
 ![OpenEverest login screen](openeverest-blog-0-min.png)
 
-You now have a production-ready solution running out of the box on your local machine, ready for you to inspect and modify.
+You now have OpenEverest deployment in your local machine, ready for you to inspect and modify.
 
 ## 6. Frontend Development Tips
 
