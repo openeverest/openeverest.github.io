@@ -155,10 +155,10 @@ When you are done contributing, keep your machine clean.
 tilt down
 ```
 
-**Delete the Cluster:**
+**Delete the Cluster.** From the `percona/everest` repo run:
 
 ```bash
-k3d cluster delete openeverest-dev
+make k3d-cluster-down
 ```
 
 ## 🚀 Ready to Join the Mission?
