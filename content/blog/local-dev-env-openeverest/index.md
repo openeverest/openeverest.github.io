@@ -54,18 +54,21 @@ Once dependencies are installed, we start with the infrastructure.
 
 ### Kubernetes Cluster and Registry
 
-We need a cluster that includes a local registry to store our dev images.
+We need a cluster that includes a local registry to store our dev images. From inside the `percona/everest` repository run: 
 
 ```bash
-k3d cluster create openeverest-dev --registry-create k3d-registry
+make k3d-cluster-up
 ```
 
 Verify the cluster is running:
 
 ```bash
 $ kubectl get nodes
-NAME                           STATUS   ROLES                  AGE    VERSION
-k3d-openeverest-dev-server-0   Ready    control-plane,master   105m   v1.31.5+k3s1
+NAME                               STATUS   ROLES                  AGE   VERSION
+k3d-everest-server-test-agent-0    Ready    <none>                 10s   v1.33.2+k3s1
+k3d-everest-server-test-agent-1    Ready    <none>                 10s   v1.33.2+k3s1
+k3d-everest-server-test-agent-2    Ready    <none>                 10s   v1.33.2+k3s1
+k3d-everest-server-test-server-0   Ready    control-plane,master   15s   v1.33.2+k3s1
 ```
 
 ### Configure Tilt
