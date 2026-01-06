@@ -1,6 +1,6 @@
 ---
 title: "Percona Everest Transitions to OpenEverest: A New Chapter in Open Source Database Management"
-date: 2025-12-16T09:00:00
+date: 2026-01-06T12:00:00
 draft: false
 image:
     url: percona-to-open-min.png
