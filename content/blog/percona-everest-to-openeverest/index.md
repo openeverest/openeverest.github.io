@@ -52,7 +52,8 @@ OpenEverest is now live and ready for community participation!
 🔗 **Read more about community**: [OpenEverest Community](https://openeverest.io/#community)
 🌐 **Project Website**: [openeverest.io](https://openeverest.io)  
 💬 **Community Chat**: Join us on [CNCF Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX)  
-📰 **Press Release**: [Read the full announcement](#) *(link TBD)*
+📰 **Announcements**: [Percona blog](https://www.percona.com/blog/blog-post-good-bye-percona-everest-hello-openeverest/) | [Solanica blog](https://solanica.io/tpost/solanica-future-of-openeverest)
+
 
 ## Looking Forward
 
