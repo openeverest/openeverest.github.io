@@ -31,8 +31,8 @@
      inkscape:cy="197.49931"
      inkscape:window-width="1880"
      inkscape:window-height="1062"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-x="-8"
+     inkscape:window-y="210"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
@@ -47,7 +47,7 @@
        fill="#127be8"
        id="path1"
        sodipodi:nodetypes="cccscccsccccscscsccccccccc"
-       style="stroke-width:0.275322" />
+       style="stroke-width:0.275322;fill:#127be8;fill-opacity:1" />
     <path
        d="m 66.005785,97.244522 9.528076,-9.52793 9.146182,9.14605 c 0,0 1.23226,1.76776 0.044,2.95605 -1.18857,1.188558 -4.398551,-0.53605 -6.236313,2.676968 0,0 -1.337791,2.52414 2.518092,6.3803 3.855881,3.85588 6.083781,2.2213 6.083781,2.2213 3.21274,-1.83778 1.48839,-5.04775 2.67668,-6.23604 1.18856,-1.18856 2.96852,-0.003 2.96852,-0.003 l 9.049847,9.26856 -26.63795,26.73227 -9.198701,-9.20972 c 0,0 -1.780236,-1.18581 -2.96851,0.003 -1.188564,1.18857 0.536047,4.39854 -2.676901,6.23604 0,0 -2.22774,1.63459 -6.083686,-2.2213 -3.855915,-3.85588 -2.518012,-6.38032 -2.518012,-6.38032 1.837747,-3.21299 5.047748,-1.48838 6.236134,-2.67667 1.188386,-1.18857 0.0016,-2.96852 0.0016,-2.96852 l -9.233165,-9.2332 9.303978,-9.22743 c 0,0 1.162877,-1.6968 -0.02351,-2.88315 -1.186454,-1.18638 -4.399289,0.54321 -6.231753,-2.666498 0,0 -1.333764,-2.52223 2.528496,-6.384444 3.862276,-3.862485 6.087325,-2.231476 6.087325,-2.231476 3.210034,1.832529 1.480173,5.045268 2.666546,6.23162 1.186357,1.18665 2.96851,-0.003 2.96851,-0.003 z"
        fill="#0e5fb5"
@@ -59,7 +59,7 @@
        fill="#b6d9ff"
        id="path3"
        sodipodi:nodetypes="cccccscccccccssscscssccccccssccsscsc"
-       style="stroke-width:0.275322" />
+       style="stroke-width:0.275322;fill:#b6d9ff;fill-opacity:1" />
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:20.04px;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#7790de;stroke-width:0.28403;paint-order:stroke fill markers"
@@ -70,10 +70,8 @@
          id="tspan4"
          x="35.853886"
          y="167.93376"
-         style="stroke-width:0.28403"><tspan
-           style="fill:#127be8;fill-opacity:1;stroke-width:0.28403"
-           id="tspan6">Open</tspan><tspan
-           style="fill:#0b4a8c;fill-opacity:1;stroke-width:0.28403"
-           id="tspan5">Everest</tspan></tspan></text>
+         style="stroke-width:0.28403">Open<tspan
+   style="fill:#0b4a8c;fill-opacity:1;stroke-width:0.28403"
+   id="tspan5">Everest</tspan></tspan></text>
   </g>
 </svg>
