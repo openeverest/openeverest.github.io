@@ -11,14 +11,14 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}">
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
-{{ if and .Params.image .Params.image.url }}<meta property="og:image" content="{{ .Permalink }}{{ .Params.image.url }}">{{ else }}<meta property="og:image" content="{{ "/images/brandkit/hero-image-2x1-ratio.png" | absURL }}">{{ end }}
+{{ if and .Params.image .Params.image.url }}<meta property="og:image" content="{{ .Permalink }}{{ .Params.image.url }}">{{ else }}<meta property="og:image" content="{{ .Site.Params.defaultSocialImage | absURL }}">{{ end }}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="{{ .Permalink }}">
 <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}">
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
-{{ if and .Params.image .Params.image.url }}<meta name="twitter:image" content="{{ .Permalink }}{{ .Params.image.url }}">{{ else }}<meta name="twitter:image" content="{{ "/images/brandkit/hero-image-2x1-ratio.png" | absURL }}">{{ end }}
+{{ if and .Params.image .Params.image.url }}<meta name="twitter:image" content="{{ .Permalink }}{{ .Params.image.url }}">{{ else }}<meta name="twitter:image" content="{{ .Site.Params.defaultSocialImage | absURL }}">{{ end }}
 
 <!-- Article specific meta tags -->
 {{ if .IsPage }}
