@@ -8,7 +8,7 @@
 
 {{ $data := $page.Params }}
 
-<section class="{{ if $data.dark_background }}bg-gray-900{{ else }}bg-white{{ end }} py-16">
+<section id="community" class="{{ if $data.dark_background }}bg-gray-900{{ else }}bg-white{{ end }} py-16">
     <div class="container mx-auto px-4">
         <div class="text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold mb-6 {{ if $data.dark_background }}text-white{{ else }}text-gray-900{{ end }}">{{ $data.title }}</h2>
