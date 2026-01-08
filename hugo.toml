@@ -7,6 +7,7 @@ staticDir = ['static', 'assets']
   description = 'OpenEverest is an open-source platform for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.'
   author = 'OpenEverest Team'
   defaultSocialImage = '/images/brandkit/hero-image-2x1-ratio.png'
+  apiSpecURL = 'https://raw.githubusercontent.com/percona/everest/refs/tags/v${version}/docs/spec/openapi.yml'
 
 [build]
   writeStats = true
