@@ -4,7 +4,15 @@
 {{ define "main" }}
 <div class="container mx-auto px-4 py-16">
     <header class="mb-12">
-        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+        <div class="flex justify-between items-start mb-4">
+            <h1 class="text-4xl font-bold">{{ .Title }}</h1>
+            <a href="https://github.com/openeverest/openeverest.github.io/blob/main/content/blog/README.md#before-you-write-a-blog" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-300 whitespace-nowrap">
+                Become an Author
+            </a>
+        </div>
         {{ if .Params.description }}
         <p class="text-xl text-gray-600">{{ .Params.description }}</p>
         {{ end }}

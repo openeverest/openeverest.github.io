@@ -6,12 +6,18 @@
         <div class="flex justify-between items-start mb-4">
             <h1 class="text-4xl font-bold">{{ .Title }}</h1>
             {{ if eq .Section "blog" }}
-            <a href="https://github.com/openeverest/openeverest.github.io/tree/main/content/blog" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-300 whitespace-nowrap">
-                Write blog
-            </a>
+            <div class="flex gap-3">
+                <a href="{{ "/authors" | relURL }}" 
+                   class="border-2 border-gray-300 hover:border-[#7790DE] text-gray-700 hover:text-[#7790DE] font-semibold px-6 py-2 rounded-lg transition-colors duration-300 bg-transparent whitespace-nowrap">
+                    Our Authors
+                </a>
+                <a href="https://github.com/openeverest/openeverest.github.io/tree/main/content/blog" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-300 whitespace-nowrap">
+                    Write blog
+                </a>
+            </div>
             {{ end }}
         </div>
         {{ if .Params.description }}
