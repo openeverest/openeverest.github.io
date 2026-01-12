@@ -48,6 +48,8 @@ title: "API Reference v${VERSION}"
 EOF
 
 # 4. Git add the new files
-git add "$SPEC_FILE" "$MD_FILE"
+#git add "$SPEC_FILE" "$MD_FILE"
+git add "$MD_FILE"
+
 
 echo "Done! API spec and documentation page created."
