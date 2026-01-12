@@ -161,6 +161,11 @@
   }
 }
 
+/* API documentation loading state */
+.api-loading > *:not(.api-container) {
+  visibility: hidden;
+}
+
 /* Resource card styles */
 @layer components {
   .resource-card {
