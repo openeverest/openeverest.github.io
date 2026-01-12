@@ -1,5 +1,5 @@
 
 ---
 title: "Authors"
-description: "Meet the contributors to the Everest blog"
+description: "Meet the contributors to the OpenEverest blog"
 ---

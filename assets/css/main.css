@@ -166,3 +166,68 @@
   visibility: hidden;
 }
 
+/* Resource card styles */
+@layer components {
+  .resource-card {
+    @apply transition-all duration-300 ease-in-out;
+    will-change: transform, box-shadow;
+  }
+
+  .resource-card:hover {
+    @apply shadow-2xl;
+  }
+
+  .resource-card img {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+
+  .resource-card:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Line clamp utility for multi-line truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Gradient text for titles */
+  .gradient-text-open {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #7790DE 0%, #5B6FBF 100%);
+  }
+
+  .gradient-text-everest {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #161641 0%, #2D2D6E 100%);
+  }
+
+  /* Hero styles for consistency */
+  .hero-title {
+    @apply text-6xl md:text-7xl lg:text-8xl;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* No image fallback styling */
+  .no-image {
+    background: linear-gradient(135deg, #7790DE 0%, #161641 100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .resource-card {
+    @apply mx-auto;
+    max-width: 400px;
+  }
+}

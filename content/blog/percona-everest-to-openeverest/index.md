@@ -28,7 +28,7 @@ OpenEverest will operate with transparent, community-driven governance, moving a
 
 We're building OpenEverest as a fully extensible platform. Right now, we're focused on database management, but the real vision is bigger than that. We're creating a modular foundation where you can seamlessly plug in additional data engines, connect with your entire operational stack, and tackle a broader range of data infrastructure challenges.
 
-Think of it this way: we're moving from a single-purpose tool to a community-driven ecosystem. The full breakdown of where we're headed is at [vision.openeverest.io](vision.openeverest.io).
+Think of it this way: we're moving from a single-purpose tool to a community-driven ecosystem. The full breakdown of where we're headed is at [vision.openeverest.io](https://vision.openeverest.io).
 
 ## Commercial Support
 

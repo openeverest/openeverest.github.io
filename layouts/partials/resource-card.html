@@ -1,0 +1,223 @@
+{{ $item := .item }}
+{{ $type := .type }}
+{{ $isUpcoming := .upcoming }}
+
+<!-- Extract YouTube video ID if URL is a YouTube link and no image is specified -->
+{{ $imageUrl := $item.image }}
+{{ if and (not $item.image) $item.url }}
+    {{ if or (in $item.url "youtube.com") (in $item.url "youtu.be") }}
+        {{ $videoId := "" }}
+        {{ if in $item.url "youtube.com/watch?v=" }}
+            <!-- Extract from youtube.com/watch?v=VIDEO_ID -->
+            {{ $videoId = index (split (index (split $item.url "v=") 1) "&") 0 }}
+        {{ else if in $item.url "youtu.be/" }}
+            <!-- Extract from youtu.be/VIDEO_ID -->
+            {{ $videoId = index (split (index (split $item.url "youtu.be/") 1) "?") 0 }}
+        {{ else if in $item.url "youtube.com/embed/" }}
+            <!-- Extract from youtube.com/embed/VIDEO_ID -->
+            {{ $videoId = index (split (index (split $item.url "embed/") 1) "?") 0 }}
+        {{ end }}
+        {{ if $videoId }}
+            {{ $imageUrl = printf "https://img.youtube.com/vi/%s/maxresdefault.jpg" $videoId }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+<div class="resource-card group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 relative hover:z-10">
+    <a href="{{ $item.url }}" target="_blank" rel="noopener noreferrer" class="block cursor-pointer">
+        <!-- Image -->
+        {{ if $imageUrl }}
+        <div class="relative h-48 overflow-hidden bg-gradient-to-br from-[#7790DE] to-[#161641]">
+            <img src="{{ $imageUrl }}" 
+                 alt="{{ $item.title }}" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <!-- Fallback icon if image fails to load -->
+            <div class="hidden absolute inset-0 items-center justify-center text-white text-6xl opacity-30">
+                {{ if eq $type "event" }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                {{ else if eq $type "media" }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                    </svg>
+                {{ else }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                    </svg>
+                {{ end }}
+            </div>
+            
+            <!-- Badge for upcoming events or video indicator -->
+            {{ if and (eq $type "event") $isUpcoming }}
+                <div class="absolute top-4 right-4 bg-emerald-700/85 text-white px-2 py-0.5 rounded-full text-xs font-medium shadow">
+                    Upcoming
+                </div>
+            {{ else if or $item.video (eq $type "media") }}
+                <div class="absolute top-4 right-4 bg-rose-700/85 text-white px-2 py-0.5 rounded-full text-xs font-medium shadow flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                    </svg>
+                    Video
+                </div>
+            {{ end }}
+        </div>
+        {{ else }}
+        <!-- Fallback gradient background if no image specified -->
+        <div class="relative h-48 bg-gradient-to-br from-[#7790DE] to-[#161641] flex items-center justify-center">
+            <div class="text-white text-6xl opacity-30">
+                {{ if eq $type "event" }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                {{ else if eq $type "media" }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                    </svg>
+                {{ else }}
+                    <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                    </svg>
+                {{ end }}
+            </div>
+            {{ if and (eq $type "event") $isUpcoming }}
+                <div class="absolute top-4 right-4 bg-emerald-700/85 text-white px-2 py-0.5 rounded-full text-xs font-medium shadow">
+                    Upcoming
+                </div>
+            {{ else if or $item.video (eq $type "media") }}
+                <div class="absolute top-4 right-4 bg-rose-700/85 text-white px-2 py-0.5 rounded-full text-xs font-medium shadow flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                    </svg>
+                    Video
+                </div>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        <!-- Content -->
+        <div class="p-6">
+            <!-- Title -->
+            <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#7790DE] transition-colors line-clamp-2">
+                {{ $item.title }}
+            </h3>
+
+            <!-- Event-specific details -->
+            {{ if eq $type "event" }}
+                {{ if $item.event_name }}
+                <p class="text-sm font-semibold text-[#7790DE] mb-2">{{ $item.event_name }}</p>
+                {{ end }}
+                
+                <div class="space-y-2 text-sm text-gray-600 mb-4">
+                    {{ if $item.date }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ dateFormat "January 2, 2006" (time $item.date) }}</span>
+                    </div>
+                    {{ end }}
+                    
+                    {{ if $item.location }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ $item.location }}</span>
+                    </div>
+                    {{ end }}
+                    
+                    {{ if $item.speaker }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>
+                            {{ $speakerSlug := $item.speaker_slug | default "" }}
+                            {{ if $speakerSlug }}
+                                {{ $authorPage := printf "/authors/%s" $speakerSlug }}
+                                {{ with site.GetPage $authorPage }}
+                                    <span class="text-[#7790DE] hover:text-[#161641] hover:underline cursor-pointer" data-href="{{ .RelPermalink }}" onclick="event.preventDefault(); event.stopPropagation(); window.open('{{ .RelPermalink }}', '_self');">
+                                        {{ $item.speaker }}
+                                    </span>
+                                {{ else }}
+                                    {{ $item.speaker }}
+                                {{ end }}
+                            {{ else }}
+                                {{ $item.speaker }}
+                            {{ end }}
+                        </span>
+                    </div>
+                    {{ end }}
+                </div>
+            {{ end }}
+
+            <!-- Blog/Article/Media details -->
+            {{ if or (eq $type "resource") (eq $type "media") }}
+                <div class="space-y-2 text-sm text-gray-600 mb-4">
+                    {{ if $item.author }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>
+                            {{ $authorSlug := $item.author_slug | default "" }}
+                            {{ if $authorSlug }}
+                                {{ $authorPage := printf "/authors/%s" $authorSlug }}
+                                {{ with site.GetPage $authorPage }}
+                                    <span class="text-[#7790DE] hover:text-[#161641] hover:underline cursor-pointer" data-href="{{ .RelPermalink }}" onclick="event.preventDefault(); event.stopPropagation(); window.open('{{ .RelPermalink }}', '_self');">
+                                        {{ $item.author }}
+                                    </span>
+                                {{ else }}
+                                    {{ $item.author }}
+                                {{ end }}
+                            {{ else }}
+                                {{ $item.author }}
+                            {{ end }}
+                        </span>
+                    </div>
+                    {{ end }}
+                    
+                    {{ if $item.date }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ dateFormat "Jan 2, 2006" (time $item.date) }}</span>
+                    </div>
+                    {{ end }}
+                    
+                    {{ if $item.source }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                        </svg>
+                        <span>{{ $item.source }}</span>
+                    </div>
+                    {{ end }}
+                    
+                    {{ if $item.duration }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ $item.duration }}</span>
+                    </div>
+                    {{ end }}
+                </div>
+            {{ end }}
+
+            <!-- Link indicator -->
+            <div class="flex items-center text-[#7790DE] font-semibold text-sm group-hover:underline">
+                <span>
+                    {{ if or $item.video (eq $type "media") }}Watch {{ else if eq $type "event" }}Learn More{{ else }}Read More{{ end }}
+                </span>
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </div>
+        </div>
+    </a>
+</div>
