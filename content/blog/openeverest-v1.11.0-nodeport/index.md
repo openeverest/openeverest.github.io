@@ -123,8 +123,8 @@ For a deep dive on configuration, check out the [official NodePort documentation
 
 Ready to upgrade?
 
-* **Upgrade:** Follow the [Upgrade Guide](https://docs.percona.com/everest/upgrade/upgrade_with_helm.html) to move to v1.11.0.
-* **Release Notes:** Read the full list of changes in the [Release Notes](https://docs.percona.com/everest/release-notes/Percona-Everest-1.11.0-%282026-01-12%29.html).
+* **Upgrade:** Follow the [Upgrade Guide](https://openeverest.io/documentation/1.11.0/upgrade/upgrade_with_helm.html) to move to v1.11.0.
+* **Release Notes:** Read the full list of changes in the [Release Notes](https://openeverest.io/documentation/1.11.0/release-notes/Percona-Everest-1.11.0-%282026-01-12%29.html).
 * **Feedback:** If you have questions, let us know on [GitHub Issues](https://github.com/openeverest/openeverest/issues).
 
 Happy clustering! 🏔️
