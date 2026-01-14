@@ -93,7 +93,7 @@ kubectl get nodes -o wide
 Find the port assigned to your database service using this command (replace `<DB_NAME>` and `<DB_NAMESPACE>`):
 
 ```bash
-kubectl get svc -n DB_NAMESPACE | grep '^DB_NAME' | grep NodePort | awk '{print $5}' | grep -oE '[0-9]+/TCP'`
+kubectl get svc -n DB_NAMESPACE | grep '^DB_NAME' | grep NodePort | awk '{print $5}' | grep -oE '[0-9]+/TCP'
 
 ```
 
