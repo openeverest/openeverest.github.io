@@ -11,13 +11,13 @@ sections:
       - label: "Code"
         text: "Improve the OpenEverest platform engine, APIs, or CLI."
         link:
-          text: "Go to percona/everest"
-          url: "https://github.com/percona/everest"
+          text: "Go to openeverest/openeverest"
+          url: "https://github.com/openeverest/openeverest"
       - label: "Documentation"
         text: "Help improve user guides, installation docs, or reference materials."
         link:
-          text: "Go to percona/everest-doc"
-          url: "https://github.com/percona/everest-doc"
+          text: "Go to openeverest/everest-doc"
+          url: "https://github.com/openeverest/everest-doc"
       - label: "Blog & Website"
         text: "Fix typos, suggest new content, or redesign pages."
         link:
@@ -35,9 +35,9 @@ sections:
     text: "Found a bug or have an idea? Open an issue or start a discussion."
     links:
       - text: "Open Issues"
-        url: "https://github.com/percona/everest/issues"
+        url: "https://github.com/openeverest/openeverest/issues"
       - text: "Start Discussion"
-        url: "https://github.com/percona/everest/discussions"
+        url: "https://github.com/openeverest/openeverest/discussions"
   - type: "support"
     title: "🛠 Get Support"
     text: "Need help running OpenEverest?"

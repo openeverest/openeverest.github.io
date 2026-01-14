@@ -29,7 +29,7 @@ At OpenEverest, we believe in the power of open-source collaboration to build ex
 We welcome contributions from the community! If you'd like to share your experiences, tutorials, or insights about Everest, here's how:
 
 1. **Prepare your post** in Markdown format
-2. **Submit a pull request** to [github.com/openeverest/everest.github.io](https://github.com/openeverest/everest.github.io)
+2. **Submit a pull request** to [github.com/openeverest/openeverest.github.io](https://github.com/openeverest/openeverest.github.io)
 3. **Add your post** to the `content/blog/` folder as a new directory
 4. **Include frontmatter** with title, date, authors, tags, and summary
 
@@ -37,6 +37,7 @@ Our team will review your submission and work with you to get it published.
 
 ## Join Us
 
-Whether you're a database administrator, developer, or DevOps engineer, there's a place for you in the OpenEverest community. Together, we're building the future of database management.
+Whether you're a database administrator, developer, or DevOps engineer, there's a place for you in the OpenEverest community. Together, we're building the future of data workloads management.
 
-Get started today at [docs.percona.com/everest](https://docs.percona.com/everest/)
+* [Learn more](/docs/) about OpenEverest
+* [Join the community](/#community) of builders and cloud native enthusiasts
