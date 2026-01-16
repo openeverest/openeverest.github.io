@@ -22,7 +22,7 @@ This is the official website for [openeverest.io](https://openeverest.io) - the 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/openeverest/openeverest.github.io.git
-   cd everest.github.io
+   cd openeverest.github.io
    ```
 
 2. **Install dependencies**
