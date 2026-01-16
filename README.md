@@ -93,6 +93,6 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 
 ## Learn More
 
-- [OpenEverest Documentation](https://docs.percona.com/everest/)
-- [OpenEverest GitHub](https://github.com/percona/everest)
+- [OpenEverest Documentation](https://openeverest.io/docs/)
+- [OpenEverest GitHub](https://github.com/openeverest/openeverest)
 - [Hugo Documentation](https://gohugo.io/documentation/)
