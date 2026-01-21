@@ -1,5 +1,5 @@
 ---
 title: "API Reference"
+layout: api-standalone
 ---
 
-{{< api-doc-standalone >}}
