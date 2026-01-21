@@ -99,6 +99,7 @@
       "features",
       "fill-current",
       "flex",
+      "flex-1",
       "flex-col",
       "flex-grow",
       "flex-shrink-0",

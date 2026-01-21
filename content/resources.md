@@ -99,13 +99,14 @@ resources:
 
 # Videos, podcasts, and other media
 media:
-  - title: "OpenEverest Demo: Provisioning PostgreSQL in Minutes"
-    url: "https://www.youtube.com/watch?v=example"
-    author: "OpenEverest Team"
-    date: 2024-12-15
+  - title: "OpenEverest: The Future of Percona Everest"
+    url: "https://www.youtube.com/watch?v=JjiJvHCz23w"
+    author: "Edith Puclla"
+    author_slug: "edithturn"
+    date: 2026-01-15
     type: "video"
-    duration: "8:32"
-    image: "/images/resources/postgres-demo.png"
+    duration: "35:27"
+    
 ---
 
 

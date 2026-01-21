@@ -24,6 +24,12 @@ sections:
           text: "Go to openeverest/openeverest.github.io"
           url: "https://github.com/openeverest/openeverest.github.io"
     note: "All projects are Apache 2.0 licensed. We welcome PRs and issues!"
+  - type: "good-first-issues"
+    title: "🌱 Good First Issues"
+    text: "New to contributing? Start here! Browse beginner-friendly issues across all OpenEverest repositories."
+    links:
+      - text: "View Good First Issues Board"
+        url: "https://github.com/orgs/openeverest/projects/2"
   - type: "ask"
     title: "💬 Ask Questions"
     text: "Join our real-time discussions on CNCF Slack."
