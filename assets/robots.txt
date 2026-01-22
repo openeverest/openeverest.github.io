@@ -1,2 +1,6 @@
 User-agent: *
 Disallow: /documentation/0.8.0/
+Disallow: /documentation/1.12.0/
+Disallow: /documentation/1.12.0/
+Disallow: /documentation/1.12.0/
+Disallow: /documentation/1.12.0/
