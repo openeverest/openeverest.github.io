@@ -42,9 +42,8 @@ echo "Generating ${MD_FILE}"
 cat > "$MD_FILE" <<EOF
 ---
 title: "API Reference v${VERSION}"
+layout: api-standalone
 ---
-
-{{< api-doc-standalone >}}
 EOF
 
 # 4. Git add the new files
