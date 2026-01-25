@@ -6,15 +6,36 @@ set -o errexit -o nounset -o pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 cd "${REPO_ROOT}"
 
+# Parse arguments
+UPDATE_DEFAULT=true
+VERSION=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --not-latest)
+            UPDATE_DEFAULT=false
+            shift
+            ;;
+        *)
+            VERSION="$1"
+            shift
+            ;;
+    esac
+done
+
 # Require a version to be specified
-if [ "$#" -ne 1 ]; then
-    echo "Usage: hack/import_api_spec.sh release-version"
+if [ -z "$VERSION" ]; then
+    echo "Usage: hack/import_api_spec.sh [--not-latest] release-version"
     echo "e.g. hack/import_api_spec.sh 1.10.0"
+    echo "     hack/import_api_spec.sh --not-latest 1.9.0"
+    echo ""
+    echo "Options:"
+    echo "  --not-latest    Don't update the default API version in hugo.toml"
     exit 1
 fi
 
 # Clean the version input (remove 'v' prefix if provided by user)
-VERSION=${1#v}
+VERSION=${VERSION#v}
 RAW_URL="https://raw.githubusercontent.com/percona/everest/v${VERSION}/docs/spec/openapi.yml"
 
 # Define paths
@@ -46,7 +67,27 @@ layout: api-standalone
 ---
 EOF
 
-# 4. Git add the new files
+# 4. Update default API version in hugo.toml if --not-latest flag was not used
+if [ "$UPDATE_DEFAULT" = true ]; then
+    TOML_FILE="${REPO_ROOT}/hugo.toml"
+    echo "Updating defaultApiVersion to ${VERSION} in hugo.toml"
+    
+    # Use sed to update the defaultApiVersion parameter
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS requires -i '' syntax
+        sed -i '' "s/defaultApiVersion = '[^']*'/defaultApiVersion = '${VERSION}'/" "$TOML_FILE"
+    else
+        # Linux sed syntax
+        sed -i "s/defaultApiVersion = '[^']*'/defaultApiVersion = '${VERSION}'/" "$TOML_FILE"
+    fi
+    
+    git add "$TOML_FILE"
+    echo "Updated default API version to ${VERSION}"
+else
+    echo "Skipping default API version update (--not-latest flag used)"
+fi
+
+# 5. Git add the new files
 #git add "$SPEC_FILE" "$MD_FILE"
 git add "$MD_FILE"
 

@@ -198,7 +198,7 @@
         const path = window.location.pathname;
         // Extract version from path like /docs/api/1.10.0/
         const match = path.match(/\/docs\/api\/([0-9]+\.[0-9]+\.[0-9]+)/);
-        return match ? match[1] : "1.10.0"; // default to latest
+        return match ? match[1] : "{{ .Site.Params.defaultApiVersion }}"; // default to latest
       }
 
       // Get the current version from URL
