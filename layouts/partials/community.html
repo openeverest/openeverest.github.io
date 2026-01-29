@@ -64,6 +64,21 @@
                 {{ range after 1 $data.sections }}
                 <div class="{{ if $data.dark_background }}bg-gray-800{{ else }}bg-gray-50{{ end }} p-6 rounded-xl border {{ if $data.dark_background }}border-gray-700{{ else }}border-gray-200{{ end }} hover:shadow-md transition {{ if eq .type "community-meeting" }}{{ if $data.dark_background }}border-blue-800 bg-blue-900/30{{ else }}border-blue-200 bg-blue-50{{ end }}{{ end }}">
                     <h3 class="text-lg font-semibold {{ if $data.dark_background }}text-white{{ else }}text-gray-900{{ end }} mb-2 flex items-center">
+                    {{ if eq .icon "slack" }}
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Slack logo with official colors -->
+                            <g fill="none" fill-rule="evenodd">
+                                <!-- Top-left vertical (Blue + Green) -->
+                                <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36C5F0"/>
+                                <!-- Top-right horizontal (Green + Yellow) -->
+                                <path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" fill="#2EB67D"/>
+                                <!-- Bottom-right vertical (Yellow + Red) -->
+                                <path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" fill="#ECB22E"/>
+                                <!-- Bottom-left horizontal (Red + Blue) -->
+                                <path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.25a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" fill="#E01E5A"/>
+                            </g>
+                        </svg>
+                    {{ end }}
                     {{ .title }}
                     </h3>
                     <p class="{{ if $data.dark_background }}text-gray-300{{ else }}text-gray-600{{ end }} mb-3">{{ .text }}</p>

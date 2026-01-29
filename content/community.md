@@ -31,7 +31,8 @@ sections:
       - text: "View Good First Issues Board"
         url: "https://github.com/orgs/openeverest/projects/2"
   - type: "ask"
-    title: "💬 Ask Questions"
+    title: "Let's Chat"
+    icon: "slack"
     text: "Join our real-time discussions on CNCF Slack."
     links:
       - text: "Join #openeverest-users on Slack"
