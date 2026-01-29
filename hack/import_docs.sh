@@ -133,11 +133,36 @@ EOF
   latest_version=$(ls $DOCDIR | sort -n | grep '\-rc\?' | tail -1)
   LATEST_VERSION_LINK_DIR=preview
 else
-  # Standard release
-  if [ ! -f content/docs/$release_version.md ]
-  then
-    hugo new docs/$release_version.md
-    git add content/docs/$release_version.md
+  # Standard release - update versions metadata in _index.md
+  INDEX_FILE="$REPO_ROOT/content/docs/_index.md"
+  
+  # Check if version already exists in the metadata
+  if ! grep -q "release: \"$release_version\"" "$INDEX_FILE"; then
+    echo "Adding version $release_version to documentation index..."
+    
+    # Get current timestamp
+    RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z")
+    
+    # Create new version entry
+    NEW_VERSION="  - release: \"$release_version\"
+    location: \"/documentation/$release_version\"
+    release_date: $RELEASE_DATE
+    release_notes: \"https://github.com/openeverest/everest-doc/releases/tag/v$release_version\""
+    
+    # Insert the new version at the top of the versions array (after the "versions:" line)
+    awk -v new_version="$NEW_VERSION" '
+      /^versions:$/ { 
+        print; 
+        print new_version; 
+        next 
+      } 
+      { print }
+    ' "$INDEX_FILE" > "$INDEX_FILE.tmp"
+    
+    mv "$INDEX_FILE.tmp" "$INDEX_FILE"
+    git add "$INDEX_FILE"
+  else
+    echo "Version $release_version already exists in documentation index."
   fi
 fi
 
