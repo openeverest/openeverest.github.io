@@ -1,5 +1,5 @@
 ---
-title: "Support"
+title: "Commercial Support"
 subtitle: "Get enterprise-grade support and services for OpenEverest from certified partners. From deployment to scale-out, these companies provide the expertise you need in production."
 layout: "support"
 supporters:
