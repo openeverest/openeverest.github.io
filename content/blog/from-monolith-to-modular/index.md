@@ -37,6 +37,9 @@ This high barrier to entry wasn't just a technical hurdle; it was a threat to ou
 
 We are excited to share our draft specification for a [Modular Core and Plugin Architecture](https://github.com/openeverest/specs/blob/plugin-init-spec/specs/001-plugins-architecture.md). This is the foundation that will allow us to transition from a fixed set of supported databases to a truly extensible platform where new technologies can be integrated in days, not months.
 
+![OpenEverest vision is modular](openeverest-vision-0.png)
+*A screenshot from [vision.openeverest.io](https://vision.openeverest.io)*
+
 #### 1. The "Provider" Abstraction
 We are introducing a new cluster-scoped Custom Resource Definition (CRD) called a `Provider`. Think of this as the "blueprint" for a database technology. It describes:
 * **Components:** What makes up the DB (e.g., the engine, proxy, backup agent).
@@ -71,7 +74,7 @@ But it isn't just about adding *new* names; it's about providing the *best* solu
 We believe that a healthy open-source community is built on Radical Transparency. This isn't just a blog post; it’s an invitation. Our plugin specification is currently a draft, and we want your feedback.
 
 * **View the Spec:** [Plugin Architecture Proposal](https://github.com/openeverest/specs/blob/plugin-init-spec/specs/001-plugins-architecture.md)
-* **Join the Conversation:** We discuss these changes during our bi-weekly community meetings or in [Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX).
+* **Join the Conversation:** We discuss these changes during our [bi-weekly community meetings](https://github.com/openeverest/#openeverest-community-meetings) or in [Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX).
 * **Read the Vision:** Learn more about our journey toward [donating the project to the CNCF and being modular](https://vision.openeverest.io).
 
 OpenEverest is evolving from a tool into a platform. Whether you want to add support for a new NoSQL engine, an AI copilot, or local inference and LLM hosting, the door is now open. Let’s build the future of open-source platform together.
