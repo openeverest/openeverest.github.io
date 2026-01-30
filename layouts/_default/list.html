@@ -29,42 +29,53 @@
         {{ range .Pages }}
         {{ if and .File (eq .File.LogicalName "index.md") }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-            <h2 class="text-2xl font-semibold mb-2">
-                <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
-            </h2>
-            <div class="text-gray-600 text-sm mb-4 flex items-center gap-2">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-                {{ if .Params.authors }}
-                <span class="mx-2">•</span>
-                <span class="inline-flex items-center gap-2">
-                    {{ range $index, $author := .Params.authors }}
-                        {{ if $index }}, {{ end }}
-                        {{ $authorSlug := $author | lower | replaceRE "[^a-z0-9]+" "-" }}
-                        {{ $authorPage := $.Site.GetPage (printf "/authors/%s" $authorSlug) }}
-                        {{ if $authorPage }}
-                            <a href="{{ $authorPage.Permalink }}" class="inline-flex items-center gap-1 text-blue-600 hover:underline">
-                                {{ if $authorPage.Params.avatar }}
-                                <img src="{{ $authorPage.RelPermalink }}{{ $authorPage.Params.avatar }}" alt="{{ $authorPage.Title }}" class="w-5 h-5 rounded-full object-cover">
+            <div class="flex gap-6">
+                {{ if .Params.image.url }}
+                <div class="flex-shrink-0">
+                    <a href="{{ .Permalink }}">
+                        <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-48 h-32 object-cover rounded-lg">
+                    </a>
+                </div>
+                {{ end }}
+                <div class="flex-1">
+                    <h2 class="text-2xl font-semibold mb-2">
+                        <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
+                    </h2>
+                    <div class="text-gray-600 text-sm mb-4 flex items-center gap-2">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                        {{ if .Params.authors }}
+                        <span class="mx-2">•</span>
+                        <span class="inline-flex items-center gap-2">
+                            {{ range $index, $author := .Params.authors }}
+                                {{ if $index }}, {{ end }}
+                                {{ $authorSlug := $author | lower | replaceRE "[^a-z0-9]+" "-" }}
+                                {{ $authorPage := $.Site.GetPage (printf "/authors/%s" $authorSlug) }}
+                                {{ if $authorPage }}
+                                    <a href="{{ $authorPage.Permalink }}" class="inline-flex items-center gap-1 text-blue-600 hover:underline">
+                                        {{ if $authorPage.Params.avatar }}
+                                        <img src="{{ $authorPage.RelPermalink }}{{ $authorPage.Params.avatar }}" alt="{{ $authorPage.Title }}" class="w-5 h-5 rounded-full object-cover">
+                                        {{ end }}
+                                        <span>{{ $authorPage.Title }}</span>
+                                    </a>
+                                {{ else }}
+                                    {{ $author }}
                                 {{ end }}
-                                <span>{{ $authorPage.Title }}</span>
-                            </a>
-                        {{ else }}
-                            {{ $author }}
+                            {{ end }}
+                        </span>
                         {{ end }}
+                    </div>
+                    {{ if .Params.summary }}
+                    <p class="text-gray-700 mb-4">{{ .Params.summary }}</p>
                     {{ end }}
-                </span>
-                {{ end }}
+                    {{ if .Params.tags }}
+                    <div class="flex flex-wrap gap-2">
+                        {{ range .Params.tags }}
+                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-300 transition">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
             </div>
-            {{ if .Params.summary }}
-            <p class="text-gray-700 mb-4">{{ .Params.summary }}</p>
-            {{ end }}
-            {{ if .Params.tags }}
-            <div class="flex flex-wrap gap-2">
-                {{ range .Params.tags }}
-                <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-300 transition">{{ . }}</a>
-                {{ end }}
-            </div>
-            {{ end }}
         </article>
         {{ end }}
         {{ end }}
