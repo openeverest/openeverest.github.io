@@ -1,0 +1,82 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="container mx-auto px-4 py-16">
+    <header class="mb-12">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+            <h1 class="text-4xl font-bold">{{ .Title }}</h1>
+            <div class="flex gap-3">
+                <a href="{{ "/authors" | relURL }}" 
+                   class="border-2 border-gray-300 hover:border-[#7790DE] text-gray-700 hover:text-[#7790DE] font-semibold px-6 py-2 rounded-lg transition-colors duration-300 bg-transparent whitespace-nowrap">
+                    Our Authors
+                </a>
+                <a href="https://github.com/openeverest/openeverest.github.io/tree/main/content/blog" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-300 whitespace-nowrap">
+                    Write blog
+                </a>
+            </div>
+        </div>
+        {{ if .Params.description }}
+        <p class="text-xl text-gray-600">{{ .Params.description }}</p>
+        {{ end }}
+    </header>
+
+    <div class="space-y-8">
+        {{ range .Pages }}
+        {{ if and .File (eq .File.LogicalName "index.md") }}
+        <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+            <h2 class="text-2xl font-semibold mb-4">
+                <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
+            </h2>
+            <div class="flex flex-col lg:flex-row gap-6">
+                {{ if .Params.image.url }}
+                <div class="flex-shrink-0">
+                    <a href="{{ .Permalink }}">
+                        <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full lg:w-48 h-48 lg:h-32 object-cover rounded-lg">
+                    </a>
+                </div>
+                {{ end }}
+                <div class="flex-1">
+                    <div class="text-gray-600 text-sm mb-4 flex flex-wrap items-center gap-2">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                        {{ if .Params.authors }}
+                        <span class="hidden sm:inline mx-2">•</span>
+                        <span class="inline-flex items-center gap-2 flex-wrap">
+                            {{ range $index, $author := .Params.authors }}
+                                {{ if $index }}, {{ end }}
+                                {{ $authorSlug := $author | lower | replaceRE "[^a-z0-9]+" "-" }}
+                                {{ $authorPage := $.Site.GetPage (printf "/authors/%s" $authorSlug) }}
+                                {{ if $authorPage }}
+                                    <a href="{{ $authorPage.Permalink }}" class="inline-flex items-center gap-1 text-blue-600 hover:underline">
+                                        {{ if $authorPage.Params.avatar }}
+                                        <img src="{{ $authorPage.RelPermalink }}{{ $authorPage.Params.avatar }}" alt="{{ $authorPage.Title }}" class="w-5 h-5 rounded-full object-cover">
+                                        {{ end }}
+                                        <span>{{ $authorPage.Title }}</span>
+                                    </a>
+                                {{ else }}
+                                    {{ $author }}
+                                {{ end }}
+                            {{ end }}
+                        </span>
+                        {{ end }}
+                    </div>
+                    {{ if .Params.summary }}
+                    <p class="text-gray-700 mb-4">{{ .Params.summary }}</p>
+                    {{ end }}
+                    {{ if .Params.tags }}
+                    <div class="flex flex-wrap gap-2">
+                        {{ range .Params.tags }}
+                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-300 transition">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}
