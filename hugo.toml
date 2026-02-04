@@ -8,7 +8,7 @@ staticDir = ['static', 'assets']
   author = 'OpenEverest Team'
   defaultSocialImage = '/images/brandkit/hero-image-2x1-ratio.png'
   apiSpecURL = 'https://raw.githubusercontent.com/percona/everest/refs/tags/v${version}/docs/spec/openapi.yml'
-  defaultApiVersion = '1.12.0'
+  defaultApiVersion = '1.13.0'
 
 [build]
   writeStats = true
