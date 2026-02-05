@@ -1,6 +1,6 @@
 ---
 title: "Monitoring of Data Workload Operators"
-date: 2026-02-04T00:00:00
+date: 2026-02-05T00:00:00
 draft: false
 image:
     url: monitoring.png
@@ -15,7 +15,7 @@ summary: Explore how popular data workload operators expose metrics and integrat
 
 ## Introduction
 
-Monitoring is a critical aspect of running data workloads in Kubernetes. Different operators have adopted various approaches to expose metrics and integrate with monitoring stacks. This post explores how some operators implement monitoring and observability for their respective data workloads.
+Monitoring is a critical aspect of running data workloads in Kubernetes. As we develop the plugin ecosystem for OpenEverest, we are currently researching how various operators handle monitoring to ensure our integrations follow industry best practices. Different operators have adopted various approaches to expose metrics and integrate with monitoring stacks. This blog post explores how some operators implement monitoring and observability for their respective data workloads. We focus specifically on metrics collection and monitoring integration, while distributed tracing may be explored in a future post.
 
 ## Monitoring Integration Patterns
 
@@ -63,6 +63,26 @@ The following table summarizes monitoring capabilities across different operator
 | TiDB Operator | Built-in | Prometheus / VictoriaMetrics | Grafana + Custom |
 
 </div>
+
+## Understanding Prometheus Operator Custom Resources
+
+The [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator) introduces Custom Resources (CRs) that simplify the configuration of Prometheus monitoring in Kubernetes. Two key resources are ServiceMonitor and PodMonitor. Both CRs provide automatic service discovery, eliminating the need to manually update Prometheus configuration files when pods or services are added or removed.
+
+### ServiceMonitor
+
+ServiceMonitor is a CR that declaratively specifies how groups of Kubernetes services should be monitored. Instead of manually configuring Prometheus scrape targets, you define a ServiceMonitor that references services using label selectors.
+
+ServiceMonitor is ideal when:
+- Metrics are exposed via Kubernetes Services
+- You want to monitor all pods behind a service uniformly
+
+### PodMonitor
+
+PodMonitor is similar to ServiceMonitor but directly targets pods instead of services. This is useful when you need to scrape metrics from pods that don't have a corresponding service, or when you need more granular control over individual pod monitoring.
+
+PodMonitor is ideal when:
+- Pods expose metrics without going through a service
+- Metrics endpoints are pod-specific (e.g., individual database instances)
 
 ## Details of Operators
 
