@@ -7,6 +7,15 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Treating Databases as Cattle: Architecting Stateless Patterns for Stateful Workloads"
+    url: "https://buildevcon.com/cloud-native-databases/"
+    event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
+    location: "Virtual Conference"
+    date: 2026-02-20
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/builddevcon-2026-cndb.png"
 
   - title: "Unified database provisioning and management on Kubernetes"
     url: "https://eventyay.com/e/88882f3e"

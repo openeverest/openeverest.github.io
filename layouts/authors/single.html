@@ -31,23 +31,155 @@
     </div>
 
     <h2 class="text-3xl font-bold mb-8">Posts by {{ .Title }}</h2>
-    <div class="space-y-6">
+    <div class="space-y-8">
         {{ $authorHandle := .Params.github }}
         {{ range where .Site.RegularPages "Section" "blog" }}
         {{ if in .Params.authors $authorHandle }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-semibold mb-2">
+            <h3 class="text-2xl font-semibold mb-4">
                 <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
             </h3>
-            <div class="text-gray-600 text-sm mb-4">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            <div class="flex flex-col lg:flex-row gap-6">
+                {{ if .Params.image.url }}
+                <div class="flex-shrink-0">
+                    <a href="{{ .Permalink }}">
+                        <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full lg:w-48 h-48 lg:h-32 object-cover rounded-lg">
+                    </a>
+                </div>
+                {{ end }}
+                <div class="flex-1">
+                    <div class="text-gray-600 text-sm mb-4 flex flex-wrap items-center gap-2">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                        {{ if .Params.authors }}
+                        {{ if gt (len .Params.authors) 1 }}
+                        <span class="hidden sm:inline mx-2">•</span>
+                        <span class="inline-flex items-center gap-2 flex-wrap">
+                            {{ range $index, $author := .Params.authors }}
+                                {{ if $index }}, {{ end }}
+                                {{ $authorSlug := $author | lower | replaceRE "[^a-z0-9]+" "-" }}
+                                {{ $authorPage := $.Site.GetPage (printf "/authors/%s" $authorSlug) }}
+                                {{ if $authorPage }}
+                                    <a href="{{ $authorPage.Permalink }}" class="inline-flex items-center gap-1 text-blue-600 hover:underline">
+                                        {{ if $authorPage.Params.avatar }}
+                                        <img src="{{ $authorPage.RelPermalink }}{{ $authorPage.Params.avatar }}" alt="{{ $authorPage.Title }}" class="w-5 h-5 rounded-full object-cover">
+                                        {{ end }}
+                                        <span>{{ $authorPage.Title }}</span>
+                                    </a>
+                                {{ else }}
+                                    {{ $author }}
+                                {{ end }}
+                            {{ end }}
+                        </span>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ if .Params.summary }}
+                    <p class="text-gray-700 mb-4">{{ .Params.summary }}</p>
+                    {{ end }}
+                    {{ if .Params.tags }}
+                    <div class="flex flex-wrap gap-2">
+                        {{ range .Params.tags }}
+                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-gray-300 transition">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
             </div>
-            {{ if .Params.summary }}
-            <p class="text-gray-700">{{ .Params.summary }}</p>
-            {{ end }}
         </article>
         {{ end }}
         {{ end }}
     </div>
+
+    <!-- Resources Section -->
+    {{ $resourcesPage := .Site.GetPage "/resources" }}
+    {{ if $resourcesPage }}
+        {{ $authorSlug := .Params.github }}
+        {{ $currentDate := now }}
+        
+        <!-- Filter events by speaker_slug -->
+        {{ $authorEvents := slice }}
+        {{ range $resourcesPage.Params.events }}
+            {{ if eq .speaker_slug $authorSlug }}
+                {{ $authorEvents = $authorEvents | append . }}
+            {{ end }}
+        {{ end }}
+        
+        <!-- Filter media by author_slug -->
+        {{ $authorMedia := slice }}
+        {{ range $resourcesPage.Params.media }}
+            {{ if eq .author_slug $authorSlug }}
+                {{ $authorMedia = $authorMedia | append . }}
+            {{ end }}
+        {{ end }}
+        
+        <!-- Display Events Section if any exist -->
+        {{ if $authorEvents }}
+        <section class="mt-16">
+            {{ $upcomingEvents := slice }}
+            {{ $pastEvents := slice }}
+            
+            <!-- Sort events into upcoming and past -->
+            {{ range $authorEvents }}
+                {{ $eventDate := time .date }}
+                {{ if $eventDate.After $currentDate }}
+                    {{ $upcomingEvents = $upcomingEvents | append . }}
+                {{ else }}
+                    {{ $pastEvents = $pastEvents | append . }}
+                {{ end }}
+            {{ end }}
+            
+            <!-- Upcoming Events -->
+            {{ if $upcomingEvents }}
+            <div class="mb-12">
+                <div class="flex items-center mb-6">
+                    <svg class="w-6 h-6 mr-2 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                    <h2 class="text-3xl font-bold text-gray-900">Upcoming Events</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {{ range sort $upcomingEvents "date" "desc" }}
+                        {{ partial "resource-card.html" (dict "item" . "type" "event" "upcoming" true) }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+            
+            <!-- Past Events -->
+            {{ if $pastEvents }}
+            <div class="mb-12">
+                <div class="flex items-center mb-6">
+                    <svg class="w-6 h-6 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                    <h2 class="text-3xl font-bold text-gray-900">Past Events</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {{ range sort $pastEvents "date" "desc" }}
+                        {{ partial "resource-card.html" (dict "item" . "type" "event" "upcoming" false) }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </section>
+        {{ end }}
+        
+        <!-- Display Media Section if any exist -->
+        {{ if $authorMedia }}
+        <section class="mt-16">
+            <div class="flex items-center mb-6">
+                <svg class="w-6 h-6 mr-2 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
+                </svg>
+                <h2 class="text-3xl font-bold text-gray-900">Videos & Media</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {{ range sort $authorMedia "date" "desc" }}
+                    {{ partial "resource-card.html" (dict "item" . "type" "media") }}
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+    {{ end }}
 </div>
 {{ end }}
