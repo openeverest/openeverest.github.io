@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Unified Provisioning and Management for Diverse Databases on Kubernetes"
+    url: "https://buildevcon.com/cloud-native-databases/"
+    event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
+    location: "Virtual Conference"
+    date: 2026-02-20
+    speaker: "Chi Fujii"
+    speaker_slug: "chilagrow"
+    type: "conference"
+    image: "/images/resources/builddevcon-2026-cndb-chi.png"
+
   - title: "Treating Databases as Cattle: Architecting Stateless Patterns for Stateful Workloads"
     url: "https://buildevcon.com/cloud-native-databases/"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
@@ -18,7 +28,7 @@ events:
     image: "/images/resources/builddevcon-2026-cndb.png"
 
   - title: "Unified database provisioning and management on Kubernetes"
-    url: "https://eventyay.com/e/88882f3e"
+    url: "https://eventyay.com/e/88882f3e/session/10259"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
@@ -29,7 +39,7 @@ events:
     video: false
 
   - title: "How Community-Driven Platforms Enable the Next Generation of Data"
-    url: "https://eventyay.com/e/88882f3e"
+    url: "https://eventyay.com/e/88882f3e/session/10258"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
