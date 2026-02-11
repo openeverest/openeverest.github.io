@@ -9,19 +9,19 @@
 {{ $data := $page.Params }}
 
 <section id="community" class="{{ if $data.dark_background }}bg-gray-900{{ else }}bg-white{{ end }} py-16">
-    <div class="container mx-auto px-4">
-        <div class="text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div class="text-center max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold mb-6 {{ if $data.dark_background }}text-white{{ else }}text-gray-900{{ end }}">{{ $data.title }}</h2>
             <p class="text-xl {{ if $data.dark_background }}text-gray-300{{ else }}text-gray-600{{ end }} mb-12 max-w-4xl mx-auto">
                 {{ $data.subtitle }}
             </p>
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
                 <!-- Contribute Card (Expanded) -->
                 {{ with index $data.sections 0 }}
-                <div class="{{ if $data.dark_background }}bg-gradient-to-br from-[#5A75C9] to-[#3A55A9]{{ else }}bg-gradient-to-br from-[#7790DE] to-[#5A75C9]{{ end }} text-white p-8 rounded-xl shadow-lg flex flex-col">
+                <div class="{{ if $data.dark_background }}bg-gradient-to-br from-[#5A75C9] to-[#3A55A9]{{ else }}bg-gradient-to-br from-[#7790DE] to-[#5A75C9]{{ end }} text-white p-8 rounded-xl shadow-lg flex flex-col min-w-0">
                     <h3 class="text-2xl font-bold mb-6 flex items-center">
                         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,7 +39,7 @@
                             <div class="font-semibold text-white text-sm uppercase tracking-wide mb-2">{{ .label }}</div>
                             <p class="text-white/90 text-sm mb-3 leading-snug">{{ .text }}</p>
                             <a href="{{ .link.url }}" target="_blank" rel="noopener"
-                                class="inline-flex items-center justify-center bg-white text-[#7790DE] font-semibold text-xs py-2 px-4 sm:px-5 rounded-lg border border-white/20 hover:bg-white hover:border-[#161641] hover:text-[#161641] transition-all duration-300 shadow-sm hover:shadow">
+                                class="inline-flex items-center justify-center bg-white text-[#7790DE] font-semibold text-xs py-2 px-4 sm:px-5 rounded-lg border border-white/20 hover:bg-white hover:border-[#161641] hover:text-[#161641] transition-all duration-300 shadow-sm hover:shadow break-words">
                                 {{ .link.text }}
                                 <svg class="w-3 h-3 ml-1.5 flex-shrink-0" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -60,7 +60,7 @@
                 {{ end }}
 
                 <!-- Other Cards -->
-                <div class="space-y-6">
+                <div class="space-y-6 min-w-0">
                 {{ range after 1 $data.sections }}
                 <div class="{{ if $data.dark_background }}bg-gray-800{{ else }}bg-gray-50{{ end }} p-6 rounded-xl border {{ if $data.dark_background }}border-gray-700{{ else }}border-gray-200{{ end }} hover:shadow-md transition {{ if eq .type "community-meeting" }}{{ if $data.dark_background }}border-blue-800 bg-blue-900/30{{ else }}border-blue-200 bg-blue-50{{ end }}{{ end }}">
                     <h3 class="text-lg font-semibold {{ if $data.dark_background }}text-white{{ else }}text-gray-900{{ end }} mb-2 flex items-center">

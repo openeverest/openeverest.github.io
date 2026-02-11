@@ -11,17 +11,17 @@ sections:
       - label: "Code"
         text: "Improve the OpenEverest platform engine, APIs, or CLI."
         link:
-          text: "Go to openeverest/openeverest"
+          text: "Go to main repository"
           url: "https://github.com/openeverest/openeverest"
       - label: "Documentation"
         text: "Help improve user guides, installation docs, or reference materials."
         link:
-          text: "Go to openeverest/everest-doc"
+          text: "Docs repo"
           url: "https://github.com/openeverest/everest-doc"
       - label: "Blog & Website"
         text: "Fix typos, suggest new content, or redesign pages."
         link:
-          text: "Go to openeverest/openeverest.github.io"
+          text: "Website repo"
           url: "https://github.com/openeverest/openeverest.github.io"
     note: "All projects are Apache 2.0 licensed. We welcome PRs and issues!"
   - type: "good-first-issues"
