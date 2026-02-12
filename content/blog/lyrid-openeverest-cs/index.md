@@ -6,7 +6,7 @@ image:
     url: lyrid_openeverest.png
 authors:
   - gwozdzm
-  - hsutano
+  - hsutanto
 tags:
   - blog
   - casestudy
