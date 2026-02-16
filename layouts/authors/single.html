@@ -32,9 +32,9 @@
 
     <h2 class="text-3xl font-bold mb-8">Posts by {{ .Title }}</h2>
     <div class="space-y-8">
-        {{ $authorHandle := .Params.github }}
+        {{ $authorSlug := path.Base .File.Dir }}
         {{ range where .Site.RegularPages "Section" "blog" }}
-        {{ if in .Params.authors $authorHandle }}
+        {{ if in .Params.authors $authorSlug }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
             <h3 class="text-2xl font-semibold mb-4">
                 <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
@@ -93,7 +93,7 @@
     <!-- Resources Section -->
     {{ $resourcesPage := .Site.GetPage "/resources" }}
     {{ if $resourcesPage }}
-        {{ $authorSlug := .Params.github }}
+        {{ $authorSlug := path.Base .File.Dir }}
         {{ $currentDate := now }}
         
         <!-- Filter events by speaker_slug -->

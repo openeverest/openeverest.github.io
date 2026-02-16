@@ -11,7 +11,7 @@ sections:
       - label: "Code"
         text: "Improve the OpenEverest platform engine, APIs, or CLI."
         link:
-          text: "Go to main repository"
+          text: "Go to main repo"
           url: "https://github.com/openeverest/openeverest"
       - label: "Documentation"
         text: "Help improve user guides, installation docs, or reference materials."
