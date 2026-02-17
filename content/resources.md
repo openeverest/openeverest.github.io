@@ -50,7 +50,7 @@ events:
     video: false
 
   - title: "The Layers of DB Autonomy: How OpenEverest Abstracts Complexity for Self-Healing Data"
-    url: "https://buildevcon.com/ai-dba-self-driving-databases/"
+    url: "https://www.youtube.com/watch?v=FoV8ofXFAB4"
     event_name: "BuildDevCon, DB Mastery Series, AI DBA: Self-driving databases"
     location: "Virtual Conference"
     date: 2026-01-23
@@ -58,6 +58,7 @@ events:
     speaker_slug: "spron-in"
     type: "conference"
     image: "/images/resources/builddevcon-2026.png"
+    video: true
     
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
     url: "https://www.youtube.com/watch?v=0gSSmdNB-Zo"
