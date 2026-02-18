@@ -3,7 +3,7 @@ title: "OpenEverest 1.13: Pod Logs Viewer, Dynamic Load Balancer Annotations and
 date: 2026-02-18T10:00:00Z
 draft: false
 image:
-    url: 
+    url: v113-blog-cover.png
     attribution: 
 authors:
  - spron-in
