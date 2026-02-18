@@ -73,7 +73,7 @@ You can mix static and dynamic values to automate your entire infrastructure:
 
 ### Behind the Feature: Ankit Kurmi
 
-This automation was brought to life by Ankit Kurmi ([@Ankit152](https://github.com/Ankit152)), a Software Engineer at Red Hat. Ankit spotted this challenge in our [Good First Issues pool](https://github.com/orgs/openeverest/projects/2) and realized it was the key to making OpenEverest scale for large platform teams.
+This automation was brought to life by Ankit Kurmi ([@Ankit152](https://github.com/Ankit152)), a Site Reliability Engineer at Red Hat. Ankit spotted this challenge in our [Good First Issues pool](https://github.com/orgs/openeverest/projects/2) and realized it was the key to making OpenEverest scale for large platform teams.
 
 "Contributing to OpenEverest was surprisingly straightforward; the project’s clear architecture made it easy to plug in my code and see an immediate impact on the infra stack. It’s rare to find an open-source project where you can go from 'fork' to 'merged' with such a low barrier to entry." - Ankit Kurmi
 
