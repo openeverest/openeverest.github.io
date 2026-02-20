@@ -4,6 +4,7 @@ title = 'OpenEverest'
 staticDir = ['static', 'assets']
 
 [params]
+  tagline = 'Open-Source Database Platform'
   description = 'OpenEverest is an open-source platform for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.'
   author = 'OpenEverest Team'
   defaultSocialImage = '/images/brandkit/hero-image-2x1-ratio.png'

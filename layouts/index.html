@@ -1,4 +1,20 @@
 {{ define "main" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ .Site.Title }}",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Kubernetes",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 <div class="bg-gradient-to-b from-white to-gray-50 min-h-screen">
     <div class="container mx-auto px-4 py-20 max-w-7xl">
         <!-- Hero Section with Word Cloud -->
@@ -8,14 +24,15 @@
             <!-- Hero Section -->
              <section class="hero text-center mb-12">
                 <div class="hero-content">
-                    <h1 class="hero-title font-normal mb-6 leading-tight">
+                    <h1 class="sr-only">{{ .Site.Title }} — {{ .Site.Params.tagline }}</h1>
+                    <div class="hero-title font-normal mb-6 leading-tight" aria-hidden="true">
                         <span class="gradient-text-open">
                             Open
                         </span>
                         <span class="gradient-text-everest">
                             Everest
                         </span>
-                    </h1>   
+                    </div>
                     <p class="text-xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed">
                         The <strong>first open-source platform</strong> for automated database provisioning and management. 
                         It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
