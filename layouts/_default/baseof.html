@@ -12,7 +12,20 @@
     </script>
 
     {{ partial "seo.html" . }}
-    <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}{{ end }}</title>
+    <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }} | {{ .Site.Params.tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}{{ end }}</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      "logo": "{{ .Site.BaseURL }}images/brandkit/logo-vertical-full-color-white-min.png",
+      "description": "{{ .Site.Params.description }}",
+      "sameAs": [
+        "https://github.com/openeverest/openeverest"
+      ]
+    }
+    </script>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     {{ $styles := resources.Get "css/main.css" | postCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
