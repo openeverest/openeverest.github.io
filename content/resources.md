@@ -49,6 +49,17 @@ events:
     image: "/images/resources/fossasia-2026-spronin-talk.png"
     video: false
 
+  - title: "The Death of the Third Pedal: Why Your Database Platform Should Drive Itself"
+    url: "https://www.eventbrite.com/e/percona-university-bangkok-thailand-tickets-1982802431448"
+    event_name: "Percona University"
+    location: "Bangkok, Sathon Thani Building"
+    date: 2026-03-11
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "university"
+    image: "/images/resources/percona-university-bangkok-2026.png"
+    video: false
+
   - title: "The Layers of DB Autonomy: How OpenEverest Abstracts Complexity for Self-Healing Data"
     url: "https://www.youtube.com/watch?v=FoV8ofXFAB4"
     event_name: "BuildDevCon, DB Mastery Series, AI DBA: Self-driving databases"
@@ -119,6 +130,14 @@ resources:
 
 # Videos, podcasts, and other media
 media:
+  - title: "Agentic SaaS Perspectives: OpenEverest, Data Sovereignty, and Self-Driving Databases"
+    url: "https://www.youtube.com/watch?v=npuYMJHyYKw"
+    author: "Sergey Pronin, AWS, Omnistrate"
+    date: 2026-02-19
+    type: "video"
+    source: "YouTube"
+    duration: "50:56"
+
   - title: "OpenEverest: The Future of Percona Everest"
     url: "https://www.youtube.com/watch?v=JjiJvHCz23w"
     author: "Edith Puclla"
