@@ -1,10 +1,8 @@
 
 ---
-title: "Marcin Gwóźdź"
-github: "gwozdzm"
-bio: "Marcin is a proactive IT advisor who combines business and technical expertise with 10+ years of experience in enterprise software sales across sectors, building technical alliances, and supporting channel sales. I focus on open-source solutions and love sharing knowledge by speaking at conferences.
-Marcin's vision is for open source to become as sustainable as proprietary solutions—in both product development and revenue growth.
-In his free time, he enjoys traveling and outdoor sports (Hiking!). Happy husband and father of a young fellow."
+title: "Lalit Choudhary"
+github: "lalitvc"
+bio: "Lalit Choudhary is Database Engineer and Open-Source advocate working as a consultant, Architect, blogger, and trainer for database technologies.  His career revolved around a passion for database internals and reliability, with hands-on roles spanning database engineer, QA, and consultant. Through his contributions at Percona and with Oracle MySQL, he has been deeply involved in the MySQL, Operators and PostgreSQL ecosystems. This journey is driven by a mission to empower the community and help enterprises unlock the full potential of open-source database projects."
 avatar: "avatar.png"
 ---
 
