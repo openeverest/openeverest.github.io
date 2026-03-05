@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: greenmask-config
+  namespace: everest
+data:
+  config.yml: |
+    common:
+      pg_bin_path: "/usr/lib/postgresql/17/bin"
+      tmp_dir: "/tmp"
+    
+    log:
+      level: "info"
+      format: "text"
+    
+    storage:
+      type: "s3"
+      s3:
+        endpoint: ""
+        bucket: "greenmask-test"
+        region: ""
+        prefix: "prod-anonymized"
+        force_path_style: false
+        max_retries: 3
+    
+    dump:
+      pg_dump_options:
+        dbname: "appdb"
+        host: "pg-prod-greenmask-pgbouncer.everest.svc"
+        port: 5432
+        username: "postgres"
+        jobs: 4
+        pgzip: true
+        format: "custom"
+      
+      transformation:
+        - schema: "public"
+          name: "app_user"
+          transformers:
+            - name: "Masking"
+              params:
+                column: "email"
+                type: "email"
+            
+            - name: "RandomPerson"
+              params:
+                columns:
+                  - name: "first_name"
+                    template: "{{ .FirstName }}"
+                    keep_null: true
+                  - name: "last_name"
+                    template: "{{ .LastName }}"
+                    keep_null: true
+                engine: "random"
+                gender: "Any"
+            
+            - name: "RandomUsername"
+              params:
+                column: "username"
+                keep_null: false
+            
+            - name: "NoiseDate"
+              params:
+                column: "created_at"
+                max_ratio: "30 days"
+                min_ratio: "15 days"
+            
+            - name: "RandomBool"
+              params:
+                column: "is_active"
+                keep_null: true
+    
+    restore:
+      pg_restore_options:
+        dbname: "appdb"
+        host: "pg-stage-greenmask-pgbouncer.everest.svc"
+        port: 5432
+        username: "postgres"
+        jobs: 4
+        clean: true
+        create: true
+        if-exists: true
+        pgzip: true
+        exit-on-error: false

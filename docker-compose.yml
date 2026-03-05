@@ -4,7 +4,7 @@ services:
   hugo:
     build: .
     ports:
-      - "5000:5000"
+      - "5001:5001"
     volumes:
       # Mount the entire project for live reload
       - .:/src
@@ -12,4 +12,4 @@ services:
       - /src/node_modules
     environment:
       - HUGO_ENV=development
-    command: hugo server -D --bind 0.0.0.0 --port 5000 --baseURL / --appendPort=false
+    command: hugo server -D --bind 0.0.0.0 --port 5001 --baseURL / --appendPort=false

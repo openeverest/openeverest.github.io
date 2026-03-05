@@ -1,0 +1,135 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: greenmask-dump-restore-appdb
+  namespace: everest
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: greenmask-dump
+            image: greenmask/greenmask:latest
+            command:
+              - /bin/sh
+              - -c
+              - |
+                echo "📦 Dumping PROD database..."
+                greenmask --config=/config/config.yml dump
+                
+                if [ $? -eq 0 ]; then
+                  echo "✅ Dump successful" > /tmp/dump-status
+                  exit 0
+                else
+                  echo "❌ Dump failed" > /tmp/dump-status
+                  exit 1
+                fi
+            
+            env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: prod-db-password
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: aws-access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: aws-secret-key
+            - name: AWS_DEFAULT_REGION
+              value: "ams3"
+            - name: AWS_ENDPOINT_URL
+              value: "https://ams3.digitaloceanspaces.com"
+            
+            volumeMounts:
+            - name: greenmask-config
+              mountPath: /config
+              readOnly: true
+            - name: shared-status
+              mountPath: /tmp
+          
+          - name: greenmask-restore
+            image: greenmask/greenmask:latest
+            command:
+              - /bin/sh
+              - -c
+              - |
+                # Wait for dump to complete
+                while [ ! -f /tmp/dump-status ]; do
+                  echo "Waiting for dump to complete..."
+                  sleep 5
+                done
+                
+                if grep -q "successful" /tmp/dump-status; then
+                  echo "🔄 Dump successful, proceeding with restore..."
+                  
+                  # Install PostgreSQL client
+                  apk add --no-cache postgresql-client > /dev/null 2>&1
+                  
+                  # Check/Create stage database
+                  export PGPASSWORD=$STAGE_DB_PASSWORD
+                  
+                  if ! psql -h pg-stage-greenmask-pgbouncer.everest.svc -p 5432 -U postgres -d appdb -c "SELECT 1" > /dev/null 2>&1; then
+                    psql -h pg-stage-greenmask-pgbouncer.everest.svc -p 5432 -U postgres -d postgres -c "CREATE DATABASE appdb WITH OWNER postgres;"
+                  fi
+                  
+                  # Run restore
+                  greenmask --config=/config/config.yml restore latest
+                  
+                  if [ $? -eq 0 ]; then
+                    echo "✅ Restore completed successfully"
+                    
+                    # Verify
+                    psql -h pg-stage-greenmask-pgbouncer.everest.svc -p 5432 -U postgres -d appdb -c "SELECT COUNT(*) FROM public.app_user;"
+                  else
+                    echo "❌ Restore failed"
+                    exit 1
+                  fi
+                else
+                  echo "❌ Dump failed, skipping restore"
+                  exit 1
+                fi
+            
+            env:
+            - name: STAGE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: stage-db-password
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: aws-access-key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: greenmask-secrets
+                  key: aws-secret-key
+            - name: AWS_DEFAULT_REGION
+              value: "ams3"
+            - name: AWS_ENDPOINT_URL
+              value: "https://ams3.digitaloceanspaces.com"
+            
+            volumeMounts:
+            - name: greenmask-config
+              mountPath: /config
+              readOnly: true
+            - name: shared-status
+              mountPath: /tmp
+          
+          volumes:
+          - name: greenmask-config
+            configMap:
+              name: greenmask-config
+              defaultMode: 0644
+          - name: shared-status
+            emptyDir: {}
