@@ -37,11 +37,6 @@ data:
         - schema: "public"
           name: "app_user"
           transformers:
-            - name: "Masking"
-              params:
-                column: "email"
-                type: "email"
-            
             - name: "RandomPerson"
               params:
                 columns:
@@ -54,6 +49,14 @@ data:
                 engine: "random"
                 gender: "Any"
             
+            - name: "RandomEmail"
+              params:
+                column: "email"
+                engine: "hash"
+                max_random_length: 10
+                keep_original_domain: true
+                local_part_template: "{{ first_name | lower }}.{{ last_name | lower }}.{{ .random_string | trunc 10 }}"
+
             - name: "RandomUsername"
               params:
                 column: "username"
@@ -64,6 +67,15 @@ data:
                 column: "created_at"
                 max_ratio: "30 days"
                 min_ratio: "15 days"
+            
+            - name: "RandomDate"
+              params:
+                column: "updated_at"
+                max: "{{ now | .EncodeValue }}"
+              # Ensure updated_at > created_at to satisfy DB check constraint
+              dynamic_params:
+                min:
+                  column: "created_at"
             
             - name: "RandomBool"
               params:

@@ -3,6 +3,7 @@ from faker import Faker
 import psycopg2
 from psycopg2 import sql, IntegrityError
 import sys
+from datetime import timedelta
 
 # Initialize Faker
 fake = Faker()
@@ -50,6 +51,7 @@ def create_table_if_not_exists(conn):
                     email VARCHAR(255) NOT NULL UNIQUE,
                     username VARCHAR(100) NOT NULL UNIQUE,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK ( updated_at > created_at ),
                     is_active BOOLEAN DEFAULT true
                 )
             """)
@@ -119,12 +121,26 @@ def generate_user_data(num_entries=20):
                 used_usernames.add(username)
                 break
         
+        # Generate random dates
+        # created_at: some time in the last 2 years (up to 60 days ago)
+        created_at = fake.date_time_between(start_date='-2y', end_date='-60d')
+        # updated_at: created_at + some interval (1 hour to 59 days)
+        # using at least 1 minute interval to satisfy the CHECK constraint (updated_at > created_at)
+        interval = timedelta(
+            days=random.randint(0, 59),
+            hours=random.randint(0, 23),
+            minutes=random.randint(1, 59)
+        )
+        updated_at = created_at + interval
+
         users.append({
             'first_name': first_name,
             'last_name': last_name,
             'email': email,
             'username': username,
-            'is_active': random.choice([True, True, True, False])  # 75% active
+            'is_active': random.choice([True, True, True, False]),  # 75% active
+            'created_at': created_at,
+            'updated_at': updated_at
         })
         
         # Show progress
@@ -145,14 +161,16 @@ def insert_users(conn, users):
         for user in users:
             try:
                 cursor.execute("""
-                    INSERT INTO app_user (first_name, last_name, email, username, is_active)
-                    VALUES (%s, %s, %s, %s, %s)
+                    INSERT INTO app_user (first_name, last_name, email, username, is_active, created_at, updated_at)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, (
                     user['first_name'],
                     user['last_name'],
                     user['email'],
                     user['username'],
-                    user['is_active']
+                    user['is_active'],
+                    user['created_at'],
+                    user['updated_at']
                 ))
                 inserted += 1
             except IntegrityError as e:
@@ -198,7 +216,8 @@ def verify_data(conn):
             # Show sample data
             cursor.execute("""
                 SELECT id, first_name, last_name, email, username, is_active, 
-                       TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as created
+                       TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as created,
+                       TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS') as updated
                 FROM app_user 
                 ORDER BY id 
                 LIMIT 5
@@ -208,10 +227,10 @@ def verify_data(conn):
             
             if rows:
                 print("\n📝 Sample data (first 5 rows):")
-                print("-" * 100)
+                print("-" * 130)
                 for row in rows:
-                    print(f"ID: {row[0]:3} | Name: {row[1]} {row[2]:15} | Email: {row[3]:25} | Username: {row[4]:15} | Active: {row[5]} | Created: {row[6]}")
-                print("-" * 100)
+                    print(f"ID: {row[0]:3} | Name: {row[1]} {row[2]:15} | Email: {row[3]:25} | Username: {row[4]:15} | Active: {row[5]} | Created: {row[6]} | Updated: {row[7]}")
+                print("-" * 130)
             
             # Get some statistics
             cursor.execute("""
