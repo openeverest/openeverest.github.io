@@ -6,6 +6,7 @@ image:
     url: greenmask-openeverest.png
 authors:
   - spron-in
+  - wwoytenko
 tags:
   - blog
   - kubernetes
@@ -52,6 +53,7 @@ CREATE TABLE IF NOT EXISTS app_user (
     email VARCHAR(255) NOT NULL UNIQUE,
     username VARCHAR(100) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP CHECK (updated_at >= created_at),
     is_active BOOLEAN DEFAULT true
 );
 ```
@@ -82,15 +84,26 @@ A few important sections in `configmap.yaml`:
 - **`storage`** — configures the S3 backend. See the [Greenmask storage docs](https://docs.greenmask.io/latest/configuration/#storage-section) for details.
 - **`dump.transformation`** — defines which columns to anonymize and how. Greenmask provides a rich set of [built-in transformers](https://docs.greenmask.io/latest/built_in_transformers/).
 
-For example, the following transformer masks the email column:
-
-```yaml
-transformers:
-  - name: "Masking"
-    params:
-      column: "email"
-      type: "email"
-```
+    The following example uses the `RandomEmail` transformer with a hash engine. By referencing other columns like `first_name` and `last_name` in the template, we can generate logically correct data that remains consistent across the entire record. We also leverage Greenmask's [dynamic parameters](https://docs.greenmask.io/latest/built_in_transformers/dynamic_parameters/) capability for the `updated_at` column. By using `dynamic_params`, we can ensure that the generated `updated_at` value always stays after `created_at`, automatically satisfying our database's check constraint during the transformation:
+    
+    ```yaml
+    transformers:
+      - name: "RandomEmail"
+        params:
+          column: "email"
+          engine: "hash"
+          keep_original_domain: true
+          local_part_template: "{{ first_name | lower }}.{{ last_name | lower }}.{{ .random_string | trunc 10 }}"
+    
+      - name: "RandomDate"
+        params:
+          column: "updated_at"
+          max: "{{ now | .EncodeValue }}"
+        # Ensure updated_at > created_at to satisfy DB check constraint
+        dynamic_params:
+          min:
+            column: "created_at"
+    ```
 
 - **`restore`** — defines the rules Greenmask follows when restoring from the anonymized dump.
 
