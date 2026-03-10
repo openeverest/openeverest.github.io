@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/everest-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -462,6 +462,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
   
 
     
@@ -4784,8 +4812,23 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Installing <code>everestctl</code> is only necessary if you want to use it to install OpenEverest using <code>everestctl</code>; it is <strong>not</strong> required if you prefer to install OpenEverest with Helm.</p>
 </div>
 <p>You can download the latest version of <code>everestctl</code> visiting the latest release page in <a href="https://github.com/openeverest/openeverest/releases/latest" target="_blank">this repository</a>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux and WSL</label><label for="__tabbed_1_2">macOS (Apple Silicon)</label><label for="__tabbed_1_3">macOS (Intel CPU)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Homebrew (macOS and Linux)</label><label for="__tabbed_1_2">Linux and WSL</label><label for="__tabbed_1_3">macOS (Apple Silicon)</label><label for="__tabbed_1_4">macOS (Intel CPU)</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<p class="power-number">The simplest way to install <code>everestctl</code> on macOS or Linux is via Homebrew. This works on both Apple Silicon and Intel CPUs.</p>
+<ol>
+<li>
+<p>Add the OpenEverest tap:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>openeverest/tap
+</code></pre></div>
+</li>
+<li>
+<p>Install <code>everestctl</code>:</p>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>everestctl
+</code></pre></div>
+</li>
+</ol>
+</div>
 <div class="tabbed-block">
 <p class="power-number">To install <code>everestctl</code> on Linux or WSL, run the following commands:</p>
 <ol>
@@ -4889,7 +4932,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
     <div class="md-copyright__highlight">
- <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2026
+ <a href='https://openeverest.io' target='_blank'>The OpenEverest Contributors, </a> &copy; 2026
  <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
 </div>
   

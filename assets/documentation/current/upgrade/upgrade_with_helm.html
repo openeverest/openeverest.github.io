@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/everest-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -462,6 +462,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
   
 
     
@@ -1765,6 +1793,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrate-from-the-percona-helm-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrate from the Percona Helm repository
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4839,6 +4878,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrate-from-the-percona-helm-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrate from the Percona Helm repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrade-crds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4940,12 +4990,46 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><strong>Before you upgrade</strong> to OpenEverest version 1.7.0, run the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>namespaces<span class="w"> </span>everest-system<span class="w"> </span>app.kubernetes.io/managed-by-
 </code></pre></div>
+<h2 id="migrate-from-the-percona-helm-repository">Migrate from the Percona Helm repository<a class="headerlink" href="#migrate-from-the-percona-helm-repository" title="Permanent link">&para;</a></h2>
+<p>If you originally installed OpenEverest using the <code>percona</code> Helm repository, you need to perform a one-time migration to switch your existing releases to the new <code>openeverest</code> repository. This does not reinstall OpenEverest — it simply re-associates your existing Helm releases with the new chart source while preserving all your current configuration.</p>
+<p class="power-number">To migrate, run the following commands:</p>
+<ol>
+<li>
+<p>Add the new OpenEverest Helm repository:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>openeverest<span class="w"> </span>https://openeverest.github.io/helm-charts/
+</code></pre></div>
+</li>
+<li>
+<p>Update your local Helm repository cache:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>update
+</code></pre></div>
+</li>
+<li>
+<p>Upgrade each release to use the chart from the new repository.</p>
+<p>Upgrade the core components release:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reuse-values
+</code></pre></div>
+<p>If you have one or more database namespace releases, upgrade each one:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>&lt;RELEASE_NAME&gt;<span class="w"> </span>openeverest/everest-db-namespace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>&lt;DB_NAMESPACE&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--reuse-values
+</code></pre></div>
+<p>Replace <code>&lt;RELEASE_NAME&gt;</code> and <code>&lt;DB_NAMESPACE&gt;</code> with your actual release name and namespace. To list all your current releases, run <code>helm list --all-namespaces</code>.</p>
+</li>
+<li>
+<p>(Optional) Remove the old Percona Helm repository once all releases have been migrated:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>remove<span class="w"> </span>percona
+</code></pre></div>
+</li>
+</ol>
 <h2 id="upgrade-crds">Upgrade CRDs<a class="headerlink" href="#upgrade-crds" title="Permanent link">&para;</a></h2>
 <p>In Helm v3, CRDs are not updated automatically during a Helm upgrade. You need to upgrade the CRDs manually.</p>
 <p>To update the CRDs, run the following command:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>update
 helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>everest-crds<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>percona/everest-crds<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>openeverest/everest-crds<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--take-ownership
 </code></pre></div>
@@ -4972,14 +5056,14 @@ kubectl annotate crds &quot;${CRDS[@]}&quot; meta.helm.sh/release-namespace=ever
 <ol>
 <li>
 <p>Upgrade the Helm release for Everest (core components).</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>percona/everest<span class="w"> </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION</span><span class="s2">&quot;</span><span class="w">       </span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION</span><span class="s2">&quot;</span><span class="w">       </span>
 </code></pre></div>
 <p>where,</p>
 <p><strong>VERSION</strong> is the OpenEverest version you wish to upgrade to.</p>
 </li>
 <li>
 <p>Upgrade the Helm release for the database namespace (if applicable):</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest<span class="w"> </span>percona/everest-db-namespace<span class="w"> </span>--namespace<span class="w"> </span>&lt;DB<span class="w"> </span>namespace&gt;<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest<span class="w"> </span>openeverest/everest-db-namespace<span class="w"> </span>--namespace<span class="w"> </span>&lt;DB<span class="w"> </span>namespace&gt;<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>where,</p>
 <p><strong>VERSION</strong> is the OpenEverest version you wish to upgrade to.</p>
@@ -5024,7 +5108,7 @@ kubectl annotate crds &quot;${CRDS[@]}&quot; meta.helm.sh/release-namespace=ever
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
     <div class="md-copyright__highlight">
- <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2026
+ <a href='https://openeverest.io' target='_blank'>The OpenEverest Contributors, </a> &copy; 2026
  <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
 </div>
   

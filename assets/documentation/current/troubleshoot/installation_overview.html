@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/everest-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -462,6 +462,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
   
 
     
@@ -4916,10 +4944,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Starting with OpenEverest v1.4.0, the <a href="../install/installEverest.html">everestctl</a> is a wrapper around two helm charts:</p>
 <ul>
 <li>
-<p><a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest" target="_blank">everest-core</a> </p>
+<p><a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest" target="_blank">everest-core</a> </p>
 </li>
 <li>
-<p><a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest/charts/everest-db-namespace" target="_blank">everest-db-namespace</a>. </p>
+<p><a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest/charts/everest-db-namespace" target="_blank">everest-db-namespace</a>. </p>
 </li>
 </ul>
 <p class="power-number">The installation flow is as follows:</p>
@@ -5021,8 +5049,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 everestctl<span class="w"> </span>namespaces<span class="w"> </span>update<span class="w"> </span><span class="o">[</span>NAMESPACE<span class="o">]</span>
 everestctl<span class="w"> </span>namespaces<span class="w"> </span>remove<span class="w"> </span><span class="o">[</span>NAMESPACE<span class="o">]</span>
 </code></pre></div>
-<p>For detailed information on managing namespaces, see the <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest#4-deploy-additional-database-namespaces" target="_blank">Namespaces management</a> section.</p>
-<p>The <a href="../install/install_everest_helm_charts.html">helm installation method</a> provides an identical flow to the one described above, with similar configuration options. Refer to the <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest" target="_blank">helm chart documentation</a> for a complete list of available <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest#configuration" target="_blank">configuration options</a>.</p>
+<p>For detailed information on managing namespaces, see the <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest#4-deploy-additional-database-namespaces" target="_blank">Namespaces management</a> section.</p>
+<p>The <a href="../install/install_everest_helm_charts.html">helm installation method</a> provides an identical flow to the one described above, with similar configuration options. Refer to the <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest" target="_blank">helm chart documentation</a> for a complete list of available <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest#configuration" target="_blank">configuration options</a>.</p>
 <h2 id="server-and-operator-workflow">Server and operator workflow<a class="headerlink" href="#server-and-operator-workflow" title="Permanent link">&para;</a></h2>
 <h3 id="database-creation-workflow">Database creation workflow<a class="headerlink" href="#database-creation-workflow" title="Permanent link">&para;</a></h3>
 <p class="power-number">Here&rsquo;s the database creation workflow in OpenEverest:</p>
@@ -5043,7 +5071,7 @@ everestctl<span class="w"> </span>namespaces<span class="w"> </span>remove<span 
 <h3 id="database-engine-workflow">Database engine workflow<a class="headerlink" href="#database-engine-workflow" title="Permanent link">&para;</a></h3>
 <p class="power-number">Here’s the workflow for the database engine in OpenEverest:</p>
 <ol>
-<li>You can install the <code>everest-db-namespace</code> chart either as part of the initial installation or as a <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest#4-deploy-additional-database-namespaces">separate step</a>.</li>
+<li>You can install the <code>everest-db-namespace</code> chart either as part of the initial installation or as a <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest#4-deploy-additional-database-namespaces">separate step</a>.</li>
 <li>OLM subscriptions are created for the operators chosen while installing the Helm chart.</li>
 <li>OLM <strong>reconciles the Subscriptions</strong> and creates an <strong>InstallPlan</strong>.</li>
 <li>The Helm chart creates a Kubernetes job called <code>everest-operators-installer</code> that waits for the <code>InstallPlan</code> to be created and approves it.</li>
@@ -5099,7 +5127,7 @@ everestctl<span class="w"> </span>namespaces<span class="w"> </span>remove<span 
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
     <div class="md-copyright__highlight">
- <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2026
+ <a href='https://openeverest.io' target='_blank'>The OpenEverest Contributors, </a> &copy; 2026
  <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
 </div>
   
