@@ -1,1 +1,2 @@
 User-agent: *
+Disallow: /documentation/1.14.0/
