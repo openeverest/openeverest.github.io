@@ -1,0 +1,167 @@
+{{/* Feature icon partial - maps icon keywords to inline SVGs */}}
+{{ $icon := .icon }}
+{{ $size := .size | default "md" }}
+
+{{ $sizeClass := "w-12 h-12" }}
+{{ if eq $size "lg" }}
+    {{ $sizeClass = "w-16 h-16" }}
+{{ else if eq $size "xl" }}
+    {{ $sizeClass = "w-32 h-32" }}
+{{ else if eq $size "sm" }}
+    {{ $sizeClass = "w-8 h-8" }}
+{{ end }}
+
+{{ if eq $icon "multi-cloud" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cloud left -->
+    <path d="M18 68h30c2.8 0 5-2.2 5-5 0-2.2-1.5-4-3.5-4.8C49.2 49 42 42 33.5 42c-7.5 0-14 4.8-16.3 11.5C11.5 54.5 7 59.5 7 65.5 7 67 8 68 9.5 68H18z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Cloud right -->
+    <path d="M68 58h35c2.8 0 5-2.2 5-5 0-2.2-1.5-4-3.5-4.8C104.2 39 97 32 88.5 32c-7.5 0-14 4.8-16.3 11.5C66.5 44.5 62 49.5 62 55.5 62 57 63 58 64.5 58H68z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Connection to center hub -->
+    <path d="M38 68v10M88 58v20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/>
+    <!-- Center hub (K8s node) -->
+    <rect x="35" y="80" width="50" height="24" rx="5" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="48" cy="92" r="3" fill="currentColor" opacity="0.5"/>
+    <circle cx="60" cy="92" r="3" fill="currentColor" opacity="0.5"/>
+    <circle cx="72" cy="92" r="3" fill="currentColor" opacity="0.5"/>
+</svg>
+
+{{ else if eq $icon "database-engines" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- DB cylinder 1 -->
+    <ellipse cx="35" cy="30" rx="18" ry="6" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M17 30v20c0 3.3 8 6 18 6s18-2.7 18-6V30" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M17 40c0 3.3 8 6 18 6s18-2.7 18-6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <!-- DB cylinder 2 -->
+    <ellipse cx="85" cy="30" rx="18" ry="6" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M67 30v20c0 3.3 8 6 18 6s18-2.7 18-6V30" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M67 40c0 3.3 8 6 18 6s18-2.7 18-6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <!-- DB cylinder 3 -->
+    <ellipse cx="60" cy="75" rx="18" ry="6" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M42 75v20c0 3.3 8 6 18 6s18-2.7 18-6V75" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M42 85c0 3.3 8 6 18 6s18-2.7 18-6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <!-- Connections -->
+    <path d="M35 56l15 14M85 56l-15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/>
+</svg>
+
+{{ else if eq $icon "private-deploy" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Shield -->
+    <path d="M60 15L25 32v23c0 24.5 15 46.2 35 53 20-6.8 35-28.5 35-53V32L60 15z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Lock -->
+    <rect x="46" y="58" width="28" height="22" rx="3" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M52 58V48a8 8 0 0116 0v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Keyhole -->
+    <circle cx="60" cy="68" r="3" fill="currentColor"/>
+    <path d="M60 71v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
+{{ else if eq $icon "scaling" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Horizontal scaling: nodes -->
+    <rect x="10" y="45" width="25" height="30" rx="4" stroke="currentColor" stroke-width="2.5"/>
+    <rect x="47" y="45" width="25" height="30" rx="4" stroke="currentColor" stroke-width="2.5"/>
+    <rect x="84" y="45" width="25" height="30" rx="4" stroke="currentColor" stroke-width="2.5"/>
+    <!-- Node dots -->
+    <circle cx="22" cy="55" r="2.5" fill="currentColor"/>
+    <circle cx="22" cy="65" r="2.5" fill="currentColor"/>
+    <circle cx="59" cy="55" r="2.5" fill="currentColor"/>
+    <circle cx="59" cy="65" r="2.5" fill="currentColor"/>
+    <circle cx="96" cy="55" r="2.5" fill="currentColor"/>
+    <circle cx="96" cy="65" r="2.5" fill="currentColor"/>
+    <!-- Connections -->
+    <path d="M35 60h12M72 60h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <!-- Vertical arrow -->
+    <path d="M60 30v10M60 80v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M55 33l5-5 5 5M55 87l5 5 5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+{{ else if eq $icon "storage" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Stacked disks -->
+    <ellipse cx="60" cy="30" rx="35" ry="10" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M25 30v15c0 5.5 15.7 10 35 10s35-4.5 35-10V30" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M25 45v15c0 5.5 15.7 10 35 10s35-4.5 35-10V45" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M25 60v15c0 5.5 15.7 10 35 10s35-4.5 35-10V60" stroke="currentColor" stroke-width="2.5"/>
+    <!-- Tier indicators -->
+    <circle cx="80" cy="37" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+    <circle cx="80" cy="52" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+    <path d="M78 52h4M78 37h4M80 35v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+
+{{ else if eq $icon "backup" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Circular arrow (restore / recovery) -->
+    <path d="M60 25a35 35 0 1 1-30 17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M30 42l-8-14h16z" fill="currentColor"/>
+    <!-- Clock hands in center -->
+    <circle cx="60" cy="60" r="4" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M60 42v18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M60 60l12 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
+{{ else if eq $icon "config" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Three horizontal sliders -->
+    <!-- Track 1 -->
+    <path d="M20 35h80" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+    <circle cx="45" cy="35" r="8" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="45" cy="35" r="3" fill="currentColor"/>
+    <!-- Track 2 -->
+    <path d="M20 60h80" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+    <circle cx="72" cy="60" r="8" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="72" cy="60" r="3" fill="currentColor"/>
+    <!-- Track 3 -->
+    <path d="M20 85h80" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+    <circle cx="55" cy="85" r="8" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="55" cy="85" r="3" fill="currentColor"/>
+</svg>
+
+{{ else if eq $icon "resources" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- CPU chip -->
+    <rect x="30" y="30" width="60" height="60" rx="6" stroke="currentColor" stroke-width="2.5"/>
+    <rect x="42" y="42" width="36" height="36" rx="3" stroke="currentColor" stroke-width="2"/>
+    <!-- Pins -->
+    <path d="M45 30v-8M55 30v-8M65 30v-8M75 30v-8M45 90v8M55 90v8M65 90v8M75 90v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M30 45h-8M30 55h-8M30 65h-8M30 75h-8M90 45h8M90 55h8M90 65h8M90 75h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Core pattern -->
+    <rect x="50" y="50" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+    <rect x="62" y="50" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+    <rect x="50" y="62" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+    <rect x="62" y="62" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+</svg>
+
+{{ else if eq $icon "monitoring" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Monitor frame -->
+    <rect x="15" y="18" width="90" height="64" rx="6" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M45 82h30v8H45z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M38 90h44" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Chart line -->
+    <polyline points="28,60 40,55 52,62 60,42 68,50 76,35 88,45 95,38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Grid lines -->
+    <path d="M28 35h67M28 50h67M28 65h67" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+    <!-- Pulse dot -->
+    <circle cx="95" cy="38" r="3" fill="currentColor"/>
+</svg>
+
+{{ else if eq $icon "alerting" }}
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Bell -->
+    <path d="M60 20c-16.6 0-30 13.4-30 30v20l-8 10h76l-8-10V50c0-16.6-13.4-30-30-30z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M50 80v4a10 10 0 0020 0v-4" stroke="currentColor" stroke-width="2.5"/>
+    <!-- Signal waves -->
+    <path d="M90 40c4 4 6.5 9.5 6.5 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M96 34c5.5 5.5 9 13 9 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <!-- Top dot -->
+    <circle cx="60" cy="18" r="3" fill="currentColor"/>
+</svg>
+
+{{ else }}
+<!-- Fallback: generic feature icon -->
+<svg class="{{ $sizeClass }} text-[#7790DE]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="35" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M45 60l10 10 20-20" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+{{ end }}
