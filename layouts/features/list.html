@@ -1,0 +1,45 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="bg-gradient-to-b from-white to-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-20 max-w-7xl">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold mb-6 text-gray-900">{{ .Title }}</h1>
+            {{ with .Params.description }}
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">{{ . }}</p>
+            {{ end }}
+        </div>
+
+        <!-- Feature cards grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {{ range .Pages }}
+            <a href="{{ .Permalink }}" class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100">
+                <!-- Icon header -->
+                <div class="bg-gradient-to-br from-[#161641] to-[#3A55A9] p-8 flex justify-center">
+                    {{ if .Params.feature_icon }}
+                    {{ partial "feature-icon.html" (dict "icon" .Params.feature_icon "size" "lg") }}
+                    <style>
+                        /* Override icon color in card header */
+                        .group:hover svg { opacity: 0.9; }
+                    </style>
+                    {{ end }}
+                </div>
+                <!-- Content -->
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#7790DE] transition-colors">{{ .Title }}</h2>
+                    {{ with .Params.summary }}
+                    <p class="text-gray-600 leading-relaxed mb-4">{{ . }}</p>
+                    {{ end }}
+                    <span class="text-[#7790DE] font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Learn more
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
