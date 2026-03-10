@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/everest-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -462,6 +462,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
   
 
     
@@ -4822,7 +4850,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="install-openeverest-using-helm">Install OpenEverest using Helm<a class="headerlink" href="#install-openeverest-using-helm" title="Permanent link">&para;</a></h1>
 <p>This section explains how to install OpenEverest using <a href="https://helm.sh/" target="_blank">Helm</a> as an alternative to <code>everestctl</code>. Helm charts simplify the deployment process by packaging all necessary resources and configurations, making them ideal for automating and managing installations in Kubernetes environments.</p>
-<p>OpenEverest Helm charts can be found in <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest" target="_blank">percona/percona-helm-charts</a> repository in Github.</p>
+<p>OpenEverest Helm charts can be found in <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest" target="_blank">openeverest/helm-charts</a> repository in Github.</p>
 <div class="admonition info">
 <p class="admonition-title">Important</p>
 <p>If you installed OpenEverest using Helm, make sure to uninstall it exclusively through Helm for a seamless removal.</p>
@@ -4832,13 +4860,13 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ol>
 <li>
 <p>Add the OpenEverest Helm repository:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>percona<span class="w"> </span>https://percona.github.io/percona-helm-charts/
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>openeverest<span class="w"> </span>https://openeverest.github.io/helm-charts/
 helm<span class="w"> </span>repo<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>Install OpenEverest:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest-core<span class="w"> </span>percona/everest<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 --create-namespace
 </code></pre></div>
@@ -4880,10 +4908,10 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <details class="example">
 <summary>Examples</summary>
 <p>Install with PMM enabled  </p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest-core<span class="w"> </span>percona/everest<span class="w"> </span>--namespace<span class="o">=</span>everest-system<span class="w"> </span>--create-namespace<span class="w"> </span>--set<span class="w"> </span>pmm.enabled<span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span>--namespace<span class="o">=</span>everest-system<span class="w"> </span>--create-namespace<span class="w"> </span>--set<span class="w"> </span>pmm.enabled<span class="o">=</span><span class="nb">true</span>
 </code></pre></div>
 <p>Install OpenEverest with TLS enabled:</p>
-<div class="highlight"><pre><span></span><code>helm install everest-core percona/everest \
+<div class="highlight"><pre><span></span><code>helm install everest openeverest/openeverest \
 --namespace everest-system \
 --create-namespace
 --set server.tls.enabled=true
@@ -4914,7 +4942,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <ol>
 <li>
 <p>Run the following command:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>percona/everest<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 --reuse-values<span class="w"> </span><span class="se">\</span>
 --set<span class="w"> </span>server.service.type<span class="o">=</span>LoadBalancer
@@ -4944,7 +4972,7 @@ everest<span class="w">   </span>LoadBalancer<span class="w">   </span><span cla
 <ol>
 <li>
 <p>Run the following command to change the Everest service type to <code>NodePort</code>:</p>
-<p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>percona/everest<span class="w"> </span><span class="se">\</span>
+<p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 --reuse-values<span class="w"> </span><span class="se">\</span>
 --set<span class="w"> </span>server.service.type<span class="o">=</span>NodePort
@@ -5007,7 +5035,7 @@ Optimized<span class="w"> </span>OS<span class="w"> </span>from<span class="w"> 
 <p>Once OpenEverest is successfully running, you can create additional database namespaces using the <code>everest-db-namespace</code> Helm chart. </p>
 <p>If you set <code>dbNamespaces.enabled=false</code> in <strong>step 2</strong>, you can deploy a database namespace with the following command:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest<span class="w"> </span><span class="se">\</span>
-percona/everest-db-namespace<span class="w"> </span><span class="se">\</span>
+openeverest/everest-db-namespace<span class="w"> </span><span class="se">\</span>
 --create-namespace<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>&lt;DB<span class="w"> </span>namespace&gt;
 </code></pre></div>
@@ -5022,8 +5050,8 @@ percona/everest-db-namespace<span class="w"> </span><span class="se">\</span>
 </ol>
 <h2 id="configure-parameters">Configure parameters<a class="headerlink" href="#configure-parameters" title="Permanent link">&para;</a></h2>
 <p>You can customize various parameters in the OpenEverest Helm charts for your deployment to meet your specific needs. Refer to the <a href="https://helm.sh/docs/chart_best_practices/values/" target="_blank">Helm documentation</a> to discover how to configure these parameters.</p>
-<p>A few parameters are listed in the following table. For a detailed list of the parameters, see the <a href="https://github.com/percona/percona-helm-charts/blob/main/charts/everest/README.md#configuration" target="_blank">README</a>.</p>
-<p><strong>percona/everest chart</strong></p>
+<p>A few parameters are listed in the following table. For a detailed list of the parameters, see the <a href="https://github.com/openeverest/helm-charts/blob/main/charts/everest/README.md#configuration" target="_blank">README</a>.</p>
+<p><strong>openeverest/openeverest chart</strong></p>
 <table>
 <thead>
 <tr>
@@ -5048,7 +5076,7 @@ percona/everest-db-namespace<span class="w"> </span><span class="se">\</span>
 </tr>
 </tbody>
 </table>
-<p><strong>percona/everest-db-namespace subchart</strong></p>
+<p><strong>openeverest/everest-db-namespace subchart</strong></p>
 <table>
 <thead>
 <tr>
@@ -5119,7 +5147,7 @@ percona/everest-db-namespace<span class="w"> </span><span class="se">\</span>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
     <div class="md-copyright__highlight">
- <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2026
+ <a href='https://openeverest.io' target='_blank'>The OpenEverest Contributors, </a> &copy; 2026
  <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
 </div>
   

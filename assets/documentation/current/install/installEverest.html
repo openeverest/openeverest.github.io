@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/everest-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -462,6 +462,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
   
 
     
@@ -4836,7 +4864,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="install-openeverest">Install OpenEverest<a class="headerlink" href="#install-openeverest" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Important</p>
-<p>Starting from version 1.4.0, <code>everestctl</code> now uses the <a href="https://github.com/percona/percona-helm-charts/tree/main/charts/everest" target="_blank">Helm chart</a> to install OpenEverest. To configure chart parameters during installation through <code>everestctl</code>, you can:</p>
+<p>Starting from version 1.4.0, <code>everestctl</code> now uses the <a href="https://github.com/openeverest/helm-charts/tree/main/charts/everest" target="_blank">Helm chart</a> to install OpenEverest. To configure chart parameters during installation through <code>everestctl</code>, you can:</p>
 <ul>
 <li>Use the <code>--helm-.set</code> flag to specify individual parameter values.</li>
 <li>Provide a values file with the <code>--helm.values</code> flag for bulk configuration.</li>
@@ -4956,7 +4984,7 @@ To explore namespaces management in details, refer to the section on <a href="..
 <ol>
 <li>
 <p>Use the following command to change the Everest service type to <code>LoadBalancer</code>:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-system<span class="w"> </span>percona/everest<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 --reuse-values<span class="w"> </span><span class="se">\</span>
 --set<span class="w"> </span>server.service.type<span class="o">=</span>LoadBalancer
@@ -4986,7 +5014,7 @@ everest   LoadBalancer   10.43.172.194   34.175.201.246       443:8080/TCP    10
 <ol>
 <li>
 <p>Run the following command to change the Everest service type to <code>NodePort</code>:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-system<span class="w"> </span>percona/everest<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 --namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 --reuse-values<span class="w"> </span><span class="se">\</span>
 --set<span class="w"> </span>server.service.type<span class="o">=</span>NodePort
@@ -5091,7 +5119,7 @@ Optimized<span class="w"> </span>OS<span class="w"> </span>from<span class="w"> 
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
     <div class="md-copyright__highlight">
- <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2026
+ <a href='https://openeverest.io' target='_blank'>The OpenEverest Contributors, </a> &copy; 2026
  <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
 </div>
   
