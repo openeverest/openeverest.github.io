@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+# ─── Configuration ───────────────────────────────────────────────────────────
+# Variables can be overridden via environment variables of the same name.
+# If CIVO_API_KEY or CIVO_REGION are not set, the relevant tasks will prompt
+# you interactively.
+vars:
+  CLUSTER_NAME:
+    sh: echo "${CLUSTER_NAME:-openeverest}"
+  SERVICE_TYPE:
+    sh: echo "${SERVICE_TYPE:-LoadBalancer}"
+  CIVO_REGION:
+    sh: echo "${CIVO_REGION:-}"
+  OE_NAMESPACE: everest
+  OE_SYSTEM_NAMESPACE: everest-system
+
+# ─── Tasks ───────────────────────────────────────────────────────────────────
+tasks:
+
+  default:
+    desc: List all available tasks
+    silent: true
+    cmds:
+      - task --list
+
+  # ── Setup ────────────────────────────────────────────────────────────────
+
+  configure:
+    desc: Save Civo API key and set region (reads $CIVO_API_KEY / $CIVO_REGION or prompts)
+    cmds:
+      - |
+        if [ -z "${CIVO_API_KEY:-}" ]; then
+          printf "Enter your Civo API key: "
+          read -r _key
+        else
+          _key="${CIVO_API_KEY}"
+          echo "Using CIVO_API_KEY from environment."
+        fi
+        civo apikey save playground "${_key}"
+      - |
+        if [ -n "{{.CIVO_REGION}}" ]; then
+          civo region current "{{.CIVO_REGION}}"
+          echo "Region set to: {{.CIVO_REGION}}"
+        else
+          echo ""
+          civo region list
+          echo ""
+          printf "Enter region code (e.g. lon1) or press Enter to keep the current default: "
+          read -r _region
+          if [ -n "${_region}" ]; then
+            civo region current "${_region}"
+          fi
+        fi
+
+  # ── Object Storage ────────────────────────────────────────────────────────
+
+  storage:create:
+    desc: Create Civo object storage credentials and S3 bucket for OpenEverest backups
+    cmds:
+      - civo objectstore credential create openeverest-creds
+      - civo objectstore create openeverest-backups --owner-name openeverest-creds
+
+  storage:delete:
+    desc: Delete Civo object storage bucket and credentials
+    prompt: This will permanently delete the 'openeverest-backups' bucket and credentials. Continue?
+    cmds:
+      - civo objectstore delete openeverest-backups --yes
+      - civo objectstore credential delete openeverest-creds --yes
+
+  # ── Kubernetes ────────────────────────────────────────────────────────────
+
+  cluster:create:
+    desc: Create a Civo Kubernetes cluster (set $CLUSTER_NAME to override, default "openeverest")
+    cmds:
+      - civo kubernetes create {{.CLUSTER_NAME}} --wait --save --switch
+      - echo "Cluster '{{.CLUSTER_NAME}}' is ready."
+
+  cluster:delete:
+    desc: Delete the Civo Kubernetes cluster
+    prompt: "This will permanently delete the '{{.CLUSTER_NAME}}' cluster and all its workloads. Continue?"
+    cmds:
+      - civo kubernetes delete {{.CLUSTER_NAME}} --yes
+      - echo "Cluster '{{.CLUSTER_NAME}}' deleted."
+
+  # ── OpenEverest ───────────────────────────────────────────────────────────
+
+  openeverest:install:
+    desc: Install OpenEverest on the cluster (set $SERVICE_TYPE to override, default "LoadBalancer")
+    cmds:
+      - |
+        echo "Installing OpenEverest with service type: {{.SERVICE_TYPE}}"
+        everestctl install \
+          --namespaces {{.OE_NAMESPACE}} \
+          --operator.mongodb=true \
+          --operator.postgresql=true \
+          --operator.mysql=true \
+          --skip-wizard \
+          --helm.set server.service.type={{.SERVICE_TYPE}}
+
+  openeverest:url:
+    desc: Print the OpenEverest UI URL (LoadBalancer only)
+    cmds:
+      - |
+        IP=$(kubectl get svc everest -n {{.OE_SYSTEM_NAMESPACE}} \
+          -o jsonpath='{.status.loadBalancer.ingress[0].ip}' 2>/dev/null)
+        if [ -z "$IP" ]; then
+          echo "LoadBalancer IP is not yet assigned. Wait a moment and try again."
+          exit 1
+        fi
+        echo ""
+        echo "  OpenEverest UI: http://$IP:8080"
+        echo "  Username:       admin"
+        echo ""
+
+  openeverest:password:
+    desc: Print the initial admin password
+    cmds:
+      - |
+        echo ""
+        echo "  Initial admin password:"
+        everestctl accounts initial-admin-password
+        echo ""
+
+  # ── Composite ─────────────────────────────────────────────────────────────
+
+  deploy:
+    desc: "Full deployment: configure Civo → create cluster → install OpenEverest"
+    cmds:
+      - task: configure
+      - task: cluster:create
+      - task: openeverest:install
+      - task: openeverest:url
+      - task: openeverest:password
+
+  teardown:
+    desc: "Destroy everything: delete the cluster (and optionally object storage)"
+    prompt: "This will permanently delete the '{{.CLUSTER_NAME}}' cluster. Continue?"
+    cmds:
+      - task: cluster:delete
+      - |
+        printf "Do you also want to delete the 'openeverest-backups' object storage? [y/N]: "
+        read -r _confirm
+        if [ "${_confirm}" = "y" ] || [ "${_confirm}" = "Y" ]; then
+          task storage:delete
+        else
+          echo "Object storage kept."
+        fi
