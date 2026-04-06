@@ -15,6 +15,16 @@ events:
     speaker: "Kyle Avants"
     type: "conference"
 
+  - title: "Abstracting the Abyss: How to Run Production Data Workloads on Any Kubernetes Cluster"
+    url: "https://community.cncf.io/cloud-native-gandhinagar/"
+    event_name: "Cloud Native Community Group Gandhinagar"
+    location: "Virtual Conference"
+    date: 2026-04-18
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "meetup"
+    image: "/images/resources/cncf-groups-gandhinagar.png"
+
   - title: "Unified Provisioning and Management for Diverse Databases on Kubernetes"
     url: "https://buildevcon.com/cloud-native-databases/"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
