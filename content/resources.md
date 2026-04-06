@@ -7,6 +7,14 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Unified Database Provisioning and Management on Kubernetes"
+    url: "https://sched.co/2JQtF"
+    event_name: "Open Source Summit + Embedded Linux Conference North America 2026"
+    location: "Minneapolis, MN, USA"
+    date: 2026-05-19
+    speaker: "Kyle Avants"
+    type: "conference"
+
   - title: "Unified Provisioning and Management for Diverse Databases on Kubernetes"
     url: "https://buildevcon.com/cloud-native-databases/"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
@@ -28,7 +36,7 @@ events:
     image: "/images/resources/builddevcon-2026-cndb.png"
 
   - title: "Unified database provisioning and management on Kubernetes"
-    url: "https://eventyay.com/e/88882f3e/session/10259"
+    url: "https://www.youtube.com/watch?v=M-hub_7CORA&t=16765s"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
@@ -36,10 +44,10 @@ events:
     speaker_slug: "chilagrow"
     type: "conference"
     image: "/images/resources/fossasia-2026-chi-talk.png"
-    video: false
+    video: true
 
   - title: "How Community-Driven Platforms Enable the Next Generation of Data"
-    url: "https://eventyay.com/e/88882f3e/session/10258"
+    url: "https://www.youtube.com/watch?v=M3mCRxtg1mE&t=12080s"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
@@ -47,7 +55,7 @@ events:
     speaker_slug: "spron-in"
     type: "conference"
     image: "/images/resources/fossasia-2026-spronin-talk.png"
-    video: false
+    video: true
 
   - title: "The Death of the Third Pedal: Why Your Database Platform Should Drive Itself"
     url: "https://www.eventbrite.com/e/percona-university-bangkok-thailand-tickets-1982802431448"
