@@ -16,7 +16,7 @@ events:
     type: "conference"
 
   - title: "Abstracting the Abyss: How to Run Production Data Workloads on Any Kubernetes Cluster"
-    url: "https://community.cncf.io/cloud-native-gandhinagar/"
+    url: "https://community.cncf.io/events/details/cncf-cloud-native-gandhinagar-presents-abstracting-the-abyss-with-sergey-pronin-simplifying-data-workloads-on-kubernetes/"
     event_name: "Cloud Native Community Group Gandhinagar"
     location: "Virtual Conference"
     date: 2026-04-18
