@@ -1,0 +1,60 @@
+{{- $ctx := .ctx -}}
+{{- $title := .title | default "Latest Blog Posts" -}}
+{{- $count := .count | default 6 -}}
+{{- $exclude := .exclude -}}
+<div class="container mx-auto px-4 py-20 max-w-7xl">
+    <section class="recent-posts">
+        <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">{{ $title }}</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {{ $posts := where $ctx.Site.RegularPages "Section" "blog" }}
+            {{ if $exclude }}{{ $posts = where $posts "Permalink" "ne" $exclude.Permalink }}{{ end }}
+            {{ range first $count $posts }}
+            {{ if eq .File.LogicalName "index.md" }}
+            <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col overflow-hidden">
+                {{ if .Params.image.url }}
+                <a href="{{ .Permalink }}" class="block flex-shrink-0">
+                    <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                </a>
+                {{ end }}
+                <div class="p-8 flex flex-col flex-1">
+                    <h3 class="text-2xl font-bold mb-3">
+                        <a href="{{ .Permalink }}" class="text-gray-900 hover:text-[#7790DE] transition-colors">{{ .Title }}</a>
+                    </h3>
+                    <div class="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-4">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                        {{ if .Params.authors }}
+                        <span class="mx-1">·</span>
+                        <span class="inline-flex flex-wrap items-center gap-1">
+                            {{ range $i, $author := .Params.authors }}
+                                {{ if $i }}, {{ end }}
+                                {{ $slug := $author | lower | replaceRE "[^a-z0-9]+" "-" }}
+                                {{ $authorPage := $ctx.Site.GetPage (printf "/authors/%s" $slug) }}
+                                {{ if $authorPage }}
+                                    <a href="{{ $authorPage.Permalink }}" class="inline-flex items-center gap-1 text-[#7790DE] hover:text-[#161641] transition-colors font-medium">
+                                        {{ if $authorPage.Params.avatar }}
+                                        <img src="{{ $authorPage.RelPermalink }}{{ $authorPage.Params.avatar }}" alt="{{ $authorPage.Title }}" class="w-5 h-5 rounded-full object-cover">
+                                        {{ end }}
+                                        {{ $authorPage.Title }}
+                                    </a>
+                                {{ else }}
+                                    {{ $author }}
+                                {{ end }}
+                            {{ end }}
+                        </span>
+                        {{ end }}
+                    </div>
+                    {{ with .Params.tags }}
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {{ range . }}
+                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-[#7790DE] text-white text-xs font-semibold px-3 py-1 rounded-full hover:bg-[#161641] transition">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                    <p class="text-gray-600 leading-relaxed">{{ .Summary }}</p>
+                </div>
+            </article>
+            {{ end }}
+            {{ end }}
+        </div>
+    </section>
+</div>

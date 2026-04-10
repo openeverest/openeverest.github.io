@@ -42,17 +42,10 @@
                 <a href="https://github.com/openeverest/openeverest" target="_blank" class="bg-[#7790DE] hover:bg-[#161641] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">View on GitHub</a>
                 <a href="/blog" class="bg-white hover:bg-gray-50 text-[#7790DE] hover:text-[#161641] font-semibold py-4 px-8 rounded-lg transition-all duration-300 border-2 border-[#7790DE] hover:border-[#161641]">Read Blog</a>
             </div>
-            <div class="mt-6 text-center">
-                <a href="https://github.com/openeverest/openeverest/blob/main/ADOPTERS.md" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="adopter-indicator inline-flex items-center gap-2 text-sm text-gray-500 hover:text-[#7790DE] transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                    </svg>
-                    <span>Share your use case with the community</span>
-                </a>
+            <div class="mt-5 flex justify-center">
+                {{ partial "cta-community.html" . }}
             </div>
+
                 </div>
             </section>
 
@@ -229,32 +222,7 @@
 
 {{ partial "future.html" . }}
 <!-- Recent Posts Section -->
-    <div class="container mx-auto px-4 py-20 max-w-7xl">
-
-        <section class="recent-posts">
-            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Latest Blog Posts</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {{ range first 6 (where .Site.RegularPages "Section" "blog") }}
-                {{ if eq .File.LogicalName "index.md" }}
-                <article class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-                    <h3 class="text-2xl font-bold mb-3">
-                        <a href="{{ .Permalink }}" class="text-gray-900 hover:text-[#7790DE] transition-colors">{{ .Title }}</a>
-                    </h3>
-                    <p class="text-gray-500 text-sm mb-4 font-medium">{{ .Date.Format "January 2, 2006" }}</p>
-                    {{ with .Params.tags }}
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        {{ range . }}
-                        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="bg-[#7790DE] text-white text-xs font-semibold px-3 py-1 rounded-full hover:bg-[#161641] transition">{{ . }}</a>
-                        {{ end }}
-                    </div>
-                    {{ end }}
-                    <p class="text-gray-600 leading-relaxed">{{ .Summary }}</p>
-                </article>
-                {{ end }}
-                {{ end }}
-            </div>
-        </section>
-    </div>
+{{ partial "blog-posts.html" (dict "ctx" . "title" "Latest Blog Posts") }}
 
 <!-- FAQ Section -->
 {{ partial "faq.html" . }}

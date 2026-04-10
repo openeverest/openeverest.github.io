@@ -1,0 +1,98 @@
+<style>
+  .cta-block { transition: box-shadow 0.2s ease, background-color 0.2s ease, transform 0.15s ease; }
+  .cta-block[data-cta="slack"]:hover    { background-color: rgba(79,70,229,0.07); box-shadow: 0 0 0 3px rgba(79,70,229,0.18); transform: translateY(-1px); }
+  .cta-block[data-cta="adopters"]:hover { background-color: rgba(13,148,136,0.07); box-shadow: 0 0 0 3px rgba(13,148,136,0.18); transform: translateY(-1px); }
+  .cta-block[data-cta="star"]:hover     { background-color: rgba(180,83,9,0.07);   box-shadow: 0 0 0 3px rgba(180,83,9,0.18);   transform: translateY(-1px); }
+</style>
+
+<div id="cta-community-section">
+
+  <!-- Variant A: Join Slack — indigo -->
+  <a class="cta-block inline-flex items-center gap-1.5 text-sm font-medium px-4 py-1.5 rounded-full border bg-transparent transition-all duration-200"
+     data-cta="slack"
+     href="https://cloud-native.slack.com/archives/C09RRGZL2UX"
+     target="_blank" rel="noopener noreferrer"
+     style="display:none; color:#4f46e5; border-color:#4f46e5;">
+    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+      <line x1="10" y1="3" x2="8" y2="21"/>
+      <line x1="16" y1="3" x2="14" y2="21"/>
+      <line x1="4" y1="9" x2="20" y2="9"/>
+      <line x1="4" y1="15" x2="20" y2="15"/>
+    </svg>
+    <span class="cta-headline"></span>
+  </a>
+
+  <!-- Variant B: ADOPTERS.md — teal -->
+  <a class="cta-block inline-flex items-center gap-1.5 text-sm font-medium px-4 py-1.5 rounded-full border bg-transparent transition-all duration-200"
+     data-cta="adopters"
+     href="https://github.com/openeverest/openeverest/blob/main/ADOPTERS.md"
+     target="_blank" rel="noopener noreferrer"
+     style="display:none; color:#0d9488; border-color:#0d9488;">
+    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>
+    <span class="cta-headline"></span>
+  </a>
+
+  <!-- Variant C: Star the repo — amber -->
+  <a class="cta-block inline-flex items-center gap-1.5 text-sm font-medium px-4 py-1.5 rounded-full border bg-transparent transition-all duration-200"
+     data-cta="star"
+     href="https://github.com/openeverest/openeverest"
+     target="_blank" rel="noopener noreferrer"
+     style="display:none; color:#b45309; border-color:#b45309;">
+    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    <span class="cta-headline"></span>
+  </a>
+
+</div>
+
+<script>
+(function () {
+  var slackMessages = [
+    "Got questions? We're on Slack.",
+    "Join the conversation on Slack.",
+    "Talk databases with us on Slack.",
+    "Meet the community — one click away.",
+    "Database war stories welcome on Slack.",
+    "We hang out on Slack. Come join us.",
+    "Join hundreds of engineers on Slack.",
+    "The community is live on Slack."
+  ];
+  var adoptersMessages = [
+    "Running OpenEverest? Tell the world.",
+    "Add your story to ADOPTERS.md.",
+    "Be part of the OpenEverest story.",
+    "Your use case could inspire others.",
+    "Join the Hall of Adopters.",
+    "Show the world you run OpenEverest.",
+    "Help others discover what's possible.",
+    "Your deployment story matters."
+  ];
+  var starMessages = [
+    "Time to give a star.",
+    "Star was born — show GitHub your love.",
+    "We count the stars. Add yours.",
+    "Make our day — star us on GitHub.",
+    "Every star fuels our mission.",
+    "Like what you see? Hit that star.",
+    "A star a day keeps the VC away.",
+    "Join 500+ stargazers on GitHub."
+  ];
+
+  var types = ['slack', 'adopters', 'star'];
+  var messages = { slack: slackMessages, adopters: adoptersMessages, star: starMessages };
+
+  var chosen = types[Math.floor(Math.random() * types.length)];
+  var block = document.querySelector('[data-cta="' + chosen + '"]');
+  if (block) {
+    block.style.display = 'inline-flex';
+    var msgList = messages[chosen];
+    var headline = block.querySelector('.cta-headline');
+    if (headline) {
+      headline.textContent = msgList[Math.floor(Math.random() * msgList.length)];
+    }
+  }
+})();
+</script>
