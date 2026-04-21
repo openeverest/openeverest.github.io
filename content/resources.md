@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
+    url: "https://perconalive.com/2026-usa/talks/when-life-gives-you-containers-make-an-open-source-rds-a-kubernetes-lo/"
+    event_name: "Percona Live 2026"
+    location: "Computer History Museum, Mountain View, CA, USA"
+    date: 2026-05-27
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/percona-live-2026-spronin.jpg"
+
   - title: "Unified Database Provisioning and Management on Kubernetes"
     url: "https://sched.co/2JQtF"
     event_name: "Open Source Summit + Embedded Linux Conference North America 2026"
