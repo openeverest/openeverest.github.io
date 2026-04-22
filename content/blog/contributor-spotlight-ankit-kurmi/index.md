@@ -18,7 +18,7 @@ summary: "Meet Ankit Kurmi — Site Reliability Engineer at Red Hat, a collector
 
 Building an open source community takes people who care — about the technology, about the problem space, and about the humans around them. In this series, we're shining a light on the contributors and community members who make OpenEverest what it is. Next up: Ankit Kurmi.
 
-<img src="ankit-headshot.jpg" alt="OpenEverest Contributor - Ankit Kurmi photo" style="max-width: 640px; width: 100%; height: auto;">
+<img src="ankit-headshot.jpg" alt="OpenEverest Contributor - Ankit Kurmi photo" style="max-width: 480px; width: 100%; height: auto;">
 
 Ankit Kurmi is a Site Reliability Engineer at Red Hat, with over four years of experience focused on building scalable and reliable systems. His day-to-day work spans improving system performance, enhancing observability, and ensuring high availability in production environments — the kind of unglamorous, high-stakes engineering that quietly keeps the world running.
 
