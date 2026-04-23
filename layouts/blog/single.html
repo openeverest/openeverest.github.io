@@ -6,7 +6,7 @@
     {{ if and .Params.image .Params.image.url }}
     <header class="relative mb-10 rounded-xl overflow-hidden shadow-lg" style="height:400px;">
         <div class="absolute inset-0"
-             style="background-image:url('{{ .Params.image.url }}'); background-size:cover; background-position:center; filter:blur(2px) brightness(0.45); transform:scale(1.04);"></div>
+             style="background-color:#0f172a; background-image:url('{{ .Params.image.url }}'); background-size:cover; background-position:center; filter:blur(2px) brightness(0.45); transform:scale(1.04);"></div>
         <div class="absolute inset-0 flex flex-col justify-between px-8 pt-7 pb-8">
             {{ if .Params.tags }}
             <div class="flex flex-wrap gap-2">
