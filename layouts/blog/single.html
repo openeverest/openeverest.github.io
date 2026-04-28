@@ -3,6 +3,15 @@
 {{ define "main" }}
 <article class="container mx-auto px-4 pb-16 pt-10 max-w-5xl">
 
+    {{/* Breadcrumb navigation */}}
+    <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-sm mb-6">
+        <a href="/" class="text-[#7790DE] hover:text-[#161641] transition-colors">Home</a>
+        <span class="text-gray-400">/</span>
+        <a href="/blog/" class="text-[#7790DE] hover:text-[#161641] transition-colors">Blog</a>
+        <span class="text-gray-400">/</span>
+        <span class="text-gray-600" aria-current="page">{{ .Title }}</span>
+    </nav>
+
     {{ if and .Params.image .Params.image.url }}
     <header class="relative mb-10 rounded-xl overflow-hidden shadow-lg" style="height:400px;">
         <div class="absolute inset-0"

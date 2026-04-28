@@ -1,0 +1,300 @@
+{{- $slides := .Site.Data.screenshot_slider.slides -}}
+{{- if $slides -}}
+<div class="screenshot-slider-wrapper">
+  <!-- macOS window chrome -->
+  <div class="macos-window">
+    <div class="macos-titlebar">
+      <div class="macos-dots">
+        <span class="macos-dot macos-close"></span>
+        <span class="macos-dot macos-minimize"></span>
+        <span class="macos-dot macos-maximize"></span>
+      </div>
+      <div class="macos-title">OpenEverest</div>
+    </div>
+
+    <!-- Slide track -->
+    <div class="slider-viewport" aria-label="OpenEverest screenshots">
+      <div class="slider-track" id="screenshotTrack">
+        {{- range $i, $slide := $slides }}
+        <div class="slide-item" role="group" aria-label="Slide {{ add $i 1 }} of {{ len $slides }}">
+          <img
+            src="{{ $slide.image }}"
+            alt="{{ $slide.title }}"
+            class="slide-img"
+            loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
+          >
+          <!-- Gradient fade caption -->
+          <div class="slide-caption">
+            <div class="slide-caption-inner">
+              <p class="slide-caption-title">{{ $slide.title }}</p>
+              <p class="slide-caption-desc">{{ $slide.description }}</p>
+            </div>
+          </div>
+        </div>
+        {{- end }}
+      </div>
+
+      <!-- Prev / Next arrows -->
+      <button class="slider-arrow slider-prev" id="screenshotPrev" aria-label="Previous screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="slider-arrow slider-next" id="screenshotNext" aria-label="Next screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Dots float below the window, outside the chrome -->
+<div class="slider-dots" id="screenshotDots" role="tablist" aria-label="Screenshot navigation">
+  {{- range $i, $slide := $slides }}
+  <button
+    class="slider-dot{{ if eq $i 0 }} active{{ end }}"
+    data-index="{{ $i }}"
+    role="tab"
+    aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+    aria-label="Go to slide {{ add $i 1 }}"
+  ></button>
+  {{- end }}
+</div>
+
+<style>
+.screenshot-slider-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  filter: drop-shadow(0 32px 64px rgba(22, 22, 65, 0.22));
+}
+
+/* macOS window */
+.macos-window {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e1e2e;
+}
+
+.macos-titlebar {
+  display: flex;
+  align-items: center;
+  background: #2a2a3e;
+  padding: 12px 16px;
+  position: relative;
+  user-select: none;
+}
+
+.macos-dots {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.macos-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  display: block;
+}
+.macos-close    { background: #ff5f57; }
+.macos-minimize { background: #febc2e; }
+.macos-maximize { background: #28c840; }
+
+.macos-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* Slider */
+.slider-viewport {
+  position: relative;
+  overflow: hidden;
+  line-height: 0; /* remove inline gap below img */
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.slide-item {
+  flex: 0 0 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Gradient fade caption */
+.slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* tall fade: transparent → deep navy */
+  padding: 64px 28px 24px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(22, 22, 65, 0.6) 40%,
+    rgba(22, 22, 65, 0.93) 100%
+  );
+}
+
+.slide-caption-inner {
+  /* left accent bar using brand blue */
+  padding-left: 14px;
+  border-left: 3px solid #7790DE;
+}
+
+.slide-caption-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 5px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.slide-caption-desc {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(22, 22, 65, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, opacity 0.2s;
+  z-index: 10;
+  padding: 0;
+  /* keep above the caption gradient */
+  margin-bottom: 72px;
+}
+
+.slider-arrow:hover {
+  background: rgba(119, 144, 222, 0.75);
+}
+
+.slider-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.slider-prev { left: 14px; }
+.slider-next { right: 14px; }
+
+/* Dots — float below the window, no background bar */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 0 4px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(119, 144, 222, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s;
+}
+
+.slider-dot.active {
+  width: 24px; /* pill stretch */
+  background: #7790DE;
+}
+
+.slider-dot:hover:not(.active) {
+  background: rgba(119, 144, 222, 0.6);
+  transform: scale(1.15);
+}
+</style>
+
+<script>
+(function () {
+  const track   = document.getElementById('screenshotTrack');
+  const dots    = document.querySelectorAll('#screenshotDots .slider-dot');
+  const prev    = document.getElementById('screenshotPrev');
+  const next    = document.getElementById('screenshotNext');
+  const total   = dots.length;
+  let current   = 0;
+  let timer;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach(function (d, i) {
+      d.classList.toggle('active', i === current);
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  function startAuto() {
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  prev.addEventListener('click', function () { goTo(current - 1); resetAuto(); });
+  next.addEventListener('click', function () { goTo(current + 1); resetAuto(); });
+
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { goTo(i); resetAuto(); });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAuto(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+  });
+
+  // Touch / swipe support
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); resetAuto(); }
+  }, { passive: true });
+
+  startAuto();
+})();
+</script>
+{{- end -}}
