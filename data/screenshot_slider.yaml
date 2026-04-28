@@ -1,0 +1,16 @@
+slides:
+  - image: "/images/website-misc/openeverest-screen-0.png"
+    title: "Unified Database Dashboard"
+    description: "Manage PostgreSQL, MySQL, MongoDB and other clusters from a single control plane — across any Kubernetes infrastructure."
+
+  - image: "/images/website-misc/openeverest-components-screen-0.png"
+    title: "Visual Component Explorer"
+    description: "Inspect proxies, pods, and containers in an interactive topology view — no kubectl required."
+
+  - image: "/images/website-misc/openeverest-database-advanced-0.png"
+    title: "Advanced Configuration"
+    description: "Fine-tune storage classes, pod scheduling, external access, and engine parameters through a guided wizard."
+
+  - image: "/images/website-misc/openeverest-logs-screen-0.png"
+    title: "In-App Log Streaming"
+    description: "Stream and search Kubernetes pod logs directly inside OpenEverest — debug databases without leaving the UI."
