@@ -65,7 +65,7 @@ Create a lightweight, local playground that allows anyone to evaluate OpenEveres
 
 We wanted to remove the need for external infrastructure and make the experience as close to “just run and try” as possible.
 
-Instead of manually wiring together all dependencies, the playground bootstraps everything required to run locally. It spins up a local Kubernetes cluster with [k3](https://k3d.io/stable/), sets up object storage via [SeaweedFS](https://github.com/seaweedfs/seaweedfs), pre-configures components needed by [OpenEverest](https://openeverest.io/), and can optionally seed some test data for quick experimentation. In other words, it removes the biggest barrier: getting started.
+Instead of manually wiring together all dependencies, the playground bootstraps everything required to run locally. It spins up a local Kubernetes cluster with [k3d](https://k3d.io/stable/), sets up object storage via [SeaweedFS](https://github.com/seaweedfs/seaweedfs), pre-configures components needed by [OpenEverest](https://openeverest.io/), and can optionally seed some test data for quick experimentation. In other words, it removes the biggest barrier: getting started.
 
 The setup is designed to be flexible and user-friendly, with interactive prompts for configuring options like S3-compatible storage. It also includes sensible sizing recommendations to ensure the environment runs reliably on local machines. Beyond infrastructure, the playground provides commands to seed data and includes a simple mock application frontend, making it easier to explore workflows end-to-end.
 
