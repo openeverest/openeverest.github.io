@@ -6,7 +6,7 @@ set -o errexit -o nounset -o pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 cd "${REPO_ROOT}"
 
-CNPG_REPOSITORY=https://github.com/percona/everest-doc.git
+CNPG_REPOSITORY=https://github.com/openeverest/everest-doc.git
 
 # Require a version to be specified
 if [ "$#" -ne 1 ]; then
