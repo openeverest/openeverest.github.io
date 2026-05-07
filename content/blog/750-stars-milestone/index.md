@@ -40,5 +40,6 @@ Don't see yourself on the wall yet? Help us reach the next milestone! Every bit 
 * [GitHub](https://github.com/openeverest/openeverest)
 * [LFX mentorship program](https://mentorship.lfx.linuxfoundation.org/project/42dff370-4958-4ec4-959c-4aaf6740698c)
 * [Stargazers](https://openeverest.io/stargazers/)
-* [Community Slack] [openeverest.io/stargazers/](https://cloud-native.slack.com/archives/C09RRGZL2UX)
+* [Community Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX)
+
 Let's hit 1000 now! 🏔️
