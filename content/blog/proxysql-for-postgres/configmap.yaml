@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxysql-config-template
+  namespace: everest
+data:
+  proxysql.cnf.tmpl: |
+    datadir="/var/lib/proxysql"
+
+    admin_variables=
+    {
+        admin_credentials="admin:${PROXYSQL_ADMIN_PASS};radmin:${PROXYSQL_RADMIN_PASS}"
+        mysql_ifaces="0.0.0.0:6032"
+        pgsql_ifaces="0.0.0.0:6132"
+        refresh_interval=2000
+    }
+
+    pgsql_variables=
+    {
+        threads=4
+        max_connections=2048
+        default_query_timeout=86400000
+        poll_timeout=2000
+        interfaces="0.0.0.0:6133"
+        server_version="17.0"
+        connect_timeout_server=3000
+        # Monitor proactively checks backend reachability via SSL.
+        # Patroni + K8s services handle primary detection, but the monitor
+        # still reduces the error window during failover by shunning unreachable
+        # backends before client queries hit them.
+        # Requires the proxysql_monitor user to exist in PostgreSQL:
+        #   CREATE USER proxysql_monitor WITH PASSWORD '<monitor-pass>';
+        #   GRANT CONNECT ON DATABASE postgres TO proxysql_monitor;
+        monitor_username="proxysql_monitor"
+        monitor_password="${PROXYSQL_MONITOR_PASS}"
+        monitor_connect_interval=60000
+        monitor_ping_interval=10000
+        ping_interval_server_msec=10000
+        ping_timeout_server=500
+        commands_stats=true
+        multiplexing=true
+        connect_retries_on_failure=10
+    }
+
+    # Hostgroup 10 = writer (primary), Hostgroup 20 = readers (replicas).
+    # Read/write split is handled purely by query rules below.
+    pgsql_servers=
+    (
+        {
+            address="proxysql-test-ha"
+            port=5432
+            hostgroup_id=10
+            status="ONLINE"
+            weight=1000
+            use_ssl=1
+            comment="primary"
+        },
+        {
+            address="proxysql-test-replicas"
+            port=5432
+            hostgroup_id=20
+            status="ONLINE"
+            weight=1000
+            use_ssl=1
+            comment="replicas"
+        }
+    )
+
+    pgsql_users=
+    (
+        {
+            username="postgres"
+            password="${PROXYSQL_POSTGRES_USER_PASS}"
+            default_hostgroup=10
+            max_connections=10
+            active=1
+        }
+    )
+
+    # Rule 1: route SELECT ... FOR UPDATE to the writer to avoid lock conflicts.
+    # Rule 2: route all other SELECTs to the read replicas.
+    # Writes fall through to the default_hostgroup (10 = primary).
+    pgsql_query_rules=
+    (
+        {
+            rule_id=1
+            active=1
+            match_digest="^SELECT.*FOR UPDATE"
+            destination_hostgroup=10
+            apply=1
+            comment="SELECT FOR UPDATE -> writer"
+        },
+        {
+            rule_id=2
+            active=1
+            match_digest="^SELECT"
+            destination_hostgroup=20
+            apply=1
+            comment="SELECT -> replicas"
+        }
+    )

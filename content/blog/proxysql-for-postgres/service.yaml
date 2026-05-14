@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxysql
+  namespace: everest
+spec:
+  selector:
+    app: proxysql
+  type: ClusterIP
+  ports:
+    # Expose the PostgreSQL proxy port on the standard PostgreSQL port so applications
+    # can connect to ProxySQL the same way they would connect to PostgreSQL directly.
+    - name: pgsql
+      port: 5432
+      targetPort: 6133
+    # Admin interface — used for runtime reconfiguration and monitoring.
+    # Accessible only from within the cluster.
+    - name: pgsql-admin
+      port: 6132
+      targetPort: 6132
