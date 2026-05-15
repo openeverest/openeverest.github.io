@@ -1,0 +1,118 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxysql
+  namespace: everest
+  labels:
+    app: proxysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxysql
+  template:
+    metadata:
+      labels:
+        app: proxysql
+    spec:
+      # Render the config template by substituting credentials from the Secret.
+      # Uses awk's ENVIRON[] to replace ${VAR} placeholders — no external packages needed.
+      initContainers:
+        - name: config-init
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              awk '{
+                gsub(/\$\{PROXYSQL_ADMIN_PASS\}/, ENVIRON["PROXYSQL_ADMIN_PASS"])
+                gsub(/\$\{PROXYSQL_RADMIN_PASS\}/, ENVIRON["PROXYSQL_RADMIN_PASS"])
+                gsub(/\$\{PROXYSQL_MONITOR_PASS\}/, ENVIRON["PROXYSQL_MONITOR_PASS"])
+                gsub(/\$\{PROXYSQL_APP_USER_PASS\}/, ENVIRON["PROXYSQL_APP_USER_PASS"])
+                gsub(/\$\{PROXYSQL_POSTGRES_USER_PASS\}/, ENVIRON["PROXYSQL_POSTGRES_USER_PASS"])
+                print
+              }' /config-template/proxysql.cnf.tmpl > /config/proxysql.cnf
+          env:
+            - name: PROXYSQL_ADMIN_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: proxysql-credentials
+                  key: admin-pass
+            - name: PROXYSQL_RADMIN_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: proxysql-credentials
+                  key: radmin-pass
+            - name: PROXYSQL_MONITOR_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: proxysql-credentials
+                  key: monitor-pass
+            - name: PROXYSQL_APP_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: proxysql-credentials
+                  key: app-user-pass
+            - name: PROXYSQL_POSTGRES_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: proxysql-credentials
+                  key: postgres-user-pass
+          volumeMounts:
+            - name: config-template
+              mountPath: /config-template
+            - name: config
+              mountPath: /config
+
+      containers:
+        - name: proxysql
+          image: proxysql/proxysql:3.0.8
+          # --initial forces ProxySQL to rebuild its internal SQLite database from
+          # proxysql.cnf on every start, making the ConfigMap/Secret the single
+          # source of truth instead of persisted runtime state.
+          command: ["proxysql"]
+          args: ["--initial", "-f", "-D", "/var/lib/proxysql"]
+          ports:
+            - name: pgsql-admin
+              containerPort: 6132
+            - name: pgsql
+              containerPort: 6133
+          volumeMounts:
+            - name: config
+              mountPath: /etc/proxysql.cnf
+              subPath: proxysql.cnf
+            - name: data
+              mountPath: /var/lib/proxysql
+          livenessProbe:
+            tcpSocket:
+              port: 6132
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 6132
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+      volumes:
+        # The ConfigMap is mounted read-only as the template source.
+        - name: config-template
+          configMap:
+            name: proxysql-config-template
+        # emptyDir receives the rendered proxysql.cnf from the init container.
+        # ProxySQL mounts this file at /etc/proxysql.cnf.
+        - name: config
+          emptyDir: {}
+        # emptyDir for ProxySQL's internal SQLite database and runtime state.
+        # Combined with --initial, this ensures the config is always authoritative.
+        - name: data
+          emptyDir: {}
