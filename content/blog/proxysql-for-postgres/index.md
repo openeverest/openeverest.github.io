@@ -96,6 +96,8 @@ Key sections to understand:
 
 `SELECT ... FOR UPDATE` must go to the primary to avoid lock conflicts, so it gets its own rule before the general SELECT rule.
 
+> **Note:** these query rules are intentionally simple — good enough to prove the concept. In production, blindly routing all `SELECT`s to replicas can cause subtle bugs: stale reads after a write, session variables not propagating, or functions with side effects landing on the wrong backend. A production ruleset should be tailored to your application's actual query patterns.
+
 ```bash
 kubectl apply -f configmap.yaml
 ```
