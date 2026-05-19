@@ -141,7 +141,7 @@ Then you can see the following thing on the terminal window, this confirms that 
 
 ![Screenshot 2026-05-18 at 10.53.24 PM.png](images/Screenshot_2026-05-18_at_10.53.24_PM.png)
 
-Then after getting cleaned installation you can follow steps mentioned in the guide which is shown in terminal or you can just follow along with me.
+After a successful installation, you can follow steps mentioned in the guide which is shown in terminal or you can just follow along with me.
 
 ## 4. Get Initial Admin Credentials
 
@@ -266,4 +266,4 @@ Also, do not forget to star the [OpenEverest GitHub repository](https://github.c
 Join the OpenEverest community on CNCF Slack (#openeverest-users):
 https://communityinviter.com/apps/cloud-native/cncf
 
-Star on GitHub: [https://github.com/openeverest/openeverest?](https://github.com/openeverest/openeverest?utm_source=chatgpt.com)
+Star on GitHub: [https://github.com/openeverest/openeverest](https://github.com/openeverest/openeverest)
