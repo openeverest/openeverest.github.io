@@ -226,9 +226,9 @@ Once the database was provisioned, OpenEverest exposed a detailed component view
 
 ![Screenshot 2026-05-19 at 12.01.01 AM.png](images/Screenshot_2026-05-19_at_12.01.01_AM.png)
 
-In the screenshot above, the main PostgreSQL instance is already running successfully, while the `pgbouncer` component is still stuck in the `Pending` / `Initializing` state. After debugging the issue using `kubectl describe pod`, it turned out the cluster did not have enough available CPU resources to schedule the PgBouncer pod.
+In the screenshot above, the main PostgreSQL instance is already running successfully, while the `pgbouncer` component is still stuck in the `Pending` / `Initializing` state. After debugging with `kubectl describe pod`, it turned out that PgBouncer could not be scheduled because the node lacked sufficient allocatable CPU resources.
 
-Kubernetes scheduling is heavily resource aware, so even though the database itself was healthy, the scheduler could not place the PgBouncer pod onto the node because the requested CPU exceeded the remaining allocatable resources. This mainly happened because the cluster was running with limited resources on a laptop environment. In larger cloud or production grade Kubernetes clusters with proper node capacity, PgBouncer would typically schedule without issues and would not become a bottleneck like this.
+This mainly happened because the cluster was running with limited resources in a laptop environment. In larger Kubernetes clusters with sufficient node capacity, PgBouncer would typically schedule without issues.
 
 This overview page also provides visibility into individual components, logs, backups, restores, and overall database health, which is extremely useful when debugging operator managed workloads. You can check logs like these:
 
