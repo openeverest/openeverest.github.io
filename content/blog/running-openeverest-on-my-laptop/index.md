@@ -263,6 +263,7 @@ If you run into issues, discover interesting behavior, or want to contribute, fe
 
 Also, do not forget to star the [OpenEverest GitHub repository](https://github.com/openeverest/openeverest) if you found the project interesting.
 
-Slack: https://cloud-native.slack.com/archives/C09RRGZL2UX
+Join the OpenEverest community on CNCF Slack (#openeverest-users):
+https://communityinviter.com/apps/cloud-native/cncf
 
 Star on GitHub: [https://github.com/openeverest/openeverest?](https://github.com/openeverest/openeverest?utm_source=chatgpt.com)
