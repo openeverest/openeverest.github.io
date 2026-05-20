@@ -120,7 +120,7 @@ docker ps
 kubectl describe node openeverest-control-plane
 ```
 
-## 3. Install OpenEverest with `everestctl` CLI
+## 3. Install OpenEverest with everestctl CLI
 
 The next step is installing OpenEverest itself. OpenEverest is deployed directly inside Kubernetes and relies heavily on Kubernetes native concepts such as operators, CRDs, namespaces, services, and controllers to manage database workloads.
 
@@ -220,8 +220,6 @@ OpenEverest also supports database monitoring integration by configuring monitor
 
 Under the hood OpenEverest integrates with Percona Monitoring and Management (PMM) to monitor your database clusters. refer to the docs here: [https://openeverest.io/documentation/1.15.2/crd/crd_monitoring.html?h=monitoring](https://openeverest.io/documentation/1.15.2/crd/crd_monitoring.html?h=monitoring)
 
-![Screenshot 2026-05-18 at 11.52.19 PM.png](images/Screenshot_2026-05-18_at_11.52.19_PM.png)
-
 Once the database was provisioned, OpenEverest exposed a detailed component view showing the individual Kubernetes workloads backing the PostgreSQL cluster. This made it much easier to understand what was happening internally instead of treating the database as a black box.
 
 ![Screenshot 2026-05-19 at 12.01.01 AM.png](images/Screenshot_2026-05-19_at_12.01.01_AM.png)
@@ -259,11 +257,20 @@ Since `kind` runs Kubernetes nodes as Docker containers, deleting the cluster re
 This is how you can run various databases locally using `everestctl` CLI with just few commands, without manually doing boring stuff. Hope you enjoyed this blog!
 Happy shipping databases on Kubernetes with OpenEverest.
 
-If you run into issues, discover interesting behavior, or want to contribute, feel free to join the OpenEverest Slack community and explore the project further. 
+## Join the Community
 
-Also, do not forget to star the [OpenEverest GitHub repository](https://github.com/openeverest/openeverest) if you found the project interesting.
+Whether you're a K8s pro or just starting out, there is a place for you:
 
-Join the OpenEverest community on CNCF Slack (#openeverest-users):
-https://communityinviter.com/apps/cloud-native/cncf
-
-Star on GitHub: [https://github.com/openeverest/openeverest](https://github.com/openeverest/openeverest)
+* **Contribute:** If you want to dive in, check out our [Good First Issues](https://github.com/orgs/openeverest/projects/2) and [repositories](https://github.com/openeverest).
+* **Chat:** Join the conversation in the CNCF Slack (channel: [#openeverest-users](https://cloud-native.slack.com/archives/C09RRGZL2UX)).
+* **Explore:** See how we're simplifying databases at [openeverest.io/#community](https://openeverest.io/#community).
+<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+  <a href="https://cloud-native.slack.com/archives/C09RRGZL2UX" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background-color:#4A154B;color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;font-weight:600;font-size:15px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 122.8 122.8"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"/></svg>
+    Join Slack
+  </a>
+  <a href="https://github.com/openeverest/openeverest" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background-color:#24292f;color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;font-weight:600;font-size:15px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="#fff"><path d="M8 .25a7.75 7.75 0 1 0 0 15.5A7.75 7.75 0 0 0 8 .25zm0 1.5a6.25 6.25 0 0 1 1.97 12.18c-.31.06-.42-.13-.42-.3v-1.05c0-.36-.01-1.02-.49-1.4 1.62-.18 2.5-.88 2.5-2.57 0-.57-.2-1.1-.53-1.49.05-.14.23-.7-.05-1.47 0 0-.44-.14-1.44.54a5.02 5.02 0 0 0-2.62 0C5.93 6.6 5.49 6.74 5.49 6.74c-.28.77-.1 1.33-.05 1.47-.33.39-.53.92-.53 1.49 0 1.69.88 2.39 2.5 2.57-.31.27-.43.67-.47 1.04-.42.19-1.5.52-2.16-.62 0 0-.39-.71-1.13-.76 0 0-.72-.01-.05.45 0 0 .48.23.82 1.08 0 0 .43 1.32 2.49.87v.75c0 .17-.11.36-.42.3A6.25 6.25 0 0 1 8 1.75z"/></svg>
+    Star the Repo
+  </a>
+</div>
