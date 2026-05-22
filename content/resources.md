@@ -7,6 +7,17 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Your Database Deserves Better: Run It the Kubernetes Way with OpenEverest"
+    url: "https://ocgroups.dev/cncf/group/p5hsakp/event/pwn6dht"
+    event_name: "Cloud Native Community Group Pune"
+    location: "Platform9, Baner, Pune, India"
+    date: 2026-05-22
+    speaker: "Atharva Mhaske"
+    speaker_slug: "atharvamhaske"
+    type: "meetup"
+    image: "/images/resources/cnpg-pune-event.png"
+
+
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
     url: "https://perconalive.com/2026-usa/talks/when-life-gives-you-containers-make-an-open-source-rds-a-kubernetes-lo/"
     event_name: "Percona Live 2026"
