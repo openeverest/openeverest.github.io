@@ -7,6 +7,26 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
+    url: "https://coscup.org/2026/en"
+    event_name: "COSCUP 2026 × UbuCon Asia"
+    location: "Taipei, Taiwan"
+    date: 2026-08-08
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/coscup-2026-spronin.png"
+
+  - title: "How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project"
+    url: "https://coscup.org/2026/en"
+    event_name: "COSCUP 2026 × UbuCon Asia"
+    location: "Taipei, Taiwan"
+    date: 2026-08-08
+    speaker: "Chi Fujii"
+    speaker_slug: "chilagrow"
+    type: "conference"
+    image: "/images/resources/coscup-2026-chi.png"
+
   - title: "Your Database Deserves Better: Run It the Kubernetes Way with OpenEverest"
     url: "https://ocgroups.dev/cncf/group/p5hsakp/event/pwn6dht"
     event_name: "Cloud Native Community Group Pune"
