@@ -23,8 +23,8 @@
     {{ end }}
 {{ end }}
 
-<div class="resource-card group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 relative hover:z-10">
-    <a href="{{ $item.url }}" target="_blank" rel="noopener noreferrer" class="block cursor-pointer">
+<div class="resource-card group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 relative hover:z-10" onclick="window.open('{{ $item.url }}', '_blank', 'noopener,noreferrer')" style="cursor:pointer;">
+    <div class="block">
         <!-- Image -->
         {{ if $imageUrl }}
         <div class="relative h-48 overflow-hidden bg-gradient-to-br from-[#7790DE] to-[#161641]">
@@ -138,9 +138,9 @@
                             {{ if $speakerSlug }}
                                 {{ $authorPage := printf "/authors/%s" $speakerSlug }}
                                 {{ with site.GetPage $authorPage }}
-                                    <span class="text-[#7790DE] hover:text-[#161641] hover:underline cursor-pointer" data-href="{{ .RelPermalink }}" onclick="event.preventDefault(); event.stopPropagation(); window.open('{{ .RelPermalink }}', '_self');">
+                                    <a href="{{ .RelPermalink }}" onclick="event.stopPropagation();" class="text-[#7790DE] hover:text-[#161641] hover:underline">
                                         {{ $item.speaker }}
-                                    </span>
+                                    </a>
                                 {{ else }}
                                     {{ $item.speaker }}
                                 {{ end }}
@@ -166,9 +166,9 @@
                             {{ if $authorSlug }}
                                 {{ $authorPage := printf "/authors/%s" $authorSlug }}
                                 {{ with site.GetPage $authorPage }}
-                                    <span class="text-[#7790DE] hover:text-[#161641] hover:underline cursor-pointer" data-href="{{ .RelPermalink }}" onclick="event.preventDefault(); event.stopPropagation(); window.open('{{ .RelPermalink }}', '_self');">
+                                    <a href="{{ .RelPermalink }}" onclick="event.stopPropagation();" class="text-[#7790DE] hover:text-[#161641] hover:underline">
                                         {{ $item.author }}
-                                    </span>
+                                    </a>
                                 {{ else }}
                                     {{ $item.author }}
                                 {{ end }}
@@ -219,5 +219,5 @@
                 </svg>
             </div>
         </div>
-    </a>
+    </div>
 </div>
