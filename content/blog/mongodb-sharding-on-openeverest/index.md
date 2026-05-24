@@ -21,14 +21,14 @@ On Kubernetes, "enable sharding" usually turns into config servers, mongos route
 
 This post walks through creating a sharded MongoDB cluster from the UI, then verifying the topology with `kubectl`.
 
-I ran everything on a local k3d + Tilt setup on a 16 GB laptop, so the sizing here is smaller than what you would use in production. The workflow is the same.
+I ran everything on a local k3d cluster with OpenEverest installed via the quick install (Helm) guide on a 16 GB laptop, so the sizing here is smaller than what you would use in production. The workflow is the same.
 
 ### Prerequisites
 
 Here is what I had ready before opening the create-database wizard:
 
-- **OpenEverest running locally.** I used the contributor dev flow (`make dev-up` with Tilt). If you are starting from scratch, the [local development guide](https://github.com/openeverest/openeverest.github.io/blob/main/content/blog/local-dev-env-openeverest/index.md) covers k3d, Tilt, and operator setup.
-- **A namespace with the PSMDB operator installed.** In my `dev/config.yaml`, MongoDB is only wired into `everest-ui`, not every namespace. Pick that namespace in the wizard or install the operator where you need it.
+- **OpenEverest installed in your cluster.** I used the [quick install guide](https://github.com/openeverest/everest-doc/blob/main/docs/quick-install.md) (Helm). If you prefer the CLI flow, the [everestctl install guide](https://github.com/openeverest/everest-doc/blob/main/docs/install/install_everestctl.md) covers it.
+- **A namespace managed by OpenEverest with the MongoDB operator enabled.** Use the [namespace management guide](https://github.com/openeverest/everest-doc/blob/main/docs/administer/manage_namespaces.md) to add or update namespaces if needed, then pick that namespace in the wizard.
 - **`kubectl` configured** for the same cluster the UI uses.
 - **Enough memory on the host.** My first attempt used 2 shards with 3 nodes each, plus 3 config servers and 3 routers. Several pods stayed `Pending` with `Insufficient memory` on an 8 GB WSL VM. Increasing WSL memory to around 11 GB and using a smaller topology fixed it. More on that later.
 
@@ -87,7 +87,7 @@ I left **Backups** and **Monitoring** at their default settings and submitted th
 
 After provisioning finished, I checked the **Components** tab to see what OpenEverest created behind the scenes.
 
-For `blog-sharded-mongo`, I ended up with four Kubernetes-facing components:
+For `blog-sharded-mongo`, I ended up with four Kubernetes components in the namespace:
 
 | Name                          | Type   | Role                               |
 | ----------------------------- | ------ | ---------------------------------- |
