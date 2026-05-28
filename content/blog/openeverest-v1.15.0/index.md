@@ -12,7 +12,7 @@ tags:
   - release
   - kubernetes
   - database
-summary: OpenEverest 1.15 adds native ARM64 support across all components. This post covers supported workloads, current limitations, and the main changes included in the 1.15 release series.
+summary: OpenEverest 1.15 adds native ARM64 support across all components. This post covers supported workloads, current limitations and the other changes included in the 1.15 release series.
 ---
 
 # OpenEverest 1.15: ARM64 Support
@@ -224,7 +224,7 @@ Thanks to everyone who contributed to this release:
 
 ## Upgrading
 
-### Using `everestctl`
+### Using everestctl
 
 ```sh
 everestctl upgrade
