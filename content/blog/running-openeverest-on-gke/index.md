@@ -19,7 +19,7 @@ summary:
   GKE is the go-to Kubernetes option for a lot of teams. This walkthrough covers installing OpenEverest on a standard GKE cluster - the commands, config, and gotchas - so you can get a database running on Google Cloud.
 ---
 
-This walkthrough gets OpenEverest running on a GKE cluster and walks you through creating a PostgreSQL database you can actually connect to. By the end you'll have the platform installed, a database provisioned from the UI, and a working connection either through port forwarding or a load balancer, depending on which path you pick.
+This walkthrough gets OpenEverest running on a GKE cluster and walks you through creating a PostgreSQL database you will connect to. By the end you'll have the platform installed, a database provisioned from the UI, and a working connection - either through port forwarding or a load balancer. Along the way we'll also cover GKE storage classes and how to keep database traffic on your private network with an internal load balancer.
 
 You'll need a **Google Cloud account with billing enabled** and a **basic understanding of Kubernetes** for this guide to be useful. If you're just getting started, you can also try it with a [free trial account](https://cloud.google.com/free).
 
@@ -28,6 +28,7 @@ You'll need a **Google Cloud account with billing enabled** and a **basic unders
 - [Prerequisites](#prerequisites)
 - [Configure Google Cloud](#1-configure-google-cloud)
 - [Create GKE cluster](#2-create-cluster)
+  - [GKE storage classes](#gke-storage-classes)
 - [Install OpenEverest](#3-install-openeverest)
   - [Port forwarding](#31-port-forwarding)
   - [Load balancer](#32-load-balancer)
@@ -35,6 +36,8 @@ You'll need a **Google Cloud account with billing enabled** and a **basic unders
 - [Connect to the database](#5-connect-to-the-database)
   - [Via port forwarding](#via-port-forwarding)
   - [Via load balancer](#via-load-balancer)
+    - [External load balancer](#external-load-balancer)
+    - [Internal load balancer](#internal-load-balancer)
 - [Cleanup](#6-cleanup)
 
 ## Prerequisites
@@ -61,7 +64,7 @@ brew install everestctl
 
 On Linux or Windows, follow the [everestctl install docs](https://openeverest.io/documentation/current/quick-install.html).
 
-Quick sanity check that everything is on your PATH:
+A quick sanity check to see if everything is installed correctly:
 
 ```bash
 gcloud version
@@ -75,14 +78,19 @@ everestctl version --client-only
 
 ### Log in and set up
 
+`gcloud auth login` opens a browser window so you can pick your Google Cloud account. After that, your shell should look something like this:
+
 ```bash
 gcloud auth login
+Your browser has been opened to visit:
+    https://accounts.google.com/o/oauth2/auth?code_challenge=...
+
+You are now logged in as [you@example.com].
+Your current project is [No project].
+
+# To set the active project, run:
+    $ gcloud config set project PROJECT_ID
 ```
-
-This opens a browser window so you can pick your Google Cloud account. After that, your shell should look something like this:
-
-
-![auth_terminal.png](images/auth_terminal.png)
 
 We'll also need to install `kubectl` to create and manage our GKE clusters.
 
@@ -123,6 +131,12 @@ gcloud container clusters create <CLUSTER_NAME> \
   --disk-type=pd-standard \
   --disk-size=30 \
   --no-enable-autoupgrade
+Creating cluster openeverest-gke-demo in us-central1-a... Cluster is being configured and may take several minutes to finish.
+Use 'gcloud container clusters list' to see your clusters.
+
+NAME                   LOCATION       MASTER_VERSION  MASTER_IP      MACHINE_TYPE   NODE_VERSION    NUM_NODES  STATUS
+openeverest-gke-demo   us-central1-a  1.xx.3-gke.xxxx 35.xxx.xx.xx   e2-standard-4 1.29.3-gke.1260  2          RUNNING
+
 ```
 
 If you're on the GCP free trial, check the quotas for the region where you want to create the cluster. A few errors I hit before getting a stable cluster running:
@@ -141,8 +155,6 @@ If you're on the GCP free trial, check the quotas for the region where you want 
 
 > ***Note:*** This command doesn't guarantee a stable cluster in every region. You might need a bit of trial and error. I found tweaking `disk-type` and `disk-size` helped find a sweet spot - just ***don't set them too low***, or your database pods may struggle.
 
-![cluster_creation.png](images/cluster_creation.png)
-
 In the Cloud Console, you should see the cluster in a **READY** state.
 
 ![cluster_ready.png](images/cluster_ready.png)
@@ -157,14 +169,73 @@ Copy the command and run it in your terminal. It configures `kubectl` to talk to
 
 You should see the following output:
 
-![cluster_connect_output.png](images/cluster_connect_output.png)
+```bash
+gcloud container cluster get-credentials openeverest --zone us-central1-a --project openeverest-test
+Fetching cluster endpoint and auth data
+kubeconfig entry generated for openeverest
+```
 
 Confirm both nodes are up:
 
 ```bash
 kubectl get nodes
+NAME                                    STATUS   ROLES    AGE   VERSION
+gke-openeverest-gke-demo-default-pool-1a2b3cde   Ready    <none>   2m    v1.xx.3-gke.xxxx
+gke-openeverest-gke-demo-default-pool-4f5g6hij   Ready    <none>   2m    v1.xx.3-gke.xxxx
 ```
-![cluster_nodes.png](images/cluster_nodes.png)
+
+### GKE storage classes
+
+GKE can provision persistent disks for your database PVCs through Kubernetes StorageClasses. Before you create a database, check what's available on your cluster:
+
+```bash
+kubectl get storageclass
+```
+
+Once the [Compute Engine persistent disk CSI driver](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver) is enabled, GKE installs two storage classes automatically:
+
+- `standard-rwo`
+  - Disk type: balanced persistent disk (`pd-balanced`)
+  - Good for: general workloads, lower cost than SSD
+
+- `premium-rwo`
+  - Disk type: SSD persistent disk (`pd-ssd`)
+  - Good for: PostgreSQL and other latency-sensitive workloads
+
+Use `kubectl get storageclass` to verify that `standard-rwo` is available for you.
+
+If you don't see `standard-rwo` / `premium-rwo`, enable the CSI driver:
+
+```bash
+gcloud container clusters update <CLUSTER_NAME> \
+  --zone=us-central1-a \
+  --update-addons=GcePersistentDiskCsiDriver=ENABLED
+```
+
+For production PostgreSQL I'd use `premium-rwo`. Also confirm volume expansion is enabled if you plan to grow disks later:
+
+```bash
+kubectl get storageclass premium-rwo -o jsonpath='{.allowVolumeExpansion}{"\n"}'
+```
+
+Need a custom class? The example below is adapted from [GKE's Compute Engine persistent disk CSI driver docs](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver#create_a_storageclass) - same provisioner and structure, with `type: pd-ssd` instead of the doc's default `pd-balanced`:
+
+```yaml
+# postgres-ssd-sc.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: postgres-ssd
+provisioner: pd.csi.storage.gke.io
+parameters:
+  type: pd-ssd
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+```
+
+```bash
+kubectl apply -f postgres-ssd-sc.yaml
+```
 
 ## 3. Install OpenEverest
 
@@ -181,26 +252,52 @@ everestctl install \
   --operator.mongodb=true \
   --operator.mysql=true \
   --skip-wizard
+ℹ️  Installing Everest version 1.15.2
+
+✅  Installing Everest Helm chart
+✅  Ensuring Everest API deployment is ready
+✅  Ensuring Everest operator deployment is ready
+✅  Ensuring OLM components are ready
+✅  Ensuring Everest CatalogSource is ready
+✅  Ensuring monitoring stack is ready
+✅  Provisioning database namespace 'everest'
+
+🚀  Thank you for installing Everest (v1.15.2)!
+
+Follow the steps below to get started:
+
+1 ➜ RETRIEVE THE INITIAL ADMIN PASSWORD:
+Run the following command to get the initial admin password:
+
+      everestctl accounts initial-admin-password
+
+⚠️  NOTE: The initial password is stored in plain text. For security, change it immediately using the following command:
+
+      everestctl accounts set-password --username admin
+
+2 ➜ ACCESS THE EVEREST UI:
+To access the web UI, set up port-forwarding and visit http://localhost:8080 in your browser:
+
+      kubectl port-forward -n everest-system svc/everest 8080:8080
 ```
 
 This provisions OpenEverest along with database operators for PostgreSQL, MySQL, and MongoDB - specialized Kubernetes controllers that handle database lifecycle operations. It can take a few minutes while images are pulled and controllers come up.
-
-When it's done, you should see something like this in your terminal:
-
-![install_openeverest.png](images/install_openeverest.png)
 
 OpenEverest creates an initial admin account during install. On a fresh cluster, you can grab the bootstrap password with:
 
 ```bash
 everestctl accounts initial-admin-password
+5S0HB20FHFGUIJtsyeekJotdJ2QIcqYP74jFIa2xmNqLDpMgJ45aDP8BVbzBLacn
 ```
 
 That gives you the temporary password for your first login. For anything beyond a quick test, change it right away - especially in production:
 
 ```bash
 everestctl accounts set-password --username admin
+? Provide a new password: *********
+? Confirm a new password: *********
+✅ Password for user 'admin' has been set successfully
 ```
-![openeverest_credentials.png](images/openeverest_credentials.png)
 
 Port-forward the UI (leave this terminal running):
 
@@ -246,11 +343,11 @@ I'll keep the auto-generated name, pick a version, and leave the namespace as th
 
 ![basic_info.png](images/basic_info.png)
 
-For resources, a single node with the smallest profile is plenty - we're just going to connect and verify it works.
+For resources, a single node with the smallest profile is plenty - we're just going to connect and verify it works. Disk size is set here on the **Resources** page (25 Gi in my screenshot).
 
 ![resources.png](images/resources.png)
 
-Stick with the defaults for Backups, Advanced configuration, and Monitoring, then click **Create database**. The [OpenEverest docs](https://openeverest.io/docs/) go deeper on tuning these if you need to.
+Stick with the defaults for everything else on that page unless you need load balancer or exposure settings, then click **Create database**. The [OpenEverest docs](https://openeverest.io/docs/) go deeper on tuning these if you need to.
 
 Once the database is provisioned, you can click on the `Components` tab and view the individual Kubernetes workloads backing the PostgreSQL cluster. It should all be up and running.
 
@@ -290,53 +387,110 @@ Swap the host from `postgresql-<...>-pgbouncer.everest.svc` to `localhost` - eve
 
 ```bash
 psql "postgres://postgres:<YOUR_PASSWORD>@localhost:5432/postgres"
-```
+psql (16.1, server 16.0)
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256)
+Type "help" for help.
 
-![connect_database.png](images/connect_database.png)
+postgres=#
+```
 
 #### Via load balancer
 
-##### Create a load balancer config
+Exposing a database with a load balancer gives it a stable IP outside the Kubernetes cluster network. GKE supports **external** (internet-facing) and **internal** (VPC-only) passthrough Network Load Balancers. OpenEverest handles both through the same load balancer configuration - you control the behavior with Service annotations.
 
-Go to **Settings → Policies & Configuration → Load balancer configuration → Configure**.
+You can set this during database creation on the **Advanced Configurations** page, or afterward via **Edit Advanced configuration** on an existing instance. In both cases, set **Exposure method** to **Load balancer**, pick a configuration, and optionally restrict **Source range**.
+
+> OpenEverest maps **Source range** to Kubernetes `loadBalancerSourceRanges`. On GKE, that also drives VPC firewall rules for the load balancer. Values must be CIDR blocks - use `/32` for a single IP (e.g. `203.0.113.25/32`), not a bare address.
+
+##### External load balancer
+
+Use this when clients outside your VPC need to reach the database - testing from your laptop, or an app on the public internet with strict IP filtering.
+
+###### Create a load balancer config
+
+Go to **Settings → Policies**, then in **Load Balancer Configuration** click **Configure**.
 
 ![load_balancer.png](images/load_balancer.png)
 
-Click on `Create configuration` and give it any name you desire, leave the annotations empty for a basic external LB on GKE. Custom annotations are only needed for things like a reserved static IP.
+Click **Create configuration**, give it a name, and leave annotations empty for a default external LB on GKE. If you need a reserved static IP, first create one in the same region as your cluster:
+
+```bash
+gcloud compute addresses create everest-db-ip --region=us-central1
+```
+
+Then add this annotation (the value is the **address resource name**, not the IP itself):
+
+```
+networking.gke.io/load-balancer-ip-addresses: everest-db-ip
+```
 
 ![load_balancer_config.png](images/load_balancer_config.png)
 
-Go back to your database instance and open **Edit Advanced configuration**:
+Go back to your database and open **Edit Advanced configuration** (or set this on the **Advanced Configurations** page during creation):
 
 ![edit_advance_config.png](images/edit_advance_config.png)
 
 ![edit_load_balancer.png](images/edit_load_balancer.png)
 
-Change **External access** from `ClusterIP` to **Load balancer**, then pick the configuration you just created.
+Set **Exposure method** to **Load balancer** and pick the configuration you just created.
 
-> Worth restricting the source range to your public IP so only your machine can reach the database.
+> Restrict **Source range** to your public IP (e.g. `203.0.113.25/32`).
 
-Click on `Save` and wait for the operator to reconcile (usually 1–5 minutes).
+Click **Save** and wait for the operator to reconcile (usually 1–5 minutes).
 
-#### Get the external IP
+###### Get the external IP
 
 ```bash
 kubectl get svc <YOUR-DB>-pgbouncer -n everest -w
+NAME                TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)          AGE
+<YOUR-DB>-pgbouncer   LoadBalancer   10.xx.x.xxx    35.xxx.xx.xx   5432:32713/TCP,   4m33s
 ```
 
 Wait until `EXTERNAL-IP` is a public IP (not `pending`):
-
-![external_ip.png](images/external_ip.png)
 
 The Everest UI **Host** should also update from `*.everest.svc` to that IP once ready.
 
 Copy the connection string from **Overview** - the host will already point at the external IP:
 
-![connect_database_external_ip.png](images/connect_database_external_ip.png)
-
 ```bash
 psql "postgres://postgres:<YOUR_PASSWORD>@<EXTERNAL-IP>:5432/postgres"
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=# 
 ```
+
+##### Internal load balancer
+
+If your apps run in the same VPC - another GKE cluster, a GCE VM, Cloud Run with a VPC connector, an internal load balancer keeps the database off the public internet. The IP is still outside the Kubernetes cluster, but only routable within your VPC.
+
+Create a load balancer configuration the same way, but add:
+
+```
+networking.gke.io/load-balancer-type: Internal
+```
+
+![load_balancer_config.png](images/load_balancer_config.png)
+
+Attach it the same way - **Exposure method → Load balancer**, pick your internal config, and save.
+
+> Set **Source range** to your VPC subnet (e.g. `10.128.0.0/20`) so only in-network clients can connect. Same CIDR format rules apply.
+
+After reconciliation:
+
+```bash
+kubectl get svc <YOUR-DB>-pgbouncer -n everest -w
+```
+
+The `EXTERNAL-IP` column will show a **private** address (e.g. `10.128.0.5`) - that's expected for internal LBs in Kubernetes. Connect from a VM in the same VPC:
+
+```bash
+psql "postgres://postgres:<YOUR_PASSWORD>@<INTERNAL-IP>:5432/postgres"
+```
+
+SSH into the VM inside the network to reach this (`gcloud compute ssh` works well for a quick test).
+
+The [OpenEverest load balancer docs](https://openeverest.io/documentation/current/networking/load_balancer_config.html) cover annotations in more detail, including Go templates for multi-cluster setups. For GKE-specific networking (Shared VPC, cross-region access), see Google's guide on [internal load balancing](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing).
 
 ## 6. Cleanup
 
