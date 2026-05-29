@@ -10,13 +10,17 @@
     
     {{ with .Params.versions }}
       {{ $versions := . }}
-      
-      {{/* 1. THE HERO (Latest Version) */}}
-      {{ range first 1 $versions }}
+
+      {{/* Separate stable from prerelease */}}
+      {{ $stable := where $versions "prerelease" "ne" true }}
+      {{ $prerelease := where $versions "prerelease" true }}
+
+      {{/* 1. THE HERO (Latest Stable Version) */}}
+      {{ range first 1 $stable }}
       <div class="mb-8 bg-gradient-to-r from-blue-50 to-white border border-blue-200 rounded-xl p-6 shadow-sm">
           <div class="flex flex-col md:flex-row justify-between items-center gap-4">
               <div>
-                  <div class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Latest Release</div>
+                  <div class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Latest Stable Release</div>
                   <h2 class="text-3xl font-extrabold text-gray-900">v{{ .release }}</h2>
               </div>
               <div class="flex gap-3">
@@ -31,13 +35,43 @@
       </div>
       {{ end }}
 
-      {{/* 2. THE ARCHIVE (Previous Versions) */}}
+      {{/* 2. PREVIEW/DEV RELEASES */}}
+      {{ with $prerelease }}
+      <div class="mb-8 bg-gradient-to-r from-amber-50 to-white border border-amber-200 rounded-xl p-6 shadow-sm">
+          <div class="text-sm text-amber-700 font-bold uppercase tracking-wider mb-3">Developer Preview</div>
+          <ul class="divide-y divide-amber-100">
+            {{ range . }}
+              <li class="flex items-center justify-between py-3">
+                  <span class="text-lg font-bold text-gray-800">v{{ .release }}</span>
+                  <div class="flex items-center gap-3 text-sm">
+                      <a href="{{ .location }}" class="text-amber-700 hover:text-amber-900 font-medium flex items-center gap-1">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18a4.15 4.15 0 00-1.5-.276"></path></svg>
+                          Docs
+                      </a>
+                      <a href="/docs/api/{{ .release }}/" class="text-amber-700 hover:text-amber-900 font-medium flex items-center gap-1">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                          API
+                      </a>
+                      {{ with .release_notes }}
+                      <a href="{{ . }}" class="text-amber-700 hover:text-amber-900 font-medium flex items-center gap-1" target="_blank">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                          Notes
+                      </a>
+                      {{ end }}
+                  </div>
+              </li>
+            {{ end }}
+          </ul>
+      </div>
+      {{ end }}
+
+      {{/* 3. THE ARCHIVE (Previous Stable Versions) */}}
       <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div class="bg-gray-50 px-6 py-3 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
               Previous Versions
           </div>
           <ul class="divide-y divide-gray-100">
-            {{ range after 1 $versions }}
+            {{ range after 1 $stable }}
               <li class="group flex items-center justify-between p-4 hover:bg-gray-50 transition">
                   <div class="flex items-center gap-4">
                       <span class="text-lg font-bold text-gray-700 group-hover:text-blue-600">v{{ .release }}</span>

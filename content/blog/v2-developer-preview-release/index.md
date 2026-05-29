@@ -1,7 +1,7 @@
 ---
 title: "OpenEverest v2 Developer Preview"
 date: 2026-05-29T09:00:00
-draft: true
+draft: false
 image:
     url: v2-developer-preview-cover.png
 authors:
@@ -25,7 +25,7 @@ Our goal is to make OpenEverest vendor-agnostic and infinitely flexible. By movi
 
 Here is the video that describes the release and talks about the most important changes in version 2.
 
-HERE WILL BE THE VIDEO
+{{< youtube xWj87xHZ5qw >}}
 
 ## v2 Highlights and Architectural Changes
 
@@ -66,7 +66,7 @@ The benefits of this decoupling include:
 
 #### How to Create a Provider Plugin
 
-Ready to bring a new technology to OpenEverest? The basic steps to build and integrate a new plugin are:
+Ready to bring a new technology to OpenEverest? The full developer guide is available in the [Provider Development documentation](https://github.com/openeverest/provider-sdk/blob/main/PROVIDER_DEVELOPMENT.md). The basic steps to build and integrate a new plugin are:
 
 1. Scaffold your provider using the Go-based [Provider SDK](https://github.com/openeverest/provider-sdk).
 2. Add components and topologies definitions to the provider. Components are the features of the provider such as engine, proxy, and backup agent. A topology groups a set of components.
