@@ -87,7 +87,27 @@ else
     echo "Skipping default API version update (--not-latest flag used)"
 fi
 
-# 5. Git add the new files
+# 5. Check if CRD spec exists and create CRD reference page if so
+CRD_URL="https://raw.githubusercontent.com/openeverest/openeverest/refs/tags/v${VERSION}/api/openapi/crds.gen.yaml"
+CRD_MD_FILE="${DOC_DEST_DIR}/${VERSION}-crds.md"
+
+echo "Checking for CRD spec at: ${CRD_URL}"
+if curl -sSf --head "$CRD_URL" -o /dev/null 2>/dev/null; then
+    echo "Generating ${CRD_MD_FILE}"
+    cat > "$CRD_MD_FILE" <<EOF
+---
+title: "CRD Reference v${VERSION}"
+url: /docs/api/${VERSION}/crds/
+layout: api-crds-standalone
+---
+EOF
+    git add "$CRD_MD_FILE"
+    echo "CRD reference page created."
+else
+    echo "No CRD spec found for v${VERSION}, skipping CRD page."
+fi
+
+# 6. Git add the new files
 #git add "$SPEC_FILE" "$MD_FILE"
 git add "$MD_FILE"
 

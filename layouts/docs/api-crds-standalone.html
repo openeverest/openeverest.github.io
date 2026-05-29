@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }}</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalyticsID }}"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "{{ .Site.Params.googleAnalyticsID }}");
+    </script>
+
+    <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@stoplight/elements/styles.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .api-container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background: white;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+      }
+
+      .api-menu-bar {
+        background-color: rgb(14, 95, 181);
+        background-image: linear-gradient(
+          110deg,
+          rgba(0, 0, 0, 0.15) 33%,
+          rgba(0, 0, 0, 0.15) 95%
+        );
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        display: flex;
+        font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+        font-feature-settings: "kern", "liga";
+        font-size: 11.25px;
+        font-weight: 700;
+        height: 30px;
+        line-height: 11.25px;
+        text-size-adjust: 100%;
+        text-transform: uppercase;
+        unicode-bidi: isolate;
+        -webkit-font-smoothing: antialiased;
+        flex-shrink: 0;
+      }
+
+      .api-menu-bar button {
+        align-items: center;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        display: flex;
+        font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
+        font-feature-settings: "kern", "liga";
+        font-size: 11.25px;
+        font-weight: 700;
+        height: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        letter-spacing: 0.703125px;
+        line-height: 11.25px;
+        text-size-adjust: 100%;
+        text-transform: uppercase;
+        unicode-bidi: isolate;
+        -webkit-font-smoothing: antialiased;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .api-menu-bar button:hover {
+        background-color: #0e5fb5;
+      }
+
+      .api-menu-bar .active-label {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        opacity: 0.7;
+        font-size: 11.25px;
+        font-weight: 700;
+        letter-spacing: 0.703125px;
+        text-transform: uppercase;
+      }
+
+      .api-content {
+        flex-grow: 1;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .api-container {
+        --color-primary: #32ad97;
+        --color-secondary: #0e5fb5;
+        --color-success: #0b4a8c;
+        --color-warning: #c99000;
+        --color-danger: #b50e3b;
+        --color-info: #62aeff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="api-container">
+      <div class="api-menu-bar">
+        <button id="backBtn" onclick="window.location.href = '/docs'">
+          << To documentation
+        </button>
+        <span class="active-label">CRD Reference</span>
+      </div>
+      <div class="api-content">
+        <elements-api
+          id="apiDocs"
+          apiDescriptionUrl=""
+          router="hash"
+          layout="responsive"
+          logo="/images/brandkit/icon-full-color-white.svg"
+        />
+      </div>
+    </div>
+    <script>
+      // Extract version from URL: /docs/api/{version}/crds/
+      function getCurrentVersion() {
+        const path = window.location.pathname;
+        const match = path.match(/\/docs\/api\/([0-9]+\.[0-9]+\.[0-9]+[^/]*)/);
+        return match ? match[1] : "{{ .Site.Params.defaultApiVersion }}";
+      }
+
+      const currentVersion = getCurrentVersion();
+
+      // Update back button to go to the HTTP API page for this version
+      document.getElementById("backBtn").onclick = function () {
+        window.location.href = `/docs/api/${currentVersion}/`;
+      };
+
+      // Load the CRD spec
+      const apiElement = document.getElementById("apiDocs");
+      apiElement.apiDescriptionUrl = `https://raw.githubusercontent.com/openeverest/openeverest/refs/tags/v${currentVersion}/api/openapi/crds.gen.yaml`;
+    </script>
+  </body>
+</html>

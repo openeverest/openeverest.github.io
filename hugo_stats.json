@@ -70,6 +70,7 @@
     "classes": [
       "absolute",
       "active",
+      "active-label",
       "animate-spin",
       "api-container",
       "api-content",
@@ -539,6 +540,7 @@
       "automate-with-taskfile",
       "available-tasks",
       "avoid-complex-development",
+      "backBtn",
       "basic-connectivity",
       "before-you-write-a-blog",
       "behind-the-feature-ankit-kurmi",
@@ -565,6 +567,7 @@
       "content-guidelines",
       "contributing-a-blog-post",
       "contributing-to-the-blog",
+      "crdBtn",
       "create-a-sharded-cluster-in-the-ui",
       "creating-a-new-blog-post",
       "creating-your-post-folder",

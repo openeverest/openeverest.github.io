@@ -53,7 +53,7 @@
         );
         box-sizing: border-box;
         color: rgb(255, 255, 255);
-        display: block;
+        display: flex;
         font-family: Poppins, Roboto, Arial, Helvetica, sans-serif;
         font-feature-settings: "kern", "liga";
         font-size: 11.25px;
@@ -180,6 +180,9 @@
         <button onclick="window.location.href = '/docs'">
           << To documentation
         </button>
+        <button id="crdBtn" style="display:none" onclick="window.location.href = `/docs/api/${currentVersion}/crds/`">
+          CRD Reference
+        </button>
       </div>
       <div class="api-content">
         <elements-api
@@ -197,7 +200,7 @@
         // Get the current page path
         const path = window.location.pathname;
         // Extract version from path like /docs/api/1.10.0/
-        const match = path.match(/\/docs\/api\/([0-9]+\.[0-9]+\.[0-9]+)/);
+        const match = path.match(/\/docs\/api\/([0-9]+\.[0-9]+\.[0-9]+[^/]*)/);
         return match ? match[1] : "{{ .Site.Params.defaultApiVersion }}"; // default to latest
       }
 
@@ -209,11 +212,32 @@
       // Get API spec URL from Hugo config, with fallback to default
       const apiSpecURL =
         "{{ .Site.Params.apiSpecURL }}" ||
-        "https://raw.githubusercontent.com/percona/everest/refs/tags/v${currentVersion}/docs/spec/openapi.yml";
-      apiElement.apiDescriptionUrl = apiSpecURL.replace(
-        "${version}",
-        currentVersion,
-      );
+        "https://raw.githubusercontent.com/openeverest/openeverest/refs/tags/v${currentVersion}/docs/spec/openapi.yml";
+      const primaryURL = apiSpecURL.replace("${version}", currentVersion);
+      const fallbackURL = `https://raw.githubusercontent.com/openeverest/openeverest/refs/tags/v${currentVersion}/api/openapi/http-api.yaml`;
+
+      fetch(primaryURL, { method: "HEAD" })
+        .then((res) => {
+          if (res.ok) {
+            apiElement.apiDescriptionUrl = primaryURL;
+          } else {
+            apiElement.apiDescriptionUrl = fallbackURL;
+          }
+        })
+        .catch(() => {
+          apiElement.apiDescriptionUrl = fallbackURL;
+        });
+
+      // Show CRD Reference button if the file exists for this version
+      const crdURL = `https://raw.githubusercontent.com/openeverest/openeverest/refs/tags/v${currentVersion}/api/openapi/crds.gen.yaml`;
+      fetch(crdURL, { method: "HEAD" })
+        .then((res) => {
+          if (res.ok) {
+            const btn = document.getElementById("crdBtn");
+            btn.style.display = "flex";
+          }
+        })
+        .catch(() => {});
 
       // Note: No need for .api-loading login since this is a dedicated page layout
     </script>
