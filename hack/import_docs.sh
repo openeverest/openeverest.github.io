@@ -65,6 +65,18 @@ if [ -z "$REF_NAME" ]; then
 fi
 
 if [ -z "$REF_NAME" ]; then
+  # try exact version (and v-prefixed) as branch names
+  for b in "$release_version" "v$release_version"; do
+    if git ls-remote --heads "$CNPG_REPOSITORY" "$b" | grep -q .; then
+      REF_NAME="$b"
+      REF_TYPE="branch"
+      PREVIEW_RELEASE=0
+      break
+    fi
+  done
+fi
+
+if [ -z "$REF_NAME" ]; then
   REF_NAME="main"
   REF_TYPE="branch"
   PREVIEW_RELEASE=1
@@ -114,7 +126,7 @@ popd
 rm -rf $WORKDIR
 
 # Detect the current version (one with the highest release number that is not RC)
-latest_version=$(ls $DOCDIR | grep '^[0-9]' | grep -v '\-rc\?' | sort -V | tail -1)
+latest_version=$(ls $DOCDIR | grep '^[0-9]' | grep -v '\-rc\?\|\-dev' | sort -V | tail -1)
 LATEST_VERSION_LINK_DIR=current
 
 # Preview release
@@ -143,21 +155,26 @@ else
     # Get current timestamp
     RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z")
     
-    # Create new version entry
-    NEW_VERSION="  - release: \"$release_version\"
-    location: \"/documentation/$release_version\"
-    release_date: $RELEASE_DATE
-    release_notes: \"https://github.com/openeverest/everest-doc/releases/tag/v$release_version\""
-    
     # Insert the new version at the top of the versions array (after the "versions:" line)
-    awk -v new_version="$NEW_VERSION" '
-      /^versions:$/ { 
-        print; 
-        print new_version; 
-        next 
-      } 
+    # Use a temp file for the new entry to avoid awk -v newline limitation
+    NEW_VERSION_FILE=$(mktemp)
+    printf '  - release: "%s"\n    location: "/documentation/%s"\n    release_date: %s\n    release_notes: "https://github.com/openeverest/everest-doc/releases/tag/v%s"\n' \
+      "$release_version" "$release_version" "$RELEASE_DATE" "$release_version" > "$NEW_VERSION_FILE"
+    # Mark dev/rc releases as prerelease
+    if [[ "$release_version" == *-dev* ]] || [[ "$release_version" == *-rc* ]]; then
+      printf '    prerelease: true\n' >> "$NEW_VERSION_FILE"
+    fi
+
+    awk -v newfile="$NEW_VERSION_FILE" '
+      /^versions:$/ {
+        print;
+        while ((getline line < newfile) > 0) print line;
+        close(newfile);
+        next
+      }
       { print }
     ' "$INDEX_FILE" > "$INDEX_FILE.tmp"
+    rm -f "$NEW_VERSION_FILE"
     
     mv "$INDEX_FILE.tmp" "$INDEX_FILE"
     git add "$INDEX_FILE"
