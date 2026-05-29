@@ -1,6 +1,6 @@
 ---
 title: "OpenEverest v2 Developer Preview"
-date: 2026-05-21T09:00:00
+date: 2026-05-29T09:00:00
 draft: true
 image:
     url: v2-developer-preview-cover.png
@@ -139,12 +139,23 @@ Install, upgrade, or rollback a provider with standard Helm workflows.
 
 OpenEverest v2 is installed via Helm. You will need a running Kubernetes cluster and `helm` installed.
 
-TBD
+```bash
+helm repo add openeverest https://openeverest.github.io/helm-charts/
+helm repo update
+helm install everest-core openeverest/openeverest \
+  --devel \
+  --version "2.0.0-dev.1" \
+  --namespace everest-system \
+  --create-namespace
+
+```
 
 Once the core is up, install the MongoDB provider:
 
 ```bash
-helm install everest-mongodb openeverest/everest-provider-mongodb \
+helm repo add provider-percona-server-mongodb https://openeverest.github.io/provider-percona-server-mongodb/
+helm repo update
+helm install provider-percona-server-mongodb provider-percona-server-mongodb/provider-percona-server-mongodb \
   --namespace everest-system
 ```
 
