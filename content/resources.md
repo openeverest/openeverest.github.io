@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Meet OpenEverest at KubeCon + CloudNativeCon India 2026"
+    url: "/events/kubecon-india-2026/"
+    event_name: "KubeCon + CloudNativeCon India 2026"
+    location: "Mumbai, India — Jasmine Hall 1, Table T-6"
+    date: 2026-06-19
+    speaker: "Neel Shah & Vijeta Priya"
+    type: "conference"
+    image: "/images/resources/kubecon-india-2026.png"
+    description: "Visit us at the Project Pavilion on Friday, June 19. Full schedule, table details, and who you'll meet."
+
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
     url: "https://coscup.org/2026/en"
     event_name: "COSCUP 2026 × UbuCon Asia"
