@@ -1,0 +1,190 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+{{ $now := now }}
+{{ $eventDate := .Date }}
+{{ with .Params.event_date }}
+    {{ $eventDate = time . }}
+{{ end }}
+{{ $isUpcoming := $eventDate.After $now }}
+
+<div class="bg-gradient-to-b from-white to-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-500 mb-6">
+            <a href="/resources/" class="hover:text-[#7790DE]">Resources</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-700">{{ .Params.event_name | default .Title }}</span>
+        </nav>
+
+        <!-- Hero -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-10">
+            {{ $heroImage := "" }}
+            {{ with .Params.image }}
+                {{ if reflect.IsMap . }}
+                    {{ $heroImage = .url }}
+                {{ else }}
+                    {{ $heroImage = . }}
+                {{ end }}
+            {{ end }}
+            {{ if $heroImage }}
+            <div class="relative h-64 md:h-80 bg-gradient-to-br from-[#7790DE] to-[#161641]">
+                <img src="{{ $heroImage }}" alt="{{ .Title }}"
+                     class="w-full h-full object-cover"
+                     onerror="this.style.display='none';">
+                {{ if $isUpcoming }}
+                <div class="absolute top-4 right-4 bg-emerald-700/90 text-white px-3 py-1 rounded-full text-sm font-medium shadow">
+                    Upcoming
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            <div class="p-8 md:p-10">
+                {{ if .Params.event_name }}
+                <p class="text-sm font-semibold text-[#7790DE] uppercase tracking-wide mb-2">
+                    {{ .Params.event_name }}
+                </p>
+                {{ end }}
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ .Title }}</h1>
+
+                <div class="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
+                    {{ if .Params.date_range }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ .Params.date_range }}</span>
+                    </div>
+                    {{ else }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ dateFormat "January 2, 2006" $eventDate }}</span>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.location }}
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 flex-shrink-0 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>{{ .Params.location }}</span>
+                    </div>
+                    {{ end }}
+                </div>
+
+                {{ if .Params.summary }}
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">{{ .Params.summary }}</p>
+                {{ end }}
+
+                {{ if .Params.event_url }}
+                <a href="{{ .Params.event_url }}" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 bg-[#7790DE] hover:bg-[#161641] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow hover:shadow-lg">
+                    Visit event website
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Schedule -->
+        {{ if .Params.schedule }}
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 mb-10">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <svg class="w-6 h-6 mr-3 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                </svg>
+                Where to find us
+            </h2>
+            <dl class="divide-y divide-gray-100">
+                {{ range .Params.schedule }}
+                <div class="py-3 md:grid md:grid-cols-3 md:gap-4">
+                    <dt class="text-sm font-semibold text-gray-500 uppercase tracking-wide">{{ .label }}</dt>
+                    <dd class="mt-1 md:mt-0 md:col-span-2 text-gray-900">{{ .value }}</dd>
+                </div>
+                {{ end }}
+            </dl>
+        </div>
+        {{ end }}
+
+        <!-- Representatives -->
+        {{ if .Params.representatives }}
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 mb-10">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <svg class="w-6 h-6 mr-3 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+                Who you'll meet
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{ range .Params.representatives }}
+                <div class="border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-start gap-4 mb-3">
+                        {{ if .avatar }}
+                        <img src="{{ .avatar }}" alt="{{ .name }}"
+                             class="w-16 h-16 rounded-full object-cover bg-gray-100 flex-shrink-0"
+                             onerror="this.style.display='none';">
+                        {{ end }}
+                        <div class="min-w-0">
+                            <h3 class="text-lg font-bold text-gray-900">{{ .name }}</h3>
+                            {{ if .role }}
+                            <p class="text-sm text-[#7790DE] font-medium">{{ .role }}</p>
+                            {{ end }}
+                            <div class="flex gap-3 mt-2 text-sm">
+                                {{ if .linkedin }}
+                                <a href="{{ .linkedin }}" target="_blank" rel="noopener noreferrer"
+                                   class="text-gray-500 hover:text-[#7790DE] inline-flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                    LinkedIn
+                                </a>
+                                {{ end }}
+                                {{ if .github }}
+                                <a href="https://github.com/{{ .github }}" target="_blank" rel="noopener noreferrer"
+                                   class="text-gray-500 hover:text-[#7790DE] inline-flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    @{{ .github }}
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ if .bio }}
+                    <p class="text-sm text-gray-700 leading-relaxed">{{ .bio | markdownify }}</p>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Body content -->
+        {{ if .Content }}
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 mb-10">
+            <div class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-a:text-[#7790DE] hover:prose-a:text-[#161641]">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Back to resources -->
+        <div class="text-center">
+            <a href="/resources/"
+               class="inline-flex items-center gap-2 text-[#7790DE] hover:text-[#161641] font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to all resources
+            </a>
+        </div>
+    </div>
+</div>
+{{ end }}
