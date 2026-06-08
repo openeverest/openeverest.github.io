@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Age Gap Is Not A Problem - MySQL and Cloud-Native"
+    url: "https://buildevcon.com/events/mariadb-mysql-on-kubernetes"
+    event_name: "BuildDevCon, MariaDB & MySQL on Kubernetes"
+    location: "Virtual Conference"
+    date: 2026-07-25
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
+
   - title: "Meet OpenEverest at KubeCon + CloudNativeCon India 2026"
     url: "/events/kubecon-india-2026/"
     event_name: "KubeCon + CloudNativeCon India 2026"
