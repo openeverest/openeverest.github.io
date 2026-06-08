@@ -40,6 +40,15 @@ representatives:
     bio: |
       Vijeta is contributing to OpenEverest through the LFX Mentorship program,
       working alongside the maintainers on the project roadmap.
+
+  - name: "Atharva Mhaske"
+    role: "GSoC @OpenScienceLabs | Open Source Contributor @OpenEverest"
+    linkedin: "https://www.linkedin.com/in/atharvamhaske/"
+    avatar: "/authors/atharvamhaske/avatar.png"
+    bio: |
+      Atharva is a backend developer and open source contributor at OpenEverest,
+      currently working as a Google Summer of Code 2026 contributor with
+      Open Science Labs.
 ---
 
 ## Why stop by?
