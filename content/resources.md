@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Age Gap Is Not A Problem - MySQL and Cloud-Native"
+    url: "https://buildevcon.com/events/mariadb-mysql-on-kubernetes"
+    event_name: "BuildDevCon, MariaDB & MySQL on Kubernetes"
+    location: "Virtual Conference"
+    date: 2026-07-25
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
+
   - title: "Unified Provisioning and Management for Diverse Databases on Kubernetes"
     url: "https://buildevcon.com/cloud-native-databases/"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
@@ -15,6 +25,7 @@ events:
     speaker: "Chi Fujii"
     speaker_slug: "chilagrow"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     image: "/images/resources/builddevcon-2026-cndb-chi.png"
 
   - title: "Treating Databases as Cattle: Architecting Stateless Patterns for Stateful Workloads"
@@ -25,6 +36,7 @@ events:
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     image: "/images/resources/builddevcon-2026-cndb.png"
 
   - title: "Unified database provisioning and management on Kubernetes"
@@ -35,6 +47,7 @@ events:
     speaker: "Chi Fujii"
     speaker_slug: "chilagrow"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     image: "/images/resources/fossasia-2026-chi-talk.png"
     video: false
 
@@ -46,6 +59,7 @@ events:
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     image: "/images/resources/fossasia-2026-spronin-talk.png"
     video: false
 
@@ -68,6 +82,7 @@ events:
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     image: "/images/resources/builddevcon-2026.png"
     video: true
     
@@ -79,6 +94,7 @@ events:
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
     video: true
 
     
