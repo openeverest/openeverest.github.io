@@ -23,11 +23,11 @@ schedule:
 # OpenEverest team representing the project at the booth
 representatives:
   - name: "Neel Shah"
-    role: "Developer Advocate, Middleware"
+    role: "Developer Advocate at Stackgen | Community Builder"
     linkedin: "https://www.linkedin.com/in/neelcshah/"
-    avatar: "/images/resources/placeholder-avatar.png"
+    avatar: "/images/resources/neel-shah-kubecon-india-2026.jpg"
     bio: |
-      Neel is a Developer Advocate at Middleware focused on DevOps and observability.
+      Neel is a Developer Advocate at Stackgen and a community builder focused on DevOps and observability.
       He works with customers, technology leaders, and open source communities on
       CI/CD, infrastructure automation, and observability — and co-organizes Open
       Source Weekend and several CNCF / Google Cloud / HashiCorp user groups in
@@ -36,7 +36,7 @@ representatives:
   - name: "Vijeta Priya"
     role: "LFX Mentee, OpenEverest"
     linkedin: "https://www.linkedin.com/in/vzsaz/"
-    avatar: "/images/resources/placeholder-avatar.png"
+    avatar: "/images/resources/vijeta-priya-kubecon-india-2026.jpg"
     bio: |
       Vijeta is contributing to OpenEverest through the LFX Mentorship program,
       working alongside the maintainers on the project roadmap.
