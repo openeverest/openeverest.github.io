@@ -25,7 +25,7 @@ representatives:
   - name: "Neel Shah"
     role: "Developer Advocate at Stackgen | Community Builder"
     linkedin: "https://www.linkedin.com/in/neelcshah/"
-    avatar: "/images/resources/neel-shah-kubecon-india-2026.jpg"
+    avatar: "/images/resources/neel-shah-headshot.jpg"
     bio: |
       Neel is a Developer Advocate at Stackgen and a community builder focused on DevOps and observability.
       He works with customers, technology leaders, and open source communities on
@@ -36,7 +36,7 @@ representatives:
   - name: "Vijeta Priya"
     role: "LFX Mentee, OpenEverest"
     linkedin: "https://www.linkedin.com/in/vzsaz/"
-    avatar: "/images/resources/vijeta-priya-kubecon-india-2026.jpg"
+    avatar: "/images/resources/vijeta-priya-headshot.jpg"
     bio: |
       Vijeta is contributing to OpenEverest through the LFX Mentorship program,
       working alongside the maintainers on the project roadmap.
