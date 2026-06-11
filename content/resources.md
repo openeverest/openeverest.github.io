@@ -7,6 +7,17 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Meet OpenEverest at KubeCon + CloudNativeCon Japan 2026"
+    url: "/events/kubecon-japan-2026/"
+    event_name: "KubeCon + CloudNativeCon Japan 2026"
+    location: "Yokohama, Japan — Level 3, Rooms 301-304, Table T-8"
+    date: 2026-07-30
+    speaker: "Sergey Pronin & Chi Fujii"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/kubecon-japan-project.png"
+    description: "Visit us at the Project Pavilion on Thursday, July 30. Full schedule, table details, and who you'll meet."
+
   - title: "Age Gap Is Not A Problem - MySQL and Cloud-Native"
     url: "https://buildevcon.com/events/mariadb-mysql-on-kubernetes"
     event_name: "BuildDevCon, MariaDB & MySQL on Kubernetes"
