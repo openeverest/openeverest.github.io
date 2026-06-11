@@ -71,5 +71,5 @@ We'll have stickers. Bring your questions — and your war stories.
 ## Not at KubeCon but want to connect?
 
 - Star the project on [GitHub](https://github.com/openeverest/openeverest)
-- Join the conversation on our [community channels](/community/)
+- Join the conversation on our [community channels](/#community)
 - Browse other [upcoming events](/resources/)
