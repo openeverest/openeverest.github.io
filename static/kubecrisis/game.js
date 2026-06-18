@@ -833,24 +833,24 @@
         wrap.appendChild(card);
 
         const shareUrl = "https://openeverest.io/kubecrisis/";
+        const bareUrl = "openeverest.io/kubecrisis/";
         const scoreLine =
-            `I survived KubeCrisis as "${rankLabel}" — uptime ${state.uptime.toFixed(2)}%, ` +
-            `stress ${state.stress}%, geek-check ${triviaCorrect}/${state.triviaAnswered.length}. Can you beat me?`;
+            `My KubeCrisis score is "${rankLabel}" — uptime ${state.uptime.toFixed(2)}%, ` +
+            `stress ${state.stress}%, geek-check ${triviaCorrect}/${state.triviaAnswered.length}. Try to beat me!`;
         const shareMsgX = `${scoreLine} ${shareUrl}`;
+        const shareMsgLinkedIn = `${scoreLine}\n\nPlay it: ${bareUrl}`;
         const enc = encodeURIComponent;
 
         const shareLabel = el("div", { class: "kc-share-label" }, "SHARE YOUR SCORE");
         wrap.appendChild(shareLabel);
 
         const shareRow = el("div", { class: "kc-cta-row kc-share-row" });
-        const linkedinBtn = el("a", {
+        shareRow.appendChild(el("a", {
             class: "kc-cta kc-cta-linkedin",
-            href: "https://www.linkedin.com/sharing/share-offsite/?url=" + enc(shareUrl),
+            href: "https://www.linkedin.com/feed/?shareActive=true&text=" + enc(shareMsgLinkedIn),
             target: "_blank",
-            rel: "noopener",
-            onclick: () => copyToClipboard(scoreLine + " " + shareUrl)
-        }, "in  LinkedIn");
-        shareRow.appendChild(linkedinBtn);
+            rel: "noopener"
+        }, "in  LinkedIn"));
         shareRow.appendChild(el("a", {
             class: "kc-cta kc-cta-x",
             href: "https://twitter.com/intent/tweet?text=" + enc(shareMsgX),
@@ -858,9 +858,6 @@
             rel: "noopener"
         }, "X / Twitter"));
         wrap.appendChild(shareRow);
-
-        wrap.appendChild(el("div", { class: "kc-share-hint" },
-            "LinkedIn: your score is copied to clipboard \u2014 paste it in the composer."));
 
         const ctas = el("div", { class: "kc-cta-row" });
         ctas.appendChild(el("a", {
@@ -881,46 +878,6 @@
     function startGame() {
         resetGame();
         render();
-    }
-
-    function copyToClipboard(text) {
-        const write = (ok) => { if (ok) showToast("Score copied to clipboard"); };
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(text).then(() => write(true)).catch(() => fallback());
-            return;
-        }
-        fallback();
-        function fallback() {
-            try {
-                const ta = document.createElement("textarea");
-                ta.value = text;
-                ta.setAttribute("readonly", "");
-                ta.style.position = "fixed";
-                ta.style.top = "-1000px";
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand("copy");
-                document.body.removeChild(ta);
-                write(true);
-            } catch (_) { /* silently ignore */ }
-        }
-    }
-
-    function showToast(msg) {
-        let t = document.getElementById("kc-toast");
-        if (!t) {
-            t = document.createElement("div");
-            t.id = "kc-toast";
-            t.className = "kc-toast";
-            document.body.appendChild(t);
-        }
-        t.textContent = msg;
-        t.classList.remove("kc-toast-show");
-        // force reflow then add the show class
-        void t.offsetWidth;
-        t.classList.add("kc-toast-show");
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(() => t.classList.remove("kc-toast-show"), 2400);
     }
 
     function answerTrivia(i) {
