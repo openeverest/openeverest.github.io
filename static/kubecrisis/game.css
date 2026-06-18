@@ -1,0 +1,803 @@
+/* ===========================================================
+   KubeCrisis — Retro / Pixel-art styling
+   Brand colors: #161641 (everest-dark), #7790DE (everest-blue)
+   =========================================================== */
+
+:root {
+    --kc-bg: #0a0a1f;
+    --kc-bg-2: #11112e;
+    --kc-panel: #161641;
+    --kc-border: #7790DE;
+    --kc-text: #e4e8ff;
+    --kc-text-dim: #9aa4d4;
+    --kc-cyan: #6ef0ff;
+    --kc-green: #5dff8f;
+    --kc-yellow: #ffe066;
+    --kc-red: #ff5d6e;
+    --kc-magenta: #ff7bd5;
+    --kc-shadow: 0 0 0 4px var(--kc-border), 0 8px 0 0 #000;
+}
+
+.kubecrisis-page {
+    background: linear-gradient(180deg, #fafbff 0%, #eef0ff 100%);
+}
+
+#kubecrisis-app,
+#kubecrisis-app * {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#kubecrisis-app {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--kc-text);
+}
+
+.kc-display-font {
+    font-family: 'Press Start 2P', 'VT323', monospace;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- Outer console ---------- */
+.kc-console {
+    background: var(--kc-bg);
+    border: 4px solid var(--kc-border);
+    box-shadow:
+        0 0 0 4px #000,
+        0 0 0 8px var(--kc-panel),
+        0 12px 0 0 rgba(0, 0, 0, 0.4),
+        inset 0 0 80px rgba(119, 144, 222, 0.08);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.kc-console::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.18) 0px,
+            rgba(0, 0, 0, 0.18) 2px,
+            transparent 2px,
+            transparent 4px
+        );
+    pointer-events: none;
+    z-index: 5;
+}
+
+.kc-console::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+    pointer-events: none;
+    z-index: 4;
+}
+
+.kc-console > * {
+    position: relative;
+    z-index: 6;
+}
+
+/* ---------- HUD ---------- */
+.kc-hud {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 720px) {
+    .kc-hud {
+        grid-template-columns: auto 1fr 1fr 1fr 1fr;
+        align-items: center;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+    .kc-hud {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.kc-day-badge {
+    background: var(--kc-panel);
+    border: 4px solid var(--kc-cyan);
+    padding: 10px 14px;
+    text-align: center;
+    box-shadow: 0 4px 0 0 #000;
+}
+
+.kc-day-badge .kc-day-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-cyan);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.kc-day-badge .kc-day-value {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: var(--kc-yellow);
+}
+
+.kc-metric {
+    background: var(--kc-bg-2);
+    border: 3px solid var(--kc-border);
+    padding: 8px 12px;
+    box-shadow: 0 4px 0 0 #000;
+}
+
+.kc-metric-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.kc-metric-value {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--kc-text);
+}
+
+.kc-bar {
+    height: 14px;
+    background: #000;
+    border: 2px solid #2a2a55;
+    position: relative;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.kc-bar-fill {
+    height: 100%;
+    background: var(--kc-green);
+    transition: width 0.5s steps(20, end), background 0.3s;
+    image-rendering: pixelated;
+    background-image: linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 6px,
+        rgba(255, 255, 255, 0.15) 6px,
+        rgba(255, 255, 255, 0.15) 8px
+    );
+    background-size: 8px 100%;
+}
+
+.kc-bar-fill.kc-fill-warn { background-color: var(--kc-yellow); }
+.kc-bar-fill.kc-fill-bad { background-color: var(--kc-red); }
+.kc-bar-fill.kc-fill-good { background-color: var(--kc-green); }
+.kc-bar-fill.kc-fill-cyan { background-color: var(--kc-cyan); }
+
+/* ---------- Pager / Incident card ---------- */
+.kc-pager {
+    background: var(--kc-panel);
+    border: 4px solid var(--kc-red);
+    padding: 18px 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 0 0 #000;
+    position: relative;
+}
+
+.kc-pager-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.kc-pager-tag {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-red);
+    background: #2a0712;
+    border: 2px solid var(--kc-red);
+    padding: 4px 8px;
+    animation: kc-blink 1.1s steps(2) infinite;
+}
+
+.kc-pager-time {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-text-dim);
+}
+
+.kc-pager-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--kc-yellow);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.kc-pager-body {
+    font-size: 22px;
+    color: var(--kc-text);
+}
+
+/* ---------- Symptoms panel ---------- */
+.kc-symptoms {
+    background: #000;
+    border: 4px solid var(--kc-border);
+    padding: 0 0 12px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 0 0 #000;
+}
+
+.kc-symptoms-head {
+    background: var(--kc-border);
+    color: #000;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    padding: 6px 12px;
+    letter-spacing: 1px;
+}
+
+.kc-symptoms .kc-terminal-line {
+    padding: 0 14px;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 20px;
+    margin: 1px 0;
+    word-break: break-word;
+}
+
+/* ---------- Trivia card ---------- */
+.kc-trivia {
+    background: linear-gradient(180deg, #1d0f2e 0%, #2b1245 100%);
+    border: 4px solid var(--kc-magenta);
+    padding: 14px 16px 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 0 0 #000;
+}
+
+.kc-trivia-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.kc-trivia-badge {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-magenta);
+    background: #2a0720;
+    border: 2px solid var(--kc-magenta);
+    padding: 4px 8px;
+}
+
+.kc-trivia-prize {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--kc-yellow);
+}
+
+.kc-trivia-q {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--kc-text);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.kc-trivia-opts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+@media (min-width: 600px) {
+    .kc-trivia-opts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.kc-trivia-opt {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    background: var(--kc-bg-2);
+    color: var(--kc-text);
+    border: 3px solid var(--kc-magenta);
+    padding: 8px 12px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 3px 0 0 #000;
+    transition: transform 0.08s steps(2), background 0.1s;
+}
+
+.kc-trivia-opt:hover {
+    background: #2a0720;
+    transform: translateY(-1px);
+}
+
+.kc-trivia-opt:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 0 #000;
+}
+
+.kc-trivia-skip {
+    background: transparent;
+    border: none;
+    color: var(--kc-text-dim);
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline dotted;
+}
+
+.kc-trivia-skip:hover { color: var(--kc-cyan); }
+
+.kc-trivia-result {
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    padding: 10px 12px;
+    border: 2px dashed;
+    margin-top: 4px;
+}
+
+.kc-trivia-good {
+    color: var(--kc-green);
+    border-color: var(--kc-green);
+    background: rgba(93, 255, 143, 0.06);
+}
+
+.kc-trivia-bad {
+    color: var(--kc-yellow);
+    border-color: var(--kc-yellow);
+    background: rgba(255, 224, 102, 0.06);
+}
+
+/* ---------- OE Credits in HUD ---------- */
+.kc-credits-metric {
+    border-color: var(--kc-yellow);
+}
+
+.kc-credits-row {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.kc-zap {
+    font-family: 'VT323', monospace;
+    width: 18px;
+    text-align: center;
+}
+
+.kc-zap-on  { color: var(--kc-yellow); text-shadow: 0 0 4px var(--kc-yellow); }
+.kc-zap-off { color: #2a2a55; }
+
+/* ---------- Action buttons ---------- */
+.kc-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+@media (min-width: 720px) {
+    .kc-actions-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .kc-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.kc-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: left;
+    padding: 16px 18px;
+    border: 4px solid;
+    background: var(--kc-bg-2);
+    color: var(--kc-text);
+    cursor: pointer;
+    transition: transform 0.08s steps(2), box-shadow 0.08s steps(2);
+    box-shadow: 0 6px 0 0 #000;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.kc-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 0 #000;
+}
+
+.kc-btn:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 0 #000;
+}
+
+.kc-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.kc-btn-hotfix  { border-color: var(--kc-magenta); }
+.kc-btn-runbook { border-color: var(--kc-cyan); }
+.kc-btn-everest { border-color: var(--kc-yellow); }
+
+.kc-btn-hotfix:hover:not(:disabled)  { background: #2a0720; }
+.kc-btn-runbook:hover:not(:disabled) { background: #052a30; }
+.kc-btn-everest:hover:not(:disabled) { background: #2a2407; }
+
+.kc-btn-label {
+    display: block;
+    font-size: 8px;
+    color: var(--kc-text-dim);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.kc-btn-hotfix  .kc-btn-label { color: var(--kc-magenta); }
+.kc-btn-runbook .kc-btn-label { color: var(--kc-cyan); }
+.kc-btn-everest .kc-btn-label { color: var(--kc-yellow); }
+
+.kc-btn-blurb {
+    display: block;
+    margin-top: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 17px;
+    color: var(--kc-text-dim);
+    text-transform: none;
+    line-height: 1.3;
+}
+
+/* ---------- Terminal log ---------- */
+.kc-terminal {
+    background: #000;
+    border: 4px solid var(--kc-border);
+    padding: 14px 16px;
+    min-height: 140px;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 20px;
+    color: var(--kc-green);
+    box-shadow: 0 4px 0 0 #000;
+    overflow: hidden;
+}
+
+.kc-terminal-line {
+    margin: 2px 0;
+    word-break: break-word;
+}
+
+.kc-terminal-line.kc-log-bad { color: var(--kc-red); }
+.kc-terminal-line.kc-log-good { color: var(--kc-green); }
+.kc-terminal-line.kc-log-info { color: var(--kc-cyan); }
+.kc-terminal-line.kc-log-warn { color: var(--kc-yellow); }
+.kc-terminal-line.kc-log-dim { color: var(--kc-text-dim); }
+
+.kc-cursor::after {
+    content: "_";
+    color: var(--kc-green);
+    animation: kc-blink 0.8s steps(2) infinite;
+}
+
+/* ---------- Continue button ---------- */
+.kc-next {
+    margin-top: 16px;
+    text-align: center;
+}
+
+/* ---------- Title screen ---------- */
+.kc-title-screen {
+    text-align: center;
+    padding: 30px 16px 40px;
+}
+
+.kc-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 28px;
+    color: var(--kc-yellow);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-shadow: 4px 4px 0 #000, 4px 4px 0 var(--kc-red);
+    animation: kc-title-bob 2s steps(4) infinite;
+}
+
+@media (min-width: 720px) {
+    .kc-title { font-size: 44px; }
+}
+
+.kc-subtitle {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--kc-cyan);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+@media (min-width: 720px) {
+    .kc-subtitle { font-size: 14px; }
+}
+
+.kc-rules {
+    background: var(--kc-bg-2);
+    border: 3px solid var(--kc-border);
+    padding: 16px;
+    margin: 0 auto 28px;
+    max-width: 540px;
+    text-align: left;
+    font-size: 20px;
+    color: var(--kc-text);
+}
+
+.kc-rules-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--kc-magenta);
+    margin-bottom: 10px;
+}
+
+.kc-rules ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.kc-rules li {
+    padding: 4px 0;
+    color: var(--kc-text);
+}
+
+.kc-rules li::before {
+    content: "> ";
+    color: var(--kc-cyan);
+}
+
+.kc-start-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    background: var(--kc-yellow);
+    color: #000;
+    border: 4px solid #000;
+    padding: 16px 28px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 0 var(--kc-red);
+    text-transform: uppercase;
+    transition: transform 0.08s steps(2), box-shadow 0.08s steps(2);
+}
+
+.kc-start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 0 var(--kc-red);
+}
+
+.kc-start-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 0 var(--kc-red);
+}
+
+/* ---------- Endgame ---------- */
+.kc-endgame {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.kc-endgame-banner {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 26px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    text-shadow: 4px 4px 0 #000;
+}
+
+@media (min-width: 720px) {
+    .kc-endgame-banner { font-size: 40px; }
+}
+
+.kc-endgame-victory { color: var(--kc-green); }
+.kc-endgame-defeat { color: var(--kc-red); }
+
+.kc-rank {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--kc-yellow);
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.kc-rank-tagline {
+    color: var(--kc-text-dim);
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+.kc-scorecard {
+    background: var(--kc-bg-2);
+    border: 3px solid var(--kc-border);
+    padding: 16px;
+    margin: 0 auto 24px;
+    max-width: 460px;
+    text-align: left;
+}
+
+.kc-score-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--kc-text);
+}
+
+.kc-score-row span:last-child { color: var(--kc-cyan); }
+
+.kc-cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.kc-cta {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    padding: 14px 18px;
+    border: 4px solid #000;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.08s steps(2);
+    text-transform: uppercase;
+}
+
+.kc-cta-share {
+    background: var(--kc-cyan);
+    color: #000;
+    box-shadow: 0 6px 0 0 #000;
+}
+
+.kc-share-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--kc-cyan);
+    text-align: center;
+    margin: 8px 0 10px;
+    letter-spacing: 1px;
+}
+
+.kc-share-row {
+    margin-bottom: 14px;
+}
+
+.kc-share-hint {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 16px;
+    color: var(--kc-text-dim);
+    text-align: center;
+    margin: 0 auto 18px;
+    max-width: 460px;
+    line-height: 1.3;
+}
+
+.kc-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translate(-50%, 20px);
+    background: #000;
+    color: var(--kc-green);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    padding: 12px 16px;
+    border: 3px solid var(--kc-green);
+    box-shadow: 0 4px 0 0 var(--kc-border);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s steps(2), transform 0.18s steps(2);
+    image-rendering: pixelated;
+}
+
+.kc-toast-show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.kc-cta-linkedin {
+    background: #0a66c2;
+    color: #fff;
+    box-shadow: 0 6px 0 0 #000;
+}
+
+.kc-cta-x {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 6px 0 0 var(--kc-cyan);
+}
+
+.kc-cta-learn {
+    background: var(--kc-green);
+    color: #000;
+    box-shadow: 0 6px 0 0 #000;
+}
+
+.kc-cta-replay {
+    background: var(--kc-yellow);
+    color: #000;
+    box-shadow: 0 6px 0 0 #000;
+}
+
+.kc-cta:hover {
+    transform: translateY(-2px);
+}
+
+.kc-cta:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 0 #000;
+}
+
+/* ---------- Animations ---------- */
+@keyframes kc-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@keyframes kc-title-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes kc-shake {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-4px, 2px); }
+    40% { transform: translate(3px, -3px); }
+    60% { transform: translate(-3px, 1px); }
+    80% { transform: translate(2px, 3px); }
+    100% { transform: translate(0, 0); }
+}
+
+.kc-shake {
+    animation: kc-shake 0.4s steps(5);
+}
+
+@keyframes kc-flash-red {
+    0%, 100% { background: var(--kc-bg); }
+    50% { background: #3a0a18; }
+}
+
+.kc-flash-red {
+    animation: kc-flash-red 0.5s steps(2) 2;
+}
+
+@keyframes kc-flash-green {
+    0%, 100% { background: var(--kc-bg); }
+    50% { background: #052a13; }
+}
+
+.kc-flash-green {
+    animation: kc-flash-green 0.5s steps(2);
+}
+
+/* small floating sprites */
+.kc-sprite {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 6px;
+}

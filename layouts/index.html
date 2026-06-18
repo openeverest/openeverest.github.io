@@ -227,6 +227,18 @@
 <!-- FAQ Section -->
 {{ partial "faq.html" . }}
 
+<!-- Tiny easter-egg link to the game -->
+<div class="text-center text-sm text-gray-500 -mt-4 mb-10">
+    Bored on a Friday? Survive 7 days of 3 AM pages —
+    <a href="/kubecrisis" class="text-[#7790DE] hover:text-[#161641] font-medium">KubeCrisis &rarr;</a>
+</div>
+
+<script>
+(function () {
+    var css = "font-family:'Press Start 2P',monospace;font-size:13px;color:#7790DE;background:#0a0a1f;padding:8px 12px;border:2px solid #7790DE;line-height:1.6;";
+    console.log("%cPsst...we built a game.\n    > openeverest.io/kubecrisis\n    7 days. one cluster. your sanity.", css);
+})();
+</script>
 
 {{ partial "percona-attribution.html" . }}
 

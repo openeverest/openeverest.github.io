@@ -1,0 +1,22 @@
+{{ define "title" }}KubeCrisis - The 3 AM Pager Simulator | OpenEverest{{ end }}
+
+{{ define "main" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kubecrisis/game.css">
+
+<section class="kubecrisis-page">
+    <div class="kubecrisis-intro container mx-auto px-4 pt-10 pb-6 max-w-5xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#161641] mb-3 text-center">KubeCrisis</h1>
+        <p class="text-lg text-gray-700 text-center max-w-2xl mx-auto mb-2">
+            The 3&nbsp;AM Pager Simulator. Seven days. One database cluster.
+            Will you survive on coffee and <code>kubectl</code>, or let OpenEverest do the heavy lifting?
+        </p>
+    </div>
+
+    <div id="kubecrisis-app" class="container mx-auto px-4 pb-16 max-w-5xl"></div>
+</section>
+
+<script src="/kubecrisis/game.js" defer></script>
+{{ end }}
