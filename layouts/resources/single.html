@@ -20,54 +20,89 @@
 
         <!-- Events Section -->
         {{ if .Params.events }}
-        <section class="mb-20">
-            {{ $currentDate := now }}
-            {{ $upcomingEvents := slice }}
-            {{ $pastEvents := slice }}
-            
-            <!-- Sort events into upcoming and past -->
-            {{ range .Params.events }}
-                {{ $eventDate := time .date }}
-                {{ if $eventDate.After $currentDate }}
-                    {{ $upcomingEvents = $upcomingEvents | append . }}
-                {{ else }}
-                    {{ $pastEvents = $pastEvents | append . }}
-                {{ end }}
-            {{ end }}
-
-            <!-- Upcoming Events -->
-            {{ if $upcomingEvents }}
-            <div class="mb-16">
+        <section class="mb-20" data-events-root>
+            <!-- Upcoming Events (revealed by JS only when non-empty) -->
+            <div data-events-section="upcoming" class="mb-16" hidden>
                 <div class="flex items-center mb-8">
                     <svg class="w-8 h-8 mr-3 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-4xl font-bold text-gray-900">Upcoming Events</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {{ range sort $upcomingEvents "date" "desc" }}
-                        {{ partial "resource-card.html" (dict "item" . "type" "event" "upcoming" true) }}
-                    {{ end }}
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-events-grid="upcoming"></div>
             </div>
-            {{ end }}
 
-            <!-- Past Events -->
-            {{ if $pastEvents }}
-            <div>
+            <!-- Past Events (revealed by JS only when non-empty) -->
+            <div data-events-section="past" hidden>
                 <div class="flex items-center mb-8">
                     <svg class="w-8 h-8 mr-3 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-4xl font-bold text-gray-900">Past Events</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {{ range sort $pastEvents "date" "desc" }}
-                        {{ partial "resource-card.html" (dict "item" . "type" "event" "upcoming" false) }}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-events-grid="past"></div>
+            </div>
+
+            <!-- Pool of all event cards. JS moves them into the grids above.
+                 Visible without JS as a fallback labelled "Events". -->
+            <div data-events-section="fallback">
+                <div class="flex items-center mb-8">
+                    <svg class="w-8 h-8 mr-3 text-[#7790DE]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                    </svg>
+                    <h2 class="text-4xl font-bold text-gray-900">Events</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-events-pool>
+                    {{ range sort .Params.events "date" "desc" }}
+                        {{ partial "resource-card.html" (dict "item" . "type" "event") }}
                     {{ end }}
                 </div>
             </div>
-            {{ end }}
+
+            <script>
+                (function () {
+                    var root = document.querySelector('[data-events-root]');
+                    if (!root) return;
+                    var pool = root.querySelector('[data-events-pool]');
+                    var upcomingGrid = root.querySelector('[data-events-grid="upcoming"]');
+                    var pastGrid = root.querySelector('[data-events-grid="past"]');
+                    var fallback = root.querySelector('[data-events-section="fallback"]');
+                    if (!pool || !upcomingGrid || !pastGrid) return;
+
+                    var today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    var cards = Array.prototype.slice.call(pool.querySelectorAll('[data-event-date]'));
+                    var upcoming = [];
+                    var past = [];
+
+                    cards.forEach(function (card) {
+                        var raw = card.getAttribute('data-event-date');
+                        // Parse as local-midnight to avoid UTC offset shifting an event by a day.
+                        var parts = raw.split('-');
+                        var d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+                        if (d >= today) {
+                            upcoming.push({ card: card, date: d });
+                        } else {
+                            past.push({ card: card, date: d });
+                        }
+                    });
+
+                    upcoming.sort(function (a, b) { return a.date - b.date; }); // soonest first
+                    past.sort(function (a, b) { return b.date - a.date; });     // most recent first
+
+                    upcoming.forEach(function (entry) {
+                        var badge = entry.card.querySelector('[data-upcoming-badge]');
+                        if (badge) badge.removeAttribute('hidden');
+                        upcomingGrid.appendChild(entry.card);
+                    });
+                    past.forEach(function (entry) { pastGrid.appendChild(entry.card); });
+
+                    if (fallback && fallback.parentNode) fallback.parentNode.removeChild(fallback);
+                    if (upcoming.length) root.querySelector('[data-events-section="upcoming"]').removeAttribute('hidden');
+                    if (past.length) root.querySelector('[data-events-section="past"]').removeAttribute('hidden');
+                })();
+            </script>
         </section>
         {{ end }}
 
