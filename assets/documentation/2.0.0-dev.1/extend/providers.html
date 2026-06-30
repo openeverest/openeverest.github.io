@@ -5373,11 +5373,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Repository: <a href="https://github.com/openeverest/provider-percona-server-mongodb">openeverest/provider-percona-server-mongodb</a></li>
 </ul>
 <p><strong>Install:</strong></p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>everest-mongodb<span class="w"> </span>openeverest/everest-provider-mongodb<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--namespace<span class="w"> </span>everest-system
-</code></pre></div>
-<p><strong>Upgrade:</strong></p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>everest-mongodb<span class="w"> </span>openeverest/everest-provider-mongodb<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>provider-percona-server-mongodb<span class="w"> </span>https://openeverest.github.io/provider-percona-server-mongodb/
+helm<span class="w"> </span>repo<span class="w"> </span>update
+helm<span class="w"> </span>install<span class="w"> </span>provider-percona-server-mongodb<span class="w"> </span>provider-percona-server-mongodb/provider-percona-server-mongodb<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--namespace<span class="w"> </span>everest-system
 </code></pre></div>
 <h2 id="building-your-own-provider">Building your own Provider<a class="headerlink" href="#building-your-own-provider" title="Permanent link">&para;</a></h2>
