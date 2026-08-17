@@ -121,7 +121,7 @@
 
   function createCard(extension) {
     const card = document.createElement('article');
-    card.className = 'group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#7790DE]/50 hover:shadow-lg';
+    card.className = 'group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-colors duration-300 hover:border-[#7790DE]/50 hover:shadow-lg';
 
     const header = document.createElement('div');
     header.className = 'flex items-start gap-4 mb-5';
@@ -161,7 +161,7 @@
     heading.appendChild(textElement('h2', 'text-xl font-bold text-gray-900', extension.displayName || extension.name));
     header.append(iconWrap, heading);
 
-    const description = textElement('p', 'mb-5 min-h-[4.875rem] whitespace-normal text-gray-600 leading-relaxed line-clamp-3 transition-all duration-300 group-hover:line-clamp-none group-focus-within:line-clamp-none', (extension.description || 'No description available.').trim());
+    const description = textElement('p', 'mb-5 min-h-[4.875rem] whitespace-normal text-gray-600 leading-relaxed line-clamp-3', (extension.description || 'No description available.').trim());
     card.append(header, description);
 
     const meta = document.createElement('dl');
@@ -191,14 +191,14 @@
     const linkUrl = safeUrl(target);
     if (linkUrl) {
       const actionWrap = document.createElement('div');
-      actionWrap.className = 'grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]';
+      actionWrap.className = 'grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] md:group-focus-within:grid-rows-[1fr]';
       const actionInner = document.createElement('div');
       actionInner.className = 'overflow-hidden';
       const link = document.createElement('a');
       link.href = linkUrl;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.className = 'mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7790DE] px-4 py-2.5 font-semibold text-white opacity-0 transition-opacity duration-300 hover:bg-[#161641] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2 group-hover:opacity-100 group-focus-within:opacity-100';
+      link.className = 'mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7790DE] px-4 py-2.5 font-semibold text-white transition-opacity duration-300 hover:bg-[#161641] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100';
       link.textContent = extension.access === 'gated' ? 'Request access' : 'View extension';
       link.insertAdjacentHTML('beforeend', '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h5v5m0-5L10 14M5 7v12h12v-5"/></svg>');
       actionInner.appendChild(link);
