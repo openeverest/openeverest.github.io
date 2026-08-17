@@ -191,14 +191,14 @@
     const linkUrl = safeUrl(target);
     if (linkUrl) {
       const actionWrap = document.createElement('div');
-      actionWrap.className = 'grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] md:group-focus-within:grid-rows-[1fr]';
+      actionWrap.className = 'grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out [@media(hover:hover)]:grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]';
       const actionInner = document.createElement('div');
       actionInner.className = 'overflow-hidden';
       const link = document.createElement('a');
       link.href = linkUrl;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.className = 'mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7790DE] px-4 py-2.5 font-semibold text-white transition-opacity duration-300 hover:bg-[#161641] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100';
+      link.className = 'mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7790DE] px-4 py-2.5 font-semibold text-white transition-opacity duration-300 hover:bg-[#161641] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2 [@media(hover:hover)]:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100';
       link.textContent = extension.access === 'gated' ? 'Request access' : 'View extension';
       link.insertAdjacentHTML('beforeend', '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h5v5m0-5L10 14M5 7v12h12v-5"/></svg>');
       actionInner.appendChild(link);
