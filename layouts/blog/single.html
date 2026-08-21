@@ -90,6 +90,13 @@
     </header>
     {{ end }}
 
+    {{ if .Params.toc }}
+    <nav aria-label="Table of contents" class="mb-10 rounded-xl border border-gray-200 bg-gray-50 p-5 prose prose-sm max-w-none prose-a:text-[#7790DE] prose-a:no-underline hover:prose-a:text-[#161641]">
+        <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2 not-prose">On this page</p>
+        {{ .TableOfContents }}
+    </nav>
+    {{ end }}
+
     <div class="prose prose-lg max-w-none">
         {{ .Content }}
     </div>
