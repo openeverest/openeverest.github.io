@@ -60,7 +60,22 @@
                 </a>
             </div>
         </div>
-        
+
+        <!-- OpenEverest for {technology} -->
+        {{ with .Site.GetPage "/for" }}
+        {{ $techs := where .Pages "Params.hidden" "!=" true }}
+        {{ if $techs }}
+        <div class="mt-8 pt-8 border-t border-gray-700">
+            <h3 class="text-lg font-bold mb-4">OpenEverest for</h3>
+            <ul class="flex flex-wrap gap-x-6 gap-y-2">
+                {{ range $techs.ByWeight }}
+                <li><a href="{{ .Permalink }}" class="text-gray-300 hover:text-white transition-colors">{{ .Params.technology | default .Title }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+        {{ end }}
+
         <!-- Copyright -->
         <div class="text-center mt-8 pt-8 border-t border-gray-700">
             <p class="text-gray-400 text-sm leading-6">Copyright © OpenEverest a Series of LF Projects, LLC.<br>For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" class="text-gray-400 hover:text-white transition-colors">lfprojects.org/policies/</a>.</p>
