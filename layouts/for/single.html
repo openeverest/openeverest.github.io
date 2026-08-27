@@ -197,5 +197,12 @@
             </div>
         </div>
     </section>
+
+    <!-- Trademark note -->
+    {{ with .Params.trademark_note }}
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <p class="text-xs text-gray-400 text-center leading-relaxed">{{ . | markdownify }}</p>
+    </section>
+    {{ end }}
 </div>
 {{ end }}
