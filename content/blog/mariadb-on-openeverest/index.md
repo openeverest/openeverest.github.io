@@ -1,7 +1,7 @@
 ---
 title: "Running MariaDB on OpenEverest"
 date: 2026-08-26T09:00:00
-draft: true
+draft: false
 image:
     url: blog-mariadb-intro.png
     attribution:
