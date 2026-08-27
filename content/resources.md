@@ -7,6 +7,17 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Meet our team at Percona.Connect Paris?"
+    url: "https://connect.percona.com/paris-2026/"
+    event_name: "Percona.Connect Paris"
+    location: "Paris, Comet Cœur Défense"
+    date: 2026-10-15
+    speaker: "Diogo Recharte"
+    speaker_slug: "recharte"
+    type: "conference"
+    image: "/Users/marcingwozdzsolanica/Desktop/PerconaConnectParis.png"
+    description: "Thursday, October 15 · 1:00–8:00 PM. Kubernetes for MySQL, PostgreSQL, and MongoDB: Deploy, automate, scale."
+  
   - title: "Meet OpenEverest at FrOSCon 2026"
     url: "https://froscon.org/en/program/exhibitors/"
     event_name: "FrOSCon 2026 — Free and Open Source Software Conference"
