@@ -15,7 +15,7 @@ events:
     speaker: "Diogo Recharte"
     speaker_slug: "recharte"
     type: "conference"
-    image: "/Users/marcingwozdzsolanica/Desktop/PerconaConnectParis.png"
+    image: "/images/resources/PerconaConnectParis.png"
     description: "Thursday, October 15 · 1:00–8:00 PM. Kubernetes for MySQL, PostgreSQL, and MongoDB: Deploy, automate, scale."
   
   - title: "Meet OpenEverest at FrOSCon 2026"
