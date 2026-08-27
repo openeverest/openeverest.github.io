@@ -7,7 +7,18 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
-  - title: "Meet our team at Percona.Connect Paris?"
+  - title: "Meet our team at Percona.Connect Amsterdam"
+    url: "https://www.percona.com/events/"
+    event_name: "Percona.Connect Amsterdam"
+    location: "Amsterdam"
+    date: 2026-11-03
+    speaker: "Marcin Gwozdz"
+    speaker_slug: "gwozdzm"
+    type: "conference"
+    image: "/images/resources/PerconaConnect.png"
+    description: "Thursday, November 3. What's new in OpenEverest?"
+  
+  - title: "Meet our team at Percona.Connect Paris"
     url: "https://connect.percona.com/paris-2026/"
     event_name: "Percona.Connect Paris"
     location: "Paris, Comet Cœur Défense"
