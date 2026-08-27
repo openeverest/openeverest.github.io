@@ -35,15 +35,15 @@ capabilities:
   - icon: "backup"
     title: "Backups & PITR"
     description: "On-demand and scheduled backups with point-in-time recovery to S3-compatible storage via Percona Backup for MongoDB."
-  - icon: "storage"
-    title: "Flexible Storage"
-    description: "Pick the storage class per cluster and expand volumes online as your data grows."
   - icon: "config"
     title: "Advanced Configuration"
     description: "Tune mongod and mongos parameters, external access, and topology without touching kubectl."
   - icon: "private-deploy"
     title: "TLS & Security"
     description: "Operator-managed certificate management and encrypted connections between clients and nodes."
+  - icon: "monitoring"
+    title: "Monitoring with PMM"
+    description: "When enabled, metrics are shipped to Percona Monitoring and Management (PMM), so you can use the PMM UI to track performance, queries, and health of your clusters."
 
 # Open-source repositories powering this integration.
 repos:
@@ -56,6 +56,17 @@ powered_by:
   name: "percona/percona-server-mongodb-operator"
   url: "https://github.com/percona/percona-server-mongodb-operator"
   description: "MongoDB clusters on OpenEverest are powered by the open-source Percona Operator for MongoDB, which manages the full lifecycle of Percona Server for MongoDB on Kubernetes."
+
+# Ecosystem plugins and extensions.
+ecosystem:
+  - title: "MongoDB Explorer"
+    label: "openeverest/plugin-mongodb-explorer"
+    url: "https://github.com/openeverest/plugin-mongodb-explorer"
+    description: "An OpenEverest UI plugin that adds a MongoDB Explorer tab to cluster pages. Browse databases and collections, run find queries with filter, projection, sort, and limit, and view results as a table or raw JSON — all without leaving the UI."
+  - title: "Percona Monitoring and Management (PMM)"
+    label: "percona/pmm"
+    url: "https://github.com/percona/pmm"
+    description: "When monitoring is enabled, metrics are shipped to PMM. Use the PMM UI for dashboards, query analytics, and alerting across your MongoDB clusters."
 
 # FAQ: rendered as an accordion and emitted as FAQPage structured data for SEO.
 faq:
@@ -71,5 +82,5 @@ faq:
     answer: "OpenEverest tracks the versions supported by the underlying Percona Operator for MongoDB. See the provider repository for the current version matrix."
 
 # Trademark attribution, rendered at the bottom of the page.
-trademark_note: "MongoDB, MongoDB Atlas, and Ops Manager are trademarks of MongoDB, Inc. Percona and Percona Server for MongoDB are trademarks of Percona, LLC. OpenEverest is not affiliated with, endorsed by, or sponsored by MongoDB, Inc. or Percona, LLC. These names are used for identification and comparison purposes only."
+trademark_note: "MongoDB, MongoDB Atlas, and Ops Manager are trademarks of MongoDB, Inc. Percona, Percona Server for MongoDB, and Percona Monitoring and Management (PMM) are trademarks of Percona, LLC. OpenEverest is not affiliated with, endorsed by, or sponsored by MongoDB, Inc. or Percona, LLC. These names are used for identification and comparison purposes only."
 ---
