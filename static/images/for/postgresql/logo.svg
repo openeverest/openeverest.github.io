@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 96" role="img" aria-labelledby="title desc">
+  <title id="title">PostgreSQL</title>
+  <desc id="desc">PostgreSQL wordmark placeholder for the OpenEverest page</desc>
+  <g fill="none" stroke="#9DB3FF" stroke-width="5">
+    <ellipse cx="45" cy="25" rx="27" ry="10"/>
+    <path d="M18 25v31c0 6 12 11 27 11s27-5 27-11V25"/>
+    <path d="M18 40c0 6 12 11 27 11s27-5 27-11" opacity=".7"/>
+  </g>
+  <text x="88" y="59" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">PostgreSQL</text>
+</svg>

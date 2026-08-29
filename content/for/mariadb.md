@@ -50,9 +50,9 @@ repos:
 
 # Attribution to the operator that powers the databases.
 powered_by:
-  name: "mariadb-operator/mariadb-operator"
-  url: "https://github.com/mariadb-operator/mariadb-operator"
-  description: "MariaDB clusters on OpenEverest are powered by the open-source mariadb-operator, which manages the full lifecycle of MariaDB on Kubernetes."
+  - name: "mariadb-operator/mariadb-operator"
+    url: "https://github.com/mariadb-operator/mariadb-operator"
+    description: "MariaDB clusters on OpenEverest are powered by the open-source mariadb-operator, which manages the full lifecycle of MariaDB on Kubernetes."
 
 # FAQ: rendered as an accordion and emitted as FAQPage structured data for SEO.
 faq:
