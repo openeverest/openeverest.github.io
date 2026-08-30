@@ -97,11 +97,15 @@
                 {{ with .Params.powered_by }}
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Powered by</h2>
-                    <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
-                        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer"
-                           class="text-lg font-semibold text-[#7790DE] hover:text-[#161641]">{{ .name }}</a>
-                        {{ with .description }}
-                        <p class="text-gray-600 mt-2 leading-relaxed">{{ . }}</p>
+                    <div class="space-y-4">
+                        {{ range . }}
+                        <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer"
+                               class="text-lg font-semibold text-[#7790DE] hover:text-[#161641]">{{ .name }}</a>
+                            {{ with .description }}
+                            <p class="text-gray-600 mt-2 leading-relaxed">{{ . }}</p>
+                            {{ end }}
+                        </div>
                         {{ end }}
                     </div>
                 </div>

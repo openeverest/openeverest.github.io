@@ -53,9 +53,9 @@ repos:
 
 # Attribution to the operator that powers the databases.
 powered_by:
-  name: "percona/percona-server-mongodb-operator"
-  url: "https://github.com/percona/percona-server-mongodb-operator"
-  description: "MongoDB clusters on OpenEverest are powered by the open-source Percona Operator for MongoDB, which manages the full lifecycle of Percona Server for MongoDB on Kubernetes."
+  - name: "percona/percona-server-mongodb-operator"
+    url: "https://github.com/percona/percona-server-mongodb-operator"
+    description: "MongoDB clusters on OpenEverest are powered by the open-source Percona Operator for MongoDB, which manages the full lifecycle of Percona Server for MongoDB on Kubernetes."
 
 # Ecosystem plugins and extensions.
 ecosystem:
