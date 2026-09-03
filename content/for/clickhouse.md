@@ -1,7 +1,7 @@
 ---
 title: "ClickHouse"
 technology: "ClickHouse"
-summary: "Provision, scale, and back up production-grade ClickHouse clusters on any Kubernetes cluster. Standalone or replicated topologies through a single UI and API, powered by the Altinity Kubernetes Operator for ClickHouse."
+summary: "Provision, scale, and secure production-grade ClickHouse clusters on any Kubernetes cluster. Standalone or replicated topologies through a single UI and API, powered by the Altinity Kubernetes Operator for ClickHouse."
 logo: "/images/for/clickhouse/logo.svg"
 weight: 4
 draft: true
@@ -13,15 +13,12 @@ slides:
   - image: "/images/for/clickhouse/for-clickhouse-0.png"
     title: "Guided ClickHouse Provisioning"
     description: "Pick a standalone or replicated topology, ClickHouse version, and resources in a few clicks — no manual manifests."
-  # - image: "/images/for/clickhouse/for-clickhouse-1.png"
-  #   title: "Cluster Overview"
-  #   description: "After creation get the connection details and high level overview of the instance."
-  # - image: "/images/for/clickhouse/for-clickhouse-2.png"
-  #   title: "Backups & Recovery"
-  #   description: "Schedule backups and restore your ClickHouse clusters with ease."
-  # - image: "/images/for/clickhouse/for-clickhouse-3.png"
-  #   title: "Advanced Configuration"
-  #   description: "Fine tune your ClickHouse instances, storage class, and resource allocation."
+  - image: "/images/for/clickhouse/for-clickhouse-1.png"
+    title: "Advanced Configuration"
+    description: "Fine tune your ClickHouse instances, storage class, and resource allocation."
+  - image: "/images/for/clickhouse/for-clickhouse-2.png"
+    title: "Cluster Overview"
+    description: "After creation get the connection details and high level overview of the instance."
 
 # Key capabilities. `icon` maps to layouts/partials/feature-icon.html keywords.
 capabilities:
@@ -34,12 +31,15 @@ capabilities:
   - icon: "database-engines"
     title: "Version Selection"
     description: "Pick the ClickHouse version for your cluster directly from the provisioning flow."
-  - icon: "backup"
-    title: "Backups"
-    description: "Configure and schedule backups for your ClickHouse clusters from the OpenEverest UI."
+  - icon: "monitoring"
+    title: "Monitoring"
+    description: "A Prometheus metrics endpoint is always exposed, with an optional PodMonitor managed for you from the provisioning flow."
+  - icon: "private-deploy"
+    title: "Secure Connections"
+    description: "Opt in to TLS for encrypted client connections, backed by cert-manager, and connect with an automatically provisioned admin user."
   - icon: "config"
     title: "Advanced Configuration"
-    description: "Tune CPU, memory, disk, and storage class without touching kubectl or the underlying ClickHouseInstallation directly."
+    description: "Tune CPU, memory, disk, storage class, external access, and ClickHouse server settings without touching kubectl or the underlying ClickHouseInstallation directly."
 
 # Open-source repositories powering this integration.
 repos:
@@ -61,8 +61,10 @@ faq:
     answer: "ClickHouse clusters are managed by the open-source [Altinity Kubernetes Operator for ClickHouse](https://github.com/Altinity/clickhouse-operator), wrapped by the [provider-altinity-clickhouse](https://github.com/openeverest/provider-altinity-clickhouse) provider, which handles provisioning and lifecycle management on Kubernetes."
   - question: "Does OpenEverest support high availability for ClickHouse?"
     answer: "Yes. You can choose a replicated topology with multiple replicas in addition to a standalone single-node deployment."
+  - question: "Does OpenEverest support TLS and authentication for ClickHouse?"
+    answer: "Yes. Each cluster is provisioned with a dedicated admin user, and you can opt in to TLS for encrypted client connections (this requires cert-manager in the cluster)."
   - question: "Can I back up and restore ClickHouse?"
-    answer: "You can configure and schedule backups for your ClickHouse clusters from the OpenEverest UI."
+    answer: "Not yet. Backups, point-in-time recovery, and restore are on the roadmap for the ClickHouse provider but are not available today."
   - question: "Which ClickHouse versions are supported?"
     answer: "OpenEverest tracks the versions supported by the underlying provider-altinity-clickhouse. See the provider repository for the current version matrix."
 
