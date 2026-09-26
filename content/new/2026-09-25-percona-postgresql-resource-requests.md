@@ -4,7 +4,7 @@ date: 2026-09-25T10:04:07
 draft: false
 topics:
  - percona-postgresql
-n - postgresql
+ - postgresql
  - kubernetes
  - releases
 link: https://github.com/openeverest/provider-percona-postgresql/releases/tag/v0.3.0
