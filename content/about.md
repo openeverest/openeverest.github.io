@@ -8,7 +8,7 @@ summary: Learn about OpenEverest, the first open-source platform for automated d
 
 ## What is OpenEverest?
 
-OpenEverest is the **first open-source platform** for automated database provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
+OpenEverest is the **first open-source platform** for automated database, storage and LLMs provisioning and management. It supports multiple database technologies and can be hosted on any Kubernetes infrastructure, in the cloud or on-premises.
 
 ## Why Choose OpenEverest?
 

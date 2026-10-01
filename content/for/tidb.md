@@ -2,6 +2,7 @@
 title: "TiDB"
 technology: "TiDB"
 summary: "Run distributed, MySQL-compatible TiDB clusters on any Kubernetes cluster. Scale SQL, storage, and analytics independently, protect data with backups and point-in-time recovery, and manage it all through a single UI and API, powered by TiDB Operator v2."
+tagline: "Distributed, MySQL-compatible SQL with built-in HTAP."
 logo: "/images/for/tidb/logo.png"
 weight: 7
 draft: false
