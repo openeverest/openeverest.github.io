@@ -3,6 +3,7 @@ title: "ClickHouse"
 technology: "ClickHouse"
 summary: "Provision, scale, and secure production-grade ClickHouse clusters on any Kubernetes cluster. Standalone or replicated topologies through a single UI and API, powered by the Altinity Kubernetes Operator for ClickHouse."
 logo: "/images/for/clickhouse/logo.svg"
+tagline: "Real-time analytics on replicated clusters."
 weight: 5
 draft: false
 

@@ -3,6 +3,7 @@ title: "MySQL"
 technology: "MySQL"
 summary: "Provision, scale, and back up production-grade MySQL clusters on any Kubernetes cluster. Synchronous replication with Percona XtraDB Cluster, automated backups, and point-in-time recovery through a single UI and API."
 logo: "/images/for/mysql/logo.svg"
+tagline: "Synchronous replication with Percona XtraDB Cluster."
 weight: 1
 draft: false
 

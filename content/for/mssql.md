@@ -3,6 +3,7 @@ title: "Microsoft SQL Server"
 technology: "Microsoft SQL Server"
 summary: "Solanica's Microsoft SQL Server solution for OpenEverest. Provision standalone instances or Always-On Availability Groups, with native backups and point-in-time recovery through a single UI and API, powered by the Solanica MSSQL Operator."
 logo: "/images/for/mssql/logo.svg"
+tagline: "Always-On Availability Groups on Kubernetes."
 weight: 6
 draft: false
 
