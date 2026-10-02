@@ -20,10 +20,10 @@ sections:
 
   - title: "Modular, Multi-Engine Architecture"
     icon: "database-engines"
-    description: "OpenEverest treats database engines as plugins. Today it ships with support for PostgreSQL, MySQL, and MongoDB, but the architecture is designed so any Kubernetes operator can be added without changing the core platform."
+    description: "OpenEverest treats every technology as a provider. The catalog spans relational, distributed SQL, NoSQL, analytics, in-memory, and AI workloads, and any Kubernetes operator can be added without changing the core platform."
     items:
-      - title: "PostgreSQL, MySQL, MongoDB Today"
-        description: "Production-grade support for the three most popular open-source database engines, each managed by a dedicated Kubernetes operator."
+      - title: "A Growing Catalog"
+        description: "MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, TiDB, MongoDB, Apache Cassandra, ClickHouse, Valkey, and KServe, each managed by a dedicated Kubernetes operator."
       - title: "Bring Your Own Operator"
         description: "The plugin system lets you integrate additional database operators. The core platform stays the same; only the operator layer changes."
       - title: "Unified Control Plane"

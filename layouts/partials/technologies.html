@@ -2,7 +2,7 @@
 {{- $techs := first 8 (where site.RegularPages "Section" "for").ByWeight -}}
 {{- if $techs }}
 <section class="technologies mb-24">
-    <h2 class="text-4xl font-bold mb-12 text-center text-gray-900 max-w-3xl mx-auto leading-tight">The technologies you know,<br class="hidden md:block"> <span class="bg-gradient-to-r from-[#7790DE] to-[#3A55A9] bg-clip-text text-transparent">one open-source platform.</span></h2>
+    <h2 class="text-4xl font-bold mb-12 text-center text-gray-900 max-w-3xl mx-auto leading-tight">The technologies you know, <span class="md:block"><span class="bg-gradient-to-r from-[#7790DE] to-[#3A55A9] bg-clip-text text-transparent">one open-source platform.</span></span></h2>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {{- range $techs }}
         {{- $name := .Params.technology | default .Title }}
