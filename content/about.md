@@ -27,15 +27,17 @@ Skip the complexity of building your own database platform. Everest provides a p
 - **No Licensing Fees**: Use and modify the software freely
 - **Active Development**: Regular updates and new features
 
-## Multi-Database Support
+## Multi-Technology Support
 
-While Everest currently supports:
+Every technology is delivered as a provider, so the catalog keeps growing without changes to the core platform. Today OpenEverest supports:
 
-- PostgreSQL
-- MySQL
-- MongoDB
+- **Relational and distributed SQL**: MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, TiDB
+- **NoSQL**: MongoDB, Apache Cassandra
+- **Analytics**: ClickHouse
+- **In-memory key-value**: Valkey
+- **AI model serving**: KServe
 
-More database engines are coming soon, and the plugin architecture will enable even broader support.
+See [all technologies](/for/), or build your own provider with the Provider SDK.
 
 ## Get Started Today
 

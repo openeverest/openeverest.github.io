@@ -47,7 +47,7 @@ sections:
     description: "Production databases need tuning. OpenEverest exposes engine-level parameters and network controls without requiring kubectl access."
     items:
       - title: "Engine Parameters"
-        description: "Override PostgreSQL, MySQL, or MongoDB configuration knobs directly in the cluster spec."
+        description: "Override engine configuration knobs, from my.cnf and postgresql.conf to Valkey and ClickHouse settings, directly in the instance spec."
       - title: "External Access"
         description: "Expose databases via LoadBalancer, NodePort, or keep them cluster-internal. Control ingress per cluster."
       - title: "Custom Sidecars"

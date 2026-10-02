@@ -1,7 +1,7 @@
 slides:
   - image: "/images/website-misc/openeverest-screen-0.png"
     title: "Unified Database Dashboard"
-    description: "Manage PostgreSQL, MySQL, MongoDB and other clusters from a single control plane — across any Kubernetes infrastructure."
+    description: "Manage databases, caches, and AI workloads from a single control plane — across any Kubernetes infrastructure."
 
   - image: "/images/website-misc/openeverest-components-screen-0.png"
     title: "Visual Component Explorer"
