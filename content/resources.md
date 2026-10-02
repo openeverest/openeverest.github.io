@@ -39,6 +39,17 @@ events:
     type: "conference"
     image: "/images/resources/builddevcon-2026-vector-databases.png"
 
+  - title: "Beyond the Sidecar: Reconciling Database Telemetry Across Upstream Kubernetes Operators"
+    url: "https://osoday.com/schedule"
+    event_name: "Open Source Observability Day 2026"
+    location: "Virtual Conference"
+    date: 2026-10-15
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/osod-2026-spronin.jpg"
+    description: "Thursday, October 15 · 3:34–4:02 PM UTC."
+
   - title: "Meet our team at Percona.Connect Amsterdam"
     url: "https://www.percona.com/events/"
     event_name: "Percona.Connect Amsterdam"
