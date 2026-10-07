@@ -13,7 +13,7 @@ summary: Serve every model behind one HTTPS, OpenAI-compatible endpoint with a p
 
 The KServe provider now ships an AI Gateway, built on Envoy AI Gateway. Every model you deploy can be published on one shared, OpenAI-compatible endpoint - the same experience as a hosted AI API, running on your own Kubernetes cluster and GPUs.
 
-What you get when you set **External access** to **Envoy AI Gateway**:
+What you get when you set *External access* to *Envoy AI Gateway*:
 
 - **One endpoint for all models.** Clients pick the model with the standard OpenAI `model` field, so the OpenAI SDK and other OpenAI-compatible tools work without code changes.
 - **An API key per model.** OpenEverest generates it and shows it in the connection details. A missing key returns `401`; a key for a different model returns `403`.
@@ -22,4 +22,4 @@ What you get when you set **External access** to **Envoy AI Gateway**:
 
 Before, every model needed its own Service or load balancer, and there was no authentication or usage control in front of it.
 
-Available in provider-kserve v0.2.0. For a step-by-step walkthrough - installation, HTTPS, deploying a model, and splitting one model across several GPU nodes - read [Model-as-a-Service with OpenEverest](https://solanica.io/blog/model-as-a-service-with-openeverest/). For an overview of everything the provider does, see [OpenEverest for KServe](https://openeverest.io/for/kserve/).
+Available in provider-kserve starting v0.2.0. For a step-by-step walkthrough - installation, HTTPS, deploying a model, and splitting one model across several GPU nodes - read [Model-as-a-Service with OpenEverest](https://solanica.io/blog/model-as-a-service-with-openeverest/). For an overview of everything the provider does, see [OpenEverest for KServe](https://openeverest.io/for/kserve/).
