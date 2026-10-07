@@ -10,7 +10,7 @@ staticDir = ['static', 'assets']
   author = 'OpenEverest Team'
   defaultSocialImage = '/images/brandkit/hero-image-2x1-ratio.png'
   apiSpecURL = 'https://raw.githubusercontent.com/percona/everest/refs/tags/v${version}/docs/spec/openapi.yml'
-  defaultApiVersion = '2.0.0-dev.3'
+  defaultApiVersion = '2.0.0-dev.4'
 
 [pagination]
   pagerSize = 10

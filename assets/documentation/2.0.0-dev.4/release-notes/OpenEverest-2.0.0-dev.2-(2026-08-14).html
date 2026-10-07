@@ -1,0 +1,5884 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation">
+      
+      
+        <meta name="author" content="OpenEverest">
+      
+      
+        <link rel="canonical" href="https://openeverest.io/documentation/release-notes/OpenEverest-2.0.0-dev.2-%282026-08-14%29.html">
+      
+      
+        <link rel="prev" href="OpenEverest-2.0.0-dev.3-%282026-09-17%29.html">
+      
+      
+        <link rel="next" href="OpenEverest-1.16.2-%282026-07-30%29.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/everest-fav.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>OpenEverest-2.0.0-dev.2-(2026-08-14) - OpenEverest</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="../css/percona.css">
+    
+      <link rel="stylesheet" href="../css/design.css">
+    
+      <link rel="stylesheet" href="../css/nocopy.css">
+    
+      <link rel="stylesheet" href="../css/osano.css">
+    
+      <link rel="stylesheet" href="../css/everest.css">
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-J4J70BNH0G"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-J4J70BNH0G",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-J4J70BNH0G",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNB0XD7Y6M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JNB0XD7Y6M');
+</script>
+
+
+
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OpenEverest - OpenEverest-2.0.0-dev.2-(2026-08-14)" />
+<meta property="og:image"
+  content="https://openeverest.io/documentation/current/images/open-everest-social-media-sharings-cover.jpg">
+<meta property="og:url" content="https://openeverest.io/documentation/current">
+<img referrerpolicy="no-referrer-when-downgrade"
+  src="https://static.scarf.sh/a.png?x-pxid=acbfc89c-7a96-4ca9-b2a7-cc7fe84477e5" class="tracking-pixel" alt=""
+  aria-hidden="true" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#whats-new-in-openeverest-200-developer-preview-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+
+  <!-- Super Nav -->
+  <div class="superNav">
+    <div class="md-header__inner md-grid">
+      <a href="https://openeverest.io/docs/" title="OpenEverest Documentation home page">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <mask id="a" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+            <path d="M0 0h24v24H0z" />
+          </mask>
+          <g mask="url(#a)">
+            <path d="m7.825 13 5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825Z" />
+          </g>
+        </svg>
+        <span>OpenEverest Documentation</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="md-header__inner md-grid" aria-label="Header">
+
+    <!-- Link to home -->
+    <a href="../index.html" title="OpenEverest"
+      class="md-header__button md-logo" aria-label="OpenEverest" data-md-component="logo">
+      
+  <img src="../assets/everest-mark.svg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <a href="../index.html" class="md-header__topic">
+          <span class="md-ellipsis">
+            OpenEverest
+          </span>
+        </a>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+            OpenEverest-2.0.0-dev.2-(2026-08-14)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+    
+    <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Color theme set to Automatic. Click to change"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Automatic. Click to change" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="percona-light" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Light Mode. Click to change"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Light Mode. Click to change" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="percona-dark" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Dark Mode. Click to change"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Dark Mode. Click to change" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+    
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      <a href="https://github.com/openeverest/everest-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    openeverest/everest-doc
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+
+
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OpenEverest" class="md-nav__button md-logo" aria-label="OpenEverest" data-md-component="logo">
+      
+  <img src="../assets/everest-mark.svg" alt="logo">
+
+    </a>
+    OpenEverest
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/openeverest/everest-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    openeverest/everest-doc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to OpenEverest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-install.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/databases-on-kubernetes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running databases on Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extend OpenEverest
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extend OpenEverest
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extend/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extend/providers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extend/generic-plugins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extend/hub.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Install
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup and prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup and prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/prerequisites.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/supported_operators_k8s.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported technologies and Kubernetes versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/eks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create Kubernetes cluster on Amazon Elastic Kubernetes Service (EKS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/gke.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create Kubernetes cluster on Google Kubernetes Engine (GKE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everestctl.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install everestctl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_helm_charts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install OpenEverest using Helm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/installEverest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install OpenEverest using everestctl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_and_expose_via_ingress.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install OpenEverest and expose via Ingress controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/install_everest_openshift.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install OpenEverest on OpenShift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Upgrade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/upgrade_with_helm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade OpenEverest using Helm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/upgrade_with_cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade OpenEverest using everestctl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uninstall
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Uninstall
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall/uninstall_everest_helm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uninstall OpenEverest using Helm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall/uninstallEverest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uninstall OpenEverest using everestctl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Administer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/manage_users.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/instance_presets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instance presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Role-based access control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/Idp_groups_integration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RBAC integration with IdP groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pod scheduling policies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pod scheduling policies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/affinity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leverage pod scheduling policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/default_policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Pod scheduling policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/custom_policies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Pod scheduling policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/apply_policies_cluster.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apply Pod scheduling policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/rbac_pod_scheduling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pod Scheduling Policies with RBAC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/use_cases.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administer/manage_namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/sso_idp_integration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Single Sign-On (SSO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/session_management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/tls_setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transport Layer Security (TLS) support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Networking
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/load_balancer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load balancer overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/load_balancer_scenarios.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load balancer scenarios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/load_balancer_config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure load balancer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/nodeport_support.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NodePort exposure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_10_5" id="__nav_10_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Split-Horizon DNS for Percona Server for MongoDB
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Split-Horizon DNS for Percona Server for MongoDB
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/split-horizon_dns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/split-horizon_scenarios.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Split-Horizon DNS scenarios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/split-horizon_everest_CRD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Split-Horizon DNS config Custom Resource Definition (CRD)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/split-horizon_create_CA_certs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generate CA certificates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/split-horizon_config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure Split-Horizon DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Back up and restore data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Back up and restore data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/AboutBackups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backup storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/backup_storage/CreateStorage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create backup storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/backup_storage/EditStorage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edit backup storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/CreateOnDemand.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create on-demand and scheduled backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/EnablePITR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enable Point-in-time recovery (PITR)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/createBackups/create_new_database.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create database from backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_6" id="__nav_11_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import external database backups
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Import external database backups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_6_2" id="__nav_11_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataImporters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DataImporters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/psmdb_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona MongoDB Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/pxc_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona MySQL Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/dataimporters/pg_dataimporter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona PostgreSQL Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/backup_importers_rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RBAC permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backups_and_restore/RestoreBackup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restore backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Use
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/database_view.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database view
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/db_provision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provision a database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/cluster-management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manage clusters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/pause_resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pause and resume databases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/mongo_sharding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MongoDB sharding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/scaling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scale database deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/manual_storage_scaling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual storage scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/db_engine_config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure database engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/monitor_endpoints.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/multi-namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple namepaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use/API_rate_limit.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API rate limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot/installation_overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation workflow and components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot/troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics for common issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot/faq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequently asked questions (FAQ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest operator CRD
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OpenEverest operator CRD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/crd_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/database_cluster_management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manage database clusters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/backup_storage_config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure backup storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/crd_monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configure monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/dbcluster_examples.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DatabaseCluster examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/troubleshooting_dbcluster_issues.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting database cluster issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_rbac.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breaking API changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/known_limitations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/postgresql12_migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from PostgreSQL 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telemetry on OpenEverest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/migration_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate to OpenEverest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/AI_disclaimer_for_docs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI usage disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/copyright.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Copyright and licensing information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/trademark-policy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trademark and copyright policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release_notes_index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-2.0.0-dev.4-%282026-10-07%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-2.0.0-dev.4-(2026-10-07)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-2.0.0-dev.3-%282026-09-17%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-2.0.0-dev.3-(2026-09-17)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-2.0.0-dev.2-(2026-08-14)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="OpenEverest-2.0.0-dev.2-%282026-08-14%29.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-2.0.0-dev.2-(2026-08-14)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 Release highlights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#everestctl-becomes-a-real-day-2-cli-for-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        everestctl becomes a real day-2 CLI for v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#point-in-time-recovery-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point-in-time recovery, end to end
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-configmaps-and-schema-driven-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets, ConfigMaps, and schema-driven credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditable-event-stream-with-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditable event stream with replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes-for-provider-and-plugin-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking changes for provider and plugin developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed-improved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed &amp; Improved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-openeverest-200-developer-preview-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Installing OpenEverest 2.0.0 Developer Preview 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1-support-and-end-of-life-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1 Support and End-of-Life Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-involved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get involved
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thanks-to-our-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks to our contributors
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.16.2-%282026-07-30%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.16.2-(2026-07-30)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.16.1-%282026-07-08%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.16.1-(2026-07-08)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-2.0.0-dev.1-%282026-05-29%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-2.0.0-dev.1-(2026-05-29)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.15.2-%282026-05-06%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.15.2-(2026-05-06)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.15.1-%282026-05-01%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.15.1-(2026-05-01)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.15.0-%282026-04-30%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.15.0-(2026-04-30)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.14.0-%282026-03-10%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.14.0-(2026-03-10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OpenEverest-1.13.0-%282026-02-04%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenEverest-1.13.0-(2026-02-04)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.12.0-%282026-01-19%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest-1.12.0-(2026-01-19)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.11.0-%282026-01-12%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest-1.11.0-(2026-01-12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.10.0-%282025-11-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.10.0 (2025-11-28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.9.0-%282025-09-23%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.9.0 (2025-09-23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.8.1-%282025-08-11%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.8.1 (2025-08-11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.8.0-%282025-07-16%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.8.0 (2025-07-16)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.7.0-%282025-05-29%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.7.0 (2025-05-29)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.6.0-%282025-04-16%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.6.0 (2025-04-16)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.5.0-%282025-03-04%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.5.0 (2025-04-03)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.4.0-%282025-01-07%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.4.0 (2025-01-07)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.3.0-%282024-11-18%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.3.0 (2024-11-18)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.2.0-%282024-10-01%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.2.0 (2024-10-01)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.1.1-%282024-08-22%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.1.1 (2024-08-22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.1.0-%282024-08-12%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.1.0 (2024-08-12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.0.1-%282024-07-08%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.0.1 (2024-07-08)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-1.0.0-%282024-06-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 1.0.0 (2024-06-28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.10.1-%282024-05-23%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona-Everest 0.10.1 (2024-05-23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.10.0-%282024-05-03%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.10.0 (2024-05-03)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.9.1-%282024-04-02%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.9.1 (2024-04-02)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.9.0-%282024-04-01%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.9.0 (2024-04-01)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.8.0-%282024-02-22%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.8.0 (2024-02-22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.7.0-%282024-01-31%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.7.0 (2024-01-31)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.6.0-%282024-01-11%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.6.0 (2024-01-11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.5.0-%282023-11-28%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.5.0 (2023-11-28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Percona-Everest-0.4.0-%282023-10-30%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Everest 0.4.0 (2023-10-30)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-help.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get help
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+      <br>
+      <label class="md-nav__title" for="__drawer">
+      </label>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <div data-banner="data-banner">
+  <div class="actions">
+    <a href="https://github.com/openeverest/everest-doc/edit/main/docs/release-notes/OpenEverest-2.0.0-dev.2-(2026-08-14).md" title="Edit this page on GitHub" class="edit-page-link">
+      <span class="edit-page-icon">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      </span>
+      <span class="edit-page-text">Edit this page on GitHub</span>
+    </a>
+  </div>
+</div>
+    </div>
+    <div class="md-sidebar__inner">
+      <div data-banner="data-banner">
+ <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor"
+        style="opacity: 0.8;">
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path
+            d="M11 23.59v-3.6c-5.01-.26-9-4.42-9-9.49C2 5.26 6.26 1 11.5 1S21 5.26 21 10.5c0 4.95-3.44 9.93-8.57 12.4l-1.43.69zM11.5 3C7.36 3 4 6.36 4 10.5S7.36 18 11.5 18H13v2.3c3.64-2.3 6-6.08 6-9.8C19 6.36 15.64 3 11.5 3zm-1 11.5h2v2h-2zm2-1.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z" />
+    </svg>
+    <p>Get enterprise-grade support and services for OpenEverest from certified partners, or join community.</p>
+
+    <div class="actions">
+
+    <a href="https://openeverest.io/support" style="color: var(--md-typeset-a-color);">Get support</a>
+    </div>
+    </div>
+    </div>
+    <div class="md-sidebar__inner">
+      
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 Release highlights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#everestctl-becomes-a-real-day-2-cli-for-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        everestctl becomes a real day-2 CLI for v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#point-in-time-recovery-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point-in-time recovery, end to end
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-configmaps-and-schema-driven-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets, ConfigMaps, and schema-driven credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditable-event-stream-with-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditable event stream with replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes-for-provider-and-plugin-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking changes for provider and plugin developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed-improved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed &amp; Improved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-openeverest-200-developer-preview-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Installing OpenEverest 2.0.0 Developer Preview 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1-support-and-end-of-life-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1 Support and End-of-Life Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-involved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get involved
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thanks-to-our-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks to our contributors
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    </div>
+  </div>
+</div>
+
+
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+    
+      
+    
+    <a href="https://github.com/openeverest/everest-doc/raw/main/docs/release-notes/OpenEverest-2.0.0-dev.2-(2026-08-14).md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="whats-new-in-openeverest-200-developer-preview-2">What&rsquo;s new in OpenEverest 2.0.0 Developer Preview 2<a class="headerlink" href="#whats-new-in-openeverest-200-developer-preview-2" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Developer Preview — not for production</p>
+<p>OpenEverest 2.0.0 Developer Preview 2 is an early-look release and is <strong>not feature-complete</strong>. It is intended for testing and feedback only.</p>
+<p>There is <strong>no supported upgrade path</strong> from Developer Preview 1, and none from v1. Install Developer Preview 2 on a fresh cluster. v1 and v2 have fundamentally different architectures and data models, and running them side-by-side in the same cluster is not supported.</p>
+<p>This release contains <strong>breaking changes to every CRD, to the HTTP API, and to the provider-runtime SDK</strong>. Manifests, providers and plugins written against Developer Preview 1 will not work and must be updated — see <a href="#breaking-changes-for-provider-and-plugin-developers">Breaking changes</a> for the full mapping. No migration path is provided at this stage of the preview. This is deliberate, so that the API can be corrected before General Availability.</p>
+</div>
+<p><strong>New to OpenEverest?</strong> Get started with our <a href="https://openeverest.io/documentation/2.0.0-dev.2/quick-install.html">Quickstart Guide</a>.</p>
+<p><a href="https://openeverest.io/blog/v2-developer-preview-release/">Read the blog post and watch the video</a> introducing the v2 architecture.</p>
+<hr />
+<h2 id="release-highlights">🌟 Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<h3 id="everestctl-becomes-a-real-day-2-cli-for-v2"><code>everestctl</code> becomes a real day-2 CLI for v2<a class="headerlink" href="#everestctl-becomes-a-real-day-2-cli-for-v2" title="Permanent link">&para;</a></h3>
+<p>Developer Preview 1 shipped v2 with a UI and an API, but no command-line story. Developer Preview 2 closes that gap: the whole v2 resource model is now drivable from <code>everestctl</code>, with consistent <code>--namespace/-n</code>, <code>--wait</code>, and JSON output across commands.</p>
+<div class="highlight"><pre><span></span><code>everestctl<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--server<span class="w"> </span>https://everest.example.com
+everestctl<span class="w"> </span>provider<span class="w"> </span>list
+everestctl<span class="w"> </span>backup-class<span class="w"> </span>list
+everestctl<span class="w"> </span>instance<span class="w"> </span>create<span class="w"> </span>--preset<span class="w"> </span>small-mongodb<span class="w"> </span>-n<span class="w"> </span>my-namespace<span class="w"> </span>--wait
+everestctl<span class="w"> </span>instance<span class="w"> </span>status<span class="w"> </span>my-db<span class="w"> </span>-n<span class="w"> </span>my-namespace<span class="w"> </span>--watch
+everestctl<span class="w"> </span>backup<span class="w"> </span>create<span class="w"> </span>--instance<span class="w"> </span>my-db<span class="w"> </span>--storage<span class="w"> </span>s3-backups<span class="w"> </span>-n<span class="w"> </span>my-namespace
+everestctl<span class="w"> </span>restore<span class="w"> </span>create<span class="w"> </span>--instance<span class="w"> </span>my-db<span class="w"> </span>--backup<span class="w"> </span>my-db-20260812<span class="w"> </span>-n<span class="w"> </span>my-namespace
+everestctl<span class="w"> </span>backup-storage<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>s3-backups<span class="w"> </span>-n<span class="w"> </span>my-namespace
+everestctl<span class="w"> </span>instance<span class="w"> </span>delete<span class="w"> </span>my-db<span class="w"> </span>-n<span class="w"> </span>my-namespace
+</code></pre></div>
+<p>New command groups: <code>auth</code>, <code>instance</code>, <code>backup</code>, <code>restore</code>, <code>backup-storage</code> (alias <code>bs</code>), <code>backup-class</code> (alias <code>bc</code>), <code>provider</code> (alias <code>prov</code>).</p>
+<p><code>everestctl</code> changes were contributed by @VijetaPriya47 through <a href="https://mentorship.lfx.linuxfoundation.org/project/42dff370-4958-4ec4-959c-4aaf6740698c">LFX Mentorship program 2026 Term 2</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>everestctl</code> is <strong>not shipped as a binary with this release</strong>. <code>everestctl install</code> and <code>everestctl uninstall</code> still target v1 and cannot install v2, so publishing the binary would be misleading. To try the commands above against an existing v2 installation, build it from source:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v2.0.0-dev.2<span class="w"> </span>https://github.com/openeverest/openeverest.git
+<span class="nb">cd</span><span class="w"> </span>openeverest
+make<span class="w"> </span>build-cli<span class="w">   </span><span class="c1"># produces bin/everestctl</span>
+</code></pre></div>
+<p>Installation remains Helm-only for this preview.</p>
+</div>
+<h3 id="point-in-time-recovery-end-to-end">Point-in-time recovery, end to end<a class="headerlink" href="#point-in-time-recovery-end-to-end" title="Permanent link">&para;</a></h3>
+<p>PITR is now a first-class part of the v2 model rather than a modifier on a backup reference.</p>
+<ul>
+<li><strong>Recovery window.</strong> <code>Instance.status.backup.storages[].pitr</code> reports <code>earliestRestorableTime</code>, <code>latestRestorableTime</code>, <code>state</code> (<code>Available</code>/<code>Unavailable</code>), plus <code>reason</code> and <code>message</code>. The window is authoritative: providers truncate forward at a discontinuity and under-report rather than advertise a point that cannot be restored.</li>
+<li><strong>Point-in-time as a data source.</strong> <code>dataSource.type</code> now discriminates between <code>Backup</code> and <code>PointInTime</code>. A point-in-time recovery no longer has to name a <code>Backup</code> CR it has nothing to do with.</li>
+<li><strong>Restore into a new database.</strong> Because <code>dataSource</code> is the same shared type on <code>Instance.spec.dataSource</code> and <code>Restore.spec.dataSource</code>, you can seed a brand-new instance from a point in time on another instance&rsquo;s stream via <code>pointInTime.source.instanceRef</code>.</li>
+</ul>
+<p>Providers opt in by implementing the new <code>controller.InstanceBackupStatusReporter</code> interface; the runtime writes the aggregated per-storage window to <code>instance.status.backup</code> after every successful <code>Sync</code>.</p>
+<h3 id="instance-presets">Instance presets<a class="headerlink" href="#instance-presets" title="Permanent link">&para;</a></h3>
+<p><code>InstancePreset</code> is a new namespaced CRD that captures a ready-to-use instance shape — provider, version, topology, component sizing and storage class. Users pick a preset instead of filling in a form; power users still get the full parameter surface.</p>
+<ul>
+<li>New API: <code>GET /v1/clusters/{cluster}/instance-presets</code>, <code>.../{name}</code>, and <code>.../{name}/resolve</code> (which returns the fully materialised <code>Instance</code> spec a preset would produce, including the resolved default storage class).</li>
+<li>New CLI: <code>everestctl instance create --preset &lt;name&gt;</code>.</li>
+</ul>
+<h3 id="secrets-configmaps-and-schema-driven-credentials">Secrets, ConfigMaps, and schema-driven credentials<a class="headerlink" href="#secrets-configmaps-and-schema-driven-credentials" title="Permanent link">&para;</a></h3>
+<p>Providers can now declare, in their provider definition, the secrets and config maps they expect (<code>spec.secrets</code>, <code>spec.configMaps</code> on <code>Provider</code>), each with a parameters schema. The API server exposes managed CRUD for those objects and validates payloads against the declared schema before they reach Kubernetes:</p>
+<ul>
+<li><code>POST|GET /v1/clusters/{cluster}/namespaces/{namespace}/secrets</code> and <code>GET|DELETE .../secrets/{name}</code></li>
+<li><code>POST|GET /v1/clusters/{cluster}/namespaces/{namespace}/config-maps</code> and <code>GET|DELETE .../config-maps/{name}</code></li>
+</ul>
+<p>The provider-runtime gained matching validation webhooks (<code>secret_validation.go</code>, <code>config_map_validation.go</code>).</p>
+<h3 id="auditable-event-stream-with-replay">Auditable event stream with replay<a class="headerlink" href="#auditable-event-stream-with-replay" title="Permanent link">&para;</a></h3>
+<p><code>GET /v1/events</code> no longer silently drops events across a reconnect. Every event now carries a monotonic sequence and an epoch identifying the publishing process; <code>since</code> is <code>"&lt;epoch&gt;:&lt;seq&gt;"</code>, and an aged-out cursor or epoch mismatch returns <code>410 Gone</code>, which tells the client to resync rather than quietly lose data. Events also carry the acting user, laying the groundwork for auditing.</p>
+<h3 id="breaking-changes-for-provider-and-plugin-developers">Breaking changes for provider and plugin developers<a class="headerlink" href="#breaking-changes-for-provider-and-plugin-developers" title="Permanent link">&para;</a></h3>
+<p>The API surface was normalised in four sweeps. All of them are breaking, and all of them are intentional at preview stage.</p>
+<p><strong>1. Cross-resource references are uniform.</strong> Every reference is now an object (<code>{name: ...}</code>) drawn from <code>api/common/v1alpha1</code> — <code>ObjectRef</code>, <code>SecretRef</code>, <code>TypedObjectRef</code> — instead of a bare string or a <code>corev1.LocalObjectReference</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Instance.spec</code></td>
+<td><code>provider: &lt;string&gt;</code></td>
+<td><code>providerRef.name</code></td>
+</tr>
+<tr>
+<td><code>Instance.spec.backup</code></td>
+<td><code>classRef</code> (custom type)</td>
+<td><code>classRef</code> (<code>ObjectRef</code>)</td>
+</tr>
+<tr>
+<td><code>Instance.spec.backup.storages[]</code></td>
+<td><code>name</code> + <code>storageRef</code> + <code>main</code></td>
+<td><code>storageRef.name</code> only (key), <code>main</code> inferred from <code>pitr</code></td>
+</tr>
+<tr>
+<td><code>Instance.status</code></td>
+<td><code>connectionSecretRef</code> (<code>LocalObjectReference</code>)</td>
+<td><code>connectionSecretRef</code> (<code>*SecretRef</code>)</td>
+</tr>
+<tr>
+<td><code>Instance.status.components[]</code></td>
+<td><code>pods</code></td>
+<td><code>podRefs</code></td>
+</tr>
+<tr>
+<td><code>Backup.spec</code></td>
+<td><code>instanceName</code>, <code>backupClassName</code>, <code>storageName</code></td>
+<td><code>instanceRef</code>, <code>classRef</code>, <code>storageRef</code></td>
+</tr>
+<tr>
+<td><code>Backup.status</code> / <code>Restore.status</code></td>
+<td><code>jobName</code>, <code>operatorBackupRef</code> (<code>TypedLocalObjectReference</code>)</td>
+<td><code>jobRef</code>, <code>operatorBackupRef</code> (<code>*TypedObjectRef</code>)</td>
+</tr>
+<tr>
+<td><code>Restore.spec</code></td>
+<td><code>instanceName</code></td>
+<td><code>instanceRef</code></td>
+</tr>
+<tr>
+<td><code>BackupStorage.spec.s3</code></td>
+<td><code>credentialsSecretName</code></td>
+<td><code>credentialsSecretRef.name</code></td>
+</tr>
+<tr>
+<td><code>MonitoringConfig.spec.pmm</code></td>
+<td><code>credentialsSecretName</code></td>
+<td><code>credentialsSecretRef.name</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. <code>config</code> / <code>customSpec</code> / <code>global</code> are all <code>parameters</code>.</strong> One name for provider-defined free-form configuration everywhere, and one envelope (<code>common.ParametersSchema</code>, i.e. <code>parametersSchema.openAPIV3Schema</code>) for declaring its schema.</p>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Instance.spec.global</code></td>
+<td><code>Instance.spec.parameters</code></td>
+</tr>
+<tr>
+<td><code>Instance.spec.topology.config</code></td>
+<td><code>Instance.spec.topology.parameters</code></td>
+</tr>
+<tr>
+<td><code>Instance.spec.components[].config</code></td>
+<td><code>Instance.spec.components[].parameters</code></td>
+</tr>
+<tr>
+<td><code>Backup.spec.config</code> / <code>Restore.spec.config</code></td>
+<td><code>.spec.parameters</code></td>
+</tr>
+<tr>
+<td><code>Provider</code> <code>globalConfigSchema</code> / <code>customSpecSchema</code> / <code>configSchema</code></td>
+<td><code>parametersSchema</code></td>
+</tr>
+<tr>
+<td><code>Provider</code> <code>secrets[].openAPIV3Schema</code></td>
+<td><code>secrets[].parametersSchema</code></td>
+</tr>
+<tr>
+<td><code>BackupClass</code> <code>config</code> / <code>restoreConfig</code> / <code>pitrConfigSchema</code></td>
+<td><code>parametersSchema</code> / <code>restoreParametersSchema</code> / <code>pitrParametersSchema</code></td>
+</tr>
+<tr>
+<td>SDK <code>Context.DecodeConfig()</code> etc.</td>
+<td><code>DecodeParameters()</code>, <code>DecodeTopologyParameters()</code>, <code>DecodeComponentParameters()</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ParametersSchema.Validate</code> rejects a non-nil payload when no schema is declared, so components whose parameters are actually used <strong>must</strong> declare <code>parametersSchema</code> in <code>definition/provider.yaml</code>. Secret and config map definitions are the exception: an omitted <code>parametersSchema</code> there skips validation entirely rather than rejecting the payload.</p>
+<p><strong>3. <code>dataSource</code> is a discriminated union.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># before</span>
+<span class="nt">dataSource</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backupName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-backup</span>
+<span class="w">  </span><span class="nt">pitr</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span><span class="w">            </span><span class="c1"># or "latest"</span>
+<span class="w">    </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-08-12T10:00:00Z"</span>
+
+<span class="c1"># after</span>
+<span class="nt">dataSource</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backup</span><span class="w">            </span><span class="c1"># or PointInTime</span>
+<span class="w">  </span><span class="nt">backup</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">backupRef</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-backup</span>
+<span class="c1"># ...or...</span>
+<span class="nt">dataSource</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PointInTime</span>
+<span class="w">  </span><span class="nt">pointInTime</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">instanceRef</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">source-db</span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># optional; defaults to the target Instance</span>
+<span class="w">      </span><span class="nt">storageRef</span><span class="p">:</span><span class="w">  </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">s3-backups</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># required, must have pitr.enabled=true</span>
+<span class="w">    </span><span class="nt">recoveryTarget</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span><span class="w">               </span><span class="c1"># or "latest"</span>
+<span class="w">    </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-08-12T10:00:00Z"</span><span class="w">       </span><span class="c1"># RFC 3339 with an explicit UTC offset</span>
+</code></pre></div>
+<p><code>PITRType</code> is renamed <code>RecoveryTarget</code>. The flat <code>status.backup.storages[].latestRestorableTime</code> is replaced by the nested <code>pitr</code> block described above.</p>
+<p><strong>4. <code>BackupClass</code> job specs are grouped.</strong> <code>job</code> and <code>restoreJob</code> become <code>job.backup</code> and <code>job.restore</code>, mirroring the discriminated-union shape used by the other execution modes.</p>
+<p><strong>Plugin API group renamed.</strong> <code>plugin.openeverest.io/v1alpha1</code> is now <code>extensions.openeverest.io/v1alpha1</code>, and the <code>PluginInstallation</code> kind is now <code>InstalledExtension</code>. <code>Plugin.spec.kubePermissions</code> was removed — plugins ship their own RBAC in their Helm chart, and per-namespace plugin scoping was dropped.</p>
+<p><strong>Typed metadata in generated clients.</strong> CRD <code>metadata</code> is no longer an untyped map in the OpenAPI spec: a shared <code>ObjectMeta</code> schema is emitted and <code>$ref</code>&lsquo;d by every kind, with <code>x-go-type</code> mapping the Go models onto <code>metav1.ObjectMeta</code>. Go and TypeScript API consumers get typed metadata and lose the string-map helpers.</p>
+<p><strong>Provider upgrade catalog.</strong> <code>Provider.spec.release</code> carries the provider&rsquo;s own <code>version</code> and <code>minUpgradableFrom</code>; <code>ComponentVersion</code> gained <code>deprecated</code> and <code>removedInVersion</code> to give users a deprecation runway.</p>
+<hr />
+<h2 id="changes">📝 Changes<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h2>
+<h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>everestctl</code> gained a full v2 command surface</strong> — the whole v2 resource model is now drivable from the CLI, with consistent <code>--namespace/-n</code>, <code>--wait</code> and JSON output:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Subcommands</th>
+<th>PRs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auth</code></td>
+<td><code>login</code>, <code>logout</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2372">#2372</a>, <a href="https://github.com/openeverest/openeverest/pull/2443">#2443</a></td>
+</tr>
+<tr>
+<td><code>instance</code></td>
+<td><code>create</code>, <code>list</code>, <code>status</code>, <code>delete</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2480">#2480</a>, <a href="https://github.com/openeverest/openeverest/pull/2563">#2563</a>, <a href="https://github.com/openeverest/openeverest/pull/2519">#2519</a>, <a href="https://github.com/openeverest/openeverest/pull/2762">#2762</a></td>
+</tr>
+<tr>
+<td><code>backup</code></td>
+<td><code>create</code>, <code>list</code>, <code>delete</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2599">#2599</a>, <a href="https://github.com/openeverest/openeverest/pull/2597">#2597</a>, <a href="https://github.com/openeverest/openeverest/pull/2863">#2863</a></td>
+</tr>
+<tr>
+<td><code>restore</code></td>
+<td><code>create</code>, <code>list</code>, <code>delete</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2656">#2656</a>, <a href="https://github.com/openeverest/openeverest/pull/2648">#2648</a>, <a href="https://github.com/openeverest/openeverest/pull/2847">#2847</a></td>
+</tr>
+<tr>
+<td><code>backup-storage</code> (<code>bs</code>)</td>
+<td><code>create</code>, <code>list</code>, <code>delete</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2671">#2671</a>, <a href="https://github.com/openeverest/openeverest/pull/2573">#2573</a>, <a href="https://github.com/openeverest/openeverest/pull/2765">#2765</a></td>
+</tr>
+<tr>
+<td><code>backup-class</code> (<code>bc</code>)</td>
+<td><code>list</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2565">#2565</a></td>
+</tr>
+<tr>
+<td><code>provider</code> (<code>prov</code>)</td>
+<td><code>list</code></td>
+<td><a href="https://github.com/openeverest/openeverest/pull/2564">#2564</a></td>
+</tr>
+</tbody>
+</table>
+<p>Cross-cutting flags: <code>instance create --preset</code> (<a href="https://github.com/openeverest/openeverest/pull/2518">#2518</a>) and <code>--wait</code> (<a href="https://github.com/openeverest/openeverest/pull/2600">#2600</a>), <code>instance status --watch/-w</code> (<a href="https://github.com/openeverest/openeverest/pull/2519">#2519</a>), instance print columns (<a href="https://github.com/openeverest/openeverest/pull/2594">#2594</a>).</p>
+<ul>
+<li><code>InstancePreset</code> CRD, resolution API and UI support, with default storage class resolution (<a href="https://github.com/openeverest/openeverest/pull/2407">#2407</a>, <a href="https://github.com/openeverest/openeverest/pull/2454">#2454</a>).</li>
+<li>Point-in-time recovery: validation and restore gating, per-storage recovery-window status, point-in-time data sources, and restore into a new database (<a href="https://github.com/openeverest/openeverest/pull/2562">#2562</a>, <a href="https://github.com/openeverest/openeverest/pull/2848">#2848</a>).</li>
+<li><code>controller.InstanceBackupStatusReporter</code> in provider-runtime, for providers to publish per-storage backup observability data (<a href="https://github.com/openeverest/openeverest/pull/2848">#2848</a>).</li>
+<li>Secret management API with provider-declared schemas and runtime validation (<a href="https://github.com/openeverest/openeverest/pull/2534">#2534</a>).</li>
+<li>ConfigMap API with provider-declared schemas and runtime validation (<a href="https://github.com/openeverest/openeverest/pull/2541">#2541</a>).</li>
+<li>API auth token management with refresh tokens, and matching UI integration (<a href="https://github.com/openeverest/openeverest/pull/2361">#2361</a>, <a href="https://github.com/openeverest/openeverest/pull/2362">#2362</a>).</li>
+<li>Audit events carrying the acting user (<a href="https://github.com/openeverest/openeverest/pull/2415">#2415</a>).</li>
+<li>Replay buffer on <code>GET /v1/events</code> so reconnecting subscribers do not silently lose events (<a href="https://github.com/openeverest/openeverest/pull/2591">#2591</a>). (by @onkar717)</li>
+<li>Provider upgrade catalog: <code>spec.release.version</code>, <code>spec.release.minUpgradableFrom</code>, and <code>deprecated</code> / <code>removedInVersion</code> on component versions (<a href="https://github.com/openeverest/openeverest/pull/2604">#2604</a>).</li>
+<li><code>affinity</code> on <code>Instance.spec.components[]</code> (<a href="https://github.com/openeverest/openeverest/pull/2364">#2364</a>) and <code>service</code> / <code>loadBalancerService</code> configuration on components.</li>
+<li>Plugin hub in the v2 UI, with plugin-declared permissions (<a href="https://github.com/openeverest/openeverest/pull/2367">#2367</a>, <a href="https://github.com/openeverest/openeverest/pull/2424">#2424</a>).</li>
+<li>Tiles view for creating instances in the UI (<a href="https://github.com/openeverest/openeverest/pull/2453">#2453</a>).</li>
+<li>Backup/Restore reference validation at the API layer on create (<a href="https://github.com/openeverest/openeverest/pull/2667">#2667</a>). (by @Adii-45)</li>
+<li><code>Instance</code> reconcile-request helper in provider-runtime (<a href="https://github.com/openeverest/openeverest/pull/2515">#2515</a>).</li>
+<li>Finalizer on <code>BackupStorage</code> plus end-to-end tests (<a href="https://github.com/openeverest/openeverest/pull/2327">#2327</a>, <a href="https://github.com/openeverest/openeverest/pull/2353">#2353</a>).</li>
+<li>RBAC fuzz tests (<a href="https://github.com/openeverest/openeverest/pull/2581">#2581</a>), Dependabot coverage for v2 (<a href="https://github.com/openeverest/openeverest/pull/2673">#2673</a>), CodeQL scanning of <code>release-2.0</code> and workflow files (<a href="https://github.com/openeverest/openeverest/pull/2753">#2753</a>), and SBOM attestation for release artifacts (<a href="https://github.com/openeverest/openeverest/pull/2858">#2858</a>).</li>
+<li>Self-serve issue triage and <code>/assign</code> process (<a href="https://github.com/openeverest/openeverest/pull/2764">#2764</a>, <a href="https://github.com/openeverest/openeverest/pull/2796">#2796</a>).</li>
+</ul>
+<h3 id="changed-improved">Changed &amp; Improved<a class="headerlink" href="#changed-improved" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Breaking API changes.</strong> Every CRD, the HTTP API and the provider-runtime SDK changed shape. Full before/after mapping in <a href="#breaking-changes-for-provider-and-plugin-developers">Breaking changes</a>:</p>
+</li>
+<li>
+<p>Cross-resource references unified onto <code>common.ObjectRef</code> / <code>SecretRef</code> / <code>TypedObjectRef</code> (<a href="https://github.com/openeverest/openeverest/pull/2570">#2570</a>)</p>
+</li>
+<li><code>config</code> / <code>customSpec</code> / <code>global</code> renamed to <code>parameters</code>; schemas wrapped in <code>common.ParametersSchema</code>, including secret definitions on <code>Provider.spec.secrets[]</code> (<a href="https://github.com/openeverest/openeverest/pull/2583">#2583</a>, <a href="https://github.com/openeverest/openeverest/pull/2616">#2616</a>)</li>
+<li><code>dataSource</code> restructured into a <code>Backup</code> / <code>PointInTime</code> discriminated union; <code>PITRType</code> → <code>RecoveryTarget</code>; flat <code>latestRestorableTime</code> → nested <code>pitr</code> status (<a href="https://github.com/openeverest/openeverest/pull/2848">#2848</a>)</li>
+<li><code>BackupClass</code> job specs grouped as <code>job.backup</code> / <code>job.restore</code> (<a href="https://github.com/openeverest/openeverest/pull/2547">#2547</a>)</li>
+<li>Plugin API group renamed to <code>extensions.openeverest.io</code>; <code>PluginInstallation</code> → <code>InstalledExtension</code>; <code>spec.kubePermissions</code> removed (<a href="https://github.com/openeverest/openeverest/pull/2367">#2367</a>, <a href="https://github.com/openeverest/openeverest/pull/2424">#2424</a>)</li>
+<li>
+<p>CRD <code>metadata</code> typed as a shared <code>ObjectMeta</code> schema in the OpenAPI spec and generated clients (<a href="https://github.com/openeverest/openeverest/pull/2652">#2652</a>)</p>
+</li>
+<li>
+<p><strong>Breaking:</strong> <code>POST /v1/auth/revoke</code> is now unauthenticated (<a href="https://github.com/openeverest/openeverest/pull/2448">#2448</a>).</p>
+</li>
+<li>Shared HTTP-poll classification extracted into <code>pkg/cli/wait</code>, so every <code>--wait</code>/<code>--watch</code> command behaves the same on transient errors (<a href="https://github.com/openeverest/openeverest/pull/2808">#2808</a>). (by @VijetaPriya47)</li>
+<li>UI upgraded from MUI 5 to MUI 7 (<a href="https://github.com/openeverest/openeverest/pull/2548">#2548</a>, <a href="https://github.com/openeverest/openeverest/pull/2550">#2550</a>, <a href="https://github.com/openeverest/openeverest/pull/2569">#2569</a>).</li>
+<li>Circular dependency removed from the UI and a strict ESLint rule added to prevent regressions (<a href="https://github.com/openeverest/openeverest/pull/2417">#2417</a>). (by @StepanovPlaton)</li>
+<li><code>golangci-lint</code> upgraded to v2, and CI now fails on unformatted Go code (<a href="https://github.com/openeverest/openeverest/pull/2535">#2535</a>, <a href="https://github.com/openeverest/openeverest/pull/2507">#2507</a>).</li>
+<li>GitHub Actions pinned to full-length commit SHAs and workflow token permissions scoped down (<a href="https://github.com/openeverest/openeverest/pull/2751">#2751</a>, <a href="https://github.com/openeverest/openeverest/pull/2752">#2752</a>).</li>
+<li>Tilt development environment reworked for core development, with <code>InstancePreset</code>, plugin-hub and PXC provider support (<a href="https://github.com/openeverest/openeverest/pull/2483">#2483</a>, <a href="https://github.com/openeverest/openeverest/pull/2439">#2439</a>, <a href="https://github.com/openeverest/openeverest/pull/2508">#2508</a>, <a href="https://github.com/openeverest/openeverest/pull/2346">#2346</a>).</li>
+</ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>provider-runtime reported <code>/readyz</code> as ready before the controller manager and its cache-backed client were usable (<a href="https://github.com/openeverest/openeverest/pull/2611">#2611</a>). (by @Anuragkumar-687)</li>
+<li>Provider status messages were silently dropped instead of surfacing on the <code>Instance</code> (<a href="https://github.com/openeverest/openeverest/pull/2366">#2366</a>). (by @AdityaPimpalkar)</li>
+<li>Nil connection reference caused a panic when an instance had no connection secret yet (<a href="https://github.com/openeverest/openeverest/pull/2590">#2590</a>).</li>
+<li>Init containers were counted incorrectly when computing instance resource totals (<a href="https://github.com/openeverest/openeverest/pull/2719">#2719</a>). (by @Jay2006sawant)</li>
+<li><code>MonitoringConfig</code> finalizers and secrets were not cleaned up reliably on delete (<a href="https://github.com/openeverest/openeverest/pull/2408">#2408</a>). (by @alokkumardalei-wq)</li>
+<li>The server did not handle <code>SIGTERM</code>, so pods were killed instead of shutting down gracefully (<a href="https://github.com/openeverest/openeverest/pull/2820">#2820</a>). (by @Harkirat1309)</li>
+<li>OIDC well-known configuration fetch had no HTTP timeout (<a href="https://github.com/openeverest/openeverest/pull/2725">#2725</a>). (by @Harsh63870)</li>
+<li>RBAC informer start errors were swallowed, and the ConfigMap adapter&rsquo;s Kubernetes calls had no timeout (<a href="https://github.com/openeverest/openeverest/pull/2830">#2830</a> by @alloutflo, <a href="https://github.com/openeverest/openeverest/pull/2822">#2822</a> by @Harkirat1309).</li>
+<li>Nil pointer panic when the JWT private key PEM was invalid (<a href="https://github.com/openeverest/openeverest/pull/2851">#2851</a>). (by @Atishyy27)</li>
+<li>Token blocklist update errors were not propagated (<a href="https://github.com/openeverest/openeverest/pull/2769">#2769</a>). (by @Anuragkumar-687)</li>
+<li>The arm64 server image shipped amd64 binaries (<a href="https://github.com/openeverest/openeverest/pull/2606">#2606</a>).</li>
+<li>Helm chart dependency builds failed without a configured registry client (<a href="https://github.com/openeverest/openeverest/pull/2607">#2607</a>).</li>
+<li>Editing a backup storage location and the empty state of scheduled backups both errored in the UI (<a href="https://github.com/openeverest/openeverest/pull/2320">#2320</a>, <a href="https://github.com/openeverest/openeverest/pull/2319">#2319</a>).</li>
+<li>Database credentials cache was not scoped by namespace, and the RBAC route guard was not reactive (<a href="https://github.com/openeverest/openeverest/pull/2173">#2173</a>). (by @ashnaaseth2325-oss)</li>
+<li>The upgrade dialog reopened after being dismissed (<a href="https://github.com/openeverest/openeverest/pull/2228">#2228</a>). (by @ashnaaseth2325-oss)</li>
+<li>Multiline values overflowed the Database Summary preview (<a href="https://github.com/openeverest/openeverest/pull/2090">#2090</a>). (by @StepanovPlaton)</li>
+<li>External links in the UI were missing <code>noreferrer</code>, and the login page lost spacing between the intro text and the community links (<a href="https://github.com/openeverest/openeverest/pull/2857">#2857</a>, <a href="https://github.com/openeverest/openeverest/pull/2902">#2902</a>).</li>
+<li><code>everestctl</code> flag and message fixes, including <code>-n</code> as a shorthand for <code>--namespace</code> and the <code>namesapce</code> typo (<a href="https://github.com/openeverest/openeverest/pull/2856">#2856</a>, <a href="https://github.com/openeverest/openeverest/pull/2795">#2795</a> by @Bhupesh-081, <a href="https://github.com/openeverest/openeverest/pull/2444">#2444</a> by @sahilforkshere, <a href="https://github.com/openeverest/openeverest/pull/2252">#2252</a> by @abhisheksainimitawa, <a href="https://github.com/openeverest/openeverest/pull/2196">#2196</a> by @ayushHardeniya).</li>
+<li>Documentation typos, broken links, stale extension CLI examples, the EKS z1d EBS volume limit, and the <code>providerRef.name</code> plugin filter reference (<a href="https://github.com/openeverest/openeverest/pull/2458">#2458</a> by @Pranav-IIITM, <a href="https://github.com/openeverest/openeverest/pull/2460">#2460</a> by @Pranav-IIITM, <a href="https://github.com/openeverest/openeverest/pull/2622">#2622</a> by @false200, <a href="https://github.com/openeverest/openeverest/pull/2625">#2625</a> by @Jay2006sawant, <a href="https://github.com/openeverest/openeverest/pull/2778">#2778</a> by @Bhupesh-081, <a href="https://github.com/openeverest/openeverest/pull/2818">#2818</a> by @Adii-45, <a href="https://github.com/openeverest/openeverest/pull/2624">#2624</a> by @Jay2006sawant, <a href="https://github.com/openeverest/openeverest/pull/2840">#2840</a> by @LarytheLord).</li>
+</ul>
+<hr />
+<h2 id="installing-openeverest-200-developer-preview-2">🚀 Installing OpenEverest 2.0.0 Developer Preview 2<a class="headerlink" href="#installing-openeverest-200-developer-preview-2" title="Permanent link">&para;</a></h2>
+<p>OpenEverest v2 is installed via Helm. You will need a running Kubernetes cluster and <code>helm</code> installed. <code>everestctl install</code> still targets v1 and must not be used for v2.</p>
+<p>Install the OpenEverest core:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>openeverest<span class="w"> </span>https://openeverest.github.io/helm-charts/
+helm<span class="w"> </span>repo<span class="w"> </span>update
+helm<span class="w"> </span>install<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--version<span class="w"> </span><span class="s2">"2.0.0-dev.2"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--create-namespace
+</code></pre></div>
+<p>Retrieve the admin password:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>everest-accounts<span class="w"> </span>-n<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.users\.yaml}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode<span class="w"> </span><span class="p">|</span><span class="w"> </span>yq<span class="w"> </span><span class="s1">'.admin.passwordHash'</span>
+</code></pre></div>
+<p>Access the UI:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/everest<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>-n<span class="w"> </span>everest-system
+</code></pre></div>
+<p>Providers are released independently of the core. Install the ones you need from their own repositories, and pick a version built against <code>2.0.0-dev.2</code> — provider releases published before this one target the previous API and will not reconcile.</p>
+<ul>
+<li><a href="https://github.com/openeverest/provider-percona-server-mongodb">MongoDB provider</a></li>
+<li><a href="https://github.com/openeverest/provider-percona-xtradb-cluster">MySQL provider</a></li>
+<li><a href="https://github.com/openeverest/provider-percona-postgresql">PostgreSQL provider</a></li>
+</ul>
+<hr />
+<h2 id="v1-support-and-end-of-life-timeline">v1 Support and End-of-Life Timeline<a class="headerlink" href="#v1-support-and-end-of-life-timeline" title="Permanent link">&para;</a></h2>
+<p>OpenEverest v1 continues to be supported while v2 matures. The transition timeline is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Now</strong></td>
+<td>v2 Developer Preview — testing and feedback.</td>
+</tr>
+<tr>
+<td><strong>v2 General Availability</strong></td>
+<td>Expected in a few months.</td>
+</tr>
+<tr>
+<td><strong>GA + 3 Months</strong></td>
+<td>v1 enters Maintenance Mode. Security patches and critical bug fixes only; no new features.</td>
+</tr>
+<tr>
+<td><strong>GA + 12 Months</strong></td>
+<td>v1 reaches End of Life. No further releases.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="get-involved">Get involved<a class="headerlink" href="#get-involved" title="Permanent link">&para;</a></h2>
+<p>Try the Developer Preview, build a provider against the new API, and share your feedback. The project is open to contributions — provider plugins, generic plugins, and core improvements are all welcome.</p>
+<ul>
+<li><a href="https://github.com/openeverest/provider-sdk">Provider SDK</a> and the <a href="https://github.com/openeverest/provider-sdk/blob/main/PROVIDER_DEVELOPMENT.md">provider development guide</a></li>
+<li><a href="https://github.com/openeverest/generic-plugin-template">Generic Plugin Template</a></li>
+<li><a href="https://github.com/openeverest/specs/blob/main/specs/003-generic-plugins.md">Generic Plugins Spec</a></li>
+<li><a href="https://openeverest.io/blog/v2-developer-preview-release/">Blog post about the v2 Developer Preview</a></li>
+</ul>
+<hr />
+<h2 id="thanks-to-our-contributors">Thanks to our contributors<a class="headerlink" href="#thanks-to-our-contributors" title="Permanent link">&para;</a></h2>
+<p>This release wouldn&rsquo;t have been possible without our community. Huge thanks to everyone who contributed code, fixes, and improvements to Developer Preview 2:</p>
+<p>@abhisheksainimitawa, @Adii-45, @AdityaPimpalkar, @alloutflo, @alokkumardalei-wq, @Anuragkumar-687, @ashnaaseth2325-oss, @Atishyy27, @ayushHardeniya, @Bhupesh-081, @cansayin, @false200, @Harkirat1309, @Harsh63870, @Jay2006sawant, @LarytheLord, @onkar717, @Pranav-IIITM, @sahilforkshere, @StepanovPlaton, @VijetaPriya47</p>
+<hr />
+<p><strong>Full Changelog</strong>: https://github.com/openeverest/openeverest/compare/v2.0.0-dev.1&hellip;v2.0.0-dev.2</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+    <div class="md-copyright__highlight">
+ Copyright &copy; 2026 OpenEverest a Series of LF Projects, LLC.<br>
+ For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" target="_blank" rel="noopener">lfprojects.org/policies/</a>.<br>
+ <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>    
+</div>
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+<script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
+
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/promptremover.js"></script>
+      
+        <script src="../js/consent.js"></script>
+      
+    
+
+  </body>
+</html>
