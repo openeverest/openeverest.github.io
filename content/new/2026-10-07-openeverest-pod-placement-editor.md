@@ -8,7 +8,7 @@ topics:
  - kubernetes
  - releases
 link: https://openeverest.io/documentation/2.0.0-dev.4/
-summary: The instance creation wizard and overview can now edit each component's affinity rules, and scheduling defaults are explicit: omitted fields use the provider default, empty values mean none.
+summary: The instance creation wizard and overview can now edit each component's affinity rules, and scheduling defaults are explicit - omitted fields use the provider default, empty values mean none.
 ---
 
 The instance creation wizard and the instance overview now include a pod placement editor for each component's affinity rules. A provider enables the editor from its UI schema with `widgetType: podSchedulingPolicy`.
