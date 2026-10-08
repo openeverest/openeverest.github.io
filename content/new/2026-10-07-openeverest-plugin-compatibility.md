@@ -7,7 +7,7 @@ topics:
  - plugins
  - releases
 link: https://openeverest.io/documentation/2.0.0-dev.4/
-summary: Plugin compatibility manifests are now enforced: a plugin that fails compatibleHostVersions or the new compatibleUiContractVersions is skipped.
+summary: Plugin compatibility manifests are now enforced - a plugin that fails compatibleHostVersions or the new compatibleUiContractVersions is skipped.
 ---
 
 OpenEverest now enforces plugin compatibility manifests. A plugin is skipped if it fails `spec.compatibleHostVersions`, which previously was declared but not enforced, or the new `spec.compatibleUiContractVersions`.
