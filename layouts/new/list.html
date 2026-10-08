@@ -115,15 +115,22 @@
     </div>
 
     <p id="whatsnew-empty" class="hidden text-center text-gray-500 py-12">No updates match the selected topic.</p>
+
+    {{/* Paginated client-side so topic filters still span every update. */}}
+    <nav id="whatsnew-pager" class="hidden flex flex-wrap items-center justify-center gap-2 mt-12" aria-label="What's new pagination"></nav>
 </div>
 
 <script>
 (function () {
+    var PAGE_SIZE = 20;
     var pills = document.querySelectorAll('.whatsnew-filter-btn');
-    if (!pills.length) return;
     var items = document.querySelectorAll('.whatsnew-item');
     var groups = document.querySelectorAll('.whatsnew-group');
     var empty = document.getElementById('whatsnew-empty');
+    var pager = document.getElementById('whatsnew-pager');
+    var list = document.getElementById('whatsnew-list');
+    var currentTopic = 'all';
+    var currentPage = 1;
     var search = document.getElementById('whatsnew-search');
     var suggest = document.getElementById('whatsnew-suggest');
     var suggestItems = suggest ? suggest.querySelectorAll('.whatsnew-suggest-item') : [];
@@ -139,19 +146,82 @@
         });
     }
 
-    function apply(topic) {
-        var anyVisible = false;
+    function updateUrl() {
+        var url = location.pathname + (currentPage > 1 ? '?page=' + currentPage : '') +
+            (currentTopic === 'all' ? '' : '#' + currentTopic);
+        history.replaceState(null, '', url);
+    }
+
+    function pagerButton(label, page, opts) {
+        var el;
+        if (opts.current) {
+            el = document.createElement('span');
+            el.className = 'px-4 py-2 rounded-lg bg-[#7790DE] text-white font-semibold';
+            el.setAttribute('aria-current', 'page');
+        } else if (opts.disabled) {
+            el = document.createElement('span');
+            el.className = 'px-4 py-2 rounded-lg border-2 border-gray-200 text-gray-400 font-semibold cursor-not-allowed';
+        } else {
+            el = document.createElement('button');
+            el.type = 'button';
+            el.className = 'px-4 py-2 rounded-lg border-2 border-gray-300 text-gray-700 hover:border-[#7790DE] hover:text-[#7790DE] font-semibold transition-colors';
+            el.addEventListener('click', function () { goToPage(page); });
+        }
+        if (opts.ariaLabel) el.setAttribute('aria-label', opts.ariaLabel);
+        el.textContent = label;
+        return el;
+    }
+
+    function renderPager(totalPages) {
+        if (!pager) return;
+        pager.innerHTML = '';
+        pager.classList.toggle('hidden', totalPages <= 1);
+        if (totalPages <= 1) return;
+
+        pager.appendChild(pagerButton('Previous', currentPage - 1, { disabled: currentPage === 1, ariaLabel: 'Previous page' }));
+        // Show first, last, and the current page with one neighbour on each side; collapse the rest.
+        var last = 0;
+        for (var p = 1; p <= totalPages; p++) {
+            if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) {
+                if (last && p - last > 1) {
+                    var gap = document.createElement('span');
+                    gap.className = 'px-2 text-gray-400';
+                    gap.textContent = '…';
+                    pager.appendChild(gap);
+                }
+                pager.appendChild(pagerButton(String(p), p, { current: p === currentPage }));
+                last = p;
+            }
+        }
+        pager.appendChild(pagerButton('Next', currentPage + 1, { disabled: currentPage === totalPages, ariaLabel: 'Next page' }));
+    }
+
+    function render() {
+        var matched = [];
         items.forEach(function (item) {
             var topics = (item.getAttribute('data-topics') || '').split(' ');
-            var show = topic === 'all' || topics.indexOf(topic) !== -1;
-            item.classList.toggle('hidden', !show);
-            if (show) anyVisible = true;
+            if (currentTopic === 'all' || topics.indexOf(currentTopic) !== -1) matched.push(item);
+            item.classList.add('hidden');
         });
+
+        var totalPages = Math.max(1, Math.ceil(matched.length / PAGE_SIZE));
+        if (currentPage > totalPages) currentPage = totalPages;
+        var start = (currentPage - 1) * PAGE_SIZE;
+        matched.slice(start, start + PAGE_SIZE).forEach(function (item) { item.classList.remove('hidden'); });
+
         groups.forEach(function (group) {
             var visible = group.querySelectorAll('.whatsnew-item:not(.hidden)').length;
             group.classList.toggle('hidden', visible === 0);
         });
-        if (empty) empty.classList.toggle('hidden', anyVisible);
+        if (empty) empty.classList.toggle('hidden', matched.length > 0);
+        renderPager(totalPages);
+        updateUrl();
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        render();
+        if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function isPill(topic) {
@@ -163,15 +233,16 @@
         return m ? m.querySelector('span').textContent.trim() : topic;
     }
 
-    function selectTopic(topic) {
-        apply(topic);
+    function selectTopic(topic, page) {
+        currentTopic = topic;
+        currentPage = page || 1;
+        render();
         setActivePill(topic);
         if (search) {
             // Show the active label in the search box only when it isn't one of the quick pills.
             search.value = (topic === 'all' || isPill(topic)) ? '' : labelFor(topic);
         }
         if (suggest) suggest.classList.add('hidden');
-        history.replaceState(null, '', topic === 'all' ? location.pathname : '#' + topic);
     }
 
     pills.forEach(function (btn) {
@@ -199,8 +270,9 @@
         search.addEventListener('keydown', function (e) { if (e.key === 'Escape') suggest.classList.add('hidden'); });
     }
 
-    var initial = (location.hash || '').replace('#', '');
-    if (initial) selectTopic(initial);
+    var initialTopic = (location.hash || '').replace('#', '') || 'all';
+    var initialPage = parseInt(new URLSearchParams(location.search).get('page'), 10) || 1;
+    selectTopic(initialTopic, initialPage);
 })();
 </script>
 {{ end }}
