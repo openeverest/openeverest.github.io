@@ -6,7 +6,7 @@ topics:
  - valkey
  - scheduling
  - releases
-link: https://docs.openeverest.io/
+link: https://github.com/openeverest/provider-valkey
 summary: The Valkey provider now applies engine-level scheduling policies to determine where pods are placed across the cluster.
 ---
 
@@ -14,4 +14,4 @@ The OpenEverest Valkey provider now applies the engine-level scheduling policies
 
 Previously, Valkey pod placement was left to the default Kubernetes scheduler without any engine-specific guidance, which could result in suboptimal distribution across nodes and zones.
 
-Scheduling policy support is available now for all Valkey clusters managed through OpenEverest. To learn more, visit the [Valkey provider documentation](https://docs.openeverest.io/).
+Scheduling policy support is available now for all Valkey clusters managed through OpenEverest. To learn more - try [OpenEverest](https://openeverest.io) and install the [provider for Valkey](https://github.com/openeverest/provider-valkey).
