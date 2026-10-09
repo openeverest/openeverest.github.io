@@ -98,33 +98,41 @@ The scenarios:
 
 ## The numbers
 
-This is the time between the first failed write and the first successful write after it. The client polls every 0.5 s, so take the decimals with a grain of salt. Hover over a row for details.
+This is the time between the first failed write and the first successful write after it. The client polls every 0.5 s, so take the decimals with a grain of salt. Tap or click a row for details.
 
 <div class="mxf-chart">
-  <div class="mxf-row" data-note="Clients connect through the Service, so they just land on the other MaxScale pod. Not a single failed write.">
-    <span class="mxf-label">MaxScale pod killed (1 of 2)</span><span class="mxf-track"><span class="mxf-bar mxf-ok" style="width:0.6%"></span></span><span class="mxf-val">0 s</span>
-  </div>
-  <div class="mxf-row" data-note="The fastest run. Writes were back in under 4 seconds, with one more failed write in between.">
-    <span class="mxf-label">Force delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:10.3%"></span></span><span class="mxf-val">3.6 s</span>
-  </div>
-  <div class="mxf-row" data-note="Planned switchover during a rolling update. The operator locks the old primary, waits for the replica to catch up and only then promotes it.">
-    <span class="mxf-label">Planned switchover</span><span class="mxf-track"><span class="mxf-bar mxf-plan" style="width:39.4%"></span></span><span class="mxf-val">13.8 s</span>
-  </div>
-  <div class="mxf-row" data-note="Same scenario, but this time the old pod came back before the promotion finished. With the fixed provider it came back read-only.">
-    <span class="mxf-label">Force delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:47.1%"></span></span><span class="mxf-val">16.5 s</span>
-  </div>
-  <div class="mxf-row" data-note="Plus one extra failed write a few seconds later, when the second MaxScale pod caught up.">
-    <span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:57.1%"></span></span><span class="mxf-val">20.0 s</span>
-  </div>
-  <div class="mxf-row" data-note="With the fixed provider (nodes boot read-only).">
-    <span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:63.1%"></span></span><span class="mxf-val">22.1 s</span>
-  </div>
-  <div class="mxf-row" data-note="The run where the restarted old primary came back writable and MaxScale briefly picked it as primary. See below.">
-    <span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar mxf-warn" style="width:71.1%"></span></span><span class="mxf-val">24.9 s</span>
-  </div>
-  <div class="mxf-row" data-note="No MaxScale. Clients use the primary Service directly. Only one run, so don't read too much into the difference.">
-    <span class="mxf-label">Graceful delete primary, no MaxScale</span><span class="mxf-track"><span class="mxf-bar mxf-ctrl" style="width:93.7%"></span></span><span class="mxf-val">32.8 s</span>
-  </div>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">MaxScale pod killed (1 of 2)</span><span class="mxf-track"><span class="mxf-bar mxf-ok" style="width:0.6%"></span></span><span class="mxf-val">0 s</span></summary>
+    <p class="mxf-note">Clients connect through the Service, so they just land on the other MaxScale pod. Not a single failed write.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Force delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:10.3%"></span></span><span class="mxf-val">3.6 s</span></summary>
+    <p class="mxf-note">The fastest run. Writes were back in under 4 seconds, with one more failed write in between.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Planned switchover</span><span class="mxf-track"><span class="mxf-bar mxf-plan" style="width:39.4%"></span></span><span class="mxf-val">13.8 s</span></summary>
+    <p class="mxf-note">Planned switchover during a rolling update. The operator locks the old primary, waits for the replica to catch up and only then promotes it.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Force delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:47.1%"></span></span><span class="mxf-val">16.5 s</span></summary>
+    <p class="mxf-note">Same scenario, but this time the old pod came back before the promotion finished. With the fixed provider it came back read-only.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:57.1%"></span></span><span class="mxf-val">20.0 s</span></summary>
+    <p class="mxf-note">Plus one extra failed write a few seconds later, when the second MaxScale pod caught up.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar" style="width:63.1%"></span></span><span class="mxf-val">22.1 s</span></summary>
+    <p class="mxf-note">With the fixed provider (nodes boot read-only).</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Graceful delete primary</span><span class="mxf-track"><span class="mxf-bar mxf-warn" style="width:71.1%"></span></span><span class="mxf-val">24.9 s</span></summary>
+    <p class="mxf-note">The run where the restarted old primary came back writable and MaxScale briefly picked it as primary. See below.</p>
+  </details>
+  <details class="mxf-row">
+    <summary><span class="mxf-label">Graceful delete primary, no MaxScale</span><span class="mxf-track"><span class="mxf-bar mxf-ctrl" style="width:93.7%"></span></span><span class="mxf-val">32.8 s</span></summary>
+    <p class="mxf-note">No MaxScale. Clients use the primary Service directly. Only one run, so don't read too much into the difference.</p>
+  </details>
   <div class="mxf-legend">
     <span><i class="mxf-ok"></i>no outage</span>
     <span><i></i>unplanned failover</span>
@@ -370,7 +378,13 @@ If you try this yourself and see different behavior, please comment on [the issu
 .mxf-good{color:#047857;}
 .mxf-fix{font-size:14px;border-left:4px solid #0aa66e;padding:6px 12px;background:rgba(10,166,110,0.08);border-radius:4px;}
 .mxf-chart{margin:1.5rem 0;border:1px solid rgba(127,127,127,0.25);border-radius:12px;padding:14px 18px;}
-.mxf-row{position:relative;display:flex;align-items:center;gap:12px;padding:7px 0;font-size:14px;cursor:default;}
+.mxf-row{border-radius:8px;}
+.mxf-row>summary{display:flex;align-items:center;gap:12px;padding:7px 6px;font-size:14px;cursor:pointer;list-style:none;border-radius:8px;-webkit-tap-highlight-color:transparent;}
+.mxf-row>summary::-webkit-details-marker{display:none;}
+.mxf-row>summary::before{content:"▸";flex:0 0 10px;color:#9ca3af;transition:transform .15s ease;}
+.mxf-row[open]>summary::before{transform:rotate(90deg);}
+.mxf-row>summary:hover,.mxf-row[open]>summary{background:rgba(127,127,127,0.08);}
+.mxf-note{margin:4px 6px 10px 28px;padding:8px 12px;font-size:13px;line-height:1.45;color:#374151;background:rgba(127,127,127,0.06);border-left:3px solid #9ca3af;border-radius:4px;}
 .mxf-label{flex:0 0 250px;color:#374151;}
 .mxf-track{flex:1;height:16px;background:rgba(127,127,127,0.10);border-radius:8px;overflow:hidden;}
 .mxf-bar{display:block;height:100%;background:#1a8cff;border-radius:8px;min-width:4px;transition:filter .15s;}
@@ -379,14 +393,13 @@ If you try this yourself and see different behavior, please comment on [the issu
 .mxf-bar.mxf-warn{background:#dc2626;}
 .mxf-bar.mxf-ctrl{background:#9ca3af;}
 .mxf-val{flex:0 0 56px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
-.mxf-row:hover .mxf-bar{filter:brightness(1.15);}
+.mxf-row>summary:hover .mxf-bar{filter:brightness(1.15);}
 .mxf-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(127,127,127,0.2);font-size:12px;color:#4b5563;}
 .mxf-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:#1a8cff;border:0;}
 .mxf-legend i.mxf-ok{background:#0aa66e;}
 .mxf-legend i.mxf-plan{background:#6366f1;}
 .mxf-legend i.mxf-warn{background:#dc2626;}
 .mxf-legend i.mxf-ctrl{background:#9ca3af;}
-.mxf-row:hover::after{content:attr(data-note);position:absolute;left:262px;right:0;top:100%;z-index:5;background:#111827;color:#f9fafb;font-size:13px;line-height:1.4;padding:8px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.2);}
 .mxf-card{border:1px solid rgba(127,127,127,0.25);border-radius:10px;margin:12px 0;padding:2px 18px;background:rgba(127,127,127,0.05);}
 .mxf-card>summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;}
 .mxf-card>summary::-webkit-details-marker{display:none;}
@@ -397,5 +410,5 @@ If you try this yourself and see different behavior, please comment on [the issu
 .mxf-b-ok{background:#e8f7f0;color:#047857;}
 .mxf-b-pending{background:#fff7e6;color:#b45309;}
 .mxf-b-minor{background:#f3f4f6;color:#4b5563;}
-@media (max-width:640px){.mxf-label{flex-basis:140px;font-size:13px;}.mxf-row:hover::after{left:0;}.mxf-stepbar label{padding:10px 4px;font-size:13px;}}
+@media (max-width:640px){.mxf-row>summary{gap:8px;}.mxf-label{flex-basis:120px;font-size:13px;}.mxf-val{flex-basis:44px;}.mxf-note{margin-left:6px;}.mxf-stepbar label{padding:10px 4px;font-size:13px;}}
 </style>
