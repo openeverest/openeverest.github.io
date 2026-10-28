@@ -81,6 +81,16 @@ events:
     image: "/images/resources/kcd-budapest-2026.jpg"
     description: "Friday, October 30 · 1:35–2:10 PM. The real architecture behind an open source RDS built on Kubernetes — what worked, what failed, and what we'd do differently."
 
+  - title: "OpenEverest V2: Understanding Database Management on Kubernetes"
+    url: "https://ocgroups.dev/cncf/group/cloudnativebd/event/smqte6d"
+    event_name: "Cloud Native Meetup at Dhaka, Oct 2026"
+    location: "Level 5, Navana HR Tower-1, Moar Gulshan-Tejgaon Link Road, Dhaka, Bangladesh"
+    date: 2026-10-24
+    speaker: "Ubayed Bin Sufian"
+    speaker_slug: "Ubayed Bin Sufian"
+    type: "conference"
+    image: "/images/resources/cnbd-dhaka-2026.png"
+
   - title: "Comparing Vector Databases on Kubernetes"
     url: "https://buildevcon.com/events/vector-in-databases"
     event_name: "BuildDevCon, DB Mastery Series, Vector Databases"
