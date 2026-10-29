@@ -28,6 +28,9 @@ slides:
   - image: "/images/for/kserve/for-kserve-4.png"
     title: "Models Bigger Than One Node"
     description: "Split a model across GPU nodes with pipeline parallelism - here Qwen3 14B runs as a head and two workers on three 20 GB GPUs."
+  - image: "/images/for/kserve/for-kserve-5.png"
+    title: "Built-In Model Metrics"
+    description: "Track requests per second, token throughput, p99 request latency, and time to first token for every model, right in the OpenEverest UI."
 
 # Key capabilities. `icon` maps to layouts/partials/feature-icon.html keywords.
 capabilities:
