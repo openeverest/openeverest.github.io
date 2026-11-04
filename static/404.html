@@ -2,6 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+      // The documentation moved from /documentation/<version>/ to /docs/.
+      // assets/documentation/ has a redirect page for every old page
+      // (hack/generate_docs_redirects.py); this covers any other old URL.
+      (function () {
+        var m = window.location.pathname.match(/^\/documentation(?:\/([^/]+))?(\/.*)?$/);
+        if (!m) return;
+        var version = m[1] || "";
+        var page = (m[2] || "/").replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "/");
+        page = decodeURIComponent(page).replace(/ /g, "-").replace(/[()]/g, "").replace(/-{2,}/g, "-");
+        var semver = version.match(/^(\d+)\.(\d+)\.\d+(-.+)?$/);
+        if (semver && !semver[3]) version = semver[1] + "." + semver[2];
+        window.location.replace(version ? "/docs/" + version + page + window.location.hash : "/docs/");
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QWKGQSNZZ"></script>
     <script>

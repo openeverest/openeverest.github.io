@@ -14,22 +14,5 @@
   </url>
     {{- end }}
   {{- end }}
-  {{- /* MkDocs docs are static assets, so merge in their own sitemaps (URLs rewritten by
-         hack/fix_docs_seo.py). Indexed: current/ plus the newest release if it is a preview. */}}
-  {{- $docVersions := slice "current" }}
-  {{- with site.GetPage "/docs" }}{{ with index (.Params.versions | default slice) 0 }}{{ if .prerelease }}
-    {{- $docVersions = $docVersions | append .release }}
-  {{- end }}{{ end }}{{ end }}
-  {{- range $docVersions }}
-    {{- with resources.Get (printf "documentation/%s/sitemap.xml" .) }}
-      {{- $urls := (. | transform.Unmarshal).url }}
-      {{- if reflect.IsMap $urls }}{{ $urls = slice $urls }}{{ end }}
-      {{- range $urls }}
-  <url>
-    <loc>{{ .loc }}</loc>{{ with .lastmod }}
-    <lastmod>{{ . }}</lastmod>{{ end }}
-  </url>
-      {{- end }}
-    {{- end }}
-  {{- end }}
+  {{- /* The documentation (/docs/) is a separate site with its own sitemap, listed in robots.txt. */}}
 </urlset>

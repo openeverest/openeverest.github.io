@@ -77,7 +77,7 @@ Found a bug or have a suggestion? Please [open an issue](https://github.com/open
 .
 ├── archetypes/          # Content templates
 ├── assets/              # Source assets (CSS, images)
-│   ├── documentation/   # Release Notes builded Documentation
+│   ├── documentation/   # Redirects from the old /documentation/ URLs to /docs/ (hack/generate_docs_redirects.py)
 ├── content/             # Website content (Markdown)
 │   ├── blog/            # Blog posts
 │   └── features/        # Feature pages
