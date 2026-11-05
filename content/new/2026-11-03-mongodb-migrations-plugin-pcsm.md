@@ -1,5 +1,5 @@
 ---
-title: "OpenEverest introduces MongoDB schema migrations with the PCSM engine"
+title: "New Migrations plugin: move databases into OpenEverest"
 date: 2026-11-03T14:56:04
 draft: false
 topics:
@@ -7,11 +7,13 @@ topics:
  - plugins
  - releases
 link: https://github.com/openeverest/plugin-migrations/releases/tag/v0.1.0
-summary: The new Migrations plugin for MongoDB brings automated schema migrations to OpenEverest, powered by the PCSM engine.
+summary: The new Migrations plugin moves existing databases into OpenEverest with minimal downtime. The first engine migrates MongoDB clusters, powered by Percona ClusterSync for MongoDB (PCSM).
 ---
 
-OpenEverest introduces the Migrations plugin for MongoDB, automating schema changes so you no longer need to run migration scripts by hand against your clusters.
+OpenEverest introduces the Migrations plugin: move existing databases into OpenEverest-managed clusters with minimal downtime, much like a self-hosted data migration service.
 
-Built on the PCSM engine, the plugin applies, tracks, and re-runs migrations as part of day-2 operations, keeping database schemas consistent across environments without manual coordination.
+A per-migration worker copies the existing data (full load), keeps the target in sync with ongoing changes (CDC), and you trigger cutover when your application is ready to switch.
+
+The plugin is built around an engine architecture, so it is not limited to MongoDB. The first engine, available now, migrates MongoDB clusters: MongoDB to MongoDB, powered by [Percona ClusterSync for MongoDB](https://github.com/percona/percona-clustersync-mongodb) (PCSM). Additional database engines will follow as they are added to the plugin.
 
 The Migrations plugin is available now on the Extension Hub. To learn more, visit the [v0.1.0 release notes](https://github.com/openeverest/plugin-migrations/releases/tag/v0.1.0).
