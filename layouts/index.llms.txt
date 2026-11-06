@@ -5,7 +5,7 @@
 {{ .Site.Params.tagline }}. OpenEverest is a CNCF Sandbox project, Apache 2.0 licensed, and can run on any Kubernetes cluster in the cloud or on-premises. Its extensible provider architecture supports a growing range of data workloads, AI solutions and database engines: from MySQL and PostgreSQL to S3 and LLMs.
 
 ## Pages
-{{- range where (where .Site.RegularPages "Kind" "page") "Section" "not in" (slice "blog" "events" "authors" "docs") }}
+{{- range where (where .Site.RegularPages "Kind" "page") "Section" "not in" (slice "blog" "events" "authors") }}
 {{- if not .Params.draft }}
 - [{{ .Title }}]({{ .Permalink }}){{ with .Summary }}: {{ . | plainify | htmlUnescape | chomp }}{{ end }}
 {{- end }}
@@ -13,11 +13,9 @@
 
 ## Documentation
 - [OpenEverest Documentation]({{ "docs/" | absURL }}): Installation guides, references, and user documentation across all releases.
-{{- with .Site.GetPage "/docs" }}
-{{- range first 3 .Params.versions }}
-- [Documentation {{ .release }}]({{ .location | absURL }}){{ if .prerelease }} (pre-release){{ end }}
-{{- end }}
-{{- end }}
+- [Latest stable release]({{ "docs/current/" | absURL }})
+- [Upcoming release (OpenEverest 2)]({{ "docs/next/" | absURL }})
+- [API reference]({{ "docs/api/" | absURL }}): REST API and custom resources, per release.
 
 ## Blog
 - [OpenEverest Blog]({{ "blog/" | absURL }}): News, releases, tutorials, and community stories. Latest posts:
