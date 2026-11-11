@@ -3,7 +3,7 @@ title: "Book 1:1 with an OpenEverest Maintainer"
 date: 2026-11-09T11:00:00
 draft: false
 image:
-    url: openeverest-databases.png
+    url: cover.jpg
     attribution:
 authors:
   - spron-in
