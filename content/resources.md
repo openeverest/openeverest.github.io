@@ -7,6 +7,17 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "The Death of the DBA “Third Pedal”: Automating Databases on Kubernetes"
+    url: "/events/xops-dubai-2026/"
+    event_name: "X-Ops Dubai 2026"
+    location: "Dubai, United Arab Emirates — Executive Summit"
+    date: 2026-11-30
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/xops-dubai-2026.jpg"
+    description: "Monday, November 30 · 3:50–4:20 PM GST. Practical patterns for automating database operations on Kubernetes — where automation works, where it falls short, and what role AI can play."
+
   - title: "Architecture Without Gatekeepers: Decoupling for Neutrality"
     url: "/events/kubecon-na-2026/"
     event_name: "KubeCon + CloudNativeCon North America 2026"
