@@ -46,7 +46,7 @@ capabilities:
 # Open-source repositories powering this integration.
 repos:
   - label: "provider-cloudnative-pg"
-    url: "https://github.com/AdityaPimpalkar/provider-cloudnative-pg"
+    url: "https://github.com/openeverest/provider-cloudnative-pg"
     description: "The OpenEverest provider that provisions PostgreSQL clusters through CloudNativePG."
   - label: "provider-percona-postgresql"
     url: "https://github.com/openeverest/provider-percona-postgresql"
@@ -76,7 +76,7 @@ faq:
   - question: "Does OpenEverest support TimescaleDB?"
     answer: "Yes. The CloudNativePG provider can enable TimescaleDB, in the Apache 2.0 or Community edition, on PostgreSQL 18 clusters. See [OpenEverest for TimescaleDB](/for/timescaledb/)."
   - question: "Which PostgreSQL versions are supported?"
-    answer: "Supported PostgreSQL versions depend on the selected provider and its upstream operator. Check the [CloudNativePG provider](https://github.com/AdityaPimpalkar/provider-cloudnative-pg) or [Percona PostgreSQL provider](https://github.com/openeverest/provider-percona-postgresql) repository for the current version matrix."
+    answer: "Supported PostgreSQL versions depend on the selected provider and its upstream operator. Check the [CloudNativePG provider](https://github.com/openeverest/provider-cloudnative-pg) or [Percona PostgreSQL provider](https://github.com/openeverest/provider-percona-postgresql) repository for the current version matrix."
 
 # Trademark attribution for the upstream projects named on this page.
 trademark_note: "PostgreSQL and CloudNativePG are trademarks or names of their respective owners. Percona and Percona Operator for PostgreSQL are trademarks or names of Percona, LLC. OpenEverest is not affiliated with, endorsed by, or sponsored by these organizations."
