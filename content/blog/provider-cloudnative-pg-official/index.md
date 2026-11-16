@@ -2,6 +2,9 @@
 title: "provider-cloudnative-pg is now an official OpenEverest provider"
 date: 2026-11-16T06:00:00
 draft: false
+image:
+    url: cover.jpg
+    attribution:
 authors:
   - spron-in
 tags:
