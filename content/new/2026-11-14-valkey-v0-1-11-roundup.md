@@ -17,7 +17,7 @@ provider-valkey v0.1.11 moves the provider onto valkey-operator v0.9.0, and adds
 
 **Admission-time validation:** instance specs are now validated through an admission webhook that returns pure validation results with exact field paths, so a misconfigured instance is rejected at apply time, with the error pointing straight at the offending field.
 
-The release also brings a first contribution from @chilagrow — exploring cluster-scoped instance presets (#27, reverted in #37) — and the provider's CI now tracks new valkey-operator releases through Dependabot (#40), so future operator updates reach the provider sooner.
+The release also marks a first contribution from community member @chilagrow — welcome, and thank you.
 
 To learn more, visit the [v0.1.11 release notes](https://github.com/openeverest/provider-valkey/releases/tag/v0.1.11).
 
