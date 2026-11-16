@@ -15,6 +15,7 @@ events:
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
+    image: "/images/resources/xops-dubai-2026.jpg"
     description: "Monday, November 30 · 3:50–4:20 PM GST. Practical patterns for automating database operations on Kubernetes — where automation works, where it falls short, and what role AI can play."
 
   - title: "Architecture Without Gatekeepers: Decoupling for Neutrality"

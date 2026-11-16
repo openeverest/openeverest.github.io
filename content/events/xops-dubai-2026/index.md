@@ -8,6 +8,8 @@ event_url: "https://dubai.xopsconference.com/agenda"
 event_date: 2026-11-30
 location: "Dubai, United Arab Emirates"
 date_range: "November 30 – December 1, 2026"
+image:
+  url: "/images/resources/xops-dubai-2026.jpg"
 
 # Session details
 schedule:
