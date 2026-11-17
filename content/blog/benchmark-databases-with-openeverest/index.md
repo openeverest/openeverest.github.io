@@ -49,7 +49,7 @@ PostgreSQL and MySQL runs use a measured duration. MongoDB runs use an operation
 
 *MySQL with Sysbench: tailor the workload to the test you want to run.*
 
-Optional CPU, memory, and placement settings control the benchmark workload generator. These settings do not change the database instance’s resource configuration. Connection details come through OpenEverest, so there is no database password field to fill in before each run.
+Optional CPU and memory settings control the benchmark workload generator. Node affinity lets users select runner nodes by label, while administrators can configure tolerations through Helm to allow runners onto tainted nodes, such as a dedicated benchmark node pool. These settings do not change the database instance’s resources or placement. Connection details come through OpenEverest, so there is no database password field to fill in before each run.
 
 Use disposable test data: benchmarks generate real database load, and preparation creates or modifies benchmark datasets. Those datasets remain available afterward for reuse.
 
