@@ -1,10 +1,10 @@
 ---
 title: "Extension Hub"
-description: "Discover database providers and plugins that extend OpenEverest."
+description: "Discover providers, plugins, and integrations that extend OpenEverest."
 layout: single
 type: extensions
 eyebrow: "Extend OpenEverest"
-subtitle: "Discover database providers and plugins available for OpenEverest. Browse the official catalog before installing or opening OpenEverest."
+subtitle: "Discover providers, plugins, and integrations available for OpenEverest. Browse the official catalog before installing or opening OpenEverest."
 hub:
   repoUrl: "https://github.com/openeverest/hub"
   publishUrl: "https://github.com/openeverest/hub/blob/main/docs/PUBLISHING.md"
@@ -15,6 +15,7 @@ ui:
   filterAll: "All"
   filterProvider: "Providers"
   filterPlugin: "Plugins"
+  filterIntegration: "Integrations"
   loadingText: "Loading extensions…"
   emptyTitle: "No extensions found"
   emptyText: "Try a different search or filter."
