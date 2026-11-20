@@ -22,10 +22,17 @@
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                         </svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="/extensions/" class="flex items-center justify-between px-4 py-3 text-[#7790DE] hover:text-[#161641] hover:bg-gray-50 rounded-t-lg transition-colors">
+                    <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="/features/" class="flex items-center justify-between px-4 py-3 text-[#7790DE] hover:text-[#161641] hover:bg-gray-50 rounded-t-lg transition-colors {{ if eq .Section "features" }}text-[#161641]{{ end }}">
+                            <span>Features</span>
+                        </a>
+                        <a href="/for/" class="flex items-center justify-between px-4 py-3 text-[#7790DE] hover:text-[#161641] hover:bg-gray-50 transition-colors {{ if eq .Section "for" }}text-[#161641]{{ end }}">
+                            <span>Supported Technologies</span>
+                        </a>
+                        <a href="/extensions/" class="flex items-center justify-between px-4 py-3 text-[#7790DE] hover:text-[#161641] hover:bg-gray-50 transition-colors">
                             <span>Extension Hub</span>
                         </a>
+                        <div class="border-t border-gray-100 my-1"></div>
                         <a href="/new" class="flex items-center justify-between px-4 py-3 text-[#7790DE] hover:text-[#161641] hover:bg-gray-50 transition-colors {{ if eq .Section "new" }}text-[#161641]{{ end }}">
                             <span>What's New</span>
                         </a>
@@ -158,9 +165,16 @@
                         </svg>
                     </button>
                     <div id="mobile-product-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="/features/" class="block px-4 py-2 text-[#7790DE] hover:text-[#161641] transition-colors">
+                            Features
+                        </a>
+                        <a href="/for/" class="block px-4 py-2 text-[#7790DE] hover:text-[#161641] transition-colors">
+                            Supported Technologies
+                        </a>
                         <a href="/extensions/" class="block px-4 py-2 text-[#7790DE] hover:text-[#161641] transition-colors">
                             Extension Hub
                         </a>
+                        <div class="border-t border-gray-100 mx-4"></div>
                         <a href="/new" class="block px-4 py-2 text-[#7790DE] hover:text-[#161641] transition-colors">
                             What's New
                         </a>
