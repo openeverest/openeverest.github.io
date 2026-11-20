@@ -135,7 +135,10 @@
 .slide-img {
   width: 100%;
   display: block;
-  object-fit: cover;
+  aspect-ratio: 3584 / 2062; /* native ratio of the main screenshots; keeps height stable across slides */
+  object-fit: contain;
+  object-position: top center;
+  background: #fff;
 }
 
 /* Gradient fade caption */

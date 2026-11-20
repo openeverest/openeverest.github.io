@@ -11,6 +11,10 @@ slides:
     title: "Advanced Configuration"
     description: "Fine-tune storage classes, pod scheduling, external access, and engine parameters through a guided wizard."
 
+  - image: "/images/for/kserve/for-kserve-5.png"
+    title: "Built-In Metrics"
+    description: "Track throughput, latency and resource usage for every instance on live dashboards, right in the OpenEverest UI."
+
   - image: "/images/website-misc/openeverest-logs-screen-0.png"
     title: "In-App Log Streaming"
     description: "Stream and search Kubernetes pod logs directly inside OpenEverest — debug databases without leaving the UI."

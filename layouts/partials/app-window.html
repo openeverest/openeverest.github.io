@@ -1,0 +1,11 @@
+{{/* Screenshot framed as an app window. Params: src, alt, eager (bool), fit ("cover" | "contain" | "natural") */}}
+{{ $fit := .fit | default "cover" }}
+<div class="rounded-xl overflow-hidden bg-white shadow-2xl shadow-[#161641]/15 ring-1 ring-[#161641]/10">
+    <div class="flex items-center gap-1.5 px-4 h-8 bg-[#1e1e2e]">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+    </div>
+    <img src="{{ .src }}" alt="{{ .alt }}" loading="{{ if .eager }}eager{{ else }}lazy{{ end }}" decoding="async"
+         class="block w-full bg-white {{ if eq $fit "natural" }}h-auto{{ else if eq $fit "contain" }}aspect-[16/10] object-contain{{ else }}aspect-[16/10] object-cover object-left-top{{ end }}">
+</div>
