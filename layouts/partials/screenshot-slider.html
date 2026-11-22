@@ -244,6 +244,48 @@
   background: rgba(119, 144, 222, 0.6);
   transform: scale(1.15);
 }
+
+/* Mobile: the overlay caption would cover most of the small screenshot,
+   so render it as a solid panel below the image instead. */
+@media (max-width: 767px) {
+  .slide-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide-caption {
+    position: static;
+    flex: 1;
+    padding: 14px 16px 16px;
+    background: #161641;
+  }
+
+  .slide-caption-inner {
+    padding-left: 10px;
+  }
+
+  .slide-caption-title {
+    font-size: 0.9375rem;
+  }
+
+  /* Swipe + dots handle navigation; arrows would cover the screenshot */
+  .slider-arrow {
+    display: none;
+  }
+
+  .macos-titlebar {
+    padding: 9px 12px;
+  }
+
+  .macos-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .macos-dots {
+    gap: 6px;
+  }
+}
 </style>
 
 <script>
