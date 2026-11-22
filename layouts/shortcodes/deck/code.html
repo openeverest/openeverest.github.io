@@ -1,0 +1,4 @@
+{{- /* One tab of a deck/example. Params: name, lang, note. */ -}}
+{{- $html := highlight (trim .Inner "\n") (.Get "lang" | default "text") "style=github-dark,noClasses=true,tabWidth=2" -}}
+{{- $c := dict "name" (.Get "name" | default (.Get "lang")) "note" (.Get "note") "html" $html -}}
+{{- .Parent.Store.Add "codes" (slice $c) -}}

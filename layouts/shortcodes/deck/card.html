@@ -1,0 +1,55 @@
+{{- /* One card of a deck. Params: id, title, kicker, nav (dot label), accent (CSS colour), cover (bool: centred title card). */ -}}
+{{- $inner := .Inner -}}
+{{- $visual := .Store.Get "visual" -}}
+{{- $codes := .Store.Get "codes" -}}
+{{- $id := .Get "id" | default (printf "card-%d" .Ordinal) -}}
+{{- $cover := eq (.Get "cover") "true" -}}
+<article class="oe-card{{ if $cover }} oe-card--cover{{ end }}{{ if not $visual }} oe-card--solo{{ end }}" id="{{ $id }}" data-card data-nav="{{ .Get "nav" | default (.Get "kicker") | default (.Get "title") }}"
+  {{- with .Get "accent" }} style="--oe-accent: {{ . | safeCSS }}"{{ end }} role="group" aria-roledescription="slide" aria-label="{{ .Get "title" }}">
+  <div class="oe-card__inner">
+    <div class="oe-card__text">
+      {{- with .Get "kicker" }}
+      <p class="oe-card__kicker">{{ . }}</p>
+      {{- end }}
+      <h2 class="oe-card__title">{{ .Get "title" | markdownify }}</h2>
+      <div class="oe-card__body">{{ $inner | .Page.RenderString (dict "display" "block") }}</div>
+      {{- if or $visual $codes (.Get "docs") }}
+      <p class="oe-card__actions">
+        {{- if $visual }}
+        <button type="button" class="oe-btn" data-demo-toggle aria-expanded="false" aria-controls="{{ $id }}-demo">View demo</button>
+        {{- end }}
+        {{- if $codes }}
+        <button type="button" class="oe-btn" data-example-toggle aria-expanded="false" aria-controls="{{ $id }}-example"
+          data-label-show="{{ .Store.Get "exampleLabel" | default "View example" }}" data-label-hide="{{ .Store.Get "exampleBack" | default "Close example" }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
+          <span data-example-label>{{ .Store.Get "exampleLabel" | default "View example" }}</span>
+        </button>
+        {{- end }}
+        {{- with .Get "docs" }}<a class="oe-link" href="{{ . }}">Docs&nbsp;→</a>{{ end }}
+      </p>
+      {{- end }}
+    </div>
+    {{- if or $visual $codes }}
+    <div class="oe-card__stage">
+      {{- with $visual }}<div class="oe-card__visual" id="{{ $id }}-demo" data-visual>{{ . | safeHTML }}</div>{{ end }}
+      {{- with $codes }}
+      <div class="oe-card__example" id="{{ $id }}-example" data-example data-tabs>
+        <div class="oe-tabs" role="tablist">
+          {{- range $i, $c := . }}
+          <button type="button" class="oe-tab" role="tab" data-tab="{{ $i }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $c.name }}</button>
+          {{- end }}
+          <button type="button" class="oe-copy" data-copy>Copy</button>
+        </div>
+        {{- range $i, $c := . }}
+        <div class="oe-code" role="tabpanel" data-panel="{{ $i }}"{{ if ne $i 0 }} data-inactive{{ end }}>
+          <p class="oe-code__name">{{ $c.name }}</p>
+          {{- with $c.note }}<p class="oe-code__note">{{ . | markdownify }}</p>{{ end }}
+          {{ $c.html | safeHTML }}
+        </div>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</article>

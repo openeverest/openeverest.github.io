@@ -1,0 +1,2 @@
+{{- /* One choice of a deck/switcher. Params: name. Inner: what to show. */ -}}
+{{- .Parent.Store.Add "options" (slice (dict "name" (.Get "name") "html" .Inner)) -}}

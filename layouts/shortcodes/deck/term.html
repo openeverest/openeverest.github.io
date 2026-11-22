@@ -1,0 +1,36 @@
+{{- /*
+  A terminal that replays a transcript when its card comes into view.
+  Lines starting with "$ " are typed as commands; a trailing "\" continues the command on the next line.
+  Wrap text in [[double brackets]] to highlight it. Params: title.
+*/ -}}
+{{- $lines := split (trim .Inner "\n") "\n" -}}
+{{- $steps := slice -}}
+{{- $cmd := "" -}}{{- $out := slice -}}{{- $cont := false -}}{{- $open := false -}}
+{{- range $lines -}}
+  {{- if $cont -}}
+    {{- $cmd = printf "%s\n%s" $cmd . -}}
+    {{- $cont = strings.HasSuffix . "\\" -}}
+  {{- else if strings.HasPrefix . "$ " -}}
+    {{- if $open }}{{ $steps = $steps | append (dict "cmd" $cmd "out" (delimit $out "\n")) }}{{ end -}}
+    {{- $cmd = strings.TrimPrefix "$ " . -}}{{- $out = slice -}}{{- $open = true -}}
+    {{- $cont = strings.HasSuffix . "\\" -}}
+  {{- else -}}
+    {{- $out = $out | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- if $open }}{{ $steps = $steps | append (dict "cmd" $cmd "out" (delimit $out "\n")) }}{{ end -}}
+<div class="oe-term" data-term>
+  <div class="oe-term__bar">
+    <span class="oe-term__title">{{ .Get "title" | default "terminal" }}</span>
+    <button type="button" class="oe-term__replay" data-term-replay hidden>Replay</button>
+  </div>
+  <div class="oe-term__body" data-term-body>
+    {{- range $steps }}
+    <div class="oe-term__step" data-term-step>
+      <pre class="oe-term__cmd"><span class="oe-term__prompt">$ </span><span data-term-cmd>{{ .cmd }}</span></pre>
+      {{- $o := trim .out "\n" -}}
+      {{- if $o }}<pre class="oe-term__out" data-term-out>{{ $o | htmlEscape | replaceRE `\[\[(.+?)\]\]` "<mark>$1</mark>" | safeHTML }}</pre>{{ end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
