@@ -162,10 +162,10 @@ kind: Example
 | Shortcode | Use |
 | --- | --- |
 | `deck/card` | One card. `cover="true"` centres it as a title card. |
-| `deck/visual` | The demo side of a card. |
-| `deck/example`, `deck/code` | The code behind the **Show the example** button, one tab per `deck/code`. |
+| `deck/visual` | The demo shown when a reader selects **View demo**. |
+| `deck/example`, `deck/code` | The code behind the **View example** button, one tab per `deck/code`. |
 | `deck/shot`, `deck/spot` | A framed screenshot from the post's folder, with optional numbered notes at `x`/`y` percent. |
-| `deck/term` | A terminal that replays a transcript. Lines starting with `$ ` are commands; `[[text]]` is highlighted. |
+| `deck/term` | A terminal transcript with optional replay. Lines starting with `$ ` are commands; `[[text]]` is highlighted. |
 | `deck/switcher`, `deck/option` | Tabs that swap between several demos. |
 
 Paste real output into `deck/term`. Readers reach a card directly with `#<id>`, and without JavaScript every card and example is still shown.

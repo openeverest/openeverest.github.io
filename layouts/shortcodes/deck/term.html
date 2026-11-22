@@ -21,7 +21,6 @@
 {{- if $open }}{{ $steps = $steps | append (dict "cmd" $cmd "out" (delimit $out "\n")) }}{{ end -}}
 <div class="oe-term" data-term>
   <div class="oe-term__bar">
-    <span class="oe-dots" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="oe-term__title">{{ .Get "title" | default "terminal" }}</span>
     <button type="button" class="oe-term__replay" data-term-replay hidden>Replay</button>
   </div>

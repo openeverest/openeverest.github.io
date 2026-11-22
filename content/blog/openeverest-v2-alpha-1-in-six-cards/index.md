@@ -2,8 +2,6 @@
 title: "OpenEverest v2 Alpha 1 in six cards"
 date: 2026-11-22T09:00:00
 draft: false
-image:
-    url: alpha-1-cards-cover.png
 authors:
   - spron-in
 tags:
@@ -16,26 +14,12 @@ tags:
 summary: "Monitoring and backup storage become integrations, every change leaves an event, presets get a team scope, and a backup in a bucket is enough to get a database back. Five features of OpenEverest 2.0.0 Alpha 1, each on one card with a demo from a real cluster and the code behind it."
 ---
 
-OpenEverest 2.0.0 Alpha 1 is out, and the [release notes](https://openeverest.io/docs/2.0.0-alpha.1/release-notes/OpenEverest-2.0.0-alpha.1-2026-11-20/) list everything that changed. This post doesn't repeat them. It picks five changes and gives each one card: what it means, a demo, and a button that shows the code.
-
-Everything on the cards was captured on one three-node cluster running Alpha 1 and the MongoDB provider. Nothing is mocked. Move with **←** and **→**, swipe, or press **f** for full screen.
+OpenEverest 2.0.0 Alpha 1 is out. Explore five highlights in the cards below, or see the [release notes](https://openeverest.io/docs/2.0.0-alpha.1/release-notes/OpenEverest-2.0.0-alpha.1-2026-11-20/) for the full list.
 
 {{< deck label="OpenEverest v2 Alpha 1 in six cards" >}}
 
-{{< deck/card id="start" nav="Start" cover="true" kicker="OpenEverest 2.0.0 Alpha 1" title="Five changes, one card each" >}}
-The first Alpha of v2 moves more out of the core and into things you install: monitoring, backup storage, even the audit log.
-
-Each card has a demo. **Show the example** swaps it for the YAML and commands.
-
-*Press → to start.*
-{{< /deck/card >}}
-
-{{< deck/card id="monitoring" nav="Monitoring" kicker="Monitoring" title="Monitoring is something you plug in" docs="https://openeverest.io/docs/2.0.0-alpha.1/use/monitoring" >}}
-The core used to ship a monitoring backend and knew how to talk to it. Alpha 1 ships none.
-
-A **monitoring integration** is a Helm chart. It installs a `MonitoringClass` that brings its own parameters, authentication modes and form. You point a `MonitoringDestination` at your server and list it on the instance.
-
-Pick a backend: the form changes, and the core didn't have to learn anything.
+{{< deck/card id="monitoring" nav="Monitoring" title="Choose your monitoring backend" docs="https://openeverest.io/docs/2.0.0-alpha.1/use/monitoring" >}}
+Install a monitoring integration, connect it to your server, and add the destination to an instance. Each integration provides its own settings and form.
 
 {{< deck/visual >}}
 {{< deck/switcher label="Installed classes" >}}
@@ -135,12 +119,8 @@ orders-prometheus-26264916-engine   4m12s
 {{< /deck/example >}}
 {{< /deck/card >}}
 
-{{< deck/card id="backups" nav="Backup storage" kicker="Backup storage" title="Backup storage is a class, not hard-coded S3" docs="https://openeverest.io/docs/2.0.0-alpha.1/backups_and_restore/backup_storage" >}}
-`BackupStorage` used to have an `s3` block baked in. A new storage technology meant a new core release.
-
-Now a **`BackupStorageClass`** describes the technology, and each provider's `BackupClass` declares which storage classes and settings it can write to. Core compares the two **once, up front**.
-
-So a combination that can't work is refused when you create it, not after a backup fails at 2 a.m. Here the `s3` class accepts a Google Cloud Storage endpoint, but MongoDB's backup class doesn't.
+{{< deck/card id="backups" nav="Backup storage" title="Storage is no longer hard-coded" docs="https://openeverest.io/docs/2.0.0-alpha.1/backups_and_restore/backup_storage" >}}
+Storage classes describe supported technologies and settings. OpenEverest checks compatibility with the provider before a backup is created.
 
 {{< deck/visual >}}
 {{< deck/switcher label="Demo" >}}
@@ -236,12 +216,8 @@ team-a/backups/team-a/orders/8c7f5808-b52e-420a-8491-aad314e4a91b/s3-prod
 {{< /deck/example >}}
 {{< /deck/card >}}
 
-{{< deck/card id="events" nav="Events" kicker="Lifecycle events" title="Every change leaves an event, whoever made it" docs="https://openeverest.io/docs/2.0.0-alpha.1/administer/events" >}}
-The old event stream lived in the API server's memory and saw only API calls.
-
-Alpha 1 watches the objects themselves and stores **Kubernetes Events**. A change is recorded whether it came from the UI, the API, `kubectl` or GitOps, and each event names its **actor**.
-
-Events live for the cluster's Event TTL, often one hour. To keep them, [plugin-audit](https://github.com/solanicaio/plugin-audit), an open-source plugin, streams them into a searchable audit log inside the UI.
+{{< deck/card id="events" nav="Events" title="See who changed what" docs="https://openeverest.io/docs/2.0.0-alpha.1/administer/events" >}}
+Changes through the UI, API or Kubernetes produce events with an actor. Events expire with the cluster's Event TTL; [plugin-audit](https://github.com/solanicaio/plugin-audit) keeps a searchable audit log.
 
 {{< deck/visual >}}
 {{< deck/switcher label="Demo" >}}
@@ -305,11 +281,12 @@ p, role:auditor, namespaces, read-events, */*
 p, role:auditor, platform-events, read, *
 g, auditor, role:auditor
 {{< /deck/code >}}
-{{< deck/code name="Install plugin-audit" lang="sh" note="The plugin logs in as an OpenEverest user. Create that user and give it the auditor role first." >}}
+{{< deck/code name="Install plugin-audit" lang="sh" >}}
 kubectl create secret generic audit-credentials -n everest-system \
-  --from-literal=username=auditor --from-literal=password=<password>
+  --from-file=username=./username --from-file=password=./password
 
 helm install audit oci://ghcr.io/solanicaio/charts/audit \
+  --version 0.2.0 \
   --namespace everest-system \
   --set image.repository=ghcr.io/solanicaio/plugin-audit \
   --set auth.credentialsSecretName=audit-credentials
@@ -317,12 +294,8 @@ helm install audit oci://ghcr.io/solanicaio/charts/audit \
 {{< /deck/example >}}
 {{< /deck/card >}}
 
-{{< deck/card id="presets" nav="Presets" kicker="Presets" title="Presets for the cluster, and presets for a team" docs="https://openeverest.io/docs/2.0.0-alpha.1/administer/instance_presets" >}}
-A preset is a complete instance configuration that users pick instead of filling in a form. Until now presets were cluster-wide, so they couldn't name anything that lives in a namespace.
-
-Alpha 1 splits them. A **`ClusterInstancePreset`** ships with a provider. An **`InstancePreset`** belongs to a team's namespace and can name that team's backup storage and monitoring destination.
-
-With the `create-from-preset` permission, a user can create **exactly** what the preset says. Anything else is refused, and the answer lists every field that differs.
+{{< deck/card id="presets" nav="Presets" title="Give teams their own presets" docs="https://openeverest.io/docs/2.0.0-alpha.1/administer/instance_presets" >}}
+Alongside provider-wide presets, teams can define instance configurations in their own namespace. Permissions can restrict users to creating instances that match a preset.
 
 {{< deck/visual >}}
 {{< deck/switcher label="Demo" >}}
@@ -428,12 +401,8 @@ g, alice, role:developer
 {{< /deck/example >}}
 {{< /deck/card >}}
 
-{{< deck/card id="import" nav="Import" kicker="Backup imports" title="A backup in a bucket is enough to get a database back" docs="https://openeverest.io/docs/2.0.0-alpha.1/backups_and_restore/create_from_backup" >}}
-Restoring used to need a `Backup` object that OpenEverest already knew, which is exactly what you don't have after losing a cluster.
-
-**Import database** scans a backup storage, lists the backups it finds with their version, type and topology, and creates a new instance from the one you pick.
-
-For this demo we backed up `orders`, deleted the instance **and** its backup record, then imported what was left in the bucket. All 1000 documents came back.
+{{< deck/card id="import" nav="Import" title="Restore a backup from storage" docs="https://openeverest.io/docs/2.0.0-alpha.1/backups_and_restore/create_from_backup" >}}
+Scan backup storage and create an instance from a discovered backup, even when the original cluster and its backup record are gone.
 
 {{< deck/visual >}}
 {{< deck/switcher label="Steps" >}}
@@ -535,7 +504,7 @@ $ kubectl get instance orders-restored -n team-a -o jsonpath='{.status.condition
 {{< /deck/example >}}
 {{< /deck/card >}}
 
-{{< deck/card id="try-it" nav="Try it" cover="true" kicker="Your turn" title="Try Alpha 1" >}}
+{{< deck/card id="try-it" nav="Try it" title="Try Alpha 1" >}}
 Alpha means not for production: install it on a fresh cluster, and read the [breaking changes](https://openeverest.io/docs/2.0.0-alpha.1/release-notes/OpenEverest-2.0.0-alpha.1-2026-11-20/#breaking-changes) if you ran a Developer Preview.
 
 [Quickstart](https://openeverest.io/docs/2.0.0-alpha.1/quick-install) · [Release notes](https://openeverest.io/docs/2.0.0-alpha.1/release-notes/OpenEverest-2.0.0-alpha.1-2026-11-20/) · [GitHub](https://github.com/openeverest/openeverest)

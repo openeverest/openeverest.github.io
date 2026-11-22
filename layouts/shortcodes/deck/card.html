@@ -9,24 +9,29 @@
   <div class="oe-card__inner">
     <div class="oe-card__text">
       {{- with .Get "kicker" }}
-      <p class="oe-card__kicker">{{ if not $cover }}<span class="oe-card__num">{{ printf "%02d" $.Ordinal }}</span>{{ end }}{{ . }}</p>
+      <p class="oe-card__kicker">{{ . }}</p>
       {{- end }}
       <h2 class="oe-card__title">{{ .Get "title" | markdownify }}</h2>
       <div class="oe-card__body">{{ $inner | .Page.RenderString (dict "display" "block") }}</div>
-      {{- if $codes }}
+      {{- if or $visual $codes (.Get "docs") }}
       <p class="oe-card__actions">
+        {{- if $visual }}
+        <button type="button" class="oe-btn" data-demo-toggle aria-expanded="false" aria-controls="{{ $id }}-demo">View demo</button>
+        {{- end }}
+        {{- if $codes }}
         <button type="button" class="oe-btn" data-example-toggle aria-expanded="false" aria-controls="{{ $id }}-example"
-          data-label-show="{{ .Store.Get "exampleLabel" | default "Show the example" }}" data-label-hide="{{ .Store.Get "exampleBack" | default "Back to the demo" }}">
+          data-label-show="{{ .Store.Get "exampleLabel" | default "View example" }}" data-label-hide="{{ .Store.Get "exampleBack" | default "Close example" }}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
-          <span data-example-label>{{ .Store.Get "exampleLabel" | default "Show the example" }}</span>
+          <span data-example-label>{{ .Store.Get "exampleLabel" | default "View example" }}</span>
         </button>
+        {{- end }}
         {{- with .Get "docs" }}<a class="oe-link" href="{{ . }}">Docs&nbsp;→</a>{{ end }}
       </p>
-      {{- else }}{{ with .Get "docs" }}<p class="oe-card__actions"><a class="oe-link" href="{{ . }}">Docs&nbsp;→</a></p>{{ end }}{{ end }}
+      {{- end }}
     </div>
     {{- if or $visual $codes }}
     <div class="oe-card__stage">
-      {{- with $visual }}<div class="oe-card__visual" data-visual>{{ . | safeHTML }}</div>{{ end }}
+      {{- with $visual }}<div class="oe-card__visual" id="{{ $id }}-demo" data-visual>{{ . | safeHTML }}</div>{{ end }}
       {{- with $codes }}
       <div class="oe-card__example" id="{{ $id }}-example" data-example data-tabs>
         <div class="oe-tabs" role="tablist">

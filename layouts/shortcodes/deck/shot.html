@@ -1,5 +1,5 @@
 {{- /*
-  A screenshot framed as a window. Params: src (page resource), alt, caption, frame ("window" | "none"), zoom ("false" to disable).
+  A screenshot. Params: src (page resource), alt, caption, frame ("window" | "none"), zoom ("false" to disable).
   Nest deck/spot to pin numbered notes on it.
 */ -}}
 {{- $inner := .Inner -}}
@@ -9,7 +9,6 @@
 {{- $spots := .Store.Get "spots" -}}
 <figure class="oe-shot{{ if eq (.Get "frame") "none" }} oe-shot--bare{{ end }}">
   <div class="oe-shot__frame">
-    {{- if ne (.Get "frame") "none" }}<div class="oe-shot__bar" aria-hidden="true"><span class="oe-dots"><i></i><i></i><i></i></span></div>{{ end }}
     <div class="oe-shot__img">
       <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .Get "alt" }}" loading="lazy" decoding="async">
       {{- range $i, $s := $spots }}

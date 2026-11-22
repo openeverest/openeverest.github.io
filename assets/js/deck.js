@@ -41,7 +41,6 @@
     });
   }
 
-  // Terminals type their commands the first time they are shown.
   function initTerm(term) {
     var steps = Array.prototype.slice.call(term.querySelectorAll('[data-term-step]'));
     var body = term.querySelector('[data-term-body]');
@@ -100,11 +99,8 @@
 
     term.playOnce = function () {
       if (term.dataset.played) return;
-      if (reducedMotion) {
-        term.dataset.played = 'true';
-        return;
-      }
-      play();
+      term.dataset.played = 'true';
+      if (replay && !reducedMotion) replay.hidden = false;
     };
     if (replay) replay.addEventListener('click', play);
     // Clicking a running terminal shows everything at once.
@@ -129,6 +125,11 @@
         if (!dialog) {
           dialog = document.createElement('dialog');
           dialog.className = 'oe-lightbox';
+          var close = document.createElement('button');
+          close.type = 'button';
+          close.className = 'oe-lightbox__close';
+          close.textContent = 'Close';
+          dialog.appendChild(close);
           dialog.appendChild(document.createElement('img'));
           dialog.addEventListener('click', function () { dialog.close(); });
           root.appendChild(dialog);
@@ -163,6 +164,7 @@
       dot.type = 'button';
       dot.className = 'oe-dot';
       dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', card.dataset.nav || 'Card ' + (i + 1));
       dot.textContent = card.dataset.nav || String(i + 1);
       dot.title = card.dataset.nav || '';
       dot.addEventListener('click', function () { go(i); });
@@ -183,6 +185,7 @@
       count.textContent = (i + 1) + ' / ' + cards.length;
       prev.disabled = i === 0;
       next.disabled = i === cards.length - 1;
+      deck.classList.toggle('has-detail', cards[i].classList.contains('show-demo') || cards[i].classList.contains('show-example'));
       if (inView) playTerms(cards[i]);
       if (!silent && cards[i].id && history.replaceState) {
         history.replaceState(null, '', i === 0 ? location.pathname + location.search : '#' + cards[i].id);
@@ -204,15 +207,21 @@
       if (inView) playTerms(cards[current]);
     }, { threshold: 0.5 }).observe(deck);
 
-    // "Show the example" swaps the demo for the code.
-    deck.querySelectorAll('[data-example-toggle]').forEach(function (btn) {
+    deck.querySelectorAll('[data-demo-toggle], [data-example-toggle]').forEach(function (btn) {
       var card = btn.closest('[data-card]');
-      var label = btn.querySelector('[data-example-label]');
       btn.addEventListener('click', function () {
-        var open = card.classList.toggle('show-example');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        label.textContent = open ? btn.dataset.labelHide : btn.dataset.labelShow;
-        if (!open) playTerms(card);
+        var target = btn.hasAttribute('data-demo-toggle') ? 'show-demo' : 'show-example';
+        var open = !card.classList.contains(target);
+        card.classList.remove('show-demo', 'show-example');
+        if (open) card.classList.add(target);
+        card.querySelectorAll('[data-demo-toggle], [data-example-toggle]').forEach(function (control) {
+          var expanded = control === btn && open;
+          control.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          var label = control.querySelector('[data-example-label]');
+          if (label) label.textContent = expanded ? control.dataset.labelHide : control.dataset.labelShow;
+        });
+        deck.classList.toggle('has-detail', open);
+        if (target === 'show-demo' && open) playTerms(card);
       });
     });
 
