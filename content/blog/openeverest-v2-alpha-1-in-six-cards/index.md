@@ -2,6 +2,8 @@
 title: "OpenEverest v2 Alpha 1 in six cards"
 date: 2026-11-22T09:00:00
 draft: false
+image:
+    url: alpha-blog-cover.jpg
 authors:
   - spron-in
 tags:
