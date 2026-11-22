@@ -3,6 +3,10 @@ slides:
     title: "Unified Database Dashboard"
     description: "Manage databases, caches, and AI workloads from a single control plane — across any Kubernetes infrastructure."
 
+  - image: "/images/website-misc/openeverest-modular-0.png"
+    title: "Modular by Design"
+    description: "Browse the Hub and plug in providers for PostgreSQL, ClickHouse, Cassandra, Milvus, KServe and more — plus monitoring integrations — without changing the platform."
+
   - image: "/images/website-misc/openeverest-components-screen-0.png"
     title: "Visual Component Explorer"
     description: "Inspect proxies, pods, and containers in an interactive topology view — no kubectl required."
