@@ -1,0 +1,5 @@
+{{- /* The code side of a card, behind the "Show the example" button. Holds deck/code tabs. Params: label, back. */ -}}
+{{- $inner := .Inner -}}
+{{- .Parent.Store.Set "codes" (.Store.Get "codes") -}}
+{{- with .Get "label" }}{{ $.Parent.Store.Set "exampleLabel" . }}{{ end -}}
+{{- with .Get "back" }}{{ $.Parent.Store.Set "exampleBack" . }}{{ end -}}

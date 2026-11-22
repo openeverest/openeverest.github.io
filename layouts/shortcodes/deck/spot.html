@@ -1,0 +1,2 @@
+{{- /* A numbered note pinned on a deck/shot. Params: x, y (percent of the image). Inner: the note. */ -}}
+{{- .Parent.Store.Add "spots" (slice (dict "x" (.Get "x") "y" (.Get "y") "text" (trim .Inner "\n "))) -}}

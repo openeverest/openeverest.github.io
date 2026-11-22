@@ -137,6 +137,39 @@ Your blog content here...
 ![OpenEverest Dashboard](dashboard-screenshot.png)
 ```
 
+## Slide decks
+
+A post can present its content as a horizontal deck of cards, one per screen, with the `deck` shortcodes. See `content/blog/openeverest-v2-alpha-1-in-six-cards/index.md` for a complete example.
+
+```text
+{{</* deck label="What's new" */>}}
+{{</* deck/card id="monitoring" nav="Monitoring" kicker="Monitoring" title="…" docs="https://…" */>}}
+Markdown pitch.
+
+{{</* deck/visual */>}}
+{{</* deck/shot src="screenshot.png" alt="…" caption="…" /*/>}}
+{{</* /deck/visual */>}}
+
+{{</* deck/example */>}}
+{{</* deck/code name="YAML" lang="yaml" note="…" */>}}
+kind: Example
+{{</* /deck/code */>}}
+{{</* /deck/example */>}}
+{{</* /deck/card */>}}
+{{</* /deck */>}}
+```
+
+| Shortcode | Use |
+| --- | --- |
+| `deck/card` | One card. `cover="true"` centres it as a title card. |
+| `deck/visual` | The demo side of a card. |
+| `deck/example`, `deck/code` | The code behind the **Show the example** button, one tab per `deck/code`. |
+| `deck/shot`, `deck/spot` | A framed screenshot from the post's folder, with optional numbered notes at `x`/`y` percent. |
+| `deck/term` | A terminal that replays a transcript. Lines starting with `$ ` are commands; `[[text]]` is highlighted. |
+| `deck/switcher`, `deck/option` | Tabs that swap between several demos. |
+
+Paste real output into `deck/term`. Readers reach a card directly with `#<id>`, and without JavaScript every card and example is still shown.
+
 ## Questions?
 
 If you have questions about contributing, please open an issue in the repository or reach out to the OpenEverest community.

@@ -1,0 +1,35 @@
+{{- /*
+  A horizontal slide deck: one card per screen, with keyboard, swipe, dots and deep links.
+
+    {{< deck label="What's new" >}}
+      {{< deck/card id="monitoring" nav="Monitoring" kicker="Monitoring" title="…" >}}
+        Markdown pitch.
+        {{< deck/visual >}} … {{< /deck/visual >}}
+        {{< deck/example >}} {{< deck/code name="YAML" lang="yaml" >}}…{{< /deck/code >}} {{< /deck/example >}}
+      {{< /deck/card >}}
+    {{< /deck >}}
+
+  Without JavaScript the cards still scroll sideways and every example is shown.
+*/ -}}
+{{- $css := resources.Get "css/deck.css" | minify | fingerprint -}}
+{{- $js := resources.Get "js/deck.js" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<section class="oe-deck" data-deck aria-roledescription="carousel" aria-label="{{ .Get "label" | default "Slides" }}">
+  <div class="oe-deck__track" data-deck-track tabindex="0">
+    {{- .Inner -}}
+  </div>
+  <div class="oe-deck__bar" data-deck-bar hidden>
+    <button type="button" class="oe-deck__nav" data-deck-prev aria-label="Previous card">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="oe-deck__dots" data-deck-dots role="tablist" aria-label="Cards"></div>
+    <span class="oe-deck__count" data-deck-count aria-live="polite"></span>
+    <button type="button" class="oe-deck__nav" data-deck-next aria-label="Next card">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button type="button" class="oe-deck__nav oe-deck__fs" data-deck-fullscreen aria-label="Toggle full screen" title="Full screen (f)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+    </button>
+  </div>
+</section>
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

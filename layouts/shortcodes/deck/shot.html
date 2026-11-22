@@ -1,0 +1,29 @@
+{{- /*
+  A screenshot framed as a window. Params: src (page resource), alt, caption, frame ("window" | "none"), zoom ("false" to disable).
+  Nest deck/spot to pin numbered notes on it.
+*/ -}}
+{{- $inner := .Inner -}}
+{{- $src := .Get "src" -}}
+{{- $img := .Page.Resources.GetMatch $src -}}
+{{- if not $img }}{{ errorf "deck/shot: %q not found in %s" $src .Page.File.Path }}{{ end -}}
+{{- $spots := .Store.Get "spots" -}}
+<figure class="oe-shot{{ if eq (.Get "frame") "none" }} oe-shot--bare{{ end }}">
+  <div class="oe-shot__frame">
+    {{- if ne (.Get "frame") "none" }}<div class="oe-shot__bar" aria-hidden="true"><span class="oe-dots"><i></i><i></i><i></i></span></div>{{ end }}
+    <div class="oe-shot__img">
+      <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .Get "alt" }}" loading="lazy" decoding="async">
+      {{- range $i, $s := $spots }}
+      <button type="button" class="oe-spot{{ if gt (float $s.x) 55.0 }} oe-spot--left{{ end }}{{ if gt (float $s.y) 60.0 }} oe-spot--up{{ end }}" style="left: {{ $s.x }}%; top: {{ $s.y }}%" aria-label="Note {{ add $i 1 }}: {{ $s.text | plainify }}">
+        <span class="oe-spot__n" aria-hidden="true">{{ add $i 1 }}</span>
+        <span class="oe-spot__tip" role="tooltip">{{ $s.text | markdownify }}</span>
+      </button>
+      {{- end }}
+      {{- if ne (.Get "zoom") "false" }}
+      <button type="button" class="oe-shot__zoom" data-zoom="{{ $img.RelPermalink }}" aria-label="Enlarge the screenshot">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+      </button>
+      {{- end }}
+    </div>
+  </div>
+  {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>
