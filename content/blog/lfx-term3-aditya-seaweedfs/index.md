@@ -3,7 +3,7 @@ title: "Less SELECT, More Buckets: Aditya’s LFX Term 3"
 date: 2026-11-30T12:00:00
 draft: true
 image:
-    url: lfx-term3-aditya-cover.png
+    url: lfx-term3-aditya-cover.jpg
     attribution:
 authors:
   - spron-in
