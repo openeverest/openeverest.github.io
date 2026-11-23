@@ -1,6 +1,6 @@
 ---
 title: "Monitoring MariaDB with VictoriaMetrics on OpenEverest"
-date: 2026-10-21T17:00:00
+date: 2026-11-23T09:00:00
 draft: false
 image:
     url: maria-vm-blog-cover.jpg
@@ -14,28 +14,31 @@ tags:
   - monitoring
   - kubernetes
   - provider
-summary: "provider-mariadb 0.2.1 can send its metrics to VictoriaMetrics. Follow a metric from the Instance to the Metrics tab, see what changes in mariadb-operator's next release, and find out what monitoring 50 MariaDB clusters actually cost."
+summary: "provider-mariadb 0.3.0 sends its metrics to VictoriaMetrics through OpenEverest's new monitoring destinations. Follow a metric from the Instance to the Metrics tab, see how a mariadb-operator fix made Prometheus optional, and find out what monitoring 50 MariaDB clusters actually cost."
 ---
 
-[`provider-mariadb` 0.2.1](https://github.com/openeverest/provider-mariadb/releases/tag/v0.2.1) can now register your databases with the [VictoriaMetrics operator](https://docs.victoriametrics.com/operator/), not only with the Prometheus Operator. It's one more switch when you create a database, and [`plugin-metrics`](https://github.com/openeverest/plugin-metrics) reads the metrics back into the instance page.
+OpenEverest 2.0 turns monitoring into plug-ins. Each backend, such as Prometheus or VictoriaMetrics, is an extension that installs a *monitoring class*. You create a *destination* of that class, and every database that lists the destination sends its metrics there. [`provider-mariadb` 0.3.0](https://github.com/openeverest/provider-mariadb/releases/tag/v0.3.0) speaks this contract, so MariaDB metrics go to the [VictoriaMetrics operator](https://docs.victoriametrics.com/operator/) with no Prometheus involved, and [`plugin-metrics`](https://github.com/openeverest/plugin-metrics) reads them back into the instance page.
 
 In this post I follow a metric from the `Instance` you create to the chart in the UI. Then I scale the whole thing to 50 MariaDB clusters to see what the monitoring itself costs.
 
 ## Turning it on
 
-In the create wizard, the **Monitoring** step now has two switches. *Enable metrics* deploys the exporter. *VictoriaMetrics* additionally registers it with the VictoriaMetrics operator.
+In the create wizard, the **Monitoring** step lists every installed monitoring class with the destinations you can use in the database's namespace. Pick one, or several: one database can send its metrics to Prometheus and VictoriaMetrics at the same time.
 
-<img class="vmb-img" src="mariadb-vm-create-monitoring.png" alt="OpenEverest create database wizard, Monitoring step: an Enable metrics switch that deploys the metrics exporter and a Prometheus ServiceMonitor, and a VictoriaMetrics switch that also creates a VMServiceScrape for the VictoriaMetrics operator">
+<img class="vmb-img" src="mariadb-vm-create-monitoring.png" alt="OpenEverest create database wizard, Monitoring step: a Prometheus (Prometheus Operator) class with a prometheus destination, and a VictoriaMetrics class with a selected victoriametrics destination, both Ready">
 
-In the `Instance` spec, that is the `monitoring` component:
+In the `Instance` spec, that is one entry under `spec.monitoring.destinations`:
 
 ```yaml
-    monitoring:
-      parameters:
-        enabled: true
-        victoriaMetrics:
-          enabled: true
+spec:
+  monitoring:
+    destinations:
+      - name: victoriametrics
+        destinationRef:
+          name: victoriametrics
 ```
+
+There are no MariaDB-specific monitoring settings any more. The same entry works for every database whose provider supports the monitoring contract.
 
 ## Follow a metric
 
@@ -50,31 +53,30 @@ Six components are involved between the switch and the chart. Click through them
   <input type="radio" name="vmb-step" id="vmb-s6">
   <div class="vmb-flow">
     <label for="vmb-s1" data-step="1"><b>1</b>Instance</label>
-    <label for="vmb-s2" data-step="2"><b>2</b>mariadb-operator</label>
-    <label for="vmb-s3" data-step="3"><b>3</b>VM converter</label>
-    <label for="vmb-s4" data-step="4"><b>4</b>Provider</label>
+    <label for="vmb-s2" data-step="2"><b>2</b>OpenEverest</label>
+    <label for="vmb-s3" data-step="3"><b>3</b>Provider</label>
+    <label for="vmb-s4" data-step="4"><b>4</b>VM extension</label>
     <label for="vmb-s5" data-step="5"><b>5</b>VMAgent</label>
     <label for="vmb-s6" data-step="6"><b>6</b>VMSingle &amp; UI</label>
   </div>
   <div class="vmb-step" data-step="1">
-    <p><strong>You create an Instance</strong> with <code>monitoring.parameters.enabled</code> and <code>victoriaMetrics.enabled</code> set. The provider turns it into a <code>MariaDB</code> resource for mariadb-operator with metrics enabled, and stamps it with OpenEverest's labels.</p>
-    <label for="vmb-s2" class="vmb-next">Next: mariadb-operator →</label>
+    <p><strong>You create an Instance</strong> that lists the <code>victoriametrics</code> destination under <code>spec.monitoring.destinations</code>. That's all it says about monitoring: it doesn't know about exporters, scrape objects or VictoriaMetrics.</p>
+    <label for="vmb-s2" class="vmb-next">Next: OpenEverest →</label>
   </div>
   <div class="vmb-step" data-step="2">
-    <p><strong>mariadb-operator deploys one <code>mysqld-exporter</code> per cluster.</strong> It's a single Deployment that scrapes every MariaDB server in the cluster, so a 2-node cluster has two database pods and one exporter pod.</p>
-    <p>The operator also creates a Prometheus <code>ServiceMonitor</code> for the exporter, and until now it always did. That's why the <code>ServiceMonitor</code> CRD has been required even in clusters without Prometheus. More on that below.</p>
-    <label for="vmb-s3" class="vmb-next">Next: VM converter →</label>
+    <p><strong>OpenEverest binds the Instance to the destination.</strong> It creates a <code>MonitoringBinding</code> for the entry and checks it against the class, which says it needs metrics. The binding is how the provider and the extension learn about each other; neither talks to the other directly.</p>
+    <label for="vmb-s3" class="vmb-next">Next: provider →</label>
   </div>
   <div class="vmb-step" data-step="3">
-    <p><strong>The VictoriaMetrics operator converts it.</strong> It watches Prometheus Operator objects and creates a matching <code>VMServiceScrape</code> for each <code>ServiceMonitor</code>. Useful, but the converted object doesn't know anything about OpenEverest.</p>
-    <label for="vmb-s4" class="vmb-next">Next: provider →</label>
+    <p><strong>The provider turns on the exporter and publishes its endpoints.</strong> mariadb-operator deploys one <code>mysqld-exporter</code> per cluster, a single Deployment that probes every MariaDB server, so a 2-node cluster has two database pods and one exporter pod. The operator's own <code>ServiceMonitor</code> stays off. Instead, the provider writes one endpoint per MariaDB pod into <code>status.monitoring.sources</code>: the exporter's <code>/probe</code> path with that pod as the <code>target</code>.</p>
+    <label for="vmb-s4" class="vmb-next">Next: VM extension →</label>
   </div>
   <div class="vmb-step" data-step="4">
-    <p><strong>The provider takes the <code>VMServiceScrape</code> over.</strong> It annotates it with <code>operator.victoriametrics.com/ignore-prometheus-updates</code> so the converter leaves it alone, and adds OpenEverest's labels, including <code>core.openeverest.io/provider: mariadb</code>. There's still exactly one scrape config for the exporter, so nothing is scraped twice.</p>
+    <p><strong>The <code>monitoring-victoriametrics</code> extension creates a <code>VMPodScrape</code></strong>, one per database component, owned by the binding. It labels the scrape as the destination asks, so the right VMAgent picks it up, and relabels every sample with <code>openeverest_instance</code>, <code>openeverest_namespace</code>, <code>openeverest_provider</code> and the probed pod as <code>instance</code>. Remove the entry from the Instance and the scrape is garbage-collected.</p>
     <label for="vmb-s5" class="vmb-next">Next: VMAgent →</label>
   </div>
   <div class="vmb-step" data-step="5">
-    <p><strong>VMAgent picks up every MariaDB in the cluster</strong> with a single selector on that provider label, in any namespace. It scrapes the exporters every 30 seconds and sends the samples to storage with remote write, buffering them on disk if storage is unavailable.</p>
+    <p><strong>VMAgent picks up every MariaDB in the cluster</strong> with a single selector on the destination's label, in any namespace. It scrapes the exporters every 30 seconds and sends the samples to storage with remote write, buffering them on disk if storage is unavailable.</p>
     <label for="vmb-s6" class="vmb-next">Next: VMSingle and the UI →</label>
   </div>
   <div class="vmb-step" data-step="6">
@@ -83,32 +85,28 @@ Six components are involved between the switch and the chart. Click through them
   </div>
 </div>
 
-You can see step 2 in the Inspector of any MariaDB instance: two `engine` pods and a single exporter pod next to them, tagged `monitoring`.
+The instance page shows how each entry is doing: whether its scrape objects are configured and its destination is ready. Here `mdb-vm` sends its metrics to VictoriaMetrics and, for the comparison below, to Prometheus as well:
 
-<img class="vmb-img" src="mariadb-vm-inspector.png" alt="OpenEverest Inspector for the mdb-vm MariaDB instance: two engine pods, mdb-vm-0 and mdb-vm-1, both running 2 of 2 containers, and one mdb-vm-metrics exporter pod tagged monitoring">
+<img class="vmb-img" src="mariadb-vm-overview-monitoring.png" alt="OpenEverest instance overview for mdb-vm, Monitoring card: overall status Ready, and two destinations, victoriametrics and prometheus, both Ready and Extension-managed">
 
 ## The VictoriaMetrics side
 
-OpenEverest's core Helm chart already installs the VictoriaMetrics operator into `everest-monitoring`. You only add a VMAgent and a storage backend. A VMAgent that picks up every MariaDB in the cluster:
+You need three things next to OpenEverest: the VictoriaMetrics operator, the `monitoring-victoriametrics` extension, and a VMAgent with storage behind it. Install the operator and the extension:
 
-```yaml
-apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMAgent
-metadata:
-  name: showcase
-  namespace: vm-showcase
-spec:
-  scrapeInterval: 30s
-  selectAllByDefault: false
-  serviceScrapeNamespaceSelector: {}
-  serviceScrapeSelector:
-    matchLabels:
-      core.openeverest.io/provider: mariadb
-  remoteWrite:
-    - url: http://vmsingle-showcase.vm-showcase.svc:8429/api/v1/write
+```bash
+helm repo add vm https://victoriametrics.github.io/helm-charts/
+helm install vm-operator vm/victoria-metrics-operator \
+  -n vm --create-namespace \
+  --set operator.disable_prometheus_converter=true
+
+helm install monitoring-victoriametrics \
+  oci://ghcr.io/openeverest/charts/monitoring-victoriametrics \
+  -n everest-system
 ```
 
-And the storage it writes to:
+The extension adds the `victoriametrics` class. `kubectl get monitoringclass` should show it as `Accepted`. I turned off the operator's Prometheus converter because nothing here needs it: the extension creates native `VMPodScrape` objects. Keeping it on is harmless until a database also sends its metrics to a Prometheus destination; then a VMAgent that selects the converted objects scrapes it twice.
+
+The storage:
 
 ```yaml
 apiVersion: operator.victoriametrics.com/v1beta1
@@ -125,6 +123,41 @@ spec:
         storage: 10Gi
 ```
 
+A VMAgent that picks up every `VMPodScrape` labelled `vmagent: showcase`, in any namespace, and writes to it:
+
+```yaml
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: showcase
+  namespace: vm-showcase
+spec:
+  selectAllByDefault: false
+  podScrapeNamespaceSelector: {}
+  podScrapeSelector:
+    matchLabels:
+      vmagent: showcase
+  remoteWrite:
+    - url: http://vmsingle-showcase.vm-showcase.svc:8429/api/v1/write
+```
+
+And the destination your databases point at. It's namespaced, so create one in every namespace that runs databases. It tells the extension which label to put on the scrapes, which ties them to that VMAgent, and how often to scrape:
+
+```yaml
+apiVersion: monitoring.openeverest.io/v1alpha1
+kind: MonitoringDestination
+metadata:
+  name: victoriametrics
+  namespace: demo
+spec:
+  classRef:
+    name: victoriametrics
+  parameters:
+    interval: 30s
+    vmPodScrapeLabels:
+      vmagent: showcase
+```
+
 To chart the metrics on the instance page, point `plugin-metrics` at VMSingle:
 
 ```bash
@@ -133,9 +166,13 @@ helm upgrade plugin-metrics oci://ghcr.io/openeverest/charts/plugin-metrics \
   --set prometheus.url=http://vmsingle-showcase.vm-showcase.svc:8429
 ```
 
-## No Prometheus required (soon)
+VMSingle answers the same HTTP API as Prometheus, so the tab still says *Source: Prometheus*. The series come from VictoriaMetrics, one line per MariaDB server:
 
-While preparing this post, I ran into step 2 again: mariadb-operator always created a `ServiceMonitor` next to the exporter. So every cluster needed the Prometheus Operator CRDs, even one that only runs VictoriaMetrics. Without them, the MariaDB resource reports `CRDNotFound`.
+<img class="vmb-img" src="mariadb-vm-metrics-tab.png" alt="OpenEverest Metrics tab for mdb-vm, served from VMSingle: queries per second, slow queries, connections and running threads, each with one series for mdb-vm-0 and one for mdb-vm-1">
+
+## No Prometheus required
+
+While preparing this post, I hit one more Prometheus dependency: mariadb-operator always created a `ServiceMonitor` next to the exporter. So every cluster needed the Prometheus Operator CRDs, even one that only runs VictoriaMetrics. Without them, the MariaDB resource reported `CRDNotFound`.
 
 So I opened [mariadb-operator#1985](https://github.com/mariadb-operator/mariadb-operator/pull/1985). It adds a `serviceMonitor.enabled` switch to the metrics settings of `MariaDB` and `MaxScale`:
 
@@ -151,13 +188,15 @@ spec:
 
 The exporter, its Service and its database user are still created; only the `ServiceMonitor` is skipped, and the CRD is no longer needed. The default stays `true`, so existing databases don't change.
 
-The mariadb-operator maintainers reviewed it within two hours, asked for one round of changes, and merged it the same day, less than nine hours after I opened it. Thanks, [Martin](https://github.com/mmontes11)! It ships in the next mariadb-operator release. Once the provider picks it up, a VictoriaMetrics-only cluster won't need anything from Prometheus at all.
+The mariadb-operator maintainers reviewed it within two hours, asked for one round of changes, and merged it the same day, less than nine hours after I opened it. Thanks, [Martin](https://github.com/mmontes11)! It shipped in mariadb-operator 26.10.2, which `provider-mariadb` 0.3.0 bundles. The provider keeps the operator's `ServiceMonitor` off, because the monitoring extensions create the scrape objects now. A VictoriaMetrics-only cluster doesn't need anything from Prometheus.
 
 ## What does monitoring 50 databases cost?
 
 A question I hear a lot: how much should I set aside for monitoring as the number of databases grows? So I created 50 MariaDB clusters, 100 MariaDB servers in total, on a managed Kubernetes cluster with 10 nodes, and watched what the monitoring used.
 
 To have a reference point, I ran a Prometheus next to VictoriaMetrics, scraping exactly the same targets: about 115,000 series every 30 seconds, both starting from empty volumes at the same time.
+
+I measured this with `provider-mariadb` 0.2.1, before the monitoring destinations existed. The exporter, its metrics and the VictoriaMetrics side are the same in 0.3.0, and a 2-node cluster still produces about 2,300 series, so the numbers carry over. With destinations, the side-by-side setup is just two entries on each `Instance`.
 
 **Read these numbers for what they are.** 115,000 series is a small setup for either system. The databases were idle, so most values never changed, which compresses unusually well. Nothing restarted or failed over, so no new series appeared. And it ran for three hours, not weeks. This is what a small, quiet fleet costs, not a benchmark of VictoriaMetrics against Prometheus. Their differences show up at millions of series and with heavy series churn.
 
@@ -290,16 +329,18 @@ While Prometheus was down, nobody scraped. While VMSingle was down, VMAgent kept
 
 ## Things to know
 
-* **Today you still need the `ServiceMonitor` CRD.** Until mariadb-operator's next release reaches the provider, install the `monitoring.coreos.com` CRDs. You don't need a running Prometheus.
+* **Prometheus is optional now.** A VictoriaMetrics-only cluster needs neither a Prometheus nor the `monitoring.coreos.com` CRDs.
+* **Destinations are namespaced.** Create a `MonitoringDestination` in every namespace that runs databases. `kubectl get monitoringbindings` shows one binding per entry, and the `Instance` reports whether each one is configured.
+* **Scraping with something else?** To use a tool OpenEverest doesn't configure, such as Grafana Alloy, a Datadog agent or a hand-written `VMPodScrape`, set `spec.monitoring.sources.metrics.policy: Always`. The exporter then runs without any destination, and its endpoints are listed in `status.monitoring.sources`.
 * **Set VMSingle's memory limit deliberately.** The default lets caches grow to 900 MiB. For a small fleet, 256 MiB was plenty.
 * **Running more than one Prometheus?** The `prometheus-operated` Service selects every Prometheus pod the operator runs. While measuring, half of my queries silently went to the wrong Prometheus. Query the pod.
 
 ## Try It Yourself
 
-1. Install OpenEverest and `provider-mariadb` 0.2.1 or later.
-2. Install the Prometheus Operator CRDs (mariadb-operator needs the `ServiceMonitor` CRD for now).
-3. Create the VMSingle and VMAgent above. The VictoriaMetrics operator is already running in `everest-monitoring`.
-4. Create a MariaDB database with **Enable metrics** and **VictoriaMetrics** switched on.
+1. Install OpenEverest 2.0.0-alpha.1 or later and `provider-mariadb` 0.3.0 or later.
+2. Install the VictoriaMetrics operator and the `monitoring-victoriametrics` extension.
+3. Create the VMSingle, the VMAgent and a `victoriametrics` destination in your database namespace, as above.
+4. Create a MariaDB database and pick the **victoriametrics** destination in the **Monitoring** step.
 5. Point `plugin-metrics` at VMSingle and open the instance's **Metrics** tab.
 
 ## Keep going
