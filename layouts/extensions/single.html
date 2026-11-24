@@ -41,6 +41,9 @@
           <button type="button" data-extension-filter="plugin" aria-pressed="false" class="extension-filter rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2">
             {{ .Params.ui.filterPlugin }} <span id="plugin-count" class="ml-1 opacity-75"></span>
           </button>
+          <button type="button" data-extension-filter="integration" aria-pressed="false" class="extension-filter rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7790DE] focus-visible:ring-offset-2">
+            {{ .Params.ui.filterIntegration }} <span id="integration-count" class="ml-1 opacity-75"></span>
+          </button>
         </div>
       </div>
     </div>
@@ -113,9 +116,10 @@
     }
 
     const capabilities = flattenValues(extension.capabilities);
+    const integration = flattenValues(extension.integration);
     const engines = extension.provider && extension.provider.supportedEngines || [];
     return [extension.displayName, extension.name, extension.description]
-      .concat(extension.categories || [], extension.keywords || [], capabilities, engines)
+      .concat(extension.categories || [], extension.keywords || [], capabilities, integration, engines)
       .join(' ').toLowerCase();
   }
 
@@ -249,7 +253,7 @@
       }
       state.extensions = data.extensions;
       document.getElementById('all-count').textContent = '(' + state.extensions.length + ')';
-      ['provider', 'plugin'].forEach(function (type) {
+      ['provider', 'plugin', 'integration'].forEach(function (type) {
         const count = state.extensions.filter(function (extension) { return extension.type === type; }).length;
         document.getElementById(type + '-count').textContent = '(' + count + ')';
       });

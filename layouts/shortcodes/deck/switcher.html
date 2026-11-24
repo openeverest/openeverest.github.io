@@ -1,0 +1,17 @@
+{{- /* Tabs that swap what is shown: screenshots, terminals, anything. Holds deck/option. Params: label. */ -}}
+{{- $inner := .Inner -}}
+{{- $opts := .Store.Get "options" -}}
+<div class="oe-switch" data-tabs>
+  <div class="oe-switch__tabs" role="tablist"{{ with .Get "label" }} aria-label="{{ . }}"{{ end }}>
+    {{- with .Get "label" }}<span class="oe-switch__label">{{ . }}</span>{{ end }}
+    {{- range $i, $o := $opts }}
+    <button type="button" class="oe-chip" role="tab" data-tab="{{ $i }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $o.name }}</button>
+    {{- end }}
+  </div>
+  {{- range $i, $o := $opts }}
+  <div class="oe-switch__panel" role="tabpanel" data-panel="{{ $i }}"{{ if ne $i 0 }} data-inactive{{ end }}>
+    <p class="oe-switch__name">{{ $o.name }}</p>
+    {{ $o.html | safeHTML }}
+  </div>
+  {{- end }}
+</div>

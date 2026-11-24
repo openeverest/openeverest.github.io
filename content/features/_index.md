@@ -1,5 +1,155 @@
-
 ---
 title: "Features"
-description: "OpenEverest gives you a self-hosted, open-source database platform on Kubernetes — multi-engine support, automated provisioning, scaling, backups, and monitoring out of the box."
+description: "Everything OpenEverest does in one place: self-service provisioning, scaling, backups and point-in-time recovery, cluster visibility, advanced configuration, LLM serving and an extensible provider and plugin architecture for databases, storage and AI on any Kubernetes cluster."
+aliases:
+  - "/features/deployments/"
+  - "/features/management/"
+  - "/features/provisioning/"
+
+hero:
+  eyebrow: "Features"
+  title: "Everything you need to run data"
+  title_accent: "on your own Kubernetes."
+  subtitle: "Provision, scale, back up and observe databases, object storage and LLMs from one UI and API. Same workflow for every engine, on any cluster, and open to extend with your own providers and plugins."
+  image: "/images/website-misc/openeverest-screen-0.png"
+  image_alt: "OpenEverest dashboard listing databases across engines"
+
+features:
+  - id: "provisioning"
+    eyebrow: "Provisioning"
+    title: "Production-ready in a few clicks"
+    description: "A guided wizard walks you through namespace, topology, version, resources, backups and advanced settings, with a live summary of exactly what you are about to create."
+    image: "/images/for/mongodb/for-mongodb-0.png"
+    image_alt: "Guided provisioning wizard with database topology selection"
+    points:
+      - "Replica sets, sharded clusters and other topologies per engine"
+      - "Choose the engine version and provider for every instance"
+      - "Also available through the API and CLI for automation"
+
+  - id: "scaling"
+    eyebrow: "Scaling"
+    title: "Grow with your workload"
+    description: "Match the topology to your traffic. Add capacity horizontally or vertically without reprovisioning or migrating data."
+    image: "/images/for/valkey/for-valkey-1.png"
+    image_alt: "Configuring shards, replicas, CPU, memory and disk for a Valkey cluster"
+    points:
+      - "Add nodes, shards or replicas to spread load"
+      - "Adjust CPU and memory, in place on Kubernetes 1.35+"
+      - "Expand storage volumes when your data outgrows them"
+      - "Anti-affinity, zone spread and node selectors for resilience"
+
+  - id: "backups"
+    eyebrow: "Backups & recovery"
+    title: "Backups you stop worrying about"
+    description: "Schedule backups to any S3-compatible storage, keep as many copies as you need, and restore to the exact moment before something went wrong."
+    image: "/images/for/postgresql/for-postgresql-1.png"
+    image_alt: "Creating a daily backup schedule with full, differential or incremental backups"
+    fit: "contain"
+    points:
+      - "On-demand and scheduled backups with retention policies"
+      - "Point-in-time recovery within the retention window"
+      - "Spin up a new instance from any backup for staging or forensics"
+
+  - id: "visibility"
+    eyebrow: "Visibility"
+    title: "See inside every cluster"
+    description: "Explore proxies, pods and containers in an interactive topology view. Know what is running, where, and whether it is healthy, without reaching for kubectl."
+    image: "/images/website-misc/openeverest-components-screen-0.png"
+    image_alt: "Interactive component topology for a database cluster"
+    points:
+      - "Status, connection details and topology at a glance"
+      - "Drill into every component of a cluster"
+      - "Plug metrics into the monitoring stack you already run"
+
+  - id: "logs"
+    eyebrow: "Troubleshooting"
+    title: "Debug without leaving the UI"
+    description: "Stream and search pod logs for any component right inside OpenEverest. Find out why an instance is not ready in seconds, not in a terminal session."
+    image: "/images/website-misc/openeverest-logs-screen-0.png"
+    image_alt: "Streaming database pod logs inside OpenEverest"
+    points:
+      - "Pick any component and follow its logs live"
+      - "Search to the line that matters"
+      - "Copy or download logs to share with your team"
+
+  - id: "configuration"
+    eyebrow: "Configuration"
+    title: "Tune everything, write no YAML"
+    description: "Production databases need tuning. OpenEverest exposes the knobs that matter through forms, so teams get full control without Kubernetes expertise."
+    image: "/images/website-misc/openeverest-database-advanced-0.png"
+    image_alt: "Advanced configuration step with storage class, scheduling and external access"
+    points:
+      - "Engine parameters, from postgresql.conf to ClickHouse settings"
+      - "Storage classes and pod scheduling policies"
+      - "External access via LoadBalancer or NodePort, or keep it internal"
+
+  - id: "ai"
+    eyebrow: "AI workloads"
+    title: "Serve LLMs next to your data"
+    description: "Deploy models with vLLM from a curated catalog and serve them behind one authenticated, OpenAI-compatible endpoint, on your own GPUs."
+    image: "/images/for/kserve/for-kserve-1.png"
+    image_alt: "Picking an LLM from the model catalog"
+    link: "/for/kserve/"
+    link_text: "Learn about LLM serving"
+    points:
+      - "Qwen3, Phi-4, Mistral, DeepSeek, Gemma, Llama or any Hugging Face model"
+      - "Per-model API keys and token quotas through the AI gateway"
+      - "Models bigger than one node with pipeline parallelism"
+
+extensibility:
+  eyebrow: "Extensibility"
+  title: "Built for platform builders"
+  subtitle: "OpenEverest is a foundation, not a black box. Add the technologies your teams need, keep pace with upstream operators, and extend the product any way you want, without forking the core."
+  image: "/images/website-misc/openeverest-hub-0.png"
+  image_alt: "The Hub listing installable OpenEverest providers and plugins"
+  cards:
+    - label: "Providers"
+      title: "Bring any technology"
+      description: "Every engine is a provider built with the Provider SDK on top of its Kubernetes operator. Write one for the technology you need, or pick one from the Hub."
+      points:
+        - "Add a new database, storage or AI technology in days, not months"
+        - "Expose new upstream operator features with minimal changes"
+        - "Providers release independently from the OpenEverest core"
+      link: "https://github.com/openeverest/provider-sdk"
+      link_text: "Provider SDK"
+    - label: "Plugins"
+      title: "Extend everything else"
+      description: "Generic plugins add new pages, tabs and workflows to the OpenEverest UI and talk to its API. Build the features your users ask for and ship them on your own schedule."
+      points:
+        - "Add tabs to instance pages, new sidebar sections or whole tools"
+        - "Use the OpenEverest API and the user's own permissions"
+        - "Match the host look and feel, including dark mode"
+      link: "https://github.com/openeverest/generic-plugin-template"
+      link_text: "Plugin template"
+  examples_title: "Plugins already in the Hub"
+  examples:
+    - name: "Inspector"
+      description: "Pod status, live logs and describe-style details"
+    - name: "Bench"
+      description: "pgbench benchmarks from the cluster page"
+    - name: "User Management"
+      description: "Database users, roles and per-database access"
+    - name: "MongoDB Explorer"
+      description: "Your MongoDB instances, right in the sidebar"
+    - name: "Migrations"
+      description: "Live migrations into OpenEverest with minimal downtime"
+    - name: "Metrics"
+      description: "Dashboards with CPU and memory against limits"
+  link: "/extensions/"
+  link_text: "Browse the Extension Hub"
+
+technologies:
+  title: "One platform, every engine"
+  subtitle: "Every technology is a provider with its own Kubernetes operator. Same UI, same API, same day‑2 workflow."
+
+pillars:
+  - title: "Any Kubernetes, anywhere"
+    description: "EKS, GKE, AKS, bare metal or air-gapped. If it runs Kubernetes, it runs OpenEverest, with the same experience everywhere."
+    icon: "multi-cloud"
+  - title: "Secure by default"
+    description: "TLS, generated credentials and role-based access control on every instance, from day one. Your data never leaves your infrastructure."
+    icon: "private-deploy"
+  - title: "Open source, vendor neutral"
+    description: "Apache 2.0 licensed and a CNCF Sandbox project, developed in the open with a vendor-neutral, modular core."
+    icon: "database-engines"
 ---

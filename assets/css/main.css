@@ -90,42 +90,6 @@
     @apply border-l-4 border-gray-300 pl-4 italic my-6;
   }
 
-  /* Animated word cloud background */
-  .word-cloud-bg {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .word-cloud-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .floating-letter {
-    position: absolute;
-    color: rgba(119, 144, 222, 0.08);
-    font-size: 24px;
-    font-weight: 600;
-    pointer-events: none;
-    transition: all 0.6s ease;
-    user-select: none;
-  }
-
-  .floating-letter.animating {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .floating-letter.forming {
-    color: rgba(119, 144, 222, 0.25);
-    font-size: 32px;
-    font-weight: 700;
-  }
-
   .hero-content {
     position: relative;
     z-index: 1;
@@ -152,14 +116,6 @@
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(5deg);
-  }
-}
 
 /* API documentation loading state */
 .api-loading > *:not(.api-container) {
