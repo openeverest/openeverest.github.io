@@ -1,6 +1,6 @@
 ---
 title: "Introducing Plugin Bench: Database Benchmarking in OpenEverest"
-date: 2026-11-17T00:00:00+05:00
+date: 2026-11-24T00:00:00+05:00
 draft: false
 image:
     url: plugin-bench-cover-mountain.jpg
@@ -11,43 +11,45 @@ tags:
   - blog
   - plugins
   - benchmarking
-  - postgresql
-  - mysql
-  - mongodb
-summary: "Meet Plugin Bench: run PostgreSQL, MySQL, and MongoDB workloads from OpenEverest, review run details, and revisit previous results."
+  - databases
+  - performance
+  - extensibility
+summary: "Meet Plugin Bench: an extensible, database-agnostic way to benchmark your databases from OpenEverest, inspect results, and revisit previous runs."
 ---
 
 Your database is running. How does it respond under load? Whether you are exploring a new deployment or checking the effect of a configuration change, a benchmark can provide a useful starting point.
 
-Plugin Bench brings database benchmarking into OpenEverest. You can configure a workload, launch a run, inspect the outcome, and return to earlier results from the same interface you use to manage your database instances. It integrates established benchmark tools for PostgreSQL, MySQL, and MongoDB, making them accessible without assembling a separate command-line workflow. **Support for more databases is coming soon**, expanding the range of instances you can benchmark from OpenEverest.
+Plugin Bench is a **database-agnostic, extensible benchmarking plugin for OpenEverest**. Its driver system lets contributors add database integrations and benchmark tools, all using a shared workflow for configuring tests, inspecting results, and reviewing previous runs. You can benchmark supported instances from the same interface you use to manage them, without assembling a separate command-line workflow.
 
-## Three databases, one familiar interface
+## One benchmarking interface, extensible by design
 
-The Performance Benchmark page brings your supported database instances together in one place. Each entry identifies the instance, its namespace, and its benchmark tool. Benchmarking is also available through the Performance Benchmark tab on an individual instance.
+A driver connects a benchmark tool to a database technology and handles its specific test options and results. Additional drivers extend the plugin while reusing its run execution and history features. **Support for more databases is coming soon.**
+
+The Performance Benchmark page brings supported instances together in one place, showing each instance, its namespace, and its benchmark tool. You can also open the Performance Benchmark tab directly on an instance.
 
 [![Performance Benchmark overview listing PostgreSQL with pgbench, MySQL with Sysbench, and MongoDB with go-ycsb.](overview-all-instances.png)](overview-all-instances.png)
 
-*Find PostgreSQL/pgbench, MySQL/Sysbench, and MongoDB/go-ycsb instances in one place.*
+*Discover instances and their benchmark tools in one place (PostgreSQL/pgbench, MySQL/Sysbench, and MongoDB/go-ycsb examples).*
 
-A workload is the mix of operations a benchmark performs against a database. Plugin Bench currently offers three combinations, according to the supported provider and the tools enabled by your administrator:
+Each integration provides a workload—the mix of operations a benchmark performs—suited to its benchmark tool. The integrations available today include:
 
 - **PostgreSQL with pgbench:** runs the standard built-in transaction workload.
 - **MySQL with Sysbench:** runs an OLTP read/write workload, exercising a mix of reads and writes.
 - **MongoDB with go-ycsb:** runs Workload A, configured for 50% reads and 50% updates.
 
-These are the first supported databases. More database integrations are planned soon, extending the same configuration, results, and history experience to additional technologies.
+The tools offered for an instance depend on its supported provider and the drivers enabled by your administrator.
 
 ## Control the workload from the UI
 
 The benchmark form exposes the settings relevant to the selected tool. You can adjust concurrency and dataset size, choose how much work to perform, and prepare fresh benchmark data or reuse an existing dataset.
 
-PostgreSQL and MySQL runs use a measured duration. MongoDB runs use an operation count, with the elapsed time depending on how quickly the database completes that work. The controls differ, while the experience of configuring and launching a run stays familiar.
+Depending on the benchmark tool, you can specify a measured duration or an operation count. Each driver exposes the controls its tool needs while sharing the same configuration and run workflow. This keeps the experience familiar as new integrations are added.
 
 <a href="mysql-sysbench-configuration.png" style="display:block;max-width:680px;margin:0 auto;" aria-label="Open full-size MySQL Sysbench configuration screenshot">
-  <img src="mysql-sysbench-configuration.png" alt="MySQL Sysbench configuration form showing duration, threads, table count, dataset size, and optional runner settings." style="display:block;width:100%;height:auto;" />
+  <img src="mysql-sysbench-configuration.png" width="1104" height="940" alt="MySQL Sysbench configuration form showing duration, threads, table count, dataset size, and optional runner settings." style="display:block;width:100%;height:auto;" />
 </a>
 
-*MySQL with Sysbench: tailor the workload to the test you want to run.*
+*Tailor the workload to your test, shown here with MySQL and Sysbench.*
 
 Optional CPU and memory settings control the benchmark workload generator. Node affinity lets users select runner nodes by label, while administrators can configure tolerations through Helm to allow runners onto tainted nodes, such as a dedicated benchmark node pool. These settings do not change the database instance’s resources or placement. Connection details come through OpenEverest, so there is no database password field to fill in before each run.
 
@@ -55,15 +57,15 @@ Use disposable test data: benchmarks generate real database load, and preparatio
 
 ## Inspect results without digging through logs
 
-Completed runs can report throughput and average latency alongside the settings used. Throughput shows how much work the database completes per second, while average latency shows how long an operation takes. PostgreSQL and MySQL report transactions per second; MongoDB reports operations per second.
+Completed runs can report throughput and average latency alongside the settings used. Throughput shows how much work the database completes per second, while average latency shows how long an operation takes. Throughput is reported in transactions or operations per second, depending on the benchmark tool.
 
 Each result card also records the run’s status and effective workload settings. Expandable **Raw logs** provide the underlying tool output, helping you investigate a failed run or check that a completed run used the configuration you intended. If metrics are unavailable, you can still inspect the status and logs.
 
-<a href="mongodb-goycsb-result.png" style="display:block;max-width:440px;margin:0 auto;" aria-label="Open full-size MongoDB go-ycsb result screenshot">
-  <img src="mongodb-goycsb-result.png" alt="One successful MongoDB go-ycsb result card showing effective settings, throughput, average latency, and expandable raw logs." style="display:block;width:100%;height:auto;" />
+<a href="mongodb-goycsb-result.png" style="display:block;max-width:900px;margin:0 auto;" aria-label="Open full-size MongoDB go-ycsb result screenshot">
+  <img src="mongodb-goycsb-result.png" width="1260" height="988" alt="One successful MongoDB go-ycsb result card showing effective settings, throughput, average latency, and expandable raw logs." style="display:block;width:100%;height:auto;" />
 </a>
 
-*MongoDB with go-ycsb: review the workload settings alongside throughput and latency.*
+*Review settings alongside throughput and latency, shown here with MongoDB and go-ycsb.*
 
 Measurements such as throughput and latency depend on the tool, dataset, resources, and other activity in the environment. The screenshots show local demonstration runs; your results may differ. Use repeated runs with consistent settings to explore your own deployment, and interpret results within the same workload rather than treating different tools as a ranking of databases.
 
@@ -73,7 +75,7 @@ Each instance has its own recent benchmark history. The list displays its 20 mos
 
 [![MySQL Sysbench history listing successful and failed runs, elapsed durations, result summaries, and links to details.](mysql-3.png)](mysql-3.png)
 
-*MySQL with Sysbench: revisit earlier settings and outcomes when planning your next test.*
+*Revisit earlier settings and outcomes to plan your next test, shown here with MySQL and Sysbench.*
 
 History includes failed runs as well as successful ones, keeping their outcomes visible for investigation. Its duration represents the overall elapsed time, including startup and preparation, so it can be longer than the measured test period. By default, history is held in memory, disappears on restart, and completed records expire after one hour. For durable history, configure the plugin’s [PostgreSQL storage backend](https://github.com/openeverest/plugin-bench#run-history-storage).
 
@@ -83,4 +85,4 @@ Plugin Bench extends OpenEverest v2 with database benchmarking. This introductio
 
 For MySQL, provide an existing disposable database. The included go-ycsb version currently benchmarks only the `ycsb` MongoDB database, and the instance credentials need read/write access to it.
 
-Start with a small workload on a test instance and explore the results. As support for more databases arrives, the goal is to keep benchmarking accessible through this familiar interface. If you have feedback about the experience or a workload you would like to see supported, [share it with the project](https://github.com/openeverest/plugin-bench/issues).
+Start with a small workload on a test instance and explore the results. The plugin’s driver system provides a way to extend this experience with additional database integrations and benchmark tools. Contributions and feedback are welcome: [share your ideas or propose a new integration](https://github.com/openeverest/plugin-bench/issues).
