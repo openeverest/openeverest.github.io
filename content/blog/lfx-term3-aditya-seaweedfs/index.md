@@ -6,7 +6,7 @@ image:
     url: lfx-term3-aditya-cover.jpg
     attribution:
 authors:
-  - spron-in
+  - adityapimpalkar
 tags:
   - mentorship
   - lfx
@@ -15,18 +15,18 @@ tags:
   - object-storage
   - community
   - cloudnativepg
-summary: "Aditya Pimpalkar’s LFX Mentorship Term 3 wrap-up — building the SeaweedFS object storage provider, keeping CloudNativePG moving, and poking at the rest of the OpenEverest stack along the way."
+summary: "My LFX Mentorship Term 3 wrap-up — building the SeaweedFS object storage provider, keeping CloudNativePG moving, and poking at the rest of the OpenEverest stack along the way."
 ---
 
-When [LFX Mentorship Term 3](https://openeverest.io/blog/lfx-mentorship-term3-2026/) kicked off in September, [Aditya Pimpalkar](/authors/adityapimpalkar/) already knew his way around an OpenEverest provider. He had built [provider-cloudnative-pg](https://github.com/openeverest/provider-cloudnative-pg) earlier in the year. This term asked for something different: **object storage**. Same provider model, different beast. Masters, volume servers, filers, S3 gateways. Less `SELECT`, more “where did my bucket go.”
+When [LFX Mentorship Term 3](https://openeverest.io/blog/lfx-mentorship-term3-2026/) kicked off in September, I already knew my way around an OpenEverest provider — [provider-cloudnative-pg](https://github.com/openeverest/provider-cloudnative-pg) from earlier in the year. This term asked for something different: **object storage**. Same provider model, different beast. Masters, volume servers, filers, S3 gateways. Less `SELECT`, more “where did my bucket go.”
 
-The project: [Develop the Object Storage provider](https://openeverest.io/mentorship/). Mentors: [Diogo Recharte](/authors/recharte/) and [Sergey Pronin](/authors/spron-in/). Destination: [provider-seaweedfs](https://github.com/openeverest/provider-seaweedfs), with [Aditya](/authors/adityapimpalkar/) as the main maintainer.
+The project: [Develop the Object Storage provider](https://openeverest.io/mentorship/). Mentors: [Diogo Recharte](/authors/recharte/) and [Sergey Pronin](/authors/spron-in/). Destination: [provider-seaweedfs](https://github.com/openeverest/provider-seaweedfs), with me as the main maintainer.
 
 ## Why SeaweedFS?
 
 After MinIO closed its doors to the community, OpenEverest needed an S3-compatible option that folks could actually run next to their databases — especially on-prem and at the edge. SeaweedFS won the shortlist for practical reasons: a usable Kubernetes operator, and a complexity level that does not require a Ceph support group on speed dial.
 
-[Aditya](/authors/adityapimpalkar/)’s job was to turn that into a first-class OpenEverest provider — same UI, CLI, and API surface users already use for databases.
+The goal was to turn that into a first-class OpenEverest provider — same UI, CLI, and API surface users already use for databases.
 
 ## Building provider-seaweedfs from empty repo to “it actually works”
 
@@ -50,11 +50,11 @@ By the end of the month, a SeaweedFS Instance could go from YAML to a reachable 
 
 October is when the provider stopped being a science experiment and started looking like something you might hand to a teammate.
 
-Service exposure landed — ClusterIP, NodePort, LoadBalancer — because “it runs” is only half the story if nothing can talk to it. Storage class selection per component showed up in the UI. Replication policies got validations (the kind that save you from learning about replica counts the hard way). Hostname anti-affinity for master, volume, and filer followed, so Kubernetes would stop cheerfully co-locating everything on the one node that is about to sneeze.
+We landed service exposure — ClusterIP, NodePort, LoadBalancer — because “it runs” is only half the story if nothing can talk to it. Storage class selection per component showed up in the UI. Replication policies got validations (the kind that save you from learning about replica counts the hard way). Hostname anti-affinity for master, volume, and filer followed, so Kubernetes would stop cheerfully co-locating everything on the one node that is about to sneeze.
 
-Security got attention too: inter-component mTLS, S3 ingress, and default HTTPS on the S3 gateway when TLS is enabled. That last bit needed love upstream — [Aditya](/authors/adityapimpalkar/) opened and merged [https support for the S3 gateway](https://github.com/seaweedfs/seaweedfs-operator/pull/426) in `seaweedfs/seaweedfs-operator`. Provider work has a funny way of turning into “wait, the operator does not do that yet.”
+Security got attention too: inter-component mTLS, S3 ingress, and default HTTPS on the S3 gateway when TLS is enabled. That last bit needed love upstream — so we opened and merged [https support for the S3 gateway](https://github.com/seaweedfs/seaweedfs-operator/pull/426) in `seaweedfs/seaweedfs-operator`. Provider work has a funny way of turning into “wait, the operator does not do that yet.”
 
-There was also an admin UI toggle (`spec.admin`), storage size expansion, e2e smoke tests against the S3 gateway, and a design proposal for backup/restore — because deploying storage without a backup story is how you earn interesting weekends.
+We also added an admin UI toggle (`spec.admin`), storage size expansion, e2e smoke tests against the S3 gateway, and a design proposal for backup/restore — because deploying storage without a backup story is how you earn interesting weekends.
 
 Somewhere in there, SeaweedFS also landed on the [OpenEverest Hub](https://github.com/openeverest/hub/pull/46), so discovering the provider did not require a scavenger hunt through GitHub.
 
@@ -64,24 +64,23 @@ Releases rolled: `v0.1.1`, `v0.1.2`, `v0.2.0`. MVP stickers still apply. Progres
 
 November went deep on data protection.
 
-On-demand backups landed. Scheduled backups with mirror followed. Then `dataMirror` itself. Restore is in flight — the open PR is doing the careful, slightly paranoid work: filer emptiness probes, phase mapping, rejecting PITR for now, and making sure restore still works after backups get cleaned up. The glamorous stuff.
+We landed on-demand backups, then scheduled backups with mirror, then `dataMirror` itself. Restore is in flight — the open PR is doing the careful, slightly paranoid work: filer emptiness probes, phase mapping, rejecting PITR for now, and making sure restore still works after backups get cleaned up. The glamorous stuff.
 
 E2E cluster tests got fixed. The seaweedfs-operator dependency got bumped. Maintainer life: half features, half “why is CI red again.”
 
 ## But wait — there’s more (the rest of the ecosystem)
 
-LFX had a clear focus. [Aditya](/authors/adityapimpalkar/)… had a second job that kept waving from the other tab.
+LFX had a clear focus. The other tab… kept waving anyway.
 
 ### CloudNativePG provider refused to gather dust
 
 While SeaweedFS was the mentorship headline, [provider-cloudnative-pg](https://github.com/openeverest/provider-cloudnative-pg) kept getting commits like it was still day one.
 
-Across Term 3 he shipped scheduled backups, PITR, TimescaleDB extension support, better connection details (read / read-only services and `sslmode`), failed-status mapping, a pgBouncer pooler component, a read-only pooler, Barman plugin detection, restore/status fixes, example YAMLs, several point releases (`v0.3.0` through `v0.3.3`), and more cleanup and tests than anyone puts on a résumé.
+Across Term 3 we shipped scheduled backups, PITR, TimescaleDB extension support, better connection details (read / read-only services and `sslmode`), failed-status mapping, a pgBouncer pooler component, a read-only pooler, Barman plugin detection, restore/status fixes, example YAMLs, several point releases (`v0.3.0` through `v0.3.3`), and more cleanup and tests than anyone puts on a résumé.
 
-And then the repo itself leveled up. On **November 16**, the provider [moved into the OpenEverest org as an official provider](https://openeverest.io/blog/provider-cloudnative-pg-official) — with [Aditya](/authors/adityapimpalkar/) staying on as maintainer. Not a bad side quest for a mentorship term that was supposedly about object storage.
+And then the repo itself leveled up. On **November 16**, the provider [moved into the OpenEverest org as an official provider](https://openeverest.io/blog/provider-cloudnative-pg-official) — and I stayed on as maintainer. Not a bad side quest for a mentorship term that was supposedly about object storage.
 
 Building one provider teaches you the SDK. Maintaining two at once teaches you where the SDK is lying to you.
-
 
 ### Core platform scratches that turned into PRs
 
@@ -96,17 +95,17 @@ That turned into real work in [openeverest/openeverest](https://github.com/opene
 - Instance status messages on the database overview
 - A CLI `--yaml` output flag
 
-Some of those are merged. Some are still open. All of them came from “I am trying to ship a provider and the platform is missing a knob.”
+Some of those are merged. Some are still open. All of them came from “we’re trying to ship a provider and the platform is missing a knob.”
 
 ## The vibe check
 
 Rough numbers for Sep–Nov, if you like scoreboards: on the order of **~30 PRs** into `provider-seaweedfs`, **~17** into `provider-cloudnative-pg`, a handful into core OpenEverest, plus Hub updates and that upstream SeaweedFS operator PR. The exact count depends on when you refresh GitHub. The pattern does not: scaffold → wire → harden → backup → fix the thing underneath.
 
-It has not all been glamorous. There were validation edge cases, flaky e2e runs, unit conversions that somehow still say `m` when they mean millicores, and the eternal Kubernetes question of “is it Pending or is it *Pending*?” Mentorship helps here — [Diogo](/authors/recharte/) and [Sergey](/authors/spron-in/) have been the people you ping when the mental model and the CRD disagree.
+It has not all been glamorous. There were validation edge cases, flaky e2e runs, unit conversions that somehow still say `m` when they mean millicores, and the eternal Kubernetes question of “is it Pending or is it *Pending*?” Mentorship helps here — [Diogo](/authors/recharte/) and [Sergey](/authors/spron-in/) have been the people to ping when the mental model and the CRD disagree.
 
 ## What’s next
 
-Term 3 wraps at the end of November, but the work does not. Restore for SeaweedFS is the big plate still on the table. Bucket/user/role management may stay with SeaweedFS for now, or grow into something more generic later — the team is still figuring out where that line should sit. The provider is still an MVP: schemas move, charts move, and nobody is pretending this is production-hardened yet.
+Term 3 wraps at the end of November, but the work does not. Restore for SeaweedFS is the big plate still on the table. Bucket/user/role management may stay with SeaweedFS for now, or grow into something more generic later — we’re still figuring out where that line should sit. The provider is still an MVP: schemas move, charts move, and nobody is pretending this is production-hardened yet.
 
 What *is* true after three months: OpenEverest users can deploy S3-compatible storage next to their databases through the same Instance model. That gap was the whole point of the mentorship project. September’s empty repo is November’s working provider.
 
@@ -117,8 +116,7 @@ If object storage on OpenEverest sounds fun (or if you just enjoy opening issues
 - Repo: [openeverest/provider-seaweedfs](https://github.com/openeverest/provider-seaweedfs)
 - Mentorship overview: [openeverest.io/mentorship](https://openeverest.io/mentorship/)
 
-[Aditya](/authors/adityapimpalkar/) is not disappearing when the term ends — SeaweedFS by day, CloudNativePG by “also day,” and core platform fixes whenever a provider trips over a missing piece. LFX Term 3 is done. The PR list, somehow, is not.
-
+I’m not disappearing when the term ends — SeaweedFS by day, CloudNativePG by “also day,” and core platform fixes whenever a provider trips over a missing piece. LFX Term 3 is done. The PR list, somehow, is not.
 
 To get involved with OpenEverest yourself:
 
