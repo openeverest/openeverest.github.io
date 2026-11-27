@@ -18,7 +18,7 @@ sections:
         text: "Help improve user guides, installation docs, or reference materials."
         link:
           text: "Docs repo"
-          url: "https://github.com/openeverest/everest-doc"
+          url: "https://github.com/openeverest/docs"
       - label: "Blog & Website"
         text: "Fix typos, suggest new content, or redesign pages."
         link:
