@@ -27,8 +27,8 @@ I ran everything on a local k3d cluster with OpenEverest installed via the quick
 
 Here is what I had ready before opening the create-database wizard:
 
-- **OpenEverest installed in your cluster.** I used the [quick install guide](https://github.com/openeverest/everest-doc/blob/main/docs/quick-install.md) (Helm). If you prefer the CLI flow, the [everestctl install guide](https://github.com/openeverest/everest-doc/blob/main/docs/install/install_everestctl.md) covers it.
-- **A namespace managed by OpenEverest with the MongoDB operator enabled.** Use the [namespace management guide](https://github.com/openeverest/everest-doc/blob/main/docs/administer/manage_namespaces.md) to add or update namespaces if needed, then pick that namespace in the wizard.
+- **OpenEverest installed in your cluster.** I used the [quick install guide](https://openeverest.io/docs/current/quick-install/) (Helm). If you prefer the CLI flow, the [everestctl install guide](https://openeverest.io/docs/current/install/install_everestctl/) covers it.
+- **A namespace managed by OpenEverest with the MongoDB operator enabled.** Use the [namespace management guide](https://openeverest.io/docs/current/administer/manage_namespaces/) to add or update namespaces if needed, then pick that namespace in the wizard.
 - **`kubectl` configured** for the same cluster the UI uses.
 - **Enough memory on the host.** My first attempt used 2 shards with 3 nodes each, plus 3 config servers and 3 routers. Several pods stayed `Pending` with `Insufficient memory` on an 8 GB WSL VM. Increasing WSL memory to around 11 GB and using a smaller topology fixed it. More on that later.
 
